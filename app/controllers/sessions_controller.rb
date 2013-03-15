@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
-    redirect_to '/auth/linkedin'
+    redirect_to '/auth/stripe_connect'
   end
 
 
