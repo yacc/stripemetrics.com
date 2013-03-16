@@ -1,0 +1,98 @@
+.container-fluid
+  .row-fluid
+    = render "/layouts/main_menu"
+    %noscript
+      .alert.alert-block.span10
+        %h4.alert-heading Warning!
+        %p
+          You need to have
+          %a{:href => "http://en.wikipedia.org/wiki/JavaScript", :target => "_blank"} JavaScript
+          enabled to use this site.
+    #content.span10
+      %div
+        %hr/
+        %ul.breadcrumb
+          %li
+            %a{:href => "#"} Home
+            %span.divider /
+          %li
+            %a{:href => "#"} Dashboard
+        =render "/layouts/circle_stats" if false
+      %hr/
+      .row-fluid
+        .box.span8{:ondesktop => "span8", :ontablet => "span12"}
+          .box-header
+            %h2
+              %i.icon-signal
+              = succeed "Site" do
+                %span.break
+              Statistics
+            .box-icon
+              %a.btn-setting{:href => "#"}
+                %i.icon-wrench
+              %a.btn-minimize{:href => "#"}
+                %i.icon-chevron-up
+              %a.btn-close{:href => "#"}
+                %i.icon-remove
+          .box-content
+            #stats-chart.center{:style => "height:300px"}
+        .box.span4.noMargin{:ondesktop => "span4", :ontablet => "span12"}
+          .box-header
+            %h2
+              %i.icon-list
+              = succeed "Weekly" do
+                %span.break
+              Stat
+            .box-icon
+              %a.btn-minimize{:href => "#"}
+                %i.icon-chevron-up
+              %a.btn-close{:href => "#"}
+                %i.icon-remove
+          .box-content
+            .sparkLineStats
+              %ul.unstyled
+                %li
+                  %span.sparkLineStats1
+                  Visits:
+                  %span.number 356
+                %li
+                  %span.sparkLineStats2
+                  Unique Visitors:
+                  %span.number 252
+                %li
+                  %span.sparkLineStats3
+                  Pageviews:
+                  %span.number 781
+                %li
+                  %span.sparkLineStats4
+                  Pages / Visit:
+                  %span.number 2,19
+                %li
+                  %span.sparkLineStats5
+                  Avg. Visit Duration:
+                  %span.number 00:02:58
+                %li
+                  %span.sparkLineStats6
+                  Bounce Rate:
+                  %span.number 59,83%
+                %li
+                  %span.sparkLineStats7
+                  \% New Visits:
+                  %span.number 70,79%
+                %li
+                  %span.sparkLineStats8
+                  \% Returning Visitor:
+                  %span.number 29,21%
+            / End .sparkStats
+        / /span
+        .box.span4.noMargin{:ondesktop => "span4", :ontablet => "span12"}
+          .box-header
+            %h2
+              %i.icon-comment
+              = succeed "Chats" do
+                %span.break
+            .box-icon
+              %a.btn-minimize{:href => "#"}
+                %i.icon-chevron-up
+              %a.btn-close{:href => "#"}
+                %i.icon-remove

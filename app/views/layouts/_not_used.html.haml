@@ -1,0 +1,134 @@
+      %hr/
+      .row-fluid
+        .box.span4{:ondesktop => "span4", :ontablet => "span6"}
+          .box-header
+            %h2
+              %i.icon-fire
+              = succeed "Server" do
+                %span.break
+              Load
+            .box-icon
+              %a.btn-setting{:href => "#"}
+                %i.icon-wrench
+              %a.btn-minimize{:href => "#"}
+                %i.icon-chevron-up
+              %a.btn-close{:href => "#"}
+                %i.icon-remove
+          .box-content
+            #serverload{:style => "height:235px;"}
+        .box.span4{:ondesktop => "span4", :ontablet => "span6"}
+          .box-header
+            %h2
+              %i.icon-tasks
+              = succeed "Tasks" do
+                %span.break
+              in Progress
+            .box-icon
+              %a.btn-setting{:href => "#"}
+                %i.icon-wrench
+              %a.btn-minimize{:href => "#"}
+                %i.icon-chevron-up
+              %a.btn-close{:href => "#"}
+                %i.icon-remove
+          .box-content
+            .progressBarValue
+              %span iOS App Development
+              %span.progressCustomValueVal 20
+              .progressSlim.progressCustomValue.progressRed
+            .progressBarValue
+              %span Android App Development
+              %span.progressCustomValueVal 40
+              .progressSlim.progressCustomValue.progressOrange
+            .progressBarValue
+              %span A/B Tests
+              %span.progressCustomValueVal 60
+              .progressSlim.progressCustomValue.progressYellow
+            .progressBarValue
+              %span Server Load Tests
+              %span.progressCustomValueVal 80
+              .progressSlim.progressCustomValue.progressGreen
+            .progressBarValue
+              %span Django Backend Development
+              %span.progressCustomValueVal 100
+              .progressSlim.progressCustomValue.progressBlue
+        .box.span4.noMargin{:ondesktop => "span4", :ontablet => "span12"}
+          .box-header
+            %h2
+              %i.icon-check
+              = succeed "To" do
+                %span.break
+              Do List
+            .box-icon
+              %a.btn-setting{:href => "#"}
+                %i.icon-wrench
+              %a.btn-minimize{:href => "#"}
+                %i.icon-chevron-up
+              %a.btn-close{:href => "#"}
+                %i.icon-remove
+          .box-content
+            .todo
+              %ul.todo-list
+                %li
+                  Windows Phone 8 App
+                  %span.label.label-important today
+                  %span.todo-actions
+                    %a{:href => "#"}
+                      %i.icon-ok
+                    %a.todo-remove{:href => "#"}
+                      %i.icon-remove
+                %li
+                  New frontend layout
+                  %span.label.label-important today
+                  %span.todo-actions
+                    %a{:href => "#"}
+                      %i.icon-ok
+                    %a.todo-remove{:href => "#"}
+                      %i.icon-remove
+                %li
+                  Hire developers
+                  %span.label.label-warning tommorow
+                  %span.todo-actions
+                    %a{:href => "#"}
+                      %i.icon-ok
+                    %a.todo-remove{:href => "#"}
+                      %i.icon-remove
+                %li
+                  Windows Phone 8 App
+                  %span.label.label-warning tommorow
+                  %span.todo-actions
+                    %a{:href => "#"}
+                      %i.icon-ok
+                    %a.todo-remove{:href => "#"}
+                      %i.icon-remove
+                %li
+                  New frontend layout
+                  %span.label.label-success this week
+                  %span.todo-actions
+                    %a{:href => "#"}
+                      %i.icon-ok
+                    %a.todo-remove{:href => "#"}
+                      %i.icon-remove
+                %li
+                  Hire developers
+                  %span.label.label-success this week
+                  %span.todo-actions
+                    %a{:href => "#"}
+                      %i.icon-ok
+                    %a.todo-remove{:href => "#"}
+                      %i.icon-remove
+                %li
+                  New frontend layout
+                  %span.label.label-info this month
+                  %span.todo-actions
+                    %a{:href => "#"}
+                      %i.icon-ok
+                    %a.todo-remove{:href => "#"}
+                      %i.icon-remove
+                %li
+                  Hire developers
+                  %span.label.label-info this month
+                  %span.todo-actions
+                    %a{:href => "#"}
+                      %i.icon-ok
+                    %a.todo-remove{:href => "#"}
+                      %i.icon-remove
