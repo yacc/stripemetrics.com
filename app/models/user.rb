@@ -2,12 +2,18 @@ class User
   include Mongoid::Document
   rolify
   field :provider, type: String
-  field :uid, type: String
-  field :name, type: String
-  field :email, type: String
+  field :uid,      type: String
+  field :name,     type: String
+  field :email,    type: String
+  field :livemode, type: Boolean
+  field :token,    type: String
+  field :token_expires, type: Boolean
+
+  has_many :customers
+
   attr_accessible :role_ids, :as => :admin
   attr_accessible :provider, :uid, :name, :email
-  # run 'rake db:mongoid:create_indexes' to create indexes
+
   index({ email: 1 }, { unique: true, background: true })
 
   def self.create_with_omniauth(auth)
@@ -15,8 +21,11 @@ class User
       user.provider = auth['provider']
       user.uid = auth['uid']
       if auth['info']
-         user.name = auth['info']['name'] || ""
-         user.email = auth['info']['email'] || ""
+         user.livemode = auth['info']['livemode'] || false
+      end
+      if auth['credentials']
+        user.token = auth['credentials']['token'] || ''
+        user.token_expires = auth['credentials']['expires'] || true
       end
     end
   end

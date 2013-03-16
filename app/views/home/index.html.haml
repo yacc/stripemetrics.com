@@ -1,4 +1,6 @@
-%h3 Home
-- @users.each do |user|
-  %p
-    User: #{link_to user.name, user}
+%h3 Console
+%a(id='start_aggregation' title='test' href='#') start!
+
+
+:javascript
+  STRIPEMETRICS.job_control.init("#{Rails.env}",'#start_aggregation')

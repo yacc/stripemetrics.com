@@ -8,4 +8,6 @@ Stripemetrics::Application.routes.draw do
   root :to => "home#index"
   resources :users, :only => [:index, :show, :edit, :update ]
 
+  match 'jobs/:action'             => 'jobs#action'
+
 end

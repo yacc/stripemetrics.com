@@ -1,6 +1,31 @@
 source 'https://rubygems.org'
 gem 'rails', '3.2.12'
 
+# stripe support
+gem "stripe", :git => 'https://github.com/stripe/stripe-ruby'
+
+# db
+gem "mongoid", ">= 3.1.1"
+
+# jobs
+gem 'resque', :require => 'resque/server'
+
+# auth and roles
+gem "omniauth", ">= 1.1.3"
+gem "omniauth-stripe-connect"
+gem "cancan", ">= 1.6.8"
+gem "rolify", ">= 3.2.0"
+
+# application 
+gem "figaro", ">= 0.5.3"
+gem "multipart-post", ">= 1.2.0"
+
+# view layer
+gem 'jquery-rails'
+gem "haml-rails", ">= 0.4"
+gem "bootstrap-sass", ">= 2.3.0.0"
+gem "simple_form", ">= 2.0.4"
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
@@ -28,21 +53,3 @@ group :test do
 	gem "machinist", ">= 2.0"
 end
 
-# db
-gem "mongoid", ">= 3.1.1"
-
-# auth and roles
-gem "omniauth", ">= 1.1.3"
-gem "omniauth-stripe-connect"
-gem "cancan", ">= 1.6.8"
-gem "rolify", ">= 3.2.0"
-
-# application 
-gem "figaro", ">= 0.5.3"
-gem "multipart-post", ">= 1.2.0"
-
-# view layer
-gem 'jquery-rails'
-gem "haml-rails", ">= 0.4"
-gem "bootstrap-sass", ">= 2.3.0.0"
-gem "simple_form", ">= 2.0.4"

@@ -1,0 +1,78 @@
+!!!
+%html{:lang => "en", "xml:lang" => "en", :xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %title= content_for?(:title) ? yield(:title) : "Stripemetrics"
+    %meta{:content => content_for?(:description) ? yield(:description) : "Stripemetrics", :name => "description"}
+      = stylesheet_link_tag "application", :media => "all"
+      = javascript_include_tag "application"
+      = csrf_meta_tags
+      = yield(:head)
+  %body
+    #container
+      #header
+        #logo
+      #disconnected.small_caps{:style => "display:none;"}
+        .server_error
+        Disconnected. Attempting to reconnect&hellip;
+      #stats
+        %table{:width => "100%"}
+          %thead
+          %tbody
+            %tr.data
+              %td
+                #job_count
+              %td
+                #work_unit_count
+              %td
+                #node_count
+              %td.last
+                #worker_count
+            %tr.labels
+              %td Jobs
+              %td Work Units
+              %td Nodes
+              %td Workers
+      #sidebar
+        #sidebar_top.sidebar_back
+        #sidebar_background
+        #sidebar_bottom.sidebar_back
+        #sidebar_header.small_caps
+          %span#tail_log Check Server Log
+          %span.has_nodes
+          %span.no_nodes No Nodes Online&hellip;
+        #nodes
+      #graphs
+        .graph_container
+          .graph_title Work Units in Queue
+          #work_units_graph.graph
+        .graph_container
+          .graph_title Jobs in Queue
+          #jobs_graph.graph
+        .graph_container
+          .graph_title
+            Active Nodes
+            (
+            %span#nodes_legend.legend_box
+            )
+            and Workers
+            (
+            %span#workers_legend.legend_box
+            )
+          #workers_graph.graph
+      #worker_info{:style => "display:none;"}
+        #worker_info_inner.small_caps
+          #worker_details
+            #worker_status
+              status:
+              %span.status
+            #worker_action
+              action:&nbsp;
+              %span.action
+            #worker_job_id
+              job #
+              %span.job_id
+              \/ unit #
+              %span.work_unit_id
+          #worker_sleeping
+            worker exiting&hellip;
