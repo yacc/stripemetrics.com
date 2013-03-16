@@ -2,8 +2,16 @@ class JobsController < ApplicationController
 	respond_to :json  
 
 	def start
-		Resque.enqueue(AggregateStripeCustomerData, current_user.id)
-		render :json => :ok
+		jobtype = params[:type]
+		if jobtype == "aggregate_stripe_customer_data"
+			Resque.enqueue(AggregateStripeCustomerData, current_user.id)
+			render :json => :ok
+		elsif jobtype == "customer_acquisition_trend"
+			Resque.enqueue(CustomerAcquisitionTrend, current_user.id)
+			render :json => :ok
+		else
+			render :json => :ok
+		end
 	end
 
   
