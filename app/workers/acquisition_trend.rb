@@ -1,10 +1,8 @@
 class AcquisitionTrend	
-  @queue = :trend_queue
-  
-  def self.perform(user_id)
-    snippet = Snippet.find(snippet_id)
-    uri = URI.parse('http://pygments.appspot.com/')
-    request = Net::HTTP.post_form(uri, {'lang' => snippet.language, 'code' => snippet.plain_code})
-    snippet.update_attribute(:highlighted_code, request.body)
-  end
+	@queue = :trend_queue
+
+	def self.perform(user_id)
+		report = Report::BasicTrends.new(user_id)
+		report.generate
+	end
 end

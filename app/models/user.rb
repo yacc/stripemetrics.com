@@ -10,6 +10,7 @@ class User
   field :token_expires, type: Boolean
 
   has_many :customers
+  has_one  :acquisition_trend
 
   attr_accessible :role_ids, :as => :admin
   attr_accessible :provider, :uid, :name, :email

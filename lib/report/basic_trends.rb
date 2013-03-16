@@ -1,8 +1,9 @@
 module Report
     class BasicTrends
 
-        def initialize(options={})
+        def initialize(user_id,options={})
             $stdout.sync   = (options[:verbose] ? true : false)
+            @user           = User.find(user_id)
         end
 
         def generate
@@ -34,7 +35,11 @@ module Report
             } 
             byday = Customer.map_reduce(map, reduce).out(inline: true)
 
-            aqu = Acquisition.where(account: "sensrnet").first_or_create
+            aqu = if @user.acquisition_trend.nil? 
+                @user.create_acquisition_trend(account: "sensrnet") 
+            else
+                @user.acquisition_trend
+            end
             aqu.update_attributes(
                 data: byday.collect{ |a| a["value"]["count"]},
                 start_at: (byday.first["_id"]["day"].to_i),

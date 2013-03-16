@@ -1,10 +1,10 @@
 class AggregateStripeCustomerData
-  @queue = :aggregation_queue
+	@queue = :aggregation_queue
 
-  def self.perform(user_id)
-	worker = Stripe::Aggregator.new(user_id)
-	worker.run
-  end
-  
+	def self.perform(user_id)
+		worker = Stripe::Aggregator.new(user_id)
+		worker.run
+	end
+	
 end
-  
+
