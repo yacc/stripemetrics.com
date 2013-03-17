@@ -1,0 +1,40 @@
+{
+  "id": "ch_1TiOscZ165sMgY",
+  "object": "charge",
+  "created": 1363542779,
+  "livemode": false,
+  "paid": false,
+  "amount": 995,
+  "currency": "usd",
+  "refunded": false,
+  "fee": 0,
+  "fee_details": [
+
+  ],
+  "card": {
+    "object": "card",
+    "last4": "4242",
+    "type": "Visa",
+    "exp_month": 2,
+    "exp_year": 2013,
+    "fingerprint": "eN9ATrlnOMYF6yIq",
+    "country": "US",
+    "name": null,
+    "address_line1": null,
+    "address_line2": null,
+    "address_city": null,
+    "address_state": null,
+    "address_zip": null,
+    "address_country": null,
+    "cvc_check": null,
+    "address_line1_check": null,
+    "address_zip_check": null
+  },
+  "captured": true,
+  "failure_message": "Your card's expiration month is invalid",
+  "amount_refunded": 0,
+  "customer": "cus_0KWPe6jxMUe2Sm",
+  "invoice": "in_1QKLgkx5H7Z9PZ",
+  "description": null,
+  "dispute": null
+}

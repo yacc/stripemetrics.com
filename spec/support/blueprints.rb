@@ -1,4 +1,4 @@
-require 'machinist/active_record'
+require 'machinist/mongoid'
 
 # Add your blueprints here.
 #
@@ -7,3 +7,7 @@ require 'machinist/active_record'
 #     title { "Post #{sn}" }
 #     body  { "Lorem ipsum..." }
 #   end
+
+Charge.blueprint do
+  # Attributes here
+end

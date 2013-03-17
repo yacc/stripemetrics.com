@@ -51,5 +51,8 @@ group :test do
 	gem "mongoid-rspec", ">= 1.6.0"
 	gem "email_spec", ">= 1.4.0"
 	gem "machinist", ">= 2.0"
+	gem "machinist_mongo",  :git => 'https://github.com/nmerouze/machinist_mongo.git',
+                          :require => 'machinist/mongoid',
+                          :branch => 'machinist2'
 end
 

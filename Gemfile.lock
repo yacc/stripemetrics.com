@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/nmerouze/machinist_mongo.git
+  revision: fa4819c4e1233a4e3ce527b68af8aeee85dfc6c3
+  branch: machinist2
+  specs:
+    machinist_mongo (2.0.0.beta.1)
+      machinist (~> 2.0.0.beta2)
+
+GIT
   remote: https://github.com/stripe/stripe-ruby
   revision: ce34d9ef8b1c8522206294f651b37e9f1e528302
   specs:
@@ -260,6 +268,7 @@ DEPENDENCIES
   html2haml (>= 1.0.1)
   jquery-rails
   machinist (>= 2.0)
+  machinist_mongo!
   mongoid (>= 3.1.1)
   mongoid-rspec (>= 1.6.0)
   multipart-post (>= 1.2.0)

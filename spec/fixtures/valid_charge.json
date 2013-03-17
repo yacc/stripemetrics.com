@@ -1,0 +1,13 @@
+{
+  "id": "ch_1TiOscZ165sMgY",
+  "created": 1363542779,
+  "livemode": false,
+  "paid": false,
+  "amount": 995,
+  "currency": "usd",
+  "refunded": false,
+  "fee": 0,
+  "captured": true,
+  "amount_refunded": 0,
+  "dispute": null
+}
