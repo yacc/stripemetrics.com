@@ -33,7 +33,7 @@ module Report
                     return {count: count};
                 }
             } 
-            byday = Customer.map_reduce(map, reduce).out(inline: true)
+            byday = @user.customers.map_reduce(map, reduce).out(inline: true)
 
             aqu = if @user.acquisition_trend.nil? 
                 @user.create_acquisition_trend(account: "sensrnet") 

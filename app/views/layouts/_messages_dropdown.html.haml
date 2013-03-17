@@ -1,0 +1,66 @@
+/ start: Message Dropdown
+%li.dropdown.hidden-phone
+  %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+    %i.icon-envelope.icon-white
+    %span.label.label-success.hidden-phone 9
+  %ul.dropdown-menu.messages
+    %li
+      %span.dropdown-menu-title You have 9 messages
+    %li
+      %a{:href => "#"}
+        %span.avatar
+          %img{:alt => "Avatar", :src => "/assets/avatar.jpg"}/
+        %span.header
+          %span.from
+            Łukasz Holeczek
+          %span.time
+            6 min
+        %span.message
+          Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
+    %li
+      %a{:href => "#"}
+        %span.avatar
+          %img{:alt => "Avatar", :src => "/assets/avatar2.jpg"}/
+        %span.header
+          %span.from
+            Megan Abott
+          %span.time
+            56 min
+        %span.message
+          Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
+    %li
+      %a{:href => "#"}
+        %span.avatar
+          %img{:alt => "Avatar", :src => "/assets/avatar3.jpg"}/
+        %span.header
+          %span.from
+            Kate Ross
+          %span.time
+            3 hours
+        %span.message
+          Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
+    %li
+      %a{:href => "#"}
+        %span.avatar
+          %img{:alt => "Avatar", :src => "/assets/avatar4.jpg"}/
+        %span.header
+          %span.from
+            Julie Blank
+          %span.time
+            yesterday
+        %span.message
+          Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
+    %li
+      %a{:href => "#"}
+        %span.avatar
+          %img{:alt => "Avatar", :src => "/assets/avatar5.jpg"}/
+        %span.header
+          %span.from
+            Jane Sanders
+          %span.time
+            Jul 25, 2012
+        %span.message
+          Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
+    %li
+      %a.dropdown-menu-sub-footer View all messages
+/ end: Message Dropdown

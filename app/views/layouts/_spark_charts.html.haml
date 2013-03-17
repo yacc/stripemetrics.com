@@ -1,0 +1,48 @@
+        .box.span4.noMargin{:ondesktop => "span4", :ontablet => "span12"}
+.box-header
+  %h2
+    %i.icon-list
+    = succeed "Weekly" do
+      %span.break
+    Stat
+  .box-icon
+    %a.btn-minimize{:href => "#"}
+      %i.icon-chevron-up
+    %a.btn-close{:href => "#"}
+      %i.icon-remove
+.box-content
+  .sparkLineStats
+    %ul.unstyled
+      %li
+        %span.sparkLineStats1
+        Visits:
+        %span.number 356
+      %li
+        %span.sparkLineStats2
+        Unique Visitors:
+        %span.number 252
+      %li
+        %span.sparkLineStats3
+        Pageviews:
+        %span.number 781
+      %li
+        %span.sparkLineStats4
+        Pages / Visit:
+        %span.number 2,19
+      %li
+        %span.sparkLineStats5
+        Avg. Visit Duration:
+        %span.number 00:02:58
+      %li
+        %span.sparkLineStats6
+        Bounce Rate:
+        %span.number 59,83%
+      %li
+        %span.sparkLineStats7
+        \% New Visits:
+        %span.number 70,79%
+      %li
+        %span.sparkLineStats8
+        \% Returning Visitor:
+        %span.number 29,21%
+  / End .sparkStats

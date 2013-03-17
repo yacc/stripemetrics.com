@@ -1,0 +1,24 @@
+%li.dropdown
+  %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+    %i.icon-user.icon-white
+    %span.caret
+  %ul.dropdown-menu
+    %li
+    - if user_signed_in?
+      %li
+        %a{:href => "#"}
+          %i.icon-user
+          Profile
+      %li
+        %a{:href => signout_path}
+          %i.icon-off
+          Logout
+    - else
+      %li 
+        %a{:href => signin_path}
+          %i.icon-on
+          Login
+    - if user_signed_in?
+      - if current_user.has_role? :admin
+        %li
+          = link_to 'Admin', users_path

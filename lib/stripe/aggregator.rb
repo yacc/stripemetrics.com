@@ -7,7 +7,7 @@ module Stripe
         def initialize(user_id,options={})
             @offset         = 0
             @count          = options[:count]  || 100
-            @start_date     = options[:start] ?  Time.parse(options[:start]).beginning_of_month.to_i : Time.parse("Feb 2013").beginning_of_month.to_i
+            @start_date     = options[:start_date] ?  Time.parse(options[:start_date]).to_i : 2.weeks.ago.to_i
 
             @cust_csv_filename = "customers_monthly_#{Time.now.strftime("%b_%Y")}.csv"
             @cust_csv_filepath = File.join('/tmp',"customers_monthly_#{Time.now.strftime("%b_%Y")}.csv")

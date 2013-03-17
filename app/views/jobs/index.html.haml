@@ -1,0 +1,25 @@
+#content.span10
+  .row-fluid
+    .box.span8{:ondesktop => "span8", :ontablet => "span12"}
+      .box-header
+        %h2
+          %i.icon-signal
+          = succeed "Process" do
+            %span.break
+          Subscription
+        .box-icon
+          %a.btn-setting{:href => "#"}
+            %i.icon-wrench
+          %a.btn-minimize{:href => "#"}
+            %i.icon-chevron-up
+          %a.btn-close{:href => "#"}
+            %i.icon-remove
+      .box-content
+        = render 'form'
+
+
+// :javascript
+//   jQuery(document).ready(function() {
+//     STRIPEMETRICS.job_control.init("#{Rails.env}",'#start_aggregation','aggregate_stripe_customer_data');
+//     STRIPEMETRICS.job_control.init("#{Rails.env}",'#start_trend_report','customer_acquisition_trend');
+//   });

@@ -1,0 +1,31 @@
+%a{"data-toggle" => "modal", :href => "#rating-modal"} Start Processing !
+#rating-modal.hide.fade.modal
+  .modal-header
+    %button.close{"data-dismiss" => "modal", :type => "button"} ×
+    %h2 Setup Your Job
+  .modal-body
+    / The async form to send and replace the modals content with its response
+    %form.form-horizontal.well{:action => '/jobs/start', "data-async" => "", "data-target" => "#rating-modal", :method => "POST"}
+      %fieldset
+        .control-group
+          %label.control-label{:for => "job_type"} Job Type
+          .controls
+            %select{:name => "job_type"}
+              %option{:value => "aggregate_stripe_customer_data"} Customer Date
+              %option{:value => "customer_acquisition_trend"} Acquisition Trend
+        .control-group
+          %label.control-label{:for => "start_date"} Start Date
+          .controls
+            %input#start_date.input-xsmall.datepicker{:name => "start_date",:type => "text", :value => 2.weeks.ago.to_date}
+        .control-group
+          %label.control-label{:for => "end_date"} End Date
+          .controls
+            %input#end_date.input-xsmall.datepicker{:name => "end_date",:type => "text", :value => Date.today}
+        .form-actions
+          %button.btn.btn-primary{:type => "submit"} Start Job !
+  .modal-footer
+    %a.btn{"data-dismiss" => "modal", :href => "#"} Cancel
+
+:javascript
+  jQuery(document).ready(function() { STRIPEMETRICS.ajaxform.init("#{Rails.env}",'form[data-async]'); });
+  

@@ -1,24 +1,22 @@
 class JobsController < ApplicationController
-	respond_to :json  
+  	before_filter :authenticate_user!
+	respond_to :json
+
+	def index
+		
+	end
 
 	def start
-		jobtype = params[:type]
+		jobtype = params[:job_type]
 		if jobtype == "aggregate_stripe_customer_data"
-			Resque.enqueue(AggregateStripeCustomerData, current_user.id)
+			Resque.enqueue(AggregateStripeCustomerData, current_user.id,params[:start_date],params[:end_date])
 			render :json => :ok
 		elsif jobtype == "customer_acquisition_trend"
-			Resque.enqueue(CustomerAcquisitionTrend, current_user.id)
+			Resque.enqueue(CustomerAcquisitionTrend, current_user.id,params[:start_date],params[:end_date])
 			render :json => :ok
 		else
 			render :json => :ok
 		end
 	end
-
-  
-  # def error
-  #   msg = { :code => 500, :message => "Sensr.net API version 2 (api2) is not supported anymore. Visit http://sensr.net/api for more information", :debug => '' }
-  #   render :json => msg
-  # end
-  
 
 end

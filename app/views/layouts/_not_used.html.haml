@@ -132,3 +132,334 @@
                       %i.icon-ok
                     %a.todo-remove{:href => "#"}
                       %i.icon-remove
+
+
+
+
+      = render "/layouts/notifications" if false   
+      %hr/
+      .row-fluid
+        %a.quick-button-small.span1
+          %i.fa-icon-group
+        %p Users
+        %span.notification 7
+        %a.quick-button-small.span1
+          %i.fa-icon-comments-alt
+        %p Comments
+        %span.notification.green 4
+        %a.quick-button-small.span1
+          %i.fa-icon-shopping-cart
+        %p Orders
+        %a.quick-button-small.span1
+          %i.fa-icon-barcode
+        %p Products
+        %a.quick-button-small.span1
+          %i.fa-icon-envelope
+        %p Messages
+        %a.quick-button-small.span1
+          %i.fa-icon-calendar
+        %p Calendar
+        %span.notification.red 8
+        %a.quick-button-small.span1.noMargin
+          %i.fa-icon-beaker
+        %p Projects
+        %a.quick-button-small.span1
+          %i.fa-icon-thumbs-up
+        %p Likes
+        %span.notification.green + 11
+        %a.quick-button-small.span1
+          %i.fa-icon-heart-empty
+        %p Favorites
+        %a.quick-button-small.span1
+          %i.fa-icon-bullhorn
+        %p Notifications
+        %span.notification.yellow 7
+        %a.quick-button-small.span1
+          %i.fa-icon-cogs
+        %p Settings
+        %a.quick-button-small.span1
+          %i.fa-icon-dashboard
+        %p Dashboard
+      %hr/
+      .row-fluid
+        .box.span8{:ondesktop => "span8", :ontablet => "span12"}
+          .box-header
+            %h2
+              %i.icon-calendar
+              = succeed "Calendar" do
+                %span.break
+          .box-content
+            #main_calendar.hidden-phone
+            #main_calendar_phone.hidden-desktop.hidden-tablet
+            .clearfix
+        / /span
+        .box.span4.noMargin{:ondesktop => "span4", :ontablet => "span12"}
+          .box-header
+            %h2
+              %i.icon-list
+              = succeed "Support" do
+                %span.break
+              tickets
+            .box-icon
+              %a.btn-minimize{:href => "#"}
+                %i.icon-chevron-up
+              %a.btn-close{:href => "#"}
+                %i.icon-remove
+          .box-content
+            %ul.tickets
+              %li.ticket
+                %a{:href => "#"}
+                  %span.header
+                    %span.title Server unavaible
+                    %span.number [ #199278 ]
+                  %span.content
+                    %span.avatar
+                      %img{:alt => "Avatar", :src => "/assets/avatar6.jpg"}/
+                    %span.name Ashley Tan
+                    %span.priority.blue [ Low priority ]
+                    %span.status
+                      Status:
+                      %span.green [ Complete ]
+                    %span.date Jul 25, 2012 11:09
+              %li.ticket
+                %a{:href => "#"}
+                  %span.header
+                    %span.title Mobile App Problem
+                    %span.number [ #199277 ]
+                  %span.content
+                    %span.avatar
+                      %img{:alt => "Avatar", :src => "/assets/avatar7.jpg"}/
+                    %span.name Ann Kovalsky
+                    %span.priority.yellow [ Normal priority ]
+                    %span.status
+                      Status:
+                      %span.yellow [ Pending ]
+                    %span.date Jul 25, 2012 11:09
+              %li.ticket
+                %a{:href => "#"}
+                  %span.header
+                    %span.title PayPal issue
+                    %span.number [ #199276 ]
+                  %span.content
+                    %span.avatar
+                      %img{:alt => "Avatar", :src => "/assets/avatar8.jpg"}/
+                    %span.name Chris Dan
+                    %span.priority.red [ High priority ]
+                    %span.status
+                      Status:
+                      %span.blue [ In progress ]
+                    %span.date Jul 25, 2012 11:09
+              %li.ticket
+                %a{:href => "#"}
+                  %span.header
+                    %span.title IE7 problem
+                    %span.number [ #199275 ]
+                  %span.content
+                    %span.avatar
+                      %img{:alt => "Avatar", :src => "/assets/avatar9.jpg"}/
+                    %span.name John Grand
+                    %span.priority.blue [ Low priority ]
+                    %span.status
+                      Status:
+                      %span.red [ Rejected ]
+                    %span.date Jul 25, 2012 11:09
+              %li.ticket
+                %a{:href => "#"}
+                  %span.header
+                    %span.title Server unavaible
+                    %span.number [ #199274 ]
+                  %span.content
+                    %span.avatar
+                      %img{:alt => "Avatar", :src => "/assets/avatar2.jpg"}/
+                    %span.name Agnes Young
+                    %span.priority.blue [ Low priority ]
+                    %span.status
+                      Status:
+                      %span.green [ Complete ]
+                    %span.date Jul 25, 2012 11:09
+              %li.ticket
+                %a{:href => "#"}
+                  %span.header
+                    %span.title Mobile App Problem
+                    %span.number [ #199273 ]
+                  %span.content
+                    %span.avatar
+                      %img{:alt => "Avatar", :src => "/assets/avatar3.jpg"}/
+                    %span.name Melanie Brown
+                    %span.priority.yellow [ Normal priority ]
+                    %span.status
+                      Status:
+                      %span.yellow [ Pending ]
+                    %span.date Jul 25, 2012 11:09
+              %li.ticket
+                %a{:href => "#"}
+                  %span.header
+                    %span.title PayPal issue
+                    %span.number [ #199272 ]
+                  %span.content
+                    %span.avatar
+                      %img{:alt => "Avatar", :src => "/assets/avatar4.jpg"}/
+                    %span.name Patricia Doyle
+                    %span.priority.red [ High priority ]
+                    %span.status
+                      Status:
+                      %span.blue [ In progress ]
+                    %span.date Jul 25, 2012 11:09
+        / /span
+
+
+
+
+      %hr/
+      .row-fluid
+        .box.span4{:ondesktop => "span4", :ontablet => "span6"}
+          .box-header
+            %h2
+              %i.icon-list
+              = succeed "Weekly" do
+                %span.break
+              Stat
+            .box-icon
+              %a.btn-minimize{:href => "#"}
+                %i.icon-chevron-up
+              %a.btn-close{:href => "#"}
+                %i.icon-remove
+          .box-content
+            %ul.dashboard-list
+              %li
+                %a{:href => "#"}
+                  %i.fa-icon-arrow-up.green
+                  %span.green 92
+                  New Comments
+              %li
+                %a{:href => "#"}
+                  %i.fa-icon-arrow-down.red
+                  %span.red 15
+                  New Registrations
+              %li
+                %a{:href => "#"}
+                  %i.fa-icon-minus.blue
+                  %span.blue 36
+                  New Articles
+              %li
+                %a{:href => "#"}
+                  %i.fa-icon-comment.yellow
+                  %span.yellow 45
+                  User reviews
+              %li
+                %a{:href => "#"}
+                  %i.fa-icon-arrow-up.green
+                  %span.green 112
+                  New Comments
+              %li
+                %a{:href => "#"}
+                  %i.fa-icon-arrow-down.red
+                  %span.red 31
+                  New Registrations
+              %li
+                %a{:href => "#"}
+                  %i.fa-icon-minus.blue
+                  %span.blue 93
+                  New Articles
+              %li
+                %a{:href => "#"}
+                  %i.fa-icon-comment.yellow
+                  %span.yellow 254
+                  User reviews
+        / /span
+        .box.span4{:ondesktop => "span4", :ontablet => "span6"}
+          .box-header
+            %h2
+              %i.icon-user
+              = succeed "Last" do
+                %span.break
+              Users
+            .box-icon
+              %a.btn-minimize{:href => "#"}
+                %i.icon-chevron-up
+              %a.btn-close{:href => "#"}
+                %i.icon-remove
+          .box-content
+            %ul.dashboard-list
+              %li
+                %a{:href => "#"}
+                  %img.avatar{:alt => "Lucas", :src => "/assets/avatar.jpg"}/
+                %strong Name:
+                %a{:href => "#"} Łukasz Holeczek
+                %br/
+                %strong Since:
+                Jul 25, 2012 11:09
+                %br/
+                %strong Status:
+                %span.label.label-success Approved
+              %li
+                %a{:href => "#"}
+                  %img.avatar{:alt => "Bill", :src => "/assets/avatar9.jpg"}/
+                %strong Name:
+                %a{:href => "#"} Bill Cole
+                %br/
+                %strong Since:
+                Jul 25, 2012 11:09
+                %br/
+                %strong Status:
+                %span.label.label-warning Pending
+              %li
+                %a{:href => "#"}
+                  %img.avatar{:alt => "Jane", :src => "/assets/avatar5.jpg"}/
+                %strong Name:
+                %a{:href => "#"} Jane Sanchez
+                %br/
+                %strong Since:
+                Jul 25, 2012 11:09
+                %br/
+                %strong Status:
+                %span.label.label-important Banned
+              %li
+                %a{:href => "#"}
+                  %img.avatar{:alt => "Kate", :src => "/assets/avatar6.jpg"}/
+                %strong Name:
+                %a{:href => "#"} Kate Presley
+                %br/
+                %strong Since:
+                Jul 25, 2012 11:09
+                %br/
+                %strong Status:
+                %span.label.label-info Updates
+        / /span
+
+
+        .box.span4.noMargin{:ondesktop => "span4", :ontablet => "span12"}
+          .box-header
+            %h2
+              %i.icon-comment
+              = succeed "Chats" do
+                %span.break
+            .box-icon
+              %a.btn-minimize{:href => "#"}
+                %i.icon-chevron-up
+              %a.btn-close{:href => "#"}
+                %i.icon-remove
+
+
+
+
+
+
+
+
+
+      / %div
+      /   %hr/
+      /   %ul.breadcrumb
+      /     %li
+      /       %a{:href => "#"} Home
+      /       %span.divider /
+      /     %li
+      /       %a{:href => "#"} Dashboard
+      /   = render "/layouts/circle_stats" if false
+      / %hr/
+      / .row-fluid
+      /   .box.span8{:ondesktop => "span8", :ontablet => "span12"}
+      /     = render '/layouts/chart'
+      /     = render '/layouts/spark_charts'  if false
+        / /span

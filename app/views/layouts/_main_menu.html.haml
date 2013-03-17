@@ -2,39 +2,43 @@
   .nav-collapse.sidebar-nav
     %ul.nav.nav-tabs.nav-stacked.main-menu
       %li
-        %a{:href => "index.html"}
+        %a{:href => '/dashboard/index' }
           %i.icon-home.icon-white
           %span.hidden-tablet Dashboard
       %li
-        %a{:href => "ui.html"}
+        %a{:href => jobs_path}
           %i.icon-eye-open.icon-white
-          %span.hidden-tablet UI Features
+          %span.hidden-tablet Import Data
       %li
-        %a{:href => "form.html"}
-          %i.icon-edit.icon-white
-          %span.hidden-tablet Forms
-      %li
-        %a{:href => "chart.html"}
-          %i.icon-list-alt.icon-white
-          %span.hidden-tablet Charts
-      %li
-        %a.dropmenu{:href => "#"}
-          %i.fa-icon-folder-close-alt
-          %span.hidden-tablet Dropdown
-        %ul
-          %li
-            %a.submenu{:href => "submenu.html"}
-              %i.fa-icon-file-alt
-              %span.hidden-tablet Sub Menu 1
-          %li
-            %a.submenu{:href => "submenu.html"}
-              %i.fa-icon-file-alt
-              %span.hidden-tablet Sub Menu 2
-          %li
-            %a.submenu{:href => "submenu.html"}
-              %i.fa-icon-file-alt
-              %span.hidden-tablet Sub Menu 3
-      %li
-        %a{:href => "typography.html"}
-          %i.icon-font.icon-white
-          %span.hidden-tablet Typography
+        %a{:href => jobs_path}
+          %i.icon-eye-open.icon-white
+          %span.hidden-tablet Job Control
+      / %li
+      /   %a{:href => "form.html"}
+      /     %i.icon-edit.icon-white
+      /     %span.hidden-tablet Forms
+      / %li
+      /   %a{:href => "chart.html"}
+      /     %i.icon-list-alt.icon-white
+      /     %span.hidden-tablet Charts
+      / %li
+      /   %a.dropmenu{:href => "#"}
+      /     %i.fa-icon-folder-close-alt
+      /     %span.hidden-tablet Dropdown
+      /   %ul
+      /     %li
+      /       %a.submenu{:href => "submenu.html"}
+      /         %i.fa-icon-file-alt
+      /         %span.hidden-tablet Sub Menu 1
+      /     %li
+      /       %a.submenu{:href => "submenu.html"}
+      /         %i.fa-icon-file-alt
+      /         %span.hidden-tablet Sub Menu 2
+      /     %li
+      /       %a.submenu{:href => "submenu.html"}
+      /         %i.fa-icon-file-alt
+      /         %span.hidden-tablet Sub Menu 3
+      / %li
+      /   %a{:href => "typography.html"}
+      /     %i.icon-font.icon-white
+      /     %span.hidden-tablet Typography

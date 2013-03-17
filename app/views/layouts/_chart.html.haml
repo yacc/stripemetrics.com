@@ -1,0 +1,15 @@
+.box-header
+  %h2
+    %i.icon-signal
+    = succeed "Site" do
+      %span.break
+    Statistics
+  .box-icon
+    %a.btn-setting{:href => "#"}
+      %i.icon-wrench
+    %a.btn-minimize{:href => "#"}
+      %i.icon-chevron-up
+    %a.btn-close{:href => "#"}
+      %i.icon-remove
+.box-content
+  #stats-chart.center{:style => "height:300px"}
