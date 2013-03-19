@@ -11,8 +11,10 @@
           %label.control-label{:for => "job_type"} Job Type
           .controls
             %select{:name => "job_type"}
-              %option{:value => "aggregate_stripe_customer_data"} Customer Date
+              %option{:value => "import_customers"} Import Customers
+              %option{:value => "import_charges"} Import Charges
               %option{:value => "customer_acquisition_trend"} Acquisition Trend
+              %option{:value => "charge_trend"} Charge Trend
         .control-group
           %label.control-label{:for => "start_date"} Start Date
           .controls

@@ -8,11 +8,18 @@ class JobsController < ApplicationController
 
 	def start
 		jobtype = params[:job_type]
-		if jobtype == "aggregate_stripe_customer_data"
-			Resque.enqueue(AggregateStripeCustomerData, current_user.id,params[:start_date],params[:end_date])
+		options = {start_date: params[:start_date],end_date: params[:end_date]}
+		if jobtype == "import_customers"
+			Resque.enqueue(ImportStripeCustomers, current_user.id,options)
+			render :json => :ok
+		elsif jobtype == "import_charges"
+			Resque.enqueue(ImportStripeCharges, current_user.id,options)
 			render :json => :ok
 		elsif jobtype == "customer_acquisition_trend"
-			Resque.enqueue(CustomerAcquisitionTrend, current_user.id,params[:start_date],params[:end_date])
+			Resque.enqueue(CustomerAcquisitionTrend, current_user.id,options)
+			render :json => :ok
+		elsif jobtype == "charge_trend"
+			Resque.enqueue(UpdateChargeTrend, current_user.id,options)
 			render :json => :ok
 		else
 			render :json => :ok

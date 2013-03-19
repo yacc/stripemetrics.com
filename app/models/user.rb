@@ -12,6 +12,7 @@ class User
   has_many :customers
   has_many :charges
   has_one  :acquisition_trend
+  has_one  :charge_trend
 
   attr_accessible :role_ids, :as => :admin
   attr_accessible :provider, :uid, :name, :email
