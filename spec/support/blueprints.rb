@@ -11,3 +11,7 @@ require 'machinist/mongoid'
 Charge.blueprint do
   # Attributes here
 end
+
+Trend.blueprint do
+  # Attributes here
+end

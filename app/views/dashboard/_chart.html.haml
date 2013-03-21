@@ -1,0 +1,73 @@
+.box.span10{:ondesktop => "span10", :ontablet => "span12"}
+  .box-header
+    %h2
+      %i.icon-signal
+      title
+    .box-icon
+      %a.btn-setting{:href => "#"}
+        %i.icon-wrench
+      %a.btn-minimize{:href => "#"}
+        %i.icon-chevron-up
+      %a.btn-close{:href => "#"}
+        %i.icon-remove
+  .box-content
+    #trend-chart.center{:style => "height:300px"}
+
+= javascript_include_tag "themes/dark-blue.js"
+
+:javascript
+  var groupingUnits = [[
+    'week',                         // unit name
+    [1]                             // allowed multiples
+  ], [
+    'month',
+    [1, 2, 3, 4, 6]
+  ]];
+
+  chart = new Highcharts.StockChart({
+      chart: {
+          renderTo: 'trend-chart',
+          alignTicks: false
+      },
+
+      rangeSelector: {
+          selected: 1
+      },
+
+      title: {
+          text: "#{title}"
+      },
+
+      yAxis: [{
+          title: {
+              text: 'Count'
+          },
+          height: 200,
+          lineWidth: 2
+      }, {
+          title: {
+              text: 'Volume'
+          },
+          top: 300,
+          height: 100,
+          offset: 0,
+          lineWidth: 2
+      }],
+      
+      series: [{
+          type: 'line',
+          name: 'Count',
+          data: #{data},
+          dataGrouping: {
+            units: groupingUnits
+          }
+      }, {
+          type: 'column',
+          name: 'Volume',
+          data: #{data},
+          yAxis: 1,
+          dataGrouping: {
+            units: groupingUnits
+          }
+      }]
+  });

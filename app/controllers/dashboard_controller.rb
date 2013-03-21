@@ -1,5 +1,6 @@
 class DashboardController < ApplicationController
 	def index
-		@trend = current_user.acquisition_trend
+		@failedcharges = current_user.failed_charge_trend
+    @paidcharges   = current_user.paid_charge_trend
 	end
 end

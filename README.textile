@@ -5,3 +5,7 @@ h2. Mongo Commands
 
 rake db:mongoid:create_indexes
 
+h2. Resque Commands
+
+to start the queue worker
+rake resque:work QUEUE='*'
