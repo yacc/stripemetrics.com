@@ -12,19 +12,19 @@ class PaidChargeTrend < Trend
   def daily
     Charge.where(paid:true).collection.aggregate([project,groupby("day")]).collect do |data|
       [(Time.new(data["_id"]["year"]) + (data["_id"]["day"]).days).to_i,data["count"]]
-    end
+    end.sort_by{|k|k[0]}
   end
 
   def weekly
     Charge.where(paid:true).collection.aggregate([project,groupby("week")]).collect do |data|
       [(Time.new(data["_id"]["year"]) + (data["_id"]["week"]).weeks).to_i, data["count"] ]
-    end
+    end.sort_by{|k|k[0]}
   end
 
   def monthly
     Charge.where(paid:true).collection.aggregate([project,groupby("month")]).collect do |data|
       [(Time.new(data["_id"]["year"]) + (data["_id"]["month"]).month).to_i, data["count"] ]
-    end
+    end.sort_by{|k|k[0]}
   end
 
   private
