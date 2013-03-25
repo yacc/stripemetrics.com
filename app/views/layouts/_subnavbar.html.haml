@@ -1,0 +1,41 @@
+.subnavbar
+  .subnavbar-inner
+    .container
+      %ul.mainnav
+        %li.active
+          %a{:href => "./"}
+            %i.icon-home
+            %span Home
+        %li
+          %a{:href => "./faq.html"}
+            %i.icon-pushpin
+            %span FAQ
+        %li
+          %a.dropdown-toggle{:href => "./pricing.html"}
+            %i.icon-th-large
+            %span Pricing Plans
+        %li
+          %a{:href => "./reports.html"}
+            %i.icon-bar-chart
+            %span Reports
+        %li
+          %a{:href => "./guidely.html"}
+            %i.icon-facetime-video
+            %span Guided Tour
+        %li.dropdown
+          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "javascript:;"}
+            %i.icon-share-alt
+            %span More Pages
+            %b.caret
+          %ul.dropdown-menu
+            %li
+              %a{:href => "./charts.html"} Charts
+            %li
+              %a{:href => "./account.html"} User Account
+            %li.divider
+            %li
+              %a{:href => "./login.html"} Login
+            %li
+              %a{:href => "./signup.html"} Signup
+            %li
+              %a{:href => "./error.html"} Error

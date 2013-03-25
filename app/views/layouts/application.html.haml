@@ -8,16 +8,18 @@
     %meta{:content => "Yacin Bahi", :name => "author"}/
     / end: Meta
     / start: Mobile Specific
-    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %meta{:content => "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no", :name => "viewport"}/
+    %meta{:content => "yes", :name => "apple-mobile-web-app-capable"}/
     / end: Mobile Specific
+    %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600", :rel => "stylesheet"}/
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
     = yield(:head)
   %body{:class => "#{controller_name} #{action_name}"}
-    = render "layouts/overlay"
-    = render "layouts/header"
-    = render "layouts/main_container"
-    = render "layouts/my_modal"
-    .clearfix
+    = render "layouts/navbar"
+    = render "layouts/subnavbar"
+    = render "layouts/main"
+    = render "layouts/extras"
     = render "layouts/footer"
+

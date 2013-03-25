@@ -7,6 +7,7 @@ class ImportStripeCustomers
     start_date     = options[:start_date] ?  Time.parse(options[:start_date]).to_i : 2.weeks.ago.to_i
     user           = User.find(user_id)
     token          = @user.token
+    print "-> Start Customers Import for #{user.id} from #{start_date} to present\n"
 
     last_date = nil
     begin

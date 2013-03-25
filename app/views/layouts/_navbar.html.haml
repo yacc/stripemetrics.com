@@ -1,0 +1,39 @@
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.brand{:href => "./"}
+        Base Admin
+      .nav-collapse
+        %ul.nav.pull-right
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              %i.icon-cog
+              Settings
+              %b.caret
+            %ul.dropdown-menu
+              %li
+                %a{:href => "javascript:;"} Account Settings
+              %li
+                %a{:href => "javascript:;"} Privacy Settings
+              %li.divider
+              %li
+                %a{:href => "javascript:;"} Help
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              %i.icon-user
+              Rod Howard
+              %b.caret
+            %ul.dropdown-menu
+              %li
+                %a{:href => "javascript:;"} My Profile
+              %li
+                %a{:href => "javascript:;"} My Groups
+              %li.divider
+              %li
+                %a{:href => "javascript:;"} Logout
+        %form.navbar-search.pull-right
+          %input.search-query{:placeholder => "Search", :type => "text"}/
