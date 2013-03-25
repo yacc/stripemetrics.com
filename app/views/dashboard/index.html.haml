@@ -1,5 +1,13 @@
-#content.span10
-  .row-fluid
-  = render "chart", :title => @paidcharges.name,
-                    :data  => @paidcharges.daily,
-                    :start => @paidcharges.start_date
+.main
+  .main-inner
+    .container
+      .row
+        .span12
+          = render "bigstats"
+      .row
+        .span6
+          = render "chart", :title => @paidcharges.name,
+                            :data  => @paidcharges.daily,
+                            :start => @paidcharges.start_date
+        .span6    
+          
