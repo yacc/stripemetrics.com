@@ -15,3 +15,7 @@ end
 Trend.blueprint do
   # Attributes here
 end
+
+Account.blueprint do
+  # Attributes here
+end

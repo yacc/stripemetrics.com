@@ -1,5 +1,15 @@
-= form_for(@user) do |f|
-  = f.label :email
-  = f.text_field :email
-  %br/
-  = f.submit "Sign in"
+.main
+  .main-inner
+    .container
+      .row
+        .span8
+          .widget
+            .widget-header
+              %i.icon-user
+              %h3 Your Account
+            .widget-content
+              = form_for(@user) do |f|
+                = f.label :email
+                = f.text_field :email
+                %br/
+                = f.submit "Sign in"

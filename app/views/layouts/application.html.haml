@@ -19,7 +19,7 @@
   %body{:class => "#{controller_name} #{action_name}"}
     = render "layouts/navbar"
     = render "layouts/subnavbar"
-    = render "layouts/main"
+    = yield
     = render "layouts/extras"
     = render "layouts/footer"
 

@@ -1,4 +1,12 @@
 class HomeController < ApplicationController
-	def index
+
+	def quickstart
 	end
+
+  def faq
+  end
+
+  def pricing
+  end
+
 end

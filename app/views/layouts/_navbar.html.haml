@@ -6,34 +6,24 @@
         %span.icon-bar
         %span.icon-bar
       %a.brand{:href => "./"}
-        Base Admin
-      .nav-collapse
+        StripeMetrics
+      -if user_signed_in?
+        .nav-collapse
+          %ul.nav.pull-right
+            %li.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                %i.icon-user
+                = current_user.uid
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  = link_to 'My account', account_path
+                %li
+                  = link_to 'Billing', billing_path
+                %li.divider
+                %li
+                  = link_to 'Logout', signout_path
+      -else                
         %ul.nav.pull-right
-          %li.dropdown
-            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-              %i.icon-cog
-              Settings
-              %b.caret
-            %ul.dropdown-menu
-              %li
-                %a{:href => "javascript:;"} Account Settings
-              %li
-                %a{:href => "javascript:;"} Privacy Settings
-              %li.divider
-              %li
-                %a{:href => "javascript:;"} Help
-          %li.dropdown
-            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-              %i.icon-user
-              Rod Howard
-              %b.caret
-            %ul.dropdown-menu
-              %li
-                %a{:href => "javascript:;"} My Profile
-              %li
-                %a{:href => "javascript:;"} My Groups
-              %li.divider
-              %li
-                %a{:href => "javascript:;"} Logout
-        %form.navbar-search.pull-right
-          %input.search-query{:placeholder => "Search", :type => "text"}/
+          %li
+            = link_to 'Login with Stripe', signin_path

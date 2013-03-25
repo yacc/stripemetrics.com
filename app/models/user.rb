@@ -3,7 +3,6 @@ class User
   rolify
   field :provider, type: String
   field :uid,      type: String
-  field :name,     type: String
   field :email,    type: String
   field :livemode, type: Boolean
   field :token,    type: String
@@ -14,6 +13,7 @@ class User
   has_one  :acquisition_trend
   has_one  :paid_charge_trend
   has_one  :failed_charge_trend
+  embeds_one  :account
 
   attr_accessible :role_ids, :as => :admin
   attr_accessible :provider, :uid, :name, :email
