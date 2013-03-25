@@ -1,9 +1,9 @@
 .widget
   .widget-header
     %i.icon-star
-    %h3 Quick Stats
+    %h3=title
   .widget-content
-    #trend-chart.chart-holder
+    .chart-holder{:id=> div}
 
 = javascript_include_tag "themes/gray.js"
 
@@ -18,16 +18,12 @@
 
   chart = new Highcharts.StockChart({
       chart: {
-          renderTo: 'trend-chart',
+          renderTo: "#{div}",
           alignTicks: false
       },
 
       rangeSelector: {
           selected: 1
-      },
-
-      title: {
-          text: "#{title}"
       },
 
       yAxis: [{

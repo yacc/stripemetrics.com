@@ -8,6 +8,10 @@
         .span6
           = render "chart", :title => @paidcharges.name,
                             :data  => @paidcharges.daily,
-                            :start => @paidcharges.start_date
+                            :start => @paidcharges.start_date,
+                            :div   => "paid-trend-chart"
         .span6    
-          
+          = render "chart", :title => "Cancelation Trend",
+                            :data  => @paidcharges.daily,
+                            :start => @paidcharges.start_date,
+                            :div   => "cancelation-trend-chart"
