@@ -1,0 +1,2 @@
+class SDEImport < Import
+end

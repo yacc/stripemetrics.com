@@ -1,5 +1,5 @@
 class ImportStripeCustomerDeletedEvents
-  @queue = :stripe_import_events_queue
+  @queue = :stripe_cde_import_queue
 
   def self.perform(user_id,options = {})
 
@@ -9,29 +9,25 @@ class ImportStripeCustomerDeletedEvents
       count          = options["count"]  || 100
       user           = User.find(user_id)
       token          = user.token
-      last_processed = user.imports_summary.customers_import_last_processed_ts
       newest_import  = nil
+      start_time     = Time.now
 
-      if user.imports_summary.customers_import_locked
-        print "-> Skiping Events Import for #{user.id} b/c one is already running\n"
-        return
-      end
-      user.imports_summary.customers_import_locked = true
-      user.imports_summary.save
-      print "-> Start Events Import for #{user.id} from #{last_processed} to present\n"
+      director = user.import_directors.where(_type:"CDEImportDirector").first
+      last_processed = director.last_processed_ts
+      director.imports.create(_type:"CDEImport",status:'processing')
 
-      import = ::CustomerDeletedEventsImport.create(status:'processing')
-      user.customer_deleted_events_imports << import
       begin
         events = Stripe::Event.all({:count => count, :offset => offset,:type => 'customer.deleted'},token)
         newest_import = events.data.first.created if newest_import.nil?
         events.data.each do |ev|
+
           cust_id = ev.data["object"]["customer"]
           customer = ::Customer.where(stripe_id:ch.id).first
           customer.canceled_at =  ev.created
           customer.save
           customer.subscription.canceled_at = ev.created
           customer.subscription.save
+          
           imported += 1
           print "."
         end
@@ -39,11 +35,9 @@ class ImportStripeCustomerDeletedEvents
         offset += count
         print "-> #{last_date}\n"
       end while (last_date > last_processed) 
-      import.update_attributes(status:'success',time:time,count:imported)
-      user.imports_summary.update_attributes(customers_import_last_ran_at: Time.now, customers_import_last_processed_ts: newest_import)            
-    ensure
-      user.imports_summary.customers_import_locked = false
-      user.imports_summary.save
+
+      import.update_attributes(status:'success',time:(start_time-Time.now).to_i,count:imported)
+      director.update_attributes(last_ran_at: Time.now, last_processed_ts: newest_import)
     end
 
   end

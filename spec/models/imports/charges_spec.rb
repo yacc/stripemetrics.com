@@ -21,8 +21,8 @@ describe "Imports" do
 
     it "should create a charge from a full json response form stripe" do
       json_obj = JSON.parse(File.read("./spec/fixtures/charge_response_from_stripe.json"))
-      charge = Charge.create(json_obj)
-
+      # TODO: pre-process parameters to always store the minimum
+      charge = Charge.create(Charge.from_stripe(json_obj))
       charge.created.to_s.should eq("2013-03-17") #1363542779)
       charge.livemode.should eq(false)
       charge.paid.should eq(false)
@@ -33,6 +33,8 @@ describe "Imports" do
       charge.captured.should eq(true)
       charge.amount_refunded.should eq(0)
       charge.dispute.should eq(nil)
+      #charge.card.should be_nil
+      #charge.fee_details.should be_nil
     end
 
   end

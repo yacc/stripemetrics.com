@@ -7,6 +7,6 @@ class Import
   field :count,  type: Integer  #  how many records where imported
 
   validates_inclusion_of :status, in: [ "processing","failed","succeeded" ]
-  belongs_to :user
-    
+  belongs_to :import_director   # aggregates stats about imports
+
 end

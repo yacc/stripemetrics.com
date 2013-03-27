@@ -1,0 +1,2 @@
+class CDEImport < Import
+end

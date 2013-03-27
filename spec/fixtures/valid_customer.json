@@ -1,0 +1,37 @@
+{
+  "object": "customer",
+  "created": 1364180256,
+  "id": "cus_1WTl23tpQroXTl",
+  "livemode": false,
+  "description": "1 user-0047@sensr.net 995:usd:month:7 on test",
+  "active_card": null,
+  "email": "user-0047@sensr.net",
+  "delinquent": false,
+  "subscription": {
+    "plan": {
+      "interval": "month",
+      "name": "Sensr Plan usd 995/month",
+      "amount": 995,
+      "currency": "usd",
+      "id": "995:usd:month:7",
+      "object": "plan",
+      "livemode": false,
+      "interval_count": 1,
+      "trial_period_days": 7
+    },
+    "object": "subscription",
+    "start": 1364180256,
+    "status": "trialing",
+    "customer": "cus_1WTl23tpQroXTl",
+    "cancel_at_period_end": false,
+    "current_period_start": 1364180256,
+    "current_period_end": 1490410334,
+    "ended_at": null,
+    "trial_start": 1364180256,
+    "trial_end": 1490410334,
+    "canceled_at": null,
+    "quantity": 1
+  },
+  "discount": null,
+  "account_balance": 0
+}

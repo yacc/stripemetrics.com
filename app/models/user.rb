@@ -10,17 +10,19 @@ class User
 
   has_many :customers
   has_many :charges
-  has_many :customer_deleted_events_imports
+  has_many :import_directors
+
   has_one  :acquisition_trend
   has_one  :paid_charge_trend
   has_one  :failed_charge_trend
-  embeds_one  :account
-  embeds_one  :imports_summary
+  embeds_one   :account
 
   attr_accessible :role_ids, :as => :admin
   attr_accessible :provider, :uid, :name, :email
 
   index({ email: 1 }, { unique: true, background: true })
+
+  after_create :add_import_directors
 
   def self.create_with_omniauth(auth)
     create! do |user|
@@ -34,6 +36,15 @@ class User
         user.token_expires = auth['credentials']['expires'] || true
       end
     end
+  end
+
+  protected 
+
+  def add_import_directors
+    self.import_directors << CDEImportDirector.create
+    self.import_directors << SDEImportDirector.create  
+    self.import_directors << ChargeImportDirector.create  
+    self.import_directors << CustomerImportDirector.create  
   end
 
 end

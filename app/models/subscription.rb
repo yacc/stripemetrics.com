@@ -4,7 +4,6 @@ class Subscription
   field :canceled_at, type: Date
   field :ended_at, type: Date
   field :status, type: String
-  field :redflags, type: Array
 
   embedded_in :customers, :inverse_of => :subscription
   embeds_one  :plan

@@ -1,62 +1,43 @@
-class ImportStripeCustomers
-	@queue = :aggregation_queue
+class ImportStripeCustomer
+  @queue = :stripe_customer_import_queue
 
-	def self.perform(user_id,options = {})
-    offset         = 0
-    count          = options[:count]  || 100
-    start_date     = options[:start_date] ?  Time.parse(options[:start_date]).to_i : 2.weeks.ago.to_i
-    user           = User.find(user_id)
-    token          = @user.token
-    print "-> Start Customers Import for #{user.id} from #{start_date} to present\n"
+  def self.perform(user_id,options = {})
 
-    last_date = nil
     begin
-      customers = Stripe::Customer.all({:count => count, :offset => offset},token)
-      last_date = process_customers(customers)
-      offset += count
-      print "-> #{last_date}\n"
-    end while (last_date > start_date) 
-  end
+      offset         = 0
+      imported       = 0
+      count          = options["count"]  || 100
+      user           = User.find(user_id)
+      token          = user.token
+      newest_import  = nil
+      start_time     = Time.now
 
-  private 
-  def self.process_customers(customers)
-    customers.data.each do |cust|
-      custid  = cust.id
-      created = cust.created 
-      record = @user.customers.find_or_create_by(stripe_id: custid)
-      record.created_at =  created
-      record.save
-      update_subscription(record,cust)
-      print "."
+      director = user.import_directors.where(_type:"CustomerImportDirector").first
+      last_processed = director.last_processed_ts
+      director.imports.create(_type:"CustomerImport",status:'processing')
+
+      begin
+        customer = Stripe::Customer.all({:count => count, :offset => offset},token)
+        newest_import = events.data.first.created if newest_import.nil?
+        customers.data.each do |cust|
+
+          customer = cust.as_json
+          record = ::Customer.where(stripe_id:ch.id).first
+          customer["stripe_id"] = cust.id
+          user.customers << ::Customer.create(customer) if record.nil? 
+
+          imported += 1
+          print "."
+        end
+        last_date = customers.data.last.created
+        offset += count
+        print "-> #{last_date}\n"
+      end while (last_date > last_processed) 
+
+      import.update_attributes(status:'success',time:(start_time-Time.now).to_i,count:imported)
+      director.update_attributes(last_ran_at: Time.now, last_processed_ts: newest_import)
     end
-    last_date = customers.data.last.created
+
   end
-
-  def self.update_subscription(record,cust)
-    redflags = []
-    if cust.respond_to? :subscription 
-      if cust.subscription.nil?
-        redflags << 'missing subscription'
-      else
-        status       = cust.subscription["status"]
-        start        = cust.subscription["start"]
-        canceled_at  = cust.subscription["canceled_at"]
-        ended_at     = cust.subscription["ended_at"]
-        interval     = cust.subscription.plan["interval"]
-        amount       = cust.subscription.plan["amount"]
-      end
-    end
-    if subs = record.subscription
-      subs.update_attributes(status: status,canceled_at: canceled_at, ended_at: ended_at, 
-       plan: {interval: interval, amount: amount},
-       redflags: redflags )
-    else
-      record.create_subscription(start: start, canceled_at: canceled_at, ended_at: ended_at, status: status,
-       plan: {interval: interval, amount: amount},
-       redflags: redflags)
-    end
-  end
-
-end  
-
-
+  
+end

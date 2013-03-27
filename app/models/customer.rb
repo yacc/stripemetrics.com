@@ -2,10 +2,17 @@ class Customer
   include Mongoid::Document
 
   field :stripe_id, type: String
-  field :created_at, type: Date
+  field :created, type: Date
   field :canceled_at, type: Date
   field :converted_at, type: Date
 
   embeds_one :subscription
   belongs_to :user
+
+  def self.from_stripe(json_obj)
+    json_obj["stripe_id"] = json_obj["id"]
+    json_obj["subscription"].except!("plan") 
+    json_obj.except("id")
+  end
+  
 end

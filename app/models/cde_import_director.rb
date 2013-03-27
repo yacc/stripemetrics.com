@@ -1,0 +1,2 @@
+class CDEImportDirector < ImportDirector
+end

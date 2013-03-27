@@ -151,8 +151,11 @@ no, but I can query a deleted customer through the API (by id)
     {"id":"evt_1XDZXtDMlpg3QV","created":1364350661,"livemode":false,"type":"customer.deleted","data":{"object":{"id":"cus_1WTl23tpQroXTl","object":"customer","created":1364180256,"livemode":false,"description":"1 user-0047@sensr.net 995:usd:month:7 on test","email":"user-0047@sensr.net","subscription":{"plan":{"id":"995:usd:month:7","interval":"month","name":"Sensr Plan usd 995/month","amount":995,"currency":"usd","object":"plan","livemode":false,"interval_count":1,"trial_period_days":7,"identifier":"995:usd:month:7"},"object":"subscription","start":1364180256,"status":"trialing","customer":"cus_1WTl23tpQroXTl","current_period_start":1364180256,"current_period_end":1490410334,"trial_start":1364180256,"trial_end":1490410334,"quantity":1},"account_balance":0}},"object":"event","pending_webhooks":2},
 
 
-import_events('customer.deleted',up_to_last_ts)
-  start_time = Time.now
+=== 
+once I've ran those two, my customer and subscription are updated with the latest cancelations
+
+ImportStripeSubscriptionDeletedEvents
+ImportStripeCustomerDeletedEvents
 
 
 

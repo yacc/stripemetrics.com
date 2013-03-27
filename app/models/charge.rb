@@ -14,4 +14,8 @@ class Charge
 
   belongs_to :user
 
+  def self.from_stripe(json_obj)
+    json_obj.except!("card","fee_details")
+  end
+
 end

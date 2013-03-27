@@ -1,2 +1,0 @@
-class CustomerDeletedEventsImport << Import
-end
