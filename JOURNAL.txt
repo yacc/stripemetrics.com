@@ -35,3 +35,124 @@
     | 
   end
 
+
+===== customer created =====
+events = Stripe::Event.all({:count => count, :offset => offset,:type => 'customer.created'},token)
+events.data.first
+
+1.9.3p125 :024 > events.data.first => #<Stripe::Event:0x81c40cd0> JSON: {"id":"evt_1WsgKxqiasXKnv","created":1364272966,"livemode":false,"type":"customer.created","data":{"object":{"id":"cus_1Wsg9Q9wDW6AUH","object":"customer","created":1364272966,"livemode":false,"description":"210 yacinb+0325@gmail.com 0:usd:month:7 on staging","active_card":null,"email":"yacinb+0325@gmail.com","delinquent":false,"subscription":null,"discount":null,"account_balance":0}},"object":"event","pending_webhooks":1}
+
+
+====== customer subscritpion created ======
+events = Stripe::Event.all({:count => count, :offset => offset,:type => 'customer.subscription.created'},token)
+events.data.first
+
+ => #<Stripe::Event:0x81c839f4> JSON: {"id":"evt_1WsgP3uU8mTD51","created":1364272966,"livemode":false,"type":"customer.subscription.created","data":{"object":{"plan":{"id":"0:usd:month:7","interval":"month","name":"Sensr Plan usd 0/month","amount":0,"currency":"usd","object":"plan","livemode":false,"interval_count":1,"trial_period_days":7},"object":"subscription","start":1364272966,"status":"trialing","customer":"cus_1Wsg9Q9wDW6AUH","cancel_at_period_end":false,"current_period_start":1364272966,"current_period_end":1490503285,"ended_at":null,"trial_start":1364272966,"trial_end":1490503285,"canceled_at":null,"quantity":1}},"object":"event","pending_webhooks":1}
+
+====== customer subscription deleted =====
+events = Stripe::Event.all({:count => count, :offset => offset,:type => 'customer.subscription.deleted'},token)
+event.data.first
+=> #<Stripe::Event:0x81e9f51c> JSON: {"id":"evt_1Wsk3Tqfqn7IRn","created":1364273227,"livemode":false,"type":"customer.subscription.deleted","data":{"object":{"plan":{"id":"0:usd:month:7","interval":"month","name":"Sensr Plan usd 0/month","amount":0,"currency":"usd","object":"plan","livemode":false,"interval_count":1,"trial_period_days":7},"object":"subscription","start":1364272966,"status":"canceled","customer":"cus_1Wsg9Q9wDW6AUH","cancel_at_period_end":false,"current_period_start":1364272966,"current_period_end":1490503285,"ended_at":1364273227,"trial_start":1364272966,"trial_end":1490503285,"canceled_at":1364273227,"quantity":1}},"object":"event","pending_webhooks":1}
+
+====== customer deleted =====
+{"id":"evt_1XDZXtDMlpg3QV","created":1364350661,"livemode":false,"type":"customer.deleted","data":{"object":{"id":"cus_1WTl23tpQroXTl","object":"customer","created":1364180256,"livemode":false,"description":"1 user-0047@sensr.net 995:usd:month:7 on test","email":"user-0047@sensr.net","subscription":{"plan":{"id":"995:usd:month:7","interval":"month","name":"Sensr Plan usd 995/month","amount":995,"currency":"usd","object":"plan","livemode":false,"interval_count":1,"trial_period_days":7,"identifier":"995:usd:month:7"},"object":"subscription","start":1364180256,"status":"trialing","customer":"cus_1WTl23tpQroXTl","current_period_start":1364180256,"current_period_end":1490410334,"trial_start":1364180256,"trial_end":1490410334,"quantity":1},"account_balance":0}},"object":"event","pending_webhooks":2},
+
+======= DATA needed for cohort analysis ========
+
+
+percentage of users activated on month (k) are still active on month (n)
+percentage of users activated on month (k) are canceling on month (n)
+
+Retention Rate:
+---------------      
+      0   1   3   4   5  .... mo(k)
+mo 0  100 90  88  80  70%    <- how many users that activated on month(i) are still active on month(k) 
+mo 1 
+....
+....
+mo(i)
+
+
+subscription:
+  created
+  canceled
+  customer_id
+
+customer_import
+  oldest_ts     # timestamp of oldest customer imported
+  newest_ts     # timestamp of most recent customer imported
+  import     # array of timestamps when import occured
+
+import
+  type   "customer, charges etc ...
+  status "processing,failed|succeeded"
+  time   elapsed time to complete the import
+  count  how many records where imported
+
+
+for all customers do |customer|
+  import customer
+    if customer.is_deleted? 
+      find the deleted event to get the date
+    else  
+      import subscription 
+
+
+======= Usefull analytics ======================
+
+Trailing 30 days acquisition -> new customers 
+Trailing 30 days cancelation
+Trailing 30 days revenue
+
+Churns (last 30 days) 
+CLV (customer live time value)
+Churn rate
+Monthly revenue last month
+Monthly revenue projected
+
+======= Open Questions ===========================================
+* can I query a subscription that was deleted by subscription id ?
+no, but I can query a deleted customer through the API (by id)
+* 
+* 
+
+
+== FLOW of events when a customer is deleted =====================
+1.9.3p125 :004 > cu = Stripe::Customer.retrieve("cus_1WTl23tpQroXTl")
+ => #<Stripe::Customer:0x80552e60> JSON: {
+  "id": "cus_1WTl23tpQroXTl",
+  "object": "customer",
+  "created": 1364180256,
+  "livemode": false,
+  "description": "1 user-0047@sensr.net 995:usd:month:7 on test",
+  "email": "user-0047@sensr.net",
+  "subscription": {"plan":{"id":"995:usd:month:7","interval":"month","name":"Sensr Plan usd 995/month","amount":995,"currency":"usd","object":"plan","livemode":false,"interval_count":1,"trial_period_days":7,"identifier":"995:usd:month:7"},"object":"subscription","start":1364180256,"status":"trialing","customer":"cus_1WTl23tpQroXTl","current_period_start":1364180256,"current_period_end":1490410334,"trial_start":1364180256,"trial_end":1490410334,"quantity":1},
+  "account_balance": 0,
+  "next_recurring_charge": {"date":"2017-03-25","amount":995}
+}
+1.9.3p125 :005 > cu.delete
+ => #<Stripe::Customer:0x80552e60> JSON: {
+  "id": "cus_1WTl23tpQroXTl",
+  "deleted": true
+}
+1.9.3p125 :006 > cu1 = Stripe::Customer.retrieve("cus_1WTl23tpQroXTl")
+ => #<Stripe::Customer:0x810a88c8> JSON: {
+  "id": "cus_1WTl23tpQroXTl",
+  "deleted": true
+} 
+
+---> customer.deleted event (but no customer.subscription.deleted)
+1.9.3p125 :010 > evts = Stripe::Event.all
+ => #<Stripe::ListObject:0x8064c1a4> JSON: {
+  "object": "list",
+  "count": 2189345,
+  "url": "/v1/events",
+  "data": [
+    {"id":"evt_1XDZXtDMlpg3QV","created":1364350661,"livemode":false,"type":"customer.deleted","data":{"object":{"id":"cus_1WTl23tpQroXTl","object":"customer","created":1364180256,"livemode":false,"description":"1 user-0047@sensr.net 995:usd:month:7 on test","email":"user-0047@sensr.net","subscription":{"plan":{"id":"995:usd:month:7","interval":"month","name":"Sensr Plan usd 995/month","amount":995,"currency":"usd","object":"plan","livemode":false,"interval_count":1,"trial_period_days":7,"identifier":"995:usd:month:7"},"object":"subscription","start":1364180256,"status":"trialing","customer":"cus_1WTl23tpQroXTl","current_period_start":1364180256,"current_period_end":1490410334,"trial_start":1364180256,"trial_end":1490410334,"quantity":1},"account_balance":0}},"object":"event","pending_webhooks":2},
+
+
+import_events('customer.deleted',up_to_last_ts)
+  start_time = Time.now
+
+
+

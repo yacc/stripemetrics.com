@@ -1,0 +1,2 @@
+class CustomerDeletedEventsImport << Import
+end

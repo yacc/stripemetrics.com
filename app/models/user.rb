@@ -10,10 +10,12 @@ class User
 
   has_many :customers
   has_many :charges
+  has_many :customer_deleted_events_imports
   has_one  :acquisition_trend
   has_one  :paid_charge_trend
   has_one  :failed_charge_trend
   embeds_one  :account
+  embeds_one  :imports_summary
 
   attr_accessible :role_ids, :as => :admin
   attr_accessible :provider, :uid, :name, :email

@@ -1,5 +1,5 @@
 class ImportStripeCharges
-	@queue = :stripe_import_queue
+	@queue = :stripe_import_charge_queue
 
 	def self.perform(user_id,options = {})
 

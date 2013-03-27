@@ -19,3 +19,15 @@ end
 Account.blueprint do
   # Attributes here
 end
+
+Import.blueprint do
+  # Attributes here
+end
+
+CustomerDeletedEventsImport.blueprint do
+  # Attributes here
+end
+
+ImportsSummary.blueprint do
+  # Attributes here
+end
