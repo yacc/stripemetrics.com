@@ -4,14 +4,14 @@ class FailedChargeTrend < Trend
     self.daily   = daily
     self.weekly  = weekly
     self.monthly = monthly
-    self.start_date = daily[0][0]
-    self.name    = "Paid Charges"
+    self.start_date = self.daily[0][0]
+    self.name    = "Failed Charges"
     self.save
   end
 
   def daily
     Charge.where(paid:false).collection.aggregate([project,groupby("day")]).collect do |data|
-      [(Time.new(data["_id"]["year"]) + (data["_id"]["day"]).days).to_i,data["count"]]
+      [(Time.new(data["_id"]["year"]) + (data["_id"]["day"]).days).to_i*1000,data["count"]]
     end.sort_by{|k|k[0]}
   end
 

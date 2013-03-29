@@ -3,7 +3,6 @@ class UpdateChargeTrend
 
   def self.perform(user_id,options = {})
     user           = User.find(user_id)
-    print "-> Start Charges Aggregation for #{user.id}\n"
 
     trend = (user.paid_charge_trend.nil? ? user.create_paid_charge_trend : user.paid_charge_trend)
     trend.refresh!

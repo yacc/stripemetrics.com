@@ -14,7 +14,7 @@ class ImportStripeCustomerDeletedEvents
 
       director = user.import_directors.where(_type:"CDEImportDirector").first
       last_processed = director.last_processed_ts
-      director.imports.create(_type:"CDEImport",status:'processing')
+      import = director.imports.create(_type:"CDEImport",status:'processing')
 
       begin
         events = Stripe::Event.all({:count => count, :offset => offset,:type => 'customer.deleted'},token)

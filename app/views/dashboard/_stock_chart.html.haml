@@ -1,0 +1,53 @@
+.widget
+  .widget-header
+    %i.icon-star
+    %h3=title
+  .widget-content
+    .chart-holder{:id=> div}
+
+= javascript_include_tag "themes/gray.js"
+
+:javascript
+  var groupingUnits = [[
+    'week',                         // unit name
+    [1]                             // allowed multiples
+  ], [
+    'month',
+    [1, 2, 3, 4, 6]
+  ]];
+
+  var chart = new Highcharts.StockChart({
+      chart: {
+          renderTo: "#{div}",
+          alignTicks: false
+      },
+
+      rangeSelector: {
+          selected: 1
+      },
+
+      yAxis: [{
+          title: {
+              text: 'Count'
+          },
+          height: 250,
+          lineWidth: 2
+      }, {
+          title: {
+              text: 'Volume'
+          },
+          top: 300,
+          height: 100,
+          offset: 0,
+          lineWidth: 2
+      }],
+      
+      series: [{
+          type: 'spline',
+          name: 'Count',
+          data: #{data},
+          dataGrouping: {
+            units: groupingUnits
+          }
+      }]
+  });

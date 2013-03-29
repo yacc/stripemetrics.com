@@ -157,5 +157,45 @@ once I've ran those two, my customer and subscription are updated with the lates
 ImportStripeSubscriptionDeletedEvents
 ImportStripeCustomerDeletedEvents
 
+=== 2012-03-27 ===
 
+now that I have all my import workers ready to import : charges, customers, subscriptions, events 
+I have, theoreticaly:
+* Customers with "created" and "canceled" dates
+* Subscriptions with "created" and "canceled" dates
+
+1/ run imports with no date limit:
+  ImportStripeCharges
+  ImportStripeCustomerDeletedEvents
+  ImportStripeCustomers
+  ImportStripeSubscriptionDeletedEvents
+
+
+2/ run aggregation with no date limit
+
+  UpdateAcquisitionTrend
+  UpdateChargeTrend
+
+  this gives me three trends:
+  has_one  :acquisition_trend
+  has_one  :paid_charge_trend
+  has_one  :failed_charge_trend
+
+3/ write cohort worker
+4/ write table view to display cohort data
+5/ write dashboard views and partials
+6/ write mailer and re-use the dashboard views 
+ 
+=== 2012-03-28 ===
+
+make sure the resque web ui is running:
+[yacin@mac stripemetrics (import_events)]$ bundle exec resque-web
+[2013-03-28 16:11:59 -0700] Starting 'resque-web'...
+[2013-03-28 16:11:59 -0700] trying port 5678...
+
+Tested import of Customers and Charges.
+
+=== 2012-03-29 ===
+
+need to test, import of events and then aggregations.
 

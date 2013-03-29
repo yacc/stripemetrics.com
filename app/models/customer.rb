@@ -11,7 +11,7 @@ class Customer
 
   def self.from_stripe(json_obj)
     json_obj["stripe_id"] = json_obj["id"]
-    json_obj["subscription"].except!("plan") 
+    json_obj["subscription"].except!("plan") unless json_obj["subscription"].nil?
     json_obj.except("id")
   end
   

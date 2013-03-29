@@ -1,4 +1,4 @@
-class ImportStripeCustomer
+class ImportStripeCustomers
   @queue = :stripe_customer_import_queue
 
   def self.perform(user_id,options = {})
@@ -13,18 +13,16 @@ class ImportStripeCustomer
       start_time     = Time.now
 
       director = user.import_directors.where(_type:"CustomerImportDirector").first
-      last_processed = director.last_processed_ts
-      director.imports.create(_type:"CustomerImport",status:'processing')
+      last_processed = director.last_processed_ts || 1301355794
+      import = director.imports.create(_type:"CustomerImport",status:'processing')
 
       begin
-        customer = Stripe::Customer.all({:count => count, :offset => offset},token)
-        newest_import = events.data.first.created if newest_import.nil?
+        customers = Stripe::Customer.all({:count => count, :offset => offset},token)
+        newest_import = customers.data.first.created if newest_import.nil?
         customers.data.each do |cust|
 
-          customer = cust.as_json
-          record = ::Customer.where(stripe_id:ch.id).first
-          customer["stripe_id"] = cust.id
-          user.customers << ::Customer.create(customer) if record.nil? 
+          record = ::Customer.where(stripe_id:cust.id).first
+          user.customers << ::Customer.create(Customer.from_stripe(cust.as_json)) if record.nil? 
 
           imported += 1
           print "."

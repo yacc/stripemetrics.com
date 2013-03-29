@@ -13,16 +13,16 @@ class ImportStripeCharges
 
     director = user.import_directors.where(_type:"ChargeImportDirector").first
     last_processed = director.last_processed_ts
-    director.imports.create(_type:"ChargeImport",status:'processing')
+    import = director.imports.create(_type:"ChargeImport",status:'processing')
 
     begin
       charges = Stripe::Charge.all({:count => count, :offset => offset},token)
+      newest_import = charges.data.first.created if newest_import.nil?
+
       charges.data.each do |ch|
 
-        charge = ch.as_json.except("card","fee_details")
         record = ::Charge.where(stripe_id:ch.id).first
-        charge["stripe_id"] = ch.id
-        user.charges << ::Charge.create(charge) if record.nil? 
+        user.charges << ::Charge.create(Charge.from_stripe(ch.as_json)) if record.nil? 
 
         imported += 1
         print "."

@@ -4,16 +4,17 @@ class PaidChargeTrend < Trend
     self.daily   = daily
     self.weekly  = weekly
     self.monthly = monthly
-    self.start_date = daily[0][0]
+    self.start_date = self.daily[0][0]
     self.name    = "Paid Charges"
     self.save
   end
 
   def daily
     Charge.where(paid:true).collection.aggregate([project,groupby("day")]).collect do |data|
-      [(Time.new(data["_id"]["year"]) + (data["_id"]["day"]).days).to_i,data["count"]]
+      [(Time.new(data["_id"]["year"]) + (data["_id"]["day"]).days).to_i*1000,data["count"]]
     end.sort_by{|k|k[0]}
   end
+
 
   def weekly
     Charge.where(paid:true).collection.aggregate([project,groupby("week")]).collect do |data|

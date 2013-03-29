@@ -1,10 +1,62 @@
-class AcquisitionTrend
-	include Mongoid::Document
+class AcquisitionTrend < Trend
 
-	field :account,  type: String
-	field :data,     type: Array
-	field :start_at, type: Integer
-	field :name,     type: String
+  def refresh!
+    self.daily   = daily
+    self.weekly  = weekly
+    self.monthly = monthly
+    self.start_date = self.daily[0][0]
+    self.name    = "New Customers"
+    self.save
+  end
 
-	belongs_to :user
+  def daily
+    Customer.collection.aggregate([project,groupby("day")]).collect do |data|
+      [(Time.new(data["_id"]["year"]) + (data["_id"]["day"]).days).to_i*1000,data["count"]]
+    end.sort_by{|k|k[0]}
+  end
+
+  def weekly
+    Customer.collection.aggregate([project,groupby("week")]).collect do |data|
+      [(Time.new(data["_id"]["year"]) + (data["_id"]["week"]).weeks).to_i, data["count"] ]
+    end.sort_by{|k|k[0]}
+  end
+
+  def monthly
+    Customer.collection.aggregate([project,groupby("month")]).collect do |data|
+      [(Time.new(data["_id"]["year"]) + (data["_id"]["month"]).month).to_i, data["count"] ]
+    end.sort_by{|k|k[0]}
+  end
+
+  private
+
+  def project
+    {"$project" => 
+      {
+        "customers" => 1,
+        "year"    => { "$year"  => "$created"}, 
+        "month"   => { "$month" => "$created"},
+        "week"    => { "$week"  => "$created"}, 
+        "day"     => { "$dayOfYear" => "$created"} 
+      }
+    }   
+  end
+
+  def groupby(interval)
+    case interval
+    when "day"
+      { "$group" =>
+        { "_id" => {"year"=>"$year", "day"=>"$day"}, "count" => { "$sum" => 1 } } 
+      }
+    when "week"
+      { "$group" =>
+        { "_id" => {"year"=>"$year", "week"=>"$week"}, "count" => { "$sum" => 1 } } 
+      }
+    when "month"      
+      { "$group" =>
+        { "_id" => {"year"=>"$year", "month"=>"$month"}, "count" => { "$sum" => 1 } } 
+      }
+    end
+  end
+  
 end
+

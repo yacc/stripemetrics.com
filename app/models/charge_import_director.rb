@@ -1,0 +1,2 @@
+class ChargeImportDirector < ImportDirector
+end

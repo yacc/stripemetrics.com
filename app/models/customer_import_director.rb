@@ -1,0 +1,2 @@
+class CustomerImportDirector < ImportDirector
+end
