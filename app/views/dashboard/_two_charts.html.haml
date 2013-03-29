@@ -1,0 +1,77 @@
+.widget
+  .widget-header
+    %i.icon-star
+    %h3=title
+  .widget-content
+    .chart-holder{:id=> div}
+
+= javascript_include_tag "themes/gray.js"
+
+:javascript
+  var chart = new Highcharts.Chart({
+      chart: {
+          renderTo: "#{div}",
+          alignTicks: false,
+          zoomType: 'x',
+          spacingRight: 20,
+          type:"areaspline"
+      },
+      subtitle: {
+          text: document.ontouchstart === undefined ?
+              'Click and drag in the plot area to zoom in' :
+              'Drag your finger over the plot to zoom in'
+      },
+      xAxis: {
+          type: 'datetime',
+          maxZoom: 14 * 24 * 3600000, // fourteen days
+          title: {
+              text: null
+          }
+      },
+      yAxis: {
+          title: {
+              text: '#{title}'
+          }
+      },
+      tooltip: {
+          shared: true,
+          valueSuffix: "#{unit}"
+      },
+      legend: {
+          enabled: false
+      },
+      plotOptions: {
+          area: {
+              fillColor: {
+                  linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
+                  stops: [
+                      [0, Highcharts.getOptions().colors[0]],
+                      [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                  ]
+              },
+              lineWidth: 1,
+              marker: {
+                  enabled: false
+              },
+              shadow: false,
+              states: {
+                  hover: {
+                      lineWidth: 1
+                  }
+              },
+              threshold: null
+          }
+      },
+      plotOptions: {
+          area: {
+              stacking: 'normal',
+              lineColor: '#666666',
+              lineWidth: 1,
+              marker: {
+                  lineWidth: 1,
+                  lineColor: '#666666'
+              }
+          }
+      },      
+      series: #{series}
+  });

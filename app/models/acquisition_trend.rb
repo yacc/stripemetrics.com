@@ -4,7 +4,7 @@ class AcquisitionTrend < Trend
     self.daily   = daily
     self.weekly  = weekly
     self.monthly = monthly
-    self.start_date = self.daily[0][0]
+    self.start_date = self.daily[0][0] unless self.daily.nil?
     self.name    = "New Customers"
     self.save
   end
@@ -17,13 +17,13 @@ class AcquisitionTrend < Trend
 
   def weekly
     Customer.collection.aggregate([project,groupby("week")]).collect do |data|
-      [(Time.new(data["_id"]["year"]) + (data["_id"]["week"]).weeks).to_i, data["count"] ]
+      [(Time.new(data["_id"]["year"]) + (data["_id"]["week"]).weeks).to_i*1000, data["count"] ]
     end.sort_by{|k|k[0]}
   end
 
   def monthly
     Customer.collection.aggregate([project,groupby("month")]).collect do |data|
-      [(Time.new(data["_id"]["year"]) + (data["_id"]["month"]).month).to_i, data["count"] ]
+      [(Time.new(data["_id"]["year"]) + (data["_id"]["month"]).month).to_i*1000, data["count"] ]
     end.sort_by{|k|k[0]}
   end
 
