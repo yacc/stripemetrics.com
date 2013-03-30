@@ -13,7 +13,7 @@ class ImportStripeCustomerDeletedEvents
       start_time     = Time.now
 
       director = user.import_directors.where(_type:"CDEImportDirector").first
-      last_processed = director.last_processed_ts
+      last_processed = director.last_processed_ts || 1301355794 
       import = director.imports.create(_type:"CDEImport",status:'processing')
 
       begin
@@ -21,19 +21,23 @@ class ImportStripeCustomerDeletedEvents
         newest_import = events.data.first.created if newest_import.nil?
         events.data.each do |ev|
 
-          cust_id = ev.data["object"]["customer"]
-          customer = ::Customer.where(stripe_id:ch.id).first
-          customer.canceled_at =  ev.created
-          customer.save
-          customer.subscription.canceled_at = ev.created
-          customer.subscription.save
-          
+          cust_id = ev.data.object.id
+          customer = ::Customer.where(stripe_id:cust_id).first
+          if customer
+            customer.canceled_at =  ev.created
+            customer.save
+            if customer.subscription
+              customer.subscription.canceled_at = ev.created
+              customer.subscription.save
+            end
+          end
+            
           imported += 1
           print "."
         end
         last_date = events.data.last.created
         offset += count
-        print "-> #{last_date}\n"
+        print "-> #{Time.at(last_date)}\n"
       end while (last_date > last_processed) 
 
       import.update_attributes(status:'success',time:(start_time-Time.now).to_i,count:imported)

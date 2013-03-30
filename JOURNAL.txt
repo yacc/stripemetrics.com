@@ -198,4 +198,5 @@ Tested import of Customers and Charges.
 === 2012-03-29 ===
 
 need to test, import of events and then aggregations.
+import of events : understand json serialzation of stripe objects
 
