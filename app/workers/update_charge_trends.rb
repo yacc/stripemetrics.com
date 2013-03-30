@@ -1,4 +1,4 @@
-class UpdateChargeTrend  
+class UpdateChargeTrends  
   @queue = :charge_trend_queue
 
   def self.perform(user_id,options = {})
@@ -15,5 +15,6 @@ class UpdateChargeTrend
 
     trend = (user.failed_charge_volume_trend.nil? ? user.create_failed_charge_volume_trend : user.failed_charge_volume_trend)
     trend.refresh!
+
   end
 end

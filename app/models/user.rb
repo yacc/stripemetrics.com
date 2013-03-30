@@ -13,7 +13,7 @@ class User
   has_many :import_directors
 
   has_one  :acquisition_trend
-
+  has_one  :cancellation_trend
   has_one  :paid_charge_count_trend 
   has_one  :failed_charge_count_trend
   has_one  :paid_charge_volume_trend 

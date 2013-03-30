@@ -1,29 +1,32 @@
 class FailedChargeVolumeTrend < Trend
 
   def refresh!
-    self.daily   = daily
-    self.weekly  = weekly
-    self.monthly = monthly
+    refresh_daily
+    refresh_weekly
+    refresh_monthly
     self.start_date = self.daily[0][0] unless self.daily[0].nil?
     self.name    = "Failed Charges"
     self.save
   end
 
-  def daily
-    self.user.charges.where(paid:false).collection.aggregate([match,project,groupby("day")]).collect do |data|
-      [(Time.new(data["_id"]["year"]) + (data["_id"]["day"]).days).to_i*1000,data["volume"]/100.0]
+  def refresh_daily
+    self.user.charges.collection.aggregate([match,project,groupby("day")]).collect do |data|
+      vol_usd = data["volume"]/100.0 if data["volume"]
+      [(Time.new(data["_id"]["year"]) + (data["_id"]["day"]).days).to_i*1000, vol_usd ]
     end.sort_by{|k|k[0]}
   end
 
-  def weekly
-    self.user.charges.where(paid:false).collection.aggregate([match,project,groupby("week")]).collect do |data|
-      [(Time.new(data["_id"]["year"]) + (data["_id"]["week"]).weeks).to_i*1000, data["volume"]/100.0 ]
+  def refresh_weekly
+    self.user.charges.collection.aggregate([match,project,groupby("week")]).collect do |data|
+      vol_usd = data["volume"]/100.0 if data["volume"]
+      [(Time.new(data["_id"]["year"]) + (data["_id"]["week"]).weeks).to_i*1000, vol_usd]
     end.sort_by{|k|k[0]}
   end
 
-  def monthly
-    self.user.charges.where(paid:false).collection.aggregate([match,project,groupby("month")]).collect do |data|
-      [(Time.new(data["_id"]["year"]) + (data["_id"]["month"]).month).to_i*1000, data["volume"]/100.0 ]
+  def refresh_monthly
+    self.user.charges.collection.aggregate([match,project,groupby("month")]).collect do |data|
+      vol_usd = data["volume"]/100.0 if data["volume"]
+      [(Time.new(data["_id"]["year"]) + (data["_id"]["month"]).month).to_i*1000, vol_usd ]
     end.sort_by{|k|k[0]}
   end
 

@@ -1,4 +1,4 @@
-class AcquisitionTrend < Trend
+class CancellationTrend < Trend
 
   def refresh!
     refresh_daily
@@ -10,33 +10,39 @@ class AcquisitionTrend < Trend
   end
 
   def refresh_daily
-    self.user.customers.collection.aggregate([project,groupby("day")]).collect do |data|
+    self.user.customers.collection.aggregate([match,project,groupby("day")]).collect do |data|
       [(Time.new(data["_id"]["year"]) + (data["_id"]["day"]).days).to_i*1000,data["count"]]
     end.sort_by{|k|k[0]}
   end
 
   def refresh_weekly
-    self.user.customers.collection.aggregate([project,groupby("week")]).collect do |data|
+    self.user.customers.collection.aggregate([match,project,groupby("week")]).collect do |data|
       [(Time.new(data["_id"]["year"]) + (data["_id"]["week"]).weeks).to_i*1000, data["count"] ]
     end.sort_by{|k|k[0]}
   end
 
   def refresh_monthly
-    self.user.customers.collection.aggregate([project,groupby("month")]).collect do |data|
+    self.user.customers.collection.aggregate([match,project,groupby("month")]).collect do |data|
       [(Time.new(data["_id"]["year"]) + (data["_id"]["month"]).month).to_i*1000, data["count"] ]
     end.sort_by{|k|k[0]}
   end
 
   private
 
+  def match
+    {
+      "$match" => { "canceled_at" => {"$ne" => nil} }
+    }
+  end
+
   def project
     {"$project" => 
       {
         "customers" => 1,
-        "year"    => { "$year"  => "$created"}, 
-        "month"   => { "$month" => "$created"},
-        "week"    => { "$week"  => "$created"}, 
-        "day"     => { "$dayOfYear" => "$created"} 
+        "year"    => { "$year"  => "$canceled_at"}, 
+        "month"   => { "$month" => "$canceled_at"},
+        "week"    => { "$week"  => "$canceled_at"}, 
+        "day"     => { "$dayOfYear" => "$canceled_at"} 
       }
     }   
   end

@@ -1,29 +1,28 @@
 class PaidChargeCountTrend < Trend
 
   def refresh!
-    self.daily   = daily
-    self.weekly  = weekly
-    self.monthly = monthly
-    self.name    = "Paid Charges Volume"
-    self.start_date = self.daily[0][0] unless self.daily.nil?
+    refresh_daily
+    refresh_weekly
+    refresh_monthly
+    self.start_date = self.daily[0][0] unless self.daily[0].nil?
     self.name    = "Paid Charges Count"
     self.save
   end
 
-  def daily
+  def refresh_daily
     self.user.charges.where(captured:true).collection.aggregate([project,groupby("day")]).collect do |data|
       [(Time.new(data["_id"]["year"]) + (data["_id"]["day"]).days).to_i*1000,data["count"]]
     end.sort_by{|k|k[0]}
   end
 
 
-  def weekly
+  def refresh_weekly
     self.user.charges.where(captured:true).collection.aggregate([project,groupby("week")]).collect do |data|
       [(Time.new(data["_id"]["year"]) + (data["_id"]["week"]).weeks).to_i*1000, data["count"] ]
     end.sort_by{|k|k[0]}
   end
 
-  def monthly
+  def refresh_monthly
     self.user.charges.where(captured:true).collection.aggregate([project,groupby("month")]).collect do |data|
       [(Time.new(data["_id"]["year"]) + (data["_id"]["month"]).month).to_i*1000, data["count"] ]
     end.sort_by{|k|k[0]}
