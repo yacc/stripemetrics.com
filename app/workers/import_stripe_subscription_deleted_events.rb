@@ -15,6 +15,7 @@ class ImportStripeSubscriptionDeletedEvents
       last_processed = director.last_processed_ts || 1301355794
       director.imports.create(_type:"SDEImport",status:'processing')
 
+      print "\nimport sde:\n"
       begin
         events = Stripe::Event.all({:count => count, :offset => offset,:type => 'customer.subscription.deleted'},token)
         newest_import = events.data.first.created if newest_import.nil?
@@ -30,10 +31,8 @@ class ImportStripeSubscriptionDeletedEvents
           imported += 1
           print "."
         end
-        last_date = events.data.last.created
         offset += count
-        print "-> #{Time.at(last_date)}\n"
-      end while (last_date > last_processed) 
+      end while (events && (events.data.last.created > last_processed)) 
 
       import.update_attributes(status:'success',time:time,count:imported)
       director.update_attributes(last_ran_at: Time.now, last_processed_ts: newest_import)
