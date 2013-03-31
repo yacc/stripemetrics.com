@@ -1,0 +1,10 @@
+www:
+  type: ruby-worker
+  ports:
+    www: http
+  processes:
+    thin: thin -p $PORT_WWW start
+db:
+  type: mongodb
+data:
+  type: redis  
