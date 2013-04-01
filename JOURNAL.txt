@@ -200,3 +200,38 @@ Tested import of Customers and Charges.
 need to test, import of events and then aggregations.
 import of events : understand json serialzation of stripe objects
 
+=== 2012-04-01 ===
+
+admin.stripemetrics.com
+api.stripemetrics.com
+stripemetrics.com
+
+stripemetrics setup
+              import
+              refresh
+              report -basic
+                     -email yacinb@gmail.com
+
+API:
+https://api.stripemetrics.com/v1/
+
+import/create
+refresh/create
+report/get
+      email,basic,
+
+just installed jsonpp (pretty print json from command line ... excelent !)
+
+TODO:
+* laverage figaro for .dotcloud configuration (branhc out and submit pull request)
+* update devise to support:
+** password authentication
+** token authenticable
+* add grape to build API
+* re-oarganize code :
+  stripemetrics/api
+                admin
+                www
+
+
+
