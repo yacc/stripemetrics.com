@@ -1,6 +1,8 @@
 www:
   approot: base
   type: ruby-worker
+    config:
+      ruby-version: 1.9.3
   ports:
     www: http
   processes:
@@ -11,6 +13,8 @@ www:
 api:
   approot: api
   type: ruby-worker
+    config:
+      ruby-version: 1.9.3
   ports:
     www: http
   processes:
