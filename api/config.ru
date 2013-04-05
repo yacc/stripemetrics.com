@@ -1,7 +1,3 @@
+require File.join(File.dirname(__FILE__), 'application')
 
-$:.unshift "./app"
-
-require 'models'
-require 'api'
-
-run API
+run StripeMetrics::API

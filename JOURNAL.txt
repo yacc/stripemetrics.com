@@ -215,7 +215,9 @@ stripemetrics setup
 API:
 https://api.stripemetrics.com/v1/
 
-import/create
+
+import/create -upload file.csv
+              [-stripe]
 refresh/create
 report/get
       email,basic,
@@ -232,6 +234,3 @@ TODO:
   stripemetrics/api
                 admin
                 www
-
-
-

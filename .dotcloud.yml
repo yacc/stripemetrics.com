@@ -1,4 +1,15 @@
 www:
+  approot: base
+  type: ruby-worker
+  ports:
+    www: http
+  processes:
+    thin: thin -p $PORT_WWW start
+  exclude_bundler_groups:
+    - development
+    - test    
+api:
+  approot: api
   type: ruby-worker
   ports:
     www: http
@@ -11,3 +22,15 @@ db:
   type: mongodb
 data:
   type: redis  
+
+# admin:
+#   approot: admin
+#   type: ruby-worker
+#   ports:
+#     www: http
+#   processes:
+#     thin: thin -p $PORT_WWW start
+#   exclude_bundler_groups:
+#     - development
+#     - test    
+  
