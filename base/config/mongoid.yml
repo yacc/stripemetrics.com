@@ -2,9 +2,9 @@
   if File.exist?('/home/dotcloud/environment.yml')
     env = YAML.load(IO.read('/home/dotcloud/environment.yml'))
   else
-    env = { 'DOTCLOUD_PROJECT': 'toto',
-            'DOTCLOUD_DB_MONGODB_HOST': 'localhost',
-            'DOTCLOUD_DB_MONGODB_PORT':27017,
+    env = { 'DOTCLOUD_PROJECT'=>'toto',
+            'DOTCLOUD_DB_MONGODB_HOST'=> 'localhost',
+            'DOTCLOUD_DB_MONGODB_PORT' => 27017,
           }
   end  
 %>
