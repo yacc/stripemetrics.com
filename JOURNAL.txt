@@ -234,3 +234,13 @@ TODO:
   stripemetrics/api
                 admin
                 www
+
+
+=== 2012-04-03 ===
+
+deploy and make the API server work
+once it works on dotcloud, implement authentication
+
+
+
+
