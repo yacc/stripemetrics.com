@@ -7,9 +7,9 @@ production:
       database: <%= env['DOTCLOUD_PROJECT'] + '_production' %>
       hosts:
         - <%= env['DOTCLOUD_DB_MONGODB_HOST'] + ':' + env['DOTCLOUD_DB_MONGODB_PORT'] %>
-      password:
+      password: <%= env['DOTCLOUD_DB_MONGODB_PASSWORD'] %>
       username: <%= env['DOTCLOUD_DB_MONGODB_LOGIN'] %>  
-      options: <%= env['DOTCLOUD_DB_MONGODB_PASSWORD'] %>
+      options: 
         safe: false
         consistency: :eventual
         max_retries: 30
