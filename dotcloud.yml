@@ -1,24 +1,16 @@
 www:
+  type: ruby
   approot: base
-  type: ruby-worker
   config:
     ruby-version: 1.9.3
-  ports:
-    www: http
-  processes:
-    thin: thin -p $PORT_WWW start
   exclude_bundler_groups:
     - development
-    - test    
+    - test      
 api:
+  type: ruby
   approot: api
-  type: ruby-worker
   config:
     ruby-version: 1.9.3
-  ports:
-    www: http
-  processes:
-    thin: thin -p $PORT_WWW start
   exclude_bundler_groups:
     - development
     - test    
@@ -30,6 +22,19 @@ data:
 # admin:
 #   approot: admin
 #   type: ruby-worker
+#   ports:
+#     www: http
+#   processes:
+#     thin: thin -p $PORT_WWW start
+#   exclude_bundler_groups:
+#     - development
+#     - test    
+
+# www:
+#   approot: base
+#   type: ruby-worker
+#   config:
+#     ruby-version: 1.9.3
 #   ports:
 #     www: http
 #   processes:
