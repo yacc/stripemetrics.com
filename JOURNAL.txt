@@ -241,6 +241,8 @@ TODO:
 deploy and make the API server work
 once it works on dotcloud, implement authentication
 
+Pre-compiling the assets:
+env RAILS_ENV=production DATABASE_URL=scheme://127.0.0.1/stripemetrics_development:27017 bundle exec rake assets:precompile 2>&1
 
 
 
