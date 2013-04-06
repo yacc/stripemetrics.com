@@ -14,6 +14,8 @@ api:
   exclude_bundler_groups:
     - development
     - test    
+worker:
+  type: ruby-worker
 db:
   type: mongodb
 data:
