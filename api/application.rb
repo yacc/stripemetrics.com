@@ -1,15 +1,14 @@
-$:.unshift File.join(__FILE__, "../config")
-
+$:.unshift File.join(__FILE__, "..","config")
 require 'sinatra/base'
-require 'mongoid'
-require 'bundler/setup'
 require 'grape'
-require 'app_config'
+require 'bundler/setup'
+require 'mongoid'
+require File.join(File.dirname(__FILE__), 'configuration')
 
-module StripeMetrics
-  set :app_file, __FILE__
 
-  class API < Grape::API
+module Stripemetrics
+
+  class Api < Grape::API
 
     version 'v1', :using => :header, :vendor => 'stripemetrics'
     format :json

@@ -4,7 +4,7 @@
   else
     env = { 'DOTCLOUD_PROJECT'=>'toto',
             'DOTCLOUD_DB_MONGODB_HOST'=> 'localhost',
-            'DOTCLOUD_DB_MONGODB_PORT' => 27017,
+            'DOTCLOUD_DB_MONGODB_PORT' => '27017',
           }
   end  
 %>
