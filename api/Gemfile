@@ -5,6 +5,7 @@ gem 'mongoid', '>3'
 gem "bson_ext" #, :platforms => :mri
 gem "thin"
 
+gem "cancan", ">= 1.6.8"
 gem "grape"
 
 group :development do

@@ -1,6 +1,5 @@
 class User
   include Mongoid::Document
-  rolify
   field :provider, type: String
   field :uid,      type: String
   field :email,    type: String
@@ -20,7 +19,6 @@ class User
   has_one  :failed_charge_volume_trend
   embeds_one   :account
 
-  attr_accessible :role_ids, :as => :admin
   attr_accessible :provider, :uid, :name, :email
 
   index({ email: 1 }, { unique: true, background: true })
