@@ -1,3 +1,3 @@
-require File.join(File.dirname(__FILE__), 'application')
+require File.expand_path('../config/environment', __FILE__)
 
-run Stripemetrics::API
+run Stripemetrics::Api

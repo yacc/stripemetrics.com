@@ -1,14 +1,10 @@
-require File.join(File.dirname(__FILE__), '..', 'application')
+require 'rubygems'
 
-require 'bundler'
-Bundler.setup(:default, :test)
-require 'sinatra/base'
-require 'rspec'
+ENV["RACK_ENV"] ||= 'test'
+
 require 'rack/test'
 
-# expose models, spec and spec subdirectories
-$:.unshift(File.join File.expand_path(File.dirname(__FILE__)), "..", "models")
-$:.unshift(File.join File.expand_path(File.dirname(__FILE__)), "..", "spec/**")
+require File.expand_path("../../config/environment", __FILE__)
 
 # setup test environment
 ENV['RACK_ENV'] = 'test'

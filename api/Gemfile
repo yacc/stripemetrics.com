@@ -2,11 +2,12 @@ source 'https://rubygems.org'
 
 gem 'sinatra', require: 'sinatra/base'
 gem 'mongoid', '>3'
-gem "bson_ext" #, :platforms => :mri
+gem "bson_ext"
 gem "thin"
 
-gem "cancan", ">= 1.6.8"
 gem "grape"
+gem "warden"
+gem "cancan", ">= 1.6.8"
 
 group :development do
   gem 'rake'

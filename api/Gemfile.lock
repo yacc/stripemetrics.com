@@ -69,6 +69,8 @@ GEM
     virtus (0.5.4)
       backports (~> 2.6.1)
       descendants_tracker (~> 0.0.1)
+    warden (1.2.1)
+      rack (>= 1.0)
 
 PLATFORMS
   ruby
@@ -83,3 +85,4 @@ DEPENDENCIES
   rspec
   sinatra
   thin
+  warden
