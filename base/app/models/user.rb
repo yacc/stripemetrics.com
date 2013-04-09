@@ -1,20 +1,18 @@
 class User
   include Mongoid::Document
-  
   field :provider, type: String
   field :uid,      type: String
   field :email,    type: String
-  field :encrypted_password, :type => String
+  field :password_hash, :type => String
   field :livemode, type: Boolean
   field :api_token,    type: String
   field :token,    type: String
   field :token_expires, type: Boolean
 
-  attr_accessor :password
-  validates_presence_of   :password, :on => :create, :message => "can't be blank"
+  #validates_presence_of   :password_hash, :on => :save, :message => "can't be blank"
   validates_presence_of   :email, :message => "can't be blank"
   validates_uniqueness_of :email, :message => "already in use"
-
+  #attr_accessor :password
 
   has_many :customers
   has_many :charges
@@ -28,13 +26,14 @@ class User
   has_one  :failed_charge_volume_trend
   embeds_one   :account
 
-  attr_accessible :provider, :uid, :name, :email
+  attr_accessible :provider, :uid, :name, :email, :password
 
   index({ email: 1 }, { unique: true, background: true })
   index({ api_token: 1 }, { unique: true, background: true })
 
   after_create :add_import_directors
-  before_create :generate_api_token, :encrypt_password
+  before_create :generate_api_token
+  before_save :encrypt_password
 
 
   def self.create_with_omniauth(auth)
@@ -60,33 +59,32 @@ class User
     end
   end
 
+  def saved_password
+    @saved_password ||= BCrypt::Password.new(self.password_hash)
+  end
+
+  def encrypt_password
+    if password.present?
+    @saved_password = BCrypt::Password.create(password)
+    self.password_hash = @saved_password
+    self.password = nil
+    end
+  end
+
   protected 
 
   def add_import_directors
-    self.import_directors << CDEImportDirector.create
-    self.import_directors << SDEImportDirector.create  
+    self.import_directors << CdeImportDirector.create
+    self.import_directors << SdeImportDirector.create  
     self.import_directors << ChargeImportDirector.create  
     self.import_directors << CustomerImportDirector.create  
   end
 
-  def generate_token #shouldn't the api token be encrypted as well ?
+  def generate_api_token #shouldn't the api token encrypted as well ?
     self.token = loop do
       random_token = SecureRandom.urlsafe_base64
       break random_token unless User.where(api_token: random_token).exists?
     end
-  end
-
-  def saved_password
-    @saved_password ||= BCrypt::Password.new(encrypted_password)
-  end
-
-  def saved_password=(new_password)
-    @saved_password = BCrypt::Password.create(new_password)
-    self.encrypted_password = @saved_password
-  end
-
-  def encrypt_password
-    saved_password = password if password.present?
   end
 
 end

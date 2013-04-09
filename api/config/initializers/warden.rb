@@ -4,7 +4,7 @@ Warden::Manager.serialize_from_session { |uid| User.get(uid) }
 Warden::Strategies.add(:password) do
 
   def valid?
-    params && params['username'] && params['password']
+    params &&( params['username'] || params['password'])
   end
 
   def authenticate!

@@ -1,2 +1,2 @@
-class SDEImportDirector < ImportDirector
+class SdeImportDirector < ImportDirector
 end

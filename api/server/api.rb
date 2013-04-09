@@ -1,13 +1,9 @@
-require 'sinatra/base'
-require 'grape'
-
 module Stripemetrics
 
   class Api < Grape::API
 
-    version 'v1', :using => :header, :vendor => 'stripemetrics'
+    version 'v1', :vendor => 'stripemetrics'
     format :json
-
 
     use Rack::Session::Cookie, :secret => "superSuperSuperSecretKeyKey!!"
     use Warden::Manager do |manager|
@@ -15,7 +11,6 @@ module Stripemetrics
       manager.failure_app = Stripemetrics::Api
     end
     
-
     namespace :imports do
 
       desc "Return a list of my imports."
@@ -28,14 +23,15 @@ module Stripemetrics
     namespace :auth do
    
       desc "Creates and returns access_token if valid credentials"
-      post :login do
-        user = env['warden'].authenticate!(:password)
-        {:token => user.api_token}
+      get :login do
+        env['warden'].authenticate :password
+        error! "Unauthorized", 401 unless env['warden'].user
+        {:token => env['warden'].user.api_token}
       end
    
       desc "Returns pong if logged in correctly"
       get :ping do
-        user = env['warden'].authenticate!(:api_token)
+        user = env['warden'].authenticate(:api_token)
         { :message => "pong" }
       end
     end

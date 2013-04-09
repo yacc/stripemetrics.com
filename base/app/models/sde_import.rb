@@ -1,2 +1,2 @@
-class SDEImport < Import
+class SdeImport < Import
 end

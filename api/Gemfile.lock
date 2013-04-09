@@ -8,6 +8,7 @@ GEM
       i18n (= 0.6.1)
       multi_json (~> 1.0)
     backports (2.6.7)
+    bcrypt-ruby (3.0.1)
     bson (1.8.4)
     bson_ext (1.8.4)
       bson (~> 1.8.4)
@@ -76,6 +77,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt-ruby
   bson_ext
   cancan (>= 1.6.8)
   grape

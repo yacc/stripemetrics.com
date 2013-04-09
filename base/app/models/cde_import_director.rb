@@ -1,2 +1,2 @@
-class CDEImportDirector < ImportDirector
+class CdeImportDirector < ImportDirector
 end
