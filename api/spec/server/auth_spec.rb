@@ -4,7 +4,7 @@ describe Stripemetrics do
   include Rack::Test::Methods
 
   describe Stripemetrics::Api do
-    describe 'POST /v1/auth/login' do
+    describe 'GET /v1/auth/login' do
       before(:all) do
         User.delete_all
         @yacin = User.create!(email:'yacin@me.com',password:'sekkret')
@@ -35,7 +35,7 @@ describe Stripemetrics do
         JSON.parse(last_response.body)["token"].should == @yacin.api_token
         get "/v1/auth/ping?api_token=#{@yacin.api_token}"
         last_response.status.should == 200
-        JSON.parse(last_response.body)["message"].should == "pong"        
+        JSON.parse(last_response.body)["message"].should == "pong #{@yacin.email}"        
       end
 
     end

@@ -11,29 +11,33 @@ module Stripemetrics
       manager.failure_app = Stripemetrics::Api
     end
     
+    # ============================= IMPORTS =======================================
     namespace :imports do
-
-      desc "Return a list of my imports."
+      desc "Return a list of my imports.", {
+        :object_fields => Stripemetrics::Entities::ImportDirector.documentation
+      }
       get '/' do
-        Import.all.limit(20)
+        env['warden'].authenticate :api_token
+        error! "Unauthorized", 401 unless current_user = env['warden'].user
+        imports = current_user.import_directors
+        type = :default
+        present imports, with: Stripemetrics::Entities::ImportDirector, :type => type
       end
-
     end
 
+    # ============================= AUTH =======================================
     namespace :auth do
-   
       desc "Creates and returns access_token if valid credentials"
       get :login do
         env['warden'].authenticate :password
         error! "Unauthorized", 401 unless env['warden'].user
         {:token => env['warden'].user.api_token}
-      end
-   
+      end  
       desc "Returns pong if logged in correctly"
       get :ping do
         env['warden'].authenticate :api_token
-        error! "Unauthorized", 401 unless env['warden'].user
-        { :message => "pong" }
+        error! "Unauthorized", 401 unless current_user = env['warden'].user
+        { :message => "pong #{current_user.email}" }
       end
     end
 

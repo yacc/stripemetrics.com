@@ -16,6 +16,10 @@ Dir[File.expand_path('../../models/*.rb', __FILE__)].each do |f|
   autoload model, f
 end
 
+Dir[File.expand_path('../../entities/*.rb', __FILE__)].each do |f|
+  require f
+end
+
 Dir[File.expand_path('../../server/*.rb', __FILE__)].each do |f|
   require f
 end
