@@ -20,7 +20,7 @@ Warden::Strategies.add(:api_token) do
   end
 
   def authenticate!
-    u = User.find_by_api_token(params['api_token'])
+    u = User.where(api_token: params['api_token']).first
     u.nil? ? fail!("Could not log in") : success!(u)
   end
 end

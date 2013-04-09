@@ -81,7 +81,7 @@ class User
   end
 
   def generate_api_token #shouldn't the api token encrypted as well ?
-    self.token = loop do
+    self.api_token = loop do
       random_token = SecureRandom.urlsafe_base64
       break random_token unless User.where(api_token: random_token).exists?
     end

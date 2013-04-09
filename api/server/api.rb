@@ -31,7 +31,8 @@ module Stripemetrics
    
       desc "Returns pong if logged in correctly"
       get :ping do
-        user = env['warden'].authenticate(:api_token)
+        env['warden'].authenticate :api_token
+        error! "Unauthorized", 401 unless env['warden'].user
         { :message => "pong" }
       end
     end
