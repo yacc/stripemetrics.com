@@ -46,6 +46,7 @@ GEM
       multi_json (~> 1.0)
     addressable (2.3.3)
     arel (3.0.2)
+    bcrypt-ruby (3.0.1)
     better_errors (0.7.2)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -190,7 +191,6 @@ GEM
       vegas (~> 0.1.2)
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    rolify (3.2.0)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
@@ -255,6 +255,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt-ruby
   better_errors (>= 0.6.0)
   binding_of_caller (>= 0.7.1)
   bootstrap-sass (>= 2.3.0.0)
@@ -277,7 +278,6 @@ DEPENDENCIES
   quiet_assets (>= 1.0.1)
   rails (= 3.2.12)
   resque
-  rolify (>= 3.2.0)
   rspec-rails (>= 2.12.2)
   sass-rails (~> 3.2.3)
   simple_form (>= 2.0.4)

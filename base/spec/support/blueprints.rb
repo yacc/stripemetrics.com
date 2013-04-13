@@ -13,17 +13,17 @@ User.blueprint do
   livemode {"false"}
 end
 
-SDEImportDirector.blueprint do
+SdeImportDirector.blueprint do
   last_ran_at {1.day.ago}
   last_processed_ts {1.day.ago+13.hours}
 end
 
-CDEImportDirector.blueprint do
+CdeImportDirector.blueprint do
   last_ran_at {1.day.ago}
   last_processed_ts {1.day.ago+13.hours}
 end
 
-SDEImport.blueprint do
+SdeImport.blueprint do
   status {"processing"}
   time {1.hour}
   count {450}   

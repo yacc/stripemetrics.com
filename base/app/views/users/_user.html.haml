@@ -1,10 +1,16 @@
-.modal{:id => "role-options-#{user.id}", :style => "display: none;"}
-  = simple_form_for user, :url => user_path(user), :html => {:method => :put, :class => 'form-horizontal' } do |f|
-    .modal-header
-      %a.close{"data-dismiss" => "modal"} ×
-      %h3 Change Role
-    .modal-body
-      = f.input :role_ids, :collection => Role.all, :as => :radio_buttons, :label_method => lambda {|t| t.name.titleize}, :label => false, :item_wrapper_class => 'inline', checked: user.role_ids.first
-    .modal-footer
-      = f.submit "Change Role", :class => "btn"
-      %a.btn{"data-dismiss" => "modal", :href => "#"} Close
+= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f|
+  - if notification = f.error_notification
+    .alert.alert-error.fade.in
+      %a.close{"data-dismiss" => "alert", :href => "#"} ×
+      = notification
+  = f.input :email,:hint => "this is your username (you'll need it to run the command line tool)" ,:wrapper => :prepend, :label => false do
+    = content_tag :span, "Email", :class => "add-on"
+    = f.input_field :email
+  = f.input :password, :wrapper => :prepend, :label => false do
+    = content_tag :span, "password", :class => "add-on"
+    = f.input_field :password
+  .form-actions
+    = f.button :submit, 'Signup',:class => 'btn-primary'
+    = submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger"
+
+ 

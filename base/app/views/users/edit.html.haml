@@ -6,10 +6,6 @@
           .widget
             .widget-header
               %i.icon-user
-              %h3 Your Account
+              %h3 Your Credentials
             .widget-content
-              = form_for(@user) do |f|
-                = f.label :email
-                = f.text_field :email
-                %br/
-                = f.submit "Sign in"
+              = render 'user'
