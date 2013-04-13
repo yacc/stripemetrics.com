@@ -7,6 +7,10 @@
             = link_to dashboard_path do
               %i.icon-dashboard
               %span Dashboard
+          %li{:class => "#{'active' if current_page?(account_path)}"}
+            = link_to account_path do
+              %i.icon-user
+              %span My Account
         -else
           %li{:class => "#{'active' if current_page?(quickstart_path)}"}
             = link_to quickstart_path do

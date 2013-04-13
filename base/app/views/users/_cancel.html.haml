@@ -1,0 +1,9 @@
+%p Canceling your account will delete all your data. This action is not reversible.
+= simple_form_for @user,:url => { :action => "destroy" }, :html => {:method => :delete, :class => 'form-horizontal' } do |f|
+  - if notification = f.error_notification
+    .alert.alert-error.fade.in
+      %a.close{"data-dismiss" => "alert", :href => "#"} ×
+      = notification
+  .form-actions
+    = f.button :submit, 'Delete all my data and my account',:class => 'btn btn-danger'
+

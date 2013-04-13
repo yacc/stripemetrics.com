@@ -9,7 +9,8 @@ Stripemetrics::Application.routes.draw do
   match 'faq'                 => 'home#faq',:as => :faq
   match 'pricing'             => 'home#pricing',:as => :pricing
 
-  match 'account'              => 'account#index',   :as => :account
+  match 'account'              => 'users#edit',   :as => :account
+  match 'cancel'               => 'users#destroy',   :as => :cancel
   match 'billing'              => 'account#billing',   :as => :billing
 
   match 'dashboard'        => 'dashboard#index',:as => :dashboard

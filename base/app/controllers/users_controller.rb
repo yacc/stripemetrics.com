@@ -1,27 +1,25 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :correct_user?, :except => [:index]
-
-  def index
-    @users = User.all
-  end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]) if params[:id]
+    @user ||= current_user
   end
   
   def update
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]) if params[:id]
+    @user ||= current_user
     if @user.update_attributes(params[:user])
-      redirect_to @user
-    else
-      render :edit
+      flash[:success] = "You successfully updated your account!"
     end
+    render :edit
   end
 
-
-def show
-    @user = User.find(params[:id])
+  def destroy
+    @user = User.find(params[:id]) if params[:id]
+    @user ||= current_user
+    @user.destroy
+    redirect_to :root
   end
 
 end

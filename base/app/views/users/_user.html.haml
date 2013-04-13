@@ -1,16 +1,18 @@
-= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f|
+= simple_form_for @user, :validate => true, :html => { :class => 'form-inline' } do |f|
   - if notification = f.error_notification
     .alert.alert-error.fade.in
       %a.close{"data-dismiss" => "alert", :href => "#"} ×
       = notification
-  = f.input :email,:hint => "this is your username (you'll need it to run the command line tool)" ,:wrapper => :prepend, :label => false do
+  = f.input :email,:hint => "this is also your username (you'll need it to run the command line tool)" ,:wrapper => :prepend, :label => false do
     = content_tag :span, "Email", :class => "add-on"
     = f.input_field :email
-  = f.input :password, :wrapper => :prepend, :label => false do
+  = f.input :password,:hint => "leave empty to keep the same (you'll need it to run the command line tool)", :wrapper => :prepend, :label => false do
     = content_tag :span, "password", :class => "add-on"
     = f.input_field :password
+  = f.input :api_token,:hint => "API token (used by the command line tool)" ,:wrapper => :prepend, :label => false do
+    = content_tag :span, "Api Token", :class => "add-on"
+    = f.input_field :api_token
   .form-actions
-    = f.button :submit, 'Signup',:class => 'btn-primary'
-    = submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger"
+    = f.button :submit, 'Update',:class => 'btn-primary'
 
  
