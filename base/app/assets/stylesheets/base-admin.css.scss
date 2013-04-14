@@ -85,6 +85,11 @@ textarea {
 [2. Navbar / .navbar]
 */
 
+.navbar-fixed-top {
+	position: static;
+}
+
+/*
 .navbar .container {
 	position: relative;
 }
@@ -101,18 +106,20 @@ textarea {
 	border-radius: 0;
 }
 
-.navbar-fixed-top {
-	position: static;
-}
 
 .navbar .nav a {
 	font-size: 11px;
+}
+
+.navbar .nav > li > a {
+  text-shadow: none !important;
 }
 
 .navbar .brand {
 	font-weight: 600;
 	position: relative;
 	top: 2px;
+  text-shadow: none !important;
 }
 
 .navbar .search-query {
@@ -130,7 +137,7 @@ textarea {
     color: #666;
 }
 
-
+*/
 
 /*------------------------------------------------------------------
 [3. Subnavbar / .subnavbar]
