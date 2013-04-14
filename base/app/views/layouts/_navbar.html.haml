@@ -1,13 +1,13 @@
 .navbar.navbar-fixed-top
   .navbar-inner
     .container
-      %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
       %a.brand{:href => "./"}
         StripeMetrics
       -if user_signed_in?
+        %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
         .nav-collapse
           %ul.nav.pull-right
             %li.dropdown
