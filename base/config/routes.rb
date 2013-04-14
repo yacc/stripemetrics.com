@@ -18,7 +18,7 @@ Stripemetrics::Application.routes.draw do
   match 'jobs'                     => 'jobs#index',      :as => :jobs      
   match 'jobs/:action'             => 'jobs#action'
 
-  root :to => "home#index"
+  root :to => "home#quickstart"
   resources :users, :only => [:index, :show, :edit, :update ]
 
 

@@ -10,9 +10,14 @@
  *
  *= require_self
 */
-@import "font-awesome.css.scss";
-@import "base-admin.css.scss";
-@import "base-admin-responsive.css.scss";
+
 @import "plan.css.scss";
 @import "faq.css.scss";
 @import "report.css.scss";
+@import "guidely.css";
+
+@import "bootstrap";
+@import "bootstrap-responsive";
+@import "font-awesome";
+@import "base-admin.css.scss";
+@import "base-admin-responsive.css.scss";

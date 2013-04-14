@@ -3,7 +3,7 @@
     .container
       %ul.mainnav
         -if user_signed_in? 
-          %li{:class => "#{'active' if current_page?(dashboard_path)}"}
+          %li{:class => "#{'active' if current_page?(dashboard_path) || current_page?(root_path)}"}
             = link_to dashboard_path do
               %i.icon-dashboard
               %span Dashboard
@@ -12,7 +12,7 @@
               %i.icon-user
               %span My Account
         -else
-          %li{:class => "#{'active' if current_page?(quickstart_path)}"}
+          %li{:class => "#{'active' if current_page?(quickstart_path) || current_page?(root_path)}"}
             = link_to quickstart_path do
               %i.icon-home
               %span Quick-start

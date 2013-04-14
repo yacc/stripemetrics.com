@@ -1,2 +1,33 @@
-#content.span10
-  .row-fluid
+.main
+  .main-inner
+    .container
+      .row
+        = render '/home/steps/first'
+        = render '/home/steps/second'
+        = render '/home/steps/third'
+
+:javascript
+  jQuery(document).ready(function() {
+    guidely.add({
+      attachTo: "#firststep",
+      anchor: "top-left",
+      title: "Guide Title",
+      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut."
+    });
+    guidely.add({
+      attachTo: "#secondstep",
+      anchor: "top-right",
+      title: "Guide Title",
+      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut."
+    });
+    guidely.add({
+      attachTo: "#thirdstep",
+      anchor: "middle-middle",
+      title: "Guide Title",
+      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut."
+    });
+    return guidely.init({
+      welcome: true,
+      startTrigger: false
+    });
+  });
