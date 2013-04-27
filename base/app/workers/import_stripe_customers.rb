@@ -29,11 +29,9 @@ class ImportStripeCustomers
           user.customers << ::Customer.create(Customer.from_stripe(cust.as_json)) if record.nil? 
 
           imported += 1
-          print "."
         end
         last_date = customers.data.last.created
         offset += count
-        print "-> #{last_date}\n"
       end while (last_date > last_processed) 
 
       import.update_attributes(status:'success',time:(start_time-Time.now).to_i,count:imported)

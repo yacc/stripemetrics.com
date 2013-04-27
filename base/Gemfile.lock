@@ -192,6 +192,7 @@ GEM
       redis-namespace (~> 1.0)
       sinatra (>= 0.9.2)
       vegas (~> 0.1.2)
+    resque-lock (1.1.0)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rspec (2.13.0)
@@ -282,6 +283,7 @@ DEPENDENCIES
   quiet_assets (>= 1.0.1)
   rails (= 3.2.12)
   resque
+  resque-lock
   rspec-rails (>= 2.12.2)
   sass-rails (~> 3.2)
   simple_form (>= 2.0.4)

@@ -28,11 +28,9 @@ class ImportStripeCharges
         user.charges << ::Charge.create(Charge.from_stripe(ch.as_json)) if record.nil? 
 
         imported += 1
-        print "."
       end
       last_date = charges.data.last.created
       offset += count
-      print "-> #{last_date}\n"
     end while (last_date > last_processed) 
 
     import.update_attributes(status:'success',time:(start_time-Time.now).to_i,count:imported)

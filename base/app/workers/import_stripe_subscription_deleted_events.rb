@@ -19,7 +19,6 @@ class ImportStripeSubscriptionDeletedEvents
       last_processed = director.last_processed_ts || 1301355794
       director.imports.create(_type:"SDEImport",status:'processing')
 
-      print "\nimport sde:\n"
       begin
         events = Stripe::Event.all({:count => count, :offset => offset,:type => 'customer.subscription.deleted'},token)
         newest_import = events.data.first.created if newest_import.nil?
@@ -33,7 +32,6 @@ class ImportStripeSubscriptionDeletedEvents
           end  
 
           imported += 1
-          print "."
         end
         offset += count
       end while (events && (events.data.last.created > last_processed)) 
