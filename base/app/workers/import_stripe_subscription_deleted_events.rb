@@ -1,4 +1,8 @@
+require 'resque/plugins/lock'
+
 class ImportStripeSubscriptionDeletedEvents
+  extend Resque::Plugins::Lock
+
   @queue = :stripe_sde_import_queue
 
   def self.perform(user_id,options = {})

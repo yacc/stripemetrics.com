@@ -1,4 +1,8 @@
+require 'resque/plugins/lock'
+
 class ImportStripeCustomers
+  extend Resque::Plugins::Lock
+
   @queue = :stripe_customer_import_queue
 
   def self.perform(user_id,options = {})

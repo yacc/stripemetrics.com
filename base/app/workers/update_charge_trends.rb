@@ -1,4 +1,8 @@
+require 'resque/plugins/lock'
+
 class UpdateChargeTrends  
+  extend Resque::Plugins::Lock
+
   @queue = :charge_trend_queue
 
   def self.perform(user_id,options = {})

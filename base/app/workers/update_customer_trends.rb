@@ -1,4 +1,8 @@
+require 'resque/plugins/lock'
+
 class UpdateCustomerTrends	
+  extend Resque::Plugins::Lock
+
   @queue = :customer_trend_queue
 
   def self.perform(user_id,options = {})
