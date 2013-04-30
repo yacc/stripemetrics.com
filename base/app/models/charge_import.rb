@@ -1,0 +1,2 @@
+class ChargeImport < Import
+end

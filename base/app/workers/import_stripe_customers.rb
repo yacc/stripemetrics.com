@@ -16,9 +16,10 @@ class ImportStripeCustomers
       newest_import  = nil
       start_time     = Time.now
 
-      director = user.import_directors.where(_type:"CustomerImportDirector").first
+      director = user.customer_import_director
       last_processed = director.last_processed_ts || 1301355794
       import = director.imports.create(_type:"CustomerImport",status:'processing')
+      Resque.enqueue_in(2.minutes,UpdateCustomerTrends, user.id,options)
 
       begin
         customers = Stripe::Customer.all({:count => count, :offset => offset},token)

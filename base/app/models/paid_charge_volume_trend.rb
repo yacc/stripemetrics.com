@@ -1,10 +1,10 @@
 class PaidChargeVolumeTrend < Trend
 
   def refresh!
-    refresh_daily
-    refresh_weekly
-    refresh_monthly
-    self.start_date = self.daily[0][0] unless self.daily[0].nil?
+    self.daily   = refresh_daily
+    self.weekly  = refresh_weekly
+    self.monthly = refresh_monthly
+    self.start_date = self.daily[0][0] unless self.daily.nil? || self.daily[0].nil?
     self.name    = "Paid Charges Volume"
     self.save
   end

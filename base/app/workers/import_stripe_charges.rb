@@ -14,9 +14,10 @@ class ImportStripeCharges
     token          = user.token
     start_time     = Time.now
 
-    director = user.import_directors.where(_type:"ChargeImportDirector").first
+    director = user.charge_import_director
     last_processed = director.last_processed_ts || 1301355794
     import = director.imports.create(_type:"ChargeImport",status:'processing')
+    Resque.enqueue_in(2.minutes,UpdateChargeTrends, user.id,options)
 
     begin
       charges = Stripe::Charge.all({:count => count, :offset => offset},token)

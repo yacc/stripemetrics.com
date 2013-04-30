@@ -1,0 +1,2 @@
+class CustomerImport < Import
+end

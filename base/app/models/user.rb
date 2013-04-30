@@ -1,6 +1,5 @@
 class User
   include Mongoid::Document
-  include Mongoid::Paranoia
 
   field :provider, type: String
   field :uid,      type: String
@@ -17,7 +16,11 @@ class User
 
   has_many :customers, dependent: :delete
   has_many :charges, dependent: :delete
-  has_many :import_directors, dependent: :delete
+
+  has_one :cde_import_director, dependent: :delete #, autobuild: true
+  has_one :sde_import_director, dependent: :delete #, autobuild: true
+  has_one :charge_import_director, dependent: :delete #, autobuild: true
+  has_one :customer_import_director, dependent: :delete #, autobuild: true
 
   has_one  :acquisition_trend, dependent: :delete, autobuild: true
   has_one  :cancellation_trend, dependent: :delete, autobuild: true
@@ -27,29 +30,28 @@ class User
   has_one  :failed_charge_volume_trend, dependent: :delete, autobuild: true
   embeds_one   :account
 
-  attr_accessible :provider, :uid, :name, :email
+  attr_accessible :provider, :uid, :name, :email, :livemode, :token, :token_expires
   attr_accessor :password
 
   index({ email: 1 }, { unique: true, background: true })
   index({ api_token: 1 }, { unique: true, background: true })
 
-  after_create :add_import_directors
   before_create :generate_api_token
   before_save :encrypt_password
+  after_create :add_import_directors
 
 
   def self.create_with_omniauth(auth)
-    create! do |user|
-      user.provider = auth['provider']
-      user.uid = auth['uid']
-      if auth['info']
-         user.livemode = auth['info']['livemode'] || false
-      end
-      if auth['credentials']
-        user.token = auth['credentials']['token'] || ''
-        user.token_expires = auth['credentials']['expires'] || true
-      end
+    new_user = {provider:auth['provider'], uid:auth['uid']}
+    if auth['info']
+      new_user["livemode"] = auth['info']['livemode'] || false
     end
+    if auth['credentials']
+      new_user["token"]         = auth['credentials']['token'] || ''
+      new_user["token_expires"] = auth['credentials']['expires'] || true
+    end
+    logger.info "YYY: New user from Stripe #{new_user}"
+    User.create! new_user
   end
 
   def self.authenticate email, password
@@ -76,10 +78,10 @@ class User
   protected 
 
   def add_import_directors
-    self.import_directors << CdeImportDirector.create
-    self.import_directors << SdeImportDirector.create  
-    self.import_directors << ChargeImportDirector.create  
-    self.import_directors << CustomerImportDirector.create  
+    self.create_cde_import_director   
+    self.create_sde_import_director   
+    self.create_charge_import_director   
+    self.create_customer_import_director   
   end
 
   def generate_api_token 

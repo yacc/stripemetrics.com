@@ -9,3 +9,6 @@ h2. Resque Commands
 
 to start the queue worker
 rake resque:work QUEUE='*'
+
+to start the web server
+bundle exec resque-web config/initializers/resque.rb

@@ -1,17 +1,8 @@
 require 'machinist/mongoid'
 
-# Add your blueprints here.
-#
-# e.g.
-#   Post.blueprint do
-#     title { "Post #{sn}" }
-#     body  { "Lorem ipsum..." }
-#   end
-
 User.blueprint do
   email {"yacin@stripemetrics.com"}
   livemode {"false"}
-  import_directors
 end
 
 SdeImportDirector.blueprint do

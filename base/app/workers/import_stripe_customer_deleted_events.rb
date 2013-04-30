@@ -16,7 +16,7 @@ class ImportStripeCustomerDeletedEvents
       newest_import  = nil
       start_time     = Time.now
 
-      director = user.import_directors.where(_type:"CDEImportDirector").first
+      director = user.cde_import_director
       last_processed = director.last_processed_ts || 1301355794 
       import = director.imports.create(_type:"CDEImport",status:'processing')
 
@@ -24,19 +24,13 @@ class ImportStripeCustomerDeletedEvents
         events = Stripe::Event.all({:count => count, :offset => offset,:type => 'customer.deleted'},token)
         newest_import = events.data.first.created if newest_import.nil?
         events.data.each do |ev|
-
           cust_id = ev.data.object.id
-          customer = ::Customer.where(stripe_id:cust_id).first
-          if customer
-            customer.canceled_at =  ev.created
-            customer.save
-            if customer.subscription
-              customer.subscription.canceled_at = ev.created
-              customer.subscription.save
-            end
+          document = {canceled_at:ev.created, subscription:{canceled_at:ev.created}}
+          customer = ::Customer.where(stripe_id:cust_id).find_and_modify({ "$set" => document}, { upsert:true,new:true })
+          unless customer.nil?
+            user.customers << customer
+            imported += 1 
           end
-            
-          imported += 1
         end
         offset += count
       end while (events && (events.data.last.created > last_processed)) 

@@ -14,6 +14,7 @@ Stripemetrics::Application.routes.draw do
   match 'billing'              => 'account#billing',   :as => :billing
 
   match 'dashboard'        => 'dashboard#index',:as => :dashboard
+  match 'status'           => 'imports#index',:as => :status
 
   match 'jobs'                     => 'jobs#index',      :as => :jobs      
   match 'jobs/:action'             => 'jobs#action'
