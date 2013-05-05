@@ -6,8 +6,9 @@ Stripemetrics::Application.routes.draw do
   match '/auth/failure'            => 'sessions#failure'
 
   match 'quickstart'          => 'home#quickstart',:as => :quickstart
-  match 'faq'                 => 'home#faq',:as => :faq
-  match 'pricing'             => 'home#pricing',:as => :pricing
+  match 'faq'                 => 'home#faq',       :as => :faq
+  match 'pricing'             => 'home#pricing',   :as => :pricing
+  match 'about'               => 'home#about',     :as => :about
 
   match 'account'              => 'users#edit',   :as => :account
   match 'cancel'               => 'users#destroy',   :as => :cancel
