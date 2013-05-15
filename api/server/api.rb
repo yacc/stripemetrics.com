@@ -17,6 +17,7 @@ module Stripemetrics
         :object_fields => Stripemetrics::Entities::ImportDirector.documentation
       }
       get '/' do
+        Grape::API.logger.info "listing user imports"
         env['warden'].authenticate :api_token
         error! "Unauthorized", 401 unless current_user = env['warden'].user
         imports = current_user.import_directors
