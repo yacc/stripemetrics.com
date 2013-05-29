@@ -10,6 +10,6 @@ else
           }
 end  
 
-Resque.redis = "#{redis['STRIPEMETRICS_REDIS_HOST']:redis['STRIPEMETRICS_REDIS_POST']}"
+Resque.redis = "#{redis['STRIPEMETRICS_REDIS_HOST']}:#{redis['STRIPEMETRICS_REDIS_PORT']}"
 # test in the Rails console with Resque::Failure.count
  
