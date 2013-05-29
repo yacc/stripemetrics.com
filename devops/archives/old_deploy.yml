@@ -1,0 +1,42 @@
+---
+
+- hosts: www
+  user: deploy
+  sudo: false
+  connection: ssh
+
+  vars:
+    app_name: stripemetrics
+    repo_url: git@github.com:yacc/stripemetrics.git
+    repo_remote: origin
+    repo_branch: master
+    webapps_dir: /home/deploy/www
+
+  # vars_prompt:
+  #   passcode: type your github pass phrase ?
+
+  tasks:
+    # - name: current release
+    #   command: /usr/bin/git status chdir=${webapps_dir}/${app_name}
+
+    - name: deploy code from repository
+      action: git repo=$repo_url dest=${webapps_dir}/${app_name} remote=$repo_remote version=$repo_branch
+
+    # - name: "Bundle install"
+    #   action: "shell bundle install --deployment --binstubs --shebang ruby-local-exec && chown -R ${app} ${gemfile_dir} chdir=$gemfile_dir creates=$gemfile_dir/vendor/bundle"
+
+  #   - name: bundle install
+  #     action: cd ${webapps_dir}/${app_name}; bundle install
+
+  # handlers:
+  #   - name: restart app
+  #     action: cd ${webapps_dir}/${app_name}; touch tmp/restart.txt
+  #
+      # action: "shell bundle install --deployment --binstubs --shebang ruby-local-exec && chown -R ${app} ${gemfile_dir} chdir=$gemfile_dir creates=$gemfile_dir/vendor/bundle"
+
+  # ANSIBLE_SSH_ARGS="" ansible-playbook playbooks/deploy.yml -i ansible_hosts
+  # edit /etc/sudoers with visudo
+  # after this line
+  #Defaults    env_keep += "LC_TIME LC_ALL LANGUAGE LINGUAS _XKB_CHARSET XAUTHORITY"
+  #add
+  #+Defaults    env_keep += "SSH_AUTH_SOCK"

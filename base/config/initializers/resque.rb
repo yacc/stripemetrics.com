@@ -1,6 +1,15 @@
 require 'resque_scheduler'
 require 'resque_scheduler/server'
 
-Resque.redis = ENV['DOTCLOUD_DATA_REDIS_URL'] || 'localhost:6379'
+if File.exist?('/home/deploy/environment.yml')
+  redis = YAML.load(IO.read('/home/deploy/environment.yml'))
+else
+  redis = { 
+              'STRIPEMETRICS_REDIS_HOST'=> 'localhost',
+              'STRIPEMETRICS_REDIS_PORT' => '6379'
+          }
+end  
+
+Resque.redis = "#{redis['STRIPEMETRICS_REDIS_HOST']:redis['STRIPEMETRICS_REDIS_POST']}"
 # test in the Rails console with Resque::Failure.count
  

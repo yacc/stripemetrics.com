@@ -1,0 +1,31 @@
+h1. Provisioning a new server
+
+h2. Copying public key to remote server
+
+    cat ~/.ssh/id_rsa.pub | ssh user@machine "mkdir ~/.ssh; cat >> ~/.ssh/authorized_keys"
+
+h2. Configuring nginx
+
+The Nginx configuration file (/opt/nginx/conf/nginx.conf)
+
+Suppose you have a Ruby on Rails application in /somewhere. Add a server block
+to your Nginx configuration file, set its root to /somewhere/public, and set
+'passenger_enabled on', like this:
+
+   server {
+      listen 80;
+      server_name www.yourhost.com;
+      root /somewhere/public;   # <--- be sure to point to 'public'!
+      passenger_enabled on;
+   }
+
+
+h1. Ansible 
+
+h2. Quickstart
+
+    [yacin@mac ~]$ cd dev/rails/stripemetrics/
+    ansible all -m ping -i ansible_hosts -u deploy
+    ansible all -i ansible_hosts -u deploy -a 'hostname'
+
+h2. 
