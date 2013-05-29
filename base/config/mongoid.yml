@@ -14,7 +14,7 @@ production:
     default:
       database: <%= mongo['STRIPEMETRICS_PROJECT'] + '_production' %>
       hosts:
-        - <%= mongo['STRIPEMETRICS_MONGODB_HOST'] + ':' + mongo['STRIPEMETRICS_MONGODB_PORT'] %>
+        - <%= mongo['STRIPEMETRICS_MONGODB_HOST'] + ':' + mongo['STRIPEMETRICS_MONGODB_PORT'].to_s %>
       options: 
         safe: false
         consistency: :eventual
