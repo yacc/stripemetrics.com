@@ -1,5 +1,28 @@
+== 2013-06-10 ==
 
+Here's the idea to manage the imports:
+the import director schedules an import with an interval [start_ts,end_ts]
+import = Import.create(ts_import_from,ts_import_to)
+         1/ contact Stripe and import 100 data points
+         2/ import.end_at = last_data_point.created
+         3/ if more objects exist then schedule another import
+            new_ts_import_from = import.end_at
+            new_ts_import_to = ts_import_to
+            new_import = Import.create(new_ts_import_from,new_ts_import_to)
+Import
+  after_create -> enqeue import job
+  after_save -> update my import_director (with what ?)            
 
+== 2013-06-06 ==
+
+working on imports, stripe APIs are really screwy for imports ... 
+rspec spec/models/import_spec.rb
+
+app/models/import.rb
+* only counting now, not saving imported data
+* API import is not going to work when 
+
+==== Older =====
   def map
     emit_type = (@type == 'count' ? '{count: 1}' : '{:amount:amount}' )
     map = if @interval == 'day'
