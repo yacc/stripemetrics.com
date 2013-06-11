@@ -10,19 +10,12 @@ class User
   field :token,    type: String
   field :token_expires, type: Boolean
 
-  #validates_presence_of   :password_hash, :on => :save, :message => "can't be blank"
-  # validates_presence_of   :email, :message => "can't be blank"
   validates_uniqueness_of :email, :message => "already in use"
 
   has_many :customers, dependent: :delete
   has_many :charges, dependent: :delete
   has_many :charge_imports, dependent: :delete
   has_many :customer_imports, dependent: :delete
-
-  # has_one :cde_import_director, dependent: :delete #, autobuild: true
-  # has_one :sde_import_director, dependent: :delete #, autobuild: true
-  # has_one :charge_import_director, dependent: :delete #, autobuild: true
-  # has_one :customer_import_director, dependent: :delete #, autobuild: true
 
   has_one  :acquisition_trend, dependent: :delete, autobuild: true
   has_one  :cancellation_trend, dependent: :delete, autobuild: true
@@ -41,8 +34,6 @@ class User
 
   before_create :generate_api_token
   before_save   :encrypt_password
-  # after_create  :add_import_directors
-
 
   def self.create_with_omniauth(auth)
     new_user = {provider:auth['provider'], uid:auth['uid']}
@@ -79,13 +70,6 @@ class User
   end
 
   protected 
-
-  # def add_import_directors
-  #   self.create_cde_import_director   
-  #   self.create_sde_import_director   
-  #   self.create_charge_import_director   
-  #   self.create_customer_import_director   
-  # end
 
   def generate_api_token 
     self.api_token = loop do

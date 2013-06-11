@@ -3,7 +3,6 @@ class ChargeImport < Import
     objects = Stripe::Charge.all({:count => self.limit, 
                                   :created => {:gte => self.end_at.to_i,:lt => self.start_at.to_i}},
                                   self.token)
-    objects
   end
 
   def persiste!(charges)
