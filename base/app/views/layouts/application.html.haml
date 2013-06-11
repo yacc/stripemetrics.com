@@ -15,7 +15,7 @@
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
     - if Rails.env.production?
-        = render :partial => 'ga'
+      = render :partial => 'layouts/ga'
     = csrf_meta_tags
     = yield(:head)
   %body{:class => "#{controller_name} #{action_name}"}

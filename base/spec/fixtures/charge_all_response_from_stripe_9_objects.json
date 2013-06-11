@@ -1,0 +1,335 @@
+[
+  {
+    "id": "ch_1wx9FbJw3YG5xO",
+    "object": "charge",
+    "created": 1370286211,
+    "livemode": false,
+    "paid": true,
+    "amount": 995,
+    "currency": "usd",
+    "refunded": false,
+    "fee": 59,
+    "fee_details": [
+      {
+        "amount": 59,
+        "currency": "usd",
+        "type": "stripe_fee",
+        "description": "Stripe processing fees",
+        "application": null,
+        "amount_refunded": 0
+      }
+    ],
+    "card": {
+      "object": "card",
+      "last4": "4242",
+      "type": "Visa",
+      "exp_month": 2,
+      "exp_year": 2013,
+      "fingerprint": "eN9ATrlnOMYF6yIq",
+      "country": "US",
+      "address_city": null
+    },
+    "captured": true,
+    "failure_code": null,
+    "customer": "cus_0HYml6si3UFTP7",
+    "invoice": "in_1vpRLqfSqbpHxd",
+    "dispute": null,
+    "disputed": false
+  },
+  {
+    "id": "ch_1wx9gzG15ZUPRt",
+    "object": "charge",
+    "created": 1370286210,
+    "livemode": false,
+    "paid": true,
+    "amount": 995,
+    "currency": "usd",
+    "refunded": false,
+    "fee": 59,
+    "fee_details": [
+      {
+        "amount": 59,
+        "currency": "usd",
+        "type": "stripe_fee",
+        "description": "Stripe processing fees",
+        "application": null,
+        "amount_refunded": 0
+      }
+    ],
+    "card": {
+      "object": "card",
+      "last4": "4242",
+      "type": "Visa",
+      "exp_month": 2,
+      "exp_year": 2013,
+      "fingerprint": "eN9ATrlnOMYF6yIq",
+      "country": "US",
+      "address_city": null
+    },
+    "captured": true,
+    "failure_code": null,
+    "customer": "cus_0HYmzJGa7Se52L",
+    "invoice": "in_1vpRG8dFU6j872",
+    "dispute": null,
+    "disputed": false
+  },
+  {
+    "id": "ch_1ww5d0BwVoKxVp",
+    "object": "charge",
+    "created": 1370282280,
+    "livemode": false,
+    "paid": true,
+    "amount": 995,
+    "currency": "usd",
+    "refunded": false,
+    "fee": 59,
+    "fee_details": [
+      {
+        "amount": 59,
+        "currency": "usd",
+        "type": "stripe_fee",
+        "description": "Stripe processing fees",
+        "application": null,
+        "amount_refunded": 0
+      }
+    ],
+    "card": {
+      "object": "card",
+      "last4": "4242",
+      "type": "Visa",
+      "exp_month": 12,
+      "exp_year": 2014,
+      "fingerprint": "eN9ATrlnOMYF6yIq",
+      "country": "US",
+      "address_city": null
+    },
+    "captured": true,
+    "failure_code": null,
+    "customer": "cus_0Z9LJdcymJEJXK",
+    "invoice": "in_1voOw2Qb70SQWR",
+    "dispute": null,
+    "disputed": false
+  },
+  {
+    "id": "ch_1wu2dZuxB4ekei",
+    "object": "charge",
+    "created": 1370274676,
+    "livemode": false,
+    "paid": true,
+    "amount": 995,
+    "currency": "usd",
+    "refunded": false,
+    "fee": 59,
+    "fee_details": [
+      {
+        "amount": 59,
+        "currency": "usd",
+        "type": "stripe_fee",
+        "description": "Stripe processing fees",
+        "application": null,
+        "amount_refunded": 0
+      }
+    ],
+    "card": {
+      "object": "card",
+      "last4": "4242",
+      "type": "Visa",
+      "exp_month": 12,
+      "exp_year": 2013,
+      "fingerprint": "eN9ATrlnOMYF6yIq",
+      "country": "US",
+      "address_city": null
+    },
+    "captured": true,
+    "failure_code": null,
+    "customer": "cus_0Z7I0396KifB94",
+    "invoice": "in_1vmMbwLo5m9HJU",
+    "dispute": null,
+    "disputed": false
+  },
+  {
+    "id": "ch_1wgdUUN9Cvyfol",
+    "object": "charge",
+    "created": 1370224804,
+    "livemode": false,
+    "paid": true,
+    "amount": 2900,
+    "currency": "usd",
+    "refunded": false,
+    "fee": 114,
+    "fee_details": [
+      {
+        "amount": 114,
+        "currency": "usd",
+        "type": "stripe_fee",
+        "description": "Stripe processing fees",
+        "application": null,
+        "amount_refunded": 0
+      }
+    ],
+    "card": {
+      "object": "card",
+      "last4": "4242",
+      "type": "Visa",
+      "exp_month": 2,
+      "exp_year": 2013,
+      "fingerprint": "eN9ATrlnOMYF6yIq",
+      "country": "US",
+      "address_city": null
+    },
+    "captured": true,
+    "failure_code": null,
+    "customer": "cus_05gHq2JQ7TqE7i",
+    "invoice": "in_1vYxV4JiRacRYM",
+    "dispute": null,
+    "disputed": false
+  },
+  {
+    "id": "ch_1wgdlV4KpiZZPl",
+    "object": "charge",
+    "created": 1370224801,
+    "livemode": false,
+    "paid": true,
+    "amount": 300,
+    "currency": "usd",
+    "refunded": false,
+    "fee": 39,
+    "fee_details": [
+      {
+        "amount": 39,
+        "currency": "usd",
+        "type": "stripe_fee",
+        "description": "Stripe processing fees",
+        "application": null,
+        "amount_refunded": 0
+      }
+    ],
+    "card": {
+      "object": "card",
+      "last4": "4242",
+      "type": "Visa",
+      "exp_month": 2,
+      "exp_year": 2013,
+      "fingerprint": "eN9ATrlnOMYF6yIq",
+      "country": "US",
+      "address_city": null
+    },
+    "captured": true,
+    "failure_code": null,
+    "customer": "cus_05gHqOaQ9x67Cw",
+    "invoice": "in_1vYxVQLJ1zRZ0f",
+    "dispute": null,
+    "disputed": false
+  },
+  {
+    "id": "ch_1wgXGmIYxJZJBk",
+    "object": "charge",
+    "created": 1370224439,
+    "livemode": false,
+    "paid": true,
+    "amount": 2900,
+    "currency": "usd",
+    "refunded": false,
+    "fee": 114,
+    "fee_details": [
+      {
+        "amount": 114,
+        "currency": "usd",
+        "type": "stripe_fee",
+        "description": "Stripe processing fees",
+        "application": null,
+        "amount_refunded": 0
+      }
+    ],
+    "card": {
+      "object": "card",
+      "last4": "4242",
+      "type": "Visa",
+      "exp_month": 2,
+      "exp_year": 2013,
+      "fingerprint": "eN9ATrlnOMYF6yIq",
+      "country": "US",
+      "address_city": null
+    },
+    "captured": true,
+    "failure_code": null,
+    "customer": "cus_05gBhTx0JYqCx3",
+    "invoice": "in_1vYrmmFZjCxdsD",
+    "dispute": null,
+    "disputed": false
+  },
+  {
+    "id": "ch_1wgXdKnIvfjEv4",
+    "object": "charge",
+    "created": 1370224438,
+    "livemode": false,
+    "paid": true,
+    "amount": 300,
+    "currency": "usd",
+    "refunded": false,
+    "fee": 39,
+    "fee_details": [
+      {
+        "amount": 39,
+        "currency": "usd",
+        "type": "stripe_fee",
+        "description": "Stripe processing fees",
+        "application": null,
+        "amount_refunded": 0
+      }
+    ],
+    "card": {
+      "object": "card",
+      "last4": "4242",
+      "type": "Visa",
+      "exp_month": 2,
+      "exp_year": 2013,
+      "fingerprint": "eN9ATrlnOMYF6yIq",
+      "country": "US",
+      "address_city": null
+    },
+    "captured": true,
+    "failure_code": null,
+    "customer": "cus_05gBuuww6oNXNQ",
+    "invoice": "in_1vYriQDd6dwtgp",
+    "dispute": null,
+    "disputed": false
+  },
+  {
+    "id": "ch_1wgFyxK5IySIm0",
+    "object": "charge",
+    "created": 1370223348,
+    "livemode": false,
+    "paid": true,
+    "amount": 2900,
+    "currency": "usd",
+    "refunded": false,
+    "fee": 114,
+    "fee_details": [
+      {
+        "amount": 114,
+        "currency": "usd",
+        "type": "stripe_fee",
+        "description": "Stripe processing fees",
+        "application": null,
+        "amount_refunded": 0
+      }
+    ],
+    "card": {
+      "object": "card",
+      "last4": "4242",
+      "type": "Visa",
+      "exp_month": 2,
+      "exp_year": 2013,
+      "fingerprint": "eN9ATrlnOMYF6yIq",
+      "country": "US",
+      "address_city": null
+    },
+    "captured": true,
+    "failure_code": null,
+    "customer": "cus_05fsTH1e0uBOpe",
+    "invoice": "in_1vYYMdhcLPJucw",
+    "dispute": null,
+    "disputed": false
+  }
+]

@@ -2,10 +2,9 @@ class ImportDirector
   include Mongoid::Document
 
   field :last_ran_at, type: DateTime
-  field :last_processed_ts, type: Integer
+  field :oldest_ts, type: Integer
+  field :newest_ts, type: Integer
 
   belongs_to :user
-  has_many   :imports
-
 
 end
