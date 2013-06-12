@@ -1,3 +1,8 @@
+== 2013-06-11 ==
+just installed spork
+bundle exec rspec spec/models/
+bundle exec rspec spec/models/imports
+
 == 2013-06-10 ==
 
 Here's the idea to manage the imports:
