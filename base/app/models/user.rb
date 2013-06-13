@@ -16,6 +16,8 @@ class User
   has_many :charges, dependent: :delete
   has_many :charge_imports, dependent: :delete
   has_many :customer_imports, dependent: :delete
+  has_many :sde_imports, dependent: :delete
+  has_many :cde_imports, dependent: :delete
 
   has_one  :acquisition_trend, dependent: :delete, autobuild: true
   has_one  :cancellation_trend, dependent: :delete, autobuild: true

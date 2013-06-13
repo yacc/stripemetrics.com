@@ -1,3 +1,14 @@
+== 2013-06-12 ==
+* removing all reference to import_director
+* specing other import types
+* implementing other import types wo import director
+* user registration triggers imports
+
+* fix google analytics (stripe analytics)
+* deploy/update api server
+* update cli
+* update or remove buy buttons
+
 == 2013-06-11 ==
 just installed spork
 bundle exec rspec spec/models/

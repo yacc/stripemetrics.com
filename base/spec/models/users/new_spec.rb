@@ -8,29 +8,17 @@ describe User do
                    "livemode"=>false, "token"=>"sk_test_rHrZMZsBcPbgmiklOR9oPbZo"})
     end
 
-    it "should have a CDE import director" do
-      user.cde_import_director.should_not be_nil
-    end
-    it "should have a SDE import director" do
-      user.sde_import_director.should_not be_nil
-    end
-    it "should have a Charge import director" do
-      user.charge_import_director.should_not be_nil
-    end  
-    it "should have a Customer import director" do
-      user.customer_import_director.should_not be_nil
-    end  
     it "should have one CDE import" do
-      user.cde_import_director.imports.where(_type:CdeImportDirector).should_not be_nil
+      user.cde_imports.should_not be_nil
     end
-    it "should have a SDE import director" do
-      user.cde_import_director.imports.where(_type:SdeImportDirector).should_not be_nil
+    it "should have a SDE import" do
+      user.sde_imports.should_not be_nil
     end
-    it "should have a Charge import director" do
-      user.cde_import_director.imports.where(_type:ChargeImportDirector).should_not be_nil
+    it "should have a Charge import" do
+      user.charge_imports.should_not be_nil
     end  
-    it "should have a Customer import director" do
-      user.cde_import_director.imports.where(_type:CustomerImportDirector).should_not be_nil
+    it "should have a Customer import" do
+      user.customer_imports.should_not be_nil
     end  
   end  
 end

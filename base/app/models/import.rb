@@ -28,7 +28,6 @@ class Import
   validates_inclusion_of :mode,   in: [ :from_file, :from_stripe ]
   validates_presence_of  :file,   :if => :from_file?
 
-  belongs_to :import_director   # orchestrates and aggregates stats about imports
   belongs_to :user
 
   after_create :enqueue

@@ -3,11 +3,11 @@
     %i.icon-star
     %h3=title
   .widget-content
-    - unless imports_director.imports.empty?
+    - unless imports.empty?
       %ul
-        %li Number of Imports: #{imports_director.imports.count}
-        %li Status of Imports: #{imports_director.imports.last.status}
-        %li Last import ran at: #{imports_director.last_ran_at}
-        %li Oldest object imported timestamp: #{imports_director.last_processed_ts}
+        %li Number of Imports: #{imports.count}
+        %li Status of Imports: #{imports.last.status}
+        %li Last import ran: #{imports.last.created_at}
+        %li Oldest object imported timestamp: #{imports.last.last_processed_ts}
     - else
       No imports ran or running ... something is not right!  

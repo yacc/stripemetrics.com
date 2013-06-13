@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Import do
+describe ChargeImport do
   around(:each) do |example|
     resque_state = Resque.inline
     Resque.inline = true
@@ -61,33 +61,6 @@ describe Import do
       end.should change(Charge, :count).by(28)
     end    
   end
-
-  pending "for subscription deleted events" do
-    it "should create a new import" do
-      director = user.sde_import_director
-      director.imports << SdeImport.create
-      director.imports.last.should be_valid
-    end
-    it "should create a new import from type" do
-      director = user.sde_import_director
-      import = director.imports.create(_type:"SDEImport")
-      import.should be_valid
-    end
-  end  
-
-  pending "for customer deleted events" do
-    it "should create a new import" do
-      director = user.cde_import_director
-      director.imports << CdeImport.create
-      director.imports.last.should be_valid
-    end
-    it "should create a new import from type" do
-      director = user.cde_import_director
-      import = director.imports.create(_type:"CDEImport")
-      import.should be_valid
-    end
-  end  
-
 
 end
 

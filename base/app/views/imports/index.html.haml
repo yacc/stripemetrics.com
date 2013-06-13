@@ -3,10 +3,10 @@
     .container
       .row
         .span6
-          = render "status", :title => "Importing Customer Data", :imports_director => @customer_import_director
+          = render "status", :title => "Importing Customer Data", :imports => @customer_imports
         .span6
-          = render "status", :title => "Importing Charges Data", :imports_director => @charge_import_director
+          = render "status", :title => "Importing Charges Data", :imports => @charge_imports
         .span6
-          = render "status", :title => "Importing Customer Deleted Events", :imports_director => @cde_import_director
+          = render "status", :title => "Importing Customer Deleted Events", :imports => @cde_imports
         .span6
-          = render "status", :title => "Importing Subscription Deleted Events", :imports_director => @sde_import_director
+          = render "status", :title => "Importing Subscription Deleted Events", :imports => @sde_imports
