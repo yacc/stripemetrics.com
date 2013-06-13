@@ -1,6 +1,10 @@
 class User
   include Mongoid::Document
 
+  MAX_IMPORTS      = 10
+  # John and Patrick first started working on Stripe in early 2010.
+  BEGINING_OF_TIME = Time.parse('01/01/2010')
+
   field :provider, type: String
   field :uid,      type: String
   field :email,    type: String
@@ -35,6 +39,7 @@ class User
   index({ api_token: 1 }, { unique: true, background: true })
 
   before_create :generate_api_token
+  after_create  :schedule_imports
   before_save   :encrypt_password
 
   def self.create_with_omniauth(auth)
@@ -78,6 +83,13 @@ class User
       random_token = SecureRandom.urlsafe_base64
       break random_token unless User.where(api_token: random_token).exists?
     end
+  end
+
+  def schedule_imports
+    self.charge_imports.create(start_at:Time.now,end_at:BEGINING_OF_TIME,token:self.token,limit:MAX_IMPORTS)        
+    self.customer_imports.create(start_at:Time.now,end_at:BEGINING_OF_TIME,token:self.token,limit:MAX_IMPORTS)        
+    self.cde_imports.create(start_at:Time.now,end_at:BEGINING_OF_TIME,token:self.token,limit:MAX_IMPORTS)        
+    self.sde_imports.create(start_at:Time.now,end_at:BEGINING_OF_TIME,token:self.token,limit:MAX_IMPORTS)        
   end
 
 end

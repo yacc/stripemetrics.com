@@ -8,6 +8,6 @@
         %li Number of Imports: #{imports.count}
         %li Status of Imports: #{imports.last.status}
         %li Last import ran: #{imports.last.created_at}
-        %li Oldest object imported timestamp: #{imports.last.last_processed_ts}
+        %li Oldest object imported timestamp: #{imports.last.last_imported_ts || 'unknown' }
     - else
       No imports ran or running ... something is not right!  

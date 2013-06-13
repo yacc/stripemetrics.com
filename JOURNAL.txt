@@ -1,7 +1,7 @@
 == 2013-06-12 ==
-* removing all reference to import_director
-* specing other import types
-* implementing other import types wo import director
+* removing all reference to import_director - done
+* specing other import types - done 
+* implementing other import types wo import director - done
 * user registration triggers imports
 
 * fix google analytics (stripe analytics)
