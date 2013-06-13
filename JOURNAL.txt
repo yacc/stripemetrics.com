@@ -1,13 +1,17 @@
-== 2013-06-12 ==
-* removing all reference to import_director - done
-* specing other import types - done 
-* implementing other import types wo import director - done
-* user registration triggers imports
-
+== 2013-06-13 ==
+* test the imports jobs run, wo crashing :-)
+* schedule aggregation somehow (after create of import or in cronjob)
 * fix google analytics (stripe analytics)
 * deploy/update api server
 * update cli
 * update or remove buy buttons
+* landing page should have more keywords
+
+== 2013-06-12 ==
+* removing all reference to import_director - done
+* specing other import types - done 
+* implementing other import types wo import director - done
+* user registration triggers imports - done
 
 == 2013-06-11 ==
 just installed spork
