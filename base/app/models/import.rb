@@ -74,7 +74,9 @@ class Import
   protected
 
   def enqueue
-    Resque.enqueue(ImportObjects,self._id)   
+    # higher priority queues for paying users
+    queue = "import_#{self._type.underscore}".to_sym
+    Resque.enqueue_to(queue,ImportObjects,self._id)   
   end
 
 end

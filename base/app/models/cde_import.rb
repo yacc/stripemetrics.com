@@ -10,7 +10,7 @@ class CdeImport < Import
     if self.mode == :from_stripe
       events.data.each do |ev|
         cust_id = ev.data.object.id
-        document = {canceled_at:ev.created, subscription:{canceled_at:ev.created}}
+        document = {canceled_at:ev.created, created:ev.data.object.created, subscription:{canceled_at:ev.created}}
         customer = ::Customer.where(stripe_id:cust_id).find_and_modify({ "$set" => document}, { upsert:true,new:true })
         user.customers << customer unless customer.nil?    
       end

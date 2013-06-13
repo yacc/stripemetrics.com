@@ -1,8 +1,15 @@
 == 2013-06-13 ==
 * test the imports jobs run, wo crashing :-)
+  QUEUE='*' COUNT='4' bundle exec rake resque:workers 
+  bundle exec env rake resque:workers QUEUE='*' COUNT='4'
+  http://stackoverflow.com/questions/10424087/resque-multiple-workers-in-development-mode
+
+* new imports should happen every hour|day
 * schedule aggregation somehow (after create of import or in cronjob)
 * fix google analytics (stripe analytics)
 * deploy/update api server
+* deploy new code to thw worker nodes (benchmark and adjust #workers)
+  http://thomasmango.com/2010/05/27/resque-in-production/
 * update cli
 * update or remove buy buttons
 * landing page should have more keywords

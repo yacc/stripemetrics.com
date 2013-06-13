@@ -5,7 +5,7 @@ class UpdateChargeTrends
 
   @queue = :charge_trend_queue
 
-  def self.perform(user_id,options = {})
+  def self.perform(user_id)
     user           = User.find(user_id)
 
     trend = (user.paid_charge_count_trend.nil? ? user.create_paid_charge_count_trend : user.paid_charge_count_trend)

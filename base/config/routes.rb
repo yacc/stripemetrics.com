@@ -23,5 +23,6 @@ Stripemetrics::Application.routes.draw do
   root :to => "home#quickstart"
   resources :users, :only => [:index, :show, :edit, :update ]
 
+  mount Resque::Server, :at => "/rescousse"  
 
 end
