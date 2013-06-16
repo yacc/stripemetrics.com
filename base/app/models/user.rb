@@ -92,10 +92,8 @@ class User
   def schedule_imports
     self.charge_imports.create(start_at:Time.now,end_at:BEGINING_OF_TIME,token:self.token,limit:MAX_IMPORTS)        
     self.customer_imports.create(start_at:Time.now,end_at:BEGINING_OF_TIME,token:self.token,limit:MAX_IMPORTS)
-    if is_premium?          
-      self.cde_imports.create(start_at:Time.now,end_at:BEGINING_OF_TIME,token:self.token,limit:MAX_IMPORTS)        
-      self.sde_imports.create(start_at:Time.now,end_at:BEGINING_OF_TIME,token:self.token,limit:MAX_IMPORTS)        
-    end
+    self.cde_imports.create(start_at:Time.now,end_at:BEGINING_OF_TIME,token:self.token,limit:MAX_IMPORTS)        
+    self.sde_imports.create(start_at:Time.now,end_at:BEGINING_OF_TIME,token:self.token,limit:MAX_IMPORTS)        
   end
 
 end

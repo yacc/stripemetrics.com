@@ -1,11 +1,34 @@
-== 2013-06-13 ==
-* test the imports jobs run, wo crashing :-)
-  QUEUE='*' COUNT='4' bundle exec rake resque:workers 
-  bundle exec env rake resque:workers QUEUE='*' COUNT='4'
-  http://stackoverflow.com/questions/10424087/resque-multiple-workers-in-development-mode
+== 2013-06-15 ==
+* fix sde and cde imports
+* fix customer deleted imports from csv file
 
+* Deploying latest code: - done
+  * web, we alredy have :
+    ANSIBLE_SSH_ARGS="" ansible-playbook playbooks/deploy.yml -i ansible_hosts
+  * need to write deamon deploy task 
+  * Manually deploying to workers
+    ssh deploy@173.255.253.167
+    cd /home/deploy/www/stripemetrics
+    git pull origin master
+    vim /home/deploy/environment.yml
+    cd /home/deploy/www/stripemetrics/base
+    bundle install
+    QUEUE='*' COUNT='6' RAILS_ENV=production bundle exec rake resque:workers    
+* deploy new code to thw worker nodes (benchmark and adjust #workers) - done
+  http://thomasmango.com/2010/05/27/resque-in-production/
+  
+info on devops: subl ~/dev/devops/stripemetrics.howto.txt
+
+* check email "info@stripemetrics.com"
 * new imports should happen every hour|day
-* schedule aggregation somehow (after create of import or in cronjob)
+* fix google analytics (stripe analytics)
+* deploy/update api server
+* update cli
+* update or remove buy buttons
+* landing page should have more keywords
+
+== 2013-06-13 ==
+* new imports should happen every hour|day
 * fix google analytics (stripe analytics)
 * deploy/update api server
 * deploy new code to thw worker nodes (benchmark and adjust #workers)
@@ -13,6 +36,14 @@
 * update cli
 * update or remove buy buttons
 * landing page should have more keywords
+
+== 2013-06-13 ==
+* test the imports jobs run, wo crashing :-) - done
+  QUEUE='*' COUNT='4' bundle exec rake resque:workers 
+  bundle exec env rake resque:workers QUEUE='*' COUNT='4'
+  http://stackoverflow.com/questions/10424087/resque-multiple-workers-in-development-mode
+* schedule aggregation somehow (after create of import or in cronjob) -  done
+* redis web page: http://stripemetrics.dev/rescousse - done (leboss|u2canSee!)
 
 == 2013-06-12 ==
 * removing all reference to import_director - done

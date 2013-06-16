@@ -17,7 +17,7 @@
       action: git repo=$repo_url dest=${webapps_dir}/${app_name} remote=$repo_remote version=$repo_branch
 
     - name: bundle install
-      shell: bundle install v
+      shell: bundle install chdir=${webapps_dir}/${app_name}/base 
 
     - name: compile assets
       shell: RAILS_ENV=production bundle exec rake assets:precompile chdir=${webapps_dir}/${app_name}/base 
