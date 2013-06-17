@@ -8,4 +8,8 @@ module ImportsHelper
     imports.last.last_imported_ts ? "#{distance_of_time_in_words(Time.now, imports.last.last_imported_ts)} ago" : 'unknown'     
   end
 
+  def newest_object(imports)
+    imports.first.last_imported_ts ? "#{distance_of_time_in_words(Time.now, imports.first.last_imported_ts)} ago" : 'unknown'     
+  end
+
 end

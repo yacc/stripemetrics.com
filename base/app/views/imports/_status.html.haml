@@ -8,9 +8,9 @@
         Progress #{current_user.stat.import_progress(type)}%
         .bar.bar-success{:style => "width: #{current_user.stat.import_progress(type)}%;"}
       %ul
-        %li Number of objects imported: #{imports.count*imports.first.count}
-        %li Status of last import: #{imports.last.status}
-        %li Last import ran: #{last_ran(imports)}
+        %li Number of objects imported #{imports.count*imports.first.count}
+        %li Last import ran #{last_ran(imports)}
+        %li Newest object imported timestamp: #{newest_object(imports)}
         %li Oldest object imported timestamp: #{oldest_object(imports)}
     - else
       No imports ran or running ... something is not right!  
