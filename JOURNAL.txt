@@ -1,6 +1,8 @@
 == 2013-06-17 ==
+* import status - done
 * fix customer deleted imports from csv file
 * chart title ( + link to full screen chart)
+* chart customer churn
 
 * check email "info@stripemetrics.com"
 * new imports should happen every hour|day
