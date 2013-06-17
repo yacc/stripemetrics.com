@@ -31,6 +31,7 @@ class User
   has_one  :failed_charge_volume_trend, dependent: :delete, autobuild: true
 
   embeds_one   :account
+  embeds_one   :stat, autobuild: true
 
   attr_accessible :provider, :uid, :name, :email, :livemode, :token, :token_expires
   attr_accessor :password

@@ -8,6 +8,7 @@ class CdeImport < Import
 
   def persiste!(events)
     if self.mode == :from_stripe
+      user.stat.update_attribute(:stripe_cdes,events.count)
       events.data.each do |ev|
         cust_id = ev.data.object.id
         canceled_at = Time.at(ev.created)

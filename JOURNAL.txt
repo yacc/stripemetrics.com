@@ -1,7 +1,19 @@
-== 2013-06-15 ==
-* fix sde and cde imports
+== 2013-06-17 ==
 * fix customer deleted imports from csv file
+* chart title ( + link to full screen chart)
 
+* check email "info@stripemetrics.com"
+* new imports should happen every hour|day
+* fix google analytics (stripe analytics)
+* deploy/update api server
+* update cli
+* update or remove buy buttons
+* landing page should have more keywords
+
+== 2013-06-16 ==
+* fix sde and cde imports - done
+
+== 2013-06-15 ==
 * Deploying latest code: - done
   * web, we alredy have :
     ANSIBLE_SSH_ARGS="" ansible-playbook playbooks/deploy.yml -i ansible_hosts
@@ -16,16 +28,8 @@
     QUEUE='*' COUNT='6' RAILS_ENV=production bundle exec rake resque:workers    
 * deploy new code to thw worker nodes (benchmark and adjust #workers) - done
   http://thomasmango.com/2010/05/27/resque-in-production/
-  
-info on devops: subl ~/dev/devops/stripemetrics.howto.txt
 
-* check email "info@stripemetrics.com"
-* new imports should happen every hour|day
-* fix google analytics (stripe analytics)
-* deploy/update api server
-* update cli
-* update or remove buy buttons
-* landing page should have more keywords
+info on devops: subl ~/dev/devops/stripemetrics.howto.txt
 
 == 2013-06-13 ==
 * new imports should happen every hour|day

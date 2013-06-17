@@ -1,5 +1,6 @@
 class Subscription
   include Mongoid::Document
+
   field :start, type: Date
   field :canceled_at, type: Date
   field :ended_at, type: Date

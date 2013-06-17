@@ -4,10 +4,13 @@
     %h3=title
   .widget-content
     - unless imports.empty?
+      .progress
+        Progress #{current_user.stat.import_progress(type)}%
+        .bar.bar-success{:style => "width: #{current_user.stat.import_progress(type)}%;"}
       %ul
-        %li Number of Imports: #{imports.count}
-        %li Status of Imports: #{imports.last.status}
-        %li Last import ran: #{imports.last.created_at}
-        %li Oldest object imported timestamp: #{imports.last.last_imported_ts || 'unknown' }
+        %li Number of objects imported: #{imports.count*imports.first.count}
+        %li Status of last import: #{imports.last.status}
+        %li Last import ran: #{last_ran(imports)}
+        %li Oldest object imported timestamp: #{oldest_object(imports)}
     - else
       No imports ran or running ... something is not right!  
