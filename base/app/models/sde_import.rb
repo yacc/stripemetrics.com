@@ -8,7 +8,7 @@ class SdeImport < Import
 
   def persiste!(events)
     if self.mode == :from_stripe
-      user.stat.update_attribute(:stripe_sdes,events.count)
+      user.stat.update_attribute(:stripe_sdes,events.count) if events.count > user.stat.stripe_sdes
       events.data.each do |ev|
         cust_id = ev.data.object.customer
         canceled_at = Time.at(ev.created)

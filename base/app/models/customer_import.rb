@@ -7,7 +7,7 @@ class CustomerImport < Import
 
   def persiste!(customers)
     if self.mode == :from_stripe
-      user.stat.update_attribute(:stripe_customers,customers.count)
+      user.stat.update_attribute(:stripe_customers,customers.count) if customers.count > user.stat.stripe_customers
       customers.data.each do |ch|
         record = ::Customer.where(stripe_id:ch.id).first
         user.customers << ::Customer.create(::Customer.from_stripe(ch.as_json)) if record.nil? 

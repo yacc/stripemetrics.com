@@ -7,7 +7,7 @@ class ChargeImport < Import
 
   def persiste!(charges)
     if self.mode == :from_stripe
-      user.stat.update_attribute(:stripe_charges,charges.count)
+      user.stat.update_attribute(:stripe_charges,charges.count) if charges.count > user.stat.stripe_charges
       charges.data.each do |ch|
         record = ::Charge.where(stripe_id:ch.id).first
         user.charges << ::Charge.create(::Charge.from_stripe(ch.as_json)) if record.nil? 
