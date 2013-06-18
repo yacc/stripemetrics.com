@@ -2,7 +2,7 @@
   .main-inner
     .container
       .row
-        .span8
+        .span6
           .widget
             .widget-header
               %i.icon-user
@@ -12,6 +12,7 @@
         .span4
           .widget.widget-box
             .widget-header
+              %i.icon-info-sign
               %h3 Confidentiality
             .widget-content
               %p Your email is never shared with anyone, period. 
@@ -19,11 +20,9 @@
               %ul
                 %li to email you reports if you have selected that option
                 %li so we can identify you when you use the command line tool
-      .row
-        .span8
-          .widget
+          .widget.widget-box
             .widget-header
-              %i.icon-user
+              %i.icon-warning-sign
               %h3 Cancel your account
             .widget-content
               = render 'cancel'

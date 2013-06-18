@@ -11,14 +11,18 @@ module DashboardHelper
   def trailing_30_days_volume_desc
     if current_user.paid_charge_volume_trend.monthly.empty?
      'not enough data'
-    else
+    elsif current_user.paid_charge_volume_trend.monthly.size
       volume1 = current_user.paid_charge_volume_trend.monthly.last[1]
       volume2 = current_user.paid_charge_volume_trend.monthly[-1][1]
       if volume1 < volume2
-        '<i class="icon-arrow-down text-error"> Trailing 30 days Charges is down</i>'
+        '<i class="icon-arrow-down text-error"> Monthly Charges is down</i>'
        else  
-        '<i class="icon-arrow-up text-success"> Trailing 30 days Charges is up</i>'                   
+        '<i class="icon-arrow-up text-success"> Monthly Charges is up</i>'                   
       end
+    else
+      render "sparkline", :data   => @paid_charges.weekly.collect{|c| c[1]},
+                          :div    => "paid-charges-montlhy-trend",
+                          :title  => "Monthly Charges"      
     end
   end
 

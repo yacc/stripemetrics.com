@@ -1,0 +1,7 @@
+%p
+  .text-success #{title}
+  .dynamicsparkline{:id=> div}
+:javascript
+  $(document).ready(function() {
+    jQuery('##{div}').sparkline(#{data}, {type: 'line',lineColor: '#000000', fillColor: '#ff7f00'});    
+  });

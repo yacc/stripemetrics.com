@@ -14,7 +14,7 @@ Stripemetrics::Application.configure do
   config.action_controller.perform_caching = false
 
   # ActionMailer Config
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => 'stripemetrics.dev' }
   config.action_mailer.delivery_method = :smtp
   # change to true to allow email to be sent during development
   config.action_mailer.perform_deliveries = false
@@ -41,7 +41,7 @@ Stripemetrics::Application.configure do
 
 
   # Do not compress assets
-  config.assets.compress = false
+  #  config.assets.compress = false
 
   # Expands the lines which load the assets
   config.assets.debug = true
