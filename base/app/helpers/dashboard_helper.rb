@@ -2,15 +2,15 @@ module DashboardHelper
 
   def trailing_30_days_volume
     if current_user.paid_charge_volume_trend.monthly.empty?
-     'not enough data'
+      '<div class="icon-question-sign"></div>'
     else
       number_to_currency(current_user.paid_charge_volume_trend.monthly.last[1])
     end    
   end
 
-  def trailing_30_days_volume_icon
+  def trailing_30_days_volume_desc
     if current_user.paid_charge_volume_trend.monthly.empty?
-      '<div class="icon-question-sign"></div>'
+     'not enough data'
     else
       volume1 = current_user.paid_charge_volume_trend.monthly.last[1]
       volume2 = current_user.paid_charge_volume_trend.monthly[-1][1]
@@ -24,15 +24,15 @@ module DashboardHelper
 
   def trailing_30_days_acquisition
     if current_user.acquisition_trend.monthly.empty?
-     'not enough data'
+      '<div class="icon-question-sign"></div>'
     else
       current_user.acquisition_trend.monthly.last[1]
     end    
   end
 
-  def trailing_30_days_acquisition_icon
+  def trailing_30_days_acquisition_desc
     if current_user.acquisition_trend.monthly.empty?
-      '<div class="icon-question-sign"></div>'
+     'not enough data'
     else
       acquisition1 = current_user.acquisition_trend.monthly.last[1]
       acquisition2 = current_user.acquisition_trend.monthly[-1][1]
@@ -46,15 +46,15 @@ module DashboardHelper
 
   def trailing_30_days_cancellation
     if current_user.cancellation_trend.monthly.empty?
-     'not enough data'
+      '<div class="icon-question-sign"></div>'
     else
       current_user.cancellation_trend.monthly.last[1]
     end    
   end
 
-  def trailing_30_days_cancellation_icon
+  def trailing_30_days_cancellation_desc
     if current_user.cancellation_trend.monthly.empty?    
-      '<div class="icon-question-sign"></div>'
+     'not enough data'
     else
       cancellation1 = current_user.cancellation_trend.monthly.last[1]
       cancellation2 = current_user.cancellation_trend.monthly[-1][1]
@@ -68,15 +68,15 @@ module DashboardHelper
 
   def trailing_30_failed_charges
     if current_user.failed_charge_volume_trend.monthly.empty?
-      'not enough data'
+      '<div class="icon-question-sign"></div>'
     else
       number_to_currency(current_user.failed_charge_volume_trend.monthly.last[1])
     end    
   end
 
-  def trailing_30_failed_charges_icon
+  def trailing_30_failed_charges_desc
     if current_user.failed_charge_volume_trend.monthly.empty?
-      '<div class="icon-question-sign"></div>'
+      'not enough data'
     else
       volume1 = current_user.failed_charge_volume_trend.monthly.last[1]
       volume2 = current_user.failed_charge_volume_trend.monthly[-1][1]
