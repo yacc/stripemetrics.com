@@ -1,11 +1,11 @@
 class Stat
   include Mongoid::Document
 
-  field :stripe_customers,     type: Integer
-  field :stripe_charges,       type: Integer
-  field :stripe_subscriptions, type: Integer
-  field :stripe_cdes,          type: Integer
-  field :stripe_sdes,          type: Integer
+  field :stripe_customers,     type: Integer, default: 0
+  field :stripe_charges,       type: Integer, default: 0
+  field :stripe_subscriptions, type: Integer, default: 0
+  field :stripe_cdes,          type: Integer, default: 0
+  field :stripe_sdes,          type: Integer, default: 0
 
   embedded_in :user
 
