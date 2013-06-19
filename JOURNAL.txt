@@ -382,7 +382,9 @@ env RAILS_ENV=production DATABASE_URL=scheme://127.0.0.1/stripemetrics_developme
 env RAILS_ENV=production DATABASE_URL=scheme://127.0.0.1/dbname bundle exec rake assets:precompile 2>&1
 
 
+== === === === == ===
 
+subl ~/dev/devops/stripemetrics.howto.txt
 
 
 
