@@ -1,7 +1,8 @@
 .navbar.navbar-fixed-top
   .navbar-inner
     .container
-      %a.brand{:href => "./"}
+      %a.brand{:href => "#{root_url}"}
+        = image_tag("stripemetrics-icon.png")
         StripeMetrics
       -if user_signed_in?
         %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}

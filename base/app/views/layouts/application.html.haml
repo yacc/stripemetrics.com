@@ -16,6 +16,7 @@
     = javascript_include_tag "application"
     - if Rails.env.production?
       = render :partial => 'layouts/ga'
+    = render 'shared/freshdesk_widget'  
     = csrf_meta_tags
     = yield(:head)
   %body{:class => "#{controller_name} #{action_name}"}
