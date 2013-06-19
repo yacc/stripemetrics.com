@@ -11,6 +11,10 @@ gem "warden"
 gem "cancan", ">= 1.6.8"
 gem "bcrypt-ruby", :require => "bcrypt"
 
+# jobs
+gem 'resque'
+gem 'resque-lock'
+
 group :development do
   gem 'rake'
   gem 'rspec'

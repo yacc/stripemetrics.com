@@ -16,6 +16,11 @@ Dir[File.expand_path('../../models/*.rb', __FILE__)].each do |f|
   autoload model, f
 end
 
+Dir[File.expand_path('../../workers/*.rb', __FILE__)].each do |f|
+  workers = File.basename(f,".*").split('_').collect(&:capitalize).join
+  autoload workers, f
+end
+
 Dir[File.expand_path('../../entities/*.rb', __FILE__)].each do |f|
   require f
 end

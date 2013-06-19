@@ -2,6 +2,12 @@ require 'spec_helper'
 
 describe Stripemetrics do
   include Rack::Test::Methods
+  around(:each) do |example|
+    resque_state = Resque.inline
+    Resque.inline = true
+    example.run
+    Resque.inline = resque_state
+  end
 
   describe Stripemetrics::Api do
     describe 'GET /v1/auth/login' do

@@ -14,15 +14,15 @@ module Stripemetrics
     # ============================= IMPORTS =======================================
     namespace :imports do
       desc "Return a list of my imports.", {
-        :object_fields => Stripemetrics::Entities::ImportDirector.documentation
+        :object_fields => Stripemetrics::Entities::Imports.documentation
       }
       get '/' do
         Grape::API.logger.info "listing user imports"
         env['warden'].authenticate :api_token
         error! "Unauthorized", 401 unless current_user = env['warden'].user
-        imports = current_user.import_directors
+        imports = current_user.customer_imports
         type = :default
-        present imports, with: Stripemetrics::Entities::ImportDirector, :type => type
+        present imports, with: Stripemetrics::Entities::Imports, :type => type
       end
     end
 
