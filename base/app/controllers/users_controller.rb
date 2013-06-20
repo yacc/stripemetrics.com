@@ -9,8 +9,11 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id]) if params[:id]
     @user ||= current_user
-    if @user.update_attributes(params[:user])
-      flash[:success] = "You successfully updated your account!"
+    @user.email = params[:user][:email] if params[:user][:email]
+    @user.password = params[:user][:password] if params[:user][:password]
+
+    if @user.save
+      flash[:success] = "You successfully updated your account!" 
     end
     render :edit
   end
