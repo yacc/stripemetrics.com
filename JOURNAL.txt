@@ -1,3 +1,16 @@
+
+== 2013-06-23 ==
+cli API calls are failing b/c of the SSL cert:
+* Faraday::Error::ConnectionFailed: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed
+
+== 2013-06-19 ==
+testing API and cli in production, for the first time !
+
+cd /Users/yacin/dev/ruby/stripemetrics-cli
+smenv=development bundle exec bin/stripemetrics-cli login
+bundle exec bin/stripemetrics-cli login
+
+
 == 2013-06-17 ==
 * new stripe analytics web site: https://www.linelytics.com/faq
 * SEO: 

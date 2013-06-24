@@ -40,8 +40,6 @@ class Import
     self.mode == :from_file
   end
 
-  # TODO: replace Charge by Object
-  # TODO: actually create the objects
   # TODO: track API elapsed time 
   def run!
     start_time = Time.now

@@ -81,6 +81,19 @@ class User
     false  
   end
 
+  def refresh_data
+    # get the timestamp of the last imported object
+    last_charge_import = self.charge_imports.last.last_imported_ts    
+    last_customer_import = self.customer_imports.last.last_imported_ts    
+    last_cde_import = self.cde_imports.last.last_imported_ts    
+    last_sde_import = self.sde_imports.last.last_imported_ts
+    # schedule the imports    
+    self.charge_imports.create(start_at:Time.now,end_at:last_charge_import,token:self.token,limit:MAX_IMPORTS)        
+    self.customer_imports.create(start_at:Time.now,end_at:last_customer_import,token:self.token,limit:MAX_IMPORTS)
+    self.cde_imports.create(start_at:Time.now,end_at:last_cde_import,token:self.token,limit:MAX_IMPORTS)        
+    self.sde_imports.create(start_at:Time.now,end_at:last_sde_import,token:self.token,limit:MAX_IMPORTS)        
+  end
+
   protected 
 
   def generate_api_token 

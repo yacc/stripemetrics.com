@@ -14,17 +14,20 @@ module Stripemetrics
     
     # ============================= IMPORTS =======================================
     namespace :imports do
-      desc "Return a list of my imports.", {
-        :object_fields => Stripemetrics::Entities::Imports.documentation
+      desc "Forces refresh of your Stripe data.", {
+        :object_fields => Stripemetrics::Entities::Data.documentation
       }
-      get '/' do
-        Grape::API.logger.info "listing user imports"
+      post '/refresh' do
         env['warden'].authenticate :api_token
         error! "Unauthorized", 401 unless current_user = env['warden'].user
-        imports = current_user.customer_imports
+        Grape::API.logger.info "refreshing data for #{current_user.email}"
+        imports = current_user.refresh_data
         type = :default
-        present imports, with: Stripemetrics::Entities::Imports, :type => type
+        {:message => 'Imports have been scheduled.'}
       end
+      desc "Forces refresh of your Stripe data.", {
+        :object_fields => Stripemetrics::Entities::Data.documentation
+      }
     end
 
     # ============================= AUTH =======================================
