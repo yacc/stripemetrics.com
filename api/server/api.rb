@@ -42,7 +42,7 @@ module Stripemetrics
       end  
       desc "Returns pong if logged in correctly"
       get :ping do
-        Grape::API.logger.info "ping"
+        Grape::API.logger.info "user is pinging ..."
         env['warden'].authenticate :api_token
         error! "Unauthorized", 401 unless current_user = env['warden'].user
         { :message => "pong #{current_user.email}" }

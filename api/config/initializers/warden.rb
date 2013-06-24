@@ -20,14 +20,14 @@ Warden::Strategies.add(:api_token) do
   end
 
   def authenticate!
-    u = User.where(api_token: params['api_token']).first
+    u = User.where(api_token:token_value).first
     u.nil? ? fail!("Could not log in") : success!(u)
   end
 
   private
 
   def token_value
-    if header && header =~ /^Token token="(.+)"$/
+    if header && header =~ /^Token=(.+)$/
       $~[1]
     else
       params && params['api_token']
@@ -35,7 +35,7 @@ Warden::Strategies.add(:api_token) do
   end
 
   def header
-    request.headers["Authorization"]
+    request.env["HTTP_AUTHORIZATION"]
   end
 
 end
