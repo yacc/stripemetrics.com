@@ -2,7 +2,6 @@ module Stripemetrics
 
   class Api < Grape::API
 
-
     version 'v1', :vendor => 'stripemetrics'
     format :json
 
@@ -15,7 +14,7 @@ module Stripemetrics
     # ============================= IMPORTS =======================================
     namespace :imports do
       desc "Forces refresh of your Stripe data."
-      post '/refresh' do
+      post :refresh do
         env['warden'].authenticate :api_token
         error! "Unauthorized", 401 unless current_user = env['warden'].user
         Grape::API.logger.info "refreshing data for #{current_user.email}"
