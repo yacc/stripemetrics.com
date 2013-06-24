@@ -14,9 +14,7 @@ module Stripemetrics
     
     # ============================= IMPORTS =======================================
     namespace :imports do
-      desc "Forces refresh of your Stripe data.", {
-        :object_fields => Stripemetrics::Entities::Data.documentation
-      }
+      desc "Forces refresh of your Stripe data."
       post '/refresh' do
         env['warden'].authenticate :api_token
         error! "Unauthorized", 401 unless current_user = env['warden'].user
@@ -25,9 +23,6 @@ module Stripemetrics
         type = :default
         {:message => 'Imports have been scheduled.'}
       end
-      desc "Forces refresh of your Stripe data.", {
-        :object_fields => Stripemetrics::Entities::Data.documentation
-      }
     end
 
     # ============================= AUTH =======================================
