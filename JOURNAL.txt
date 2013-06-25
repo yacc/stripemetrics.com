@@ -1,4 +1,7 @@
 
+== 2013-06-24 ==
+* adding metrics and cli-report
+
 == 2013-06-23 ==
 cli API calls are failing b/c of the SSL cert:
 * Faraday::Error::ConnectionFailed: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed

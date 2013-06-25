@@ -3,6 +3,16 @@ require 'machinist/mongoid'
 User.blueprint do
   email {"yacin@stripemetrics.com"}
   livemode {"false"}
+  revenue_metric
+end
+
+RevenueMetric.blueprint do
+  name{"Monthly Revenue"} 
+  desc{"Monthly Revenue (successfull charges)"} 
+  this_month{100}
+  last_month{50}
+  change{100}
+  tsm_avrg{7}
 end
 
 SdeImport.blueprint do

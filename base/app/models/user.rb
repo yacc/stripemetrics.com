@@ -23,6 +23,7 @@ class User
   has_many :sde_imports, dependent: :delete
   has_many :cde_imports, dependent: :delete
 
+  # aggregated data
   has_one  :acquisition_trend, dependent: :delete, autobuild: true
   has_one  :cancellation_trend, dependent: :delete, autobuild: true
   has_one  :paid_charge_count_trend , dependent: :delete, autobuild: true
@@ -30,6 +31,9 @@ class User
   has_one  :paid_charge_volume_trend , dependent: :delete, autobuild: true
   has_one  :failed_charge_volume_trend, dependent: :delete, autobuild: true
 
+  # metrics
+  has_one  :revenue_metric, dependent: :delete, autobuild: true
+  
   embeds_one   :account
   embeds_one   :stat, autobuild: true
 
