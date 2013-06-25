@@ -63,9 +63,9 @@ module DashboardHelper
       cancellation1 = current_user.cancellation_trend.monthly.last[1]
       cancellation2 = current_user.cancellation_trend.monthly[-1][1]
       if cancellation1 < cancellation2
-        '<i class="icon-arrow-down text-success"> Trailing 30 days Cancelation is down</i>'
+        '<i class="icon-arrow-down text-success"> Trailing 30 days Cancellation is down</i>'
        else  
-        '<i class="icon-arrow-up text-error">  Trailing 30 days Cancelation is up</i>'                   
+        '<i class="icon-arrow-up text-error">  Trailing 30 days Cancellation is up</i>'                   
       end
     end
   end
