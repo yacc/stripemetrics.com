@@ -13,6 +13,7 @@ gem "bcrypt-ruby", :require => "bcrypt"
 
 # jobs
 gem 'resque'
+gem 'resque-scheduler', :require => 'resque_scheduler'
 gem 'resque-lock'
 
 group :development do
