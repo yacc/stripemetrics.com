@@ -1,14 +1,14 @@
 class RevenueMetric < Metric
 
   def refresh!
-    self.this_month = self.user.paid_charge_count_trend.monthly.last[1]
+    self.this_month = self.user.paid_charge_volume_trend.monthly.last[1]
     self.reset!
-    historical_data_size = self.user.paid_charge_count_trend.monthly.size
+    historical_data_size = self.user.paid_charge_volume_trend.monthly.size
 
     if historical_data_size >= 2
-      self.last_month = self.user.paid_charge_count_trend.monthly[-2][1]
+      self.last_month = self.user.paid_charge_volume_trend.monthly[-2][1]
       if historical_data_size >= 6
-        last_six_month_data = self.user.paid_charge_count_trend.monthly[-6..-1]
+        last_six_month_data = self.user.paid_charge_volume_trend.monthly[-6..-1]
         self.change     = relative_change(last_six_month_data)
         self.tsm_avrg   = tsm_average(last_six_month_data)
       end
