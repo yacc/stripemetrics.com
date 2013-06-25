@@ -15,8 +15,8 @@ class AcquisitionMetric < Metric
       end
     end  
 
-    self.name = "Acquisition"
-    self.desc = "New Customers"
+    self.name = "New Customers"
+    self.desc = "New Customers by creation date"
     self.save
   end
 

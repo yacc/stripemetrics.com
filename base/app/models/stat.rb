@@ -24,7 +24,7 @@ class Stat
       total_imports = user.cde_imports.first.count * user.cde_imports.count
       percent = stripe_sdes.zero? ? 0 : (total_imports.to_f / stripe_sdes  * 100.0)
     end
-    percent.ceil
+    [percent.ceil,100].min
   end
 
 end

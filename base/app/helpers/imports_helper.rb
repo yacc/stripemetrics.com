@@ -5,11 +5,13 @@ module ImportsHelper
   end
 
   def oldest_object(imports)
-    imports.last.last_imported_ts ? "#{distance_of_time_in_words(Time.now, imports.last.last_imported_ts)} ago" : 'unknown'     
+    oldest = imports.desc(:start_at).last.last_imported_ts
+    oldest ? "#{distance_of_time_in_words(Time.now, oldest)} ago" : 'unknown'     
   end
 
   def newest_object(imports)
-    imports.first.last_imported_ts ? "#{distance_of_time_in_words(Time.now, imports.first.last_imported_ts)} ago" : 'unknown'     
+    newest = imports.desc(:start_at).first.start_at
+    newest ? "#{distance_of_time_in_words(Time.now, newest)} ago" : 'unknown'     
   end
 
 end
