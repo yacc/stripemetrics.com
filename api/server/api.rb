@@ -24,6 +24,19 @@ module Stripemetrics
       end
     end
 
+    # ============================= METRICS =======================================
+    namespace :metrics do
+      desc "Forces refresh of your Stripe data."
+      get '/' do
+        env['warden'].authenticate :api_token
+        error! "Unauthorized", 401 unless current_user = env['warden'].user
+        Grape::API.logger.info "listing all metrics for #{current_user.email}"
+        metrics = Metric.where(user_id:current_user.id) #where(_type is within [metric1., metric2 etc ...])
+        type = :default
+        present metrics, with: Stripemetrics::Entities::Metric, type: type
+      end
+    end
+
     # ============================= AUTH =======================================
     namespace :auth do
       desc "Creates and returns access_token if valid credentials"
