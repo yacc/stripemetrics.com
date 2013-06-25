@@ -4,6 +4,8 @@
 #                       ^            ^                      ^
 #                       | <-- 10 --> |                      |
 #                     start_at    last_imported_ts       end_at
+#           |                                                          |
+#           most recent                                                oldest
 #
 # sometimes (often) an import will import less objects than contained in the 
 # intervaled asked for (b/c of the limitation on object returned by the API)

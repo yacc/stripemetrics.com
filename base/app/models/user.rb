@@ -83,15 +83,15 @@ class User
 
   def refresh_data
     # get the timestamp of the last imported object
-    last_charge_import = self.charge_imports.order_by(:last_imported_ts.asc).last.last_imported_ts
-    last_customer_import = self.customer_imports.order_by(:last_imported_ts.asc).last.last_imported_ts
-    last_cde_import = self.cde_imports.order_by(:last_imported_ts.asc).last.last_imported_ts
-    last_sde_import = self.sde_imports.order_by(:last_imported_ts.asc).last.last_imported_ts
+    last_charge_import   = self.charge_imports.asc(:start_at).last.last_imported_ts
+    last_customer_import = self.customer_imports.asc(:start_at).last.last_imported_ts
+    last_cde_import      = self.cde_imports.asc(:start_at).last.last_imported_ts
+    last_sde_import      = self.sde_imports.asc(:start_at).last.last_imported_ts
     # schedule the imports    
-    self.charge_imports.create(start_at:Time.now,end_at:last_charge_import,token:self.token,limit:MAX_IMPORTS)        
+    self.charge_imports.create(  start_at:Time.now,end_at:last_charge_import,token:self.token,limit:MAX_IMPORTS)        
     self.customer_imports.create(start_at:Time.now,end_at:last_customer_import,token:self.token,limit:MAX_IMPORTS)
-    self.cde_imports.create(start_at:Time.now,end_at:last_cde_import,token:self.token,limit:MAX_IMPORTS)        
-    self.sde_imports.create(start_at:Time.now,end_at:last_sde_import,token:self.token,limit:MAX_IMPORTS)        
+    self.cde_imports.create(     start_at:Time.now,end_at:last_cde_import,token:self.token,limit:MAX_IMPORTS)        
+    self.sde_imports.create(     start_at:Time.now,end_at:last_sde_import,token:self.token,limit:MAX_IMPORTS)        
   end
 
   protected 
