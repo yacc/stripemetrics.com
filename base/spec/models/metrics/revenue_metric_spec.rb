@@ -31,8 +31,8 @@ describe RevenueMetric do
     end    
 
     it "should refresh the metric" do  
-      user.paid_charge_count_trend.monthly = charges_monthly
-      user.paid_charge_count_trend.save
+      user.paid_charge_volume_trend.monthly = charges_monthly
+      user.paid_charge_volume_trend.save
       user.revenue_metric.refresh!.should be_true
       metric = user.revenue_metric.reload
       metric.this_month.should eq(4892.26)
@@ -50,8 +50,8 @@ describe RevenueMetric do
     end
 
     it "should set the metric to nil" do  
-      user.paid_charge_count_trend.monthly = charges_monthly
-      user.paid_charge_count_trend.save
+      user.paid_charge_volume_trend.monthly = charges_monthly
+      user.paid_charge_volume_trend.save
       user.revenue_metric.refresh!.should be_true
       metric = user.revenue_metric.reload
       metric.this_month.should eq(4892.26)
@@ -65,8 +65,8 @@ describe RevenueMetric do
     let(:charges_monthly) {[[1372662000000, 4892.26]]}
 
     it "should set the metric to nil" do  
-      user.paid_charge_count_trend.monthly = charges_monthly
-      user.paid_charge_count_trend.save
+      user.paid_charge_volume_trend.monthly = charges_monthly
+      user.paid_charge_volume_trend.save
       user.revenue_metric.refresh!.should be_true
       metric = user.revenue_metric.reload
       metric.this_month.should eq(4892.26)

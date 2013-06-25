@@ -27,8 +27,8 @@ class RevenueMetric < Metric
   end
 
   def relative_change(data)
-    this_month = data.last[1]
-    last_month = data[-2][1]
+    this_month = data.last[1].to_f
+    last_month = data[-2][1].to_f
     change = (this_month - last_month)
     (change / this_month)
   end
@@ -36,8 +36,8 @@ class RevenueMetric < Metric
 
   def tsm_average(data)
     num_periods    = data.size.to_f
-    starting_value = data.first[1]  
-    ending_value   = data.last[1]  
+    starting_value = data.first[1].to_f  
+    ending_value   = data.last[1].to_f  
     ((ending_value/starting_value)**(1./num_periods))-1
   end
 
