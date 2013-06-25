@@ -35,6 +35,15 @@ module Stripemetrics
         type = :default
         present metrics, with: Stripemetrics::Entities::Metric, type: type
       end
+      desc "Forces refresh of your Stripe Metrics."
+      post :refresh do
+        env['warden'].authenticate :api_token
+        error! "Unauthorized", 401 unless current_user = env['warden'].user
+        Grape::API.logger.info "refreshing metrics for #{current_user.email}"
+        imports = current_user.refresh_metrics
+        type = :default
+        {:message => 'Metrics have been refreshed.'}
+      end
     end
 
     # ============================= AUTH =======================================

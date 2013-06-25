@@ -33,6 +33,9 @@ class User
 
   # metrics
   has_one  :revenue_metric, dependent: :delete, autobuild: true
+  has_one  :lost_revenue_metric, dependent: :delete, autobuild: true
+  has_one  :acquisition_metric, dependent: :delete, autobuild: true
+  has_one  :cancellation_metric, dependent: :delete, autobuild: true
   
   embeds_one   :account
   embeds_one   :stat, autobuild: true
@@ -91,11 +94,18 @@ class User
     last_customer_import = self.customer_imports.asc(:start_at).last.start_at
     last_cde_import      = self.cde_imports.asc(:start_at).last.start_at
     last_sde_import      = self.sde_imports.asc(:start_at).last.start_at
-    # schedule the imports    
+    # schedule new imports    
     self.charge_imports.create(  start_at:Time.now,end_at:last_charge_import,token:self.token,limit:MAX_IMPORTS)        
     self.customer_imports.create(start_at:Time.now,end_at:last_customer_import,token:self.token,limit:MAX_IMPORTS)
     self.cde_imports.create(     start_at:Time.now,end_at:last_cde_import,token:self.token,limit:MAX_IMPORTS)        
     self.sde_imports.create(     start_at:Time.now,end_at:last_sde_import,token:self.token,limit:MAX_IMPORTS)        
+  end
+
+  def refresh_metrics
+    self.revenue_metric.refresh!
+    self.lost_revenue_metric.refresh!
+    self.acquisition_metric.refresh!
+    self.cancellation_metric.refresh!
   end
 
   protected 

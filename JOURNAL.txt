@@ -1,6 +1,11 @@
 
 == 2013-06-24 ==
 * adding metrics and cli-report
+* TODO:
+  * trigger metrics.refresh! after new data is loaded
+  * total user metric
+  * paying user metric
+  
 
 == 2013-06-23 ==
 cli API calls are failing b/c of the SSL cert:
