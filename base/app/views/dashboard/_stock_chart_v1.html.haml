@@ -2,11 +2,16 @@
   .widget-header
     %i.icon-star
     %h3=title
+    .btn-group{"data-toggle" => "buttons-radio"}
+      %button.btn{:id=> "#{div}_day"} day
+      %button.btn{:id=> "#{div}_week"} week
+      %button.btn{:id=> "#{div}_month"} month
   .widget-content
     .chart-holder{:id=> div}
 
 :javascript
-  var chart2 = new Highcharts.StockChart({
+
+  var #{div} = new Highcharts.StockChart({
     chart : {
       renderTo : "#{div}"
     },
@@ -17,14 +22,6 @@
 
     navigator : {
       height : 30
-    },
-
-    title : {
-      text : "#{title}",
-      floating : true,
-      align : 'right',
-      x : -20,
-      top : 20
     },
 
     xAxis : {
@@ -38,5 +35,39 @@
         yDecimals : 4
       }
     }]
+  });
+
+  $("##{div}_day").click(function() {
+    $.ajax({
+    type: "GET",
+    url: "#{trends_path}",
+    data: {"type": "#{type}","group_by": "daily"},
+    dataType: 'json',
+    success: function(data){
+          #{div}.series[0].setData(data);
+      }
+    });
+  });
+  $("##{div}_week").click(function() {
+    $.ajax({
+    type: "GET",
+    url: "#{trends_path}",
+    data: {"type": "#{type}","group_by": "weekly"},
+    dataType: 'json',
+    success: function(data){
+          #{div}.series[0].setData(data);
+      }
+    });
+  });
+  $("##{div}_month").click(function() {
+    $.ajax({
+    type: "GET",
+    url: "#{trends_path}",
+    data: {"type": "#{type}","group_by": "monthly"},
+    dataType: 'json',
+    success: function(data){
+          #{div}.series[0].setData(data);
+      }
+    });
   });
 

@@ -15,10 +15,11 @@ Stripemetrics::Application.routes.draw do
   match 'billing'              => 'account#billing',   :as => :billing
 
   match 'dashboard'        => 'dashboard#index',:as => :dashboard
+  match 'trends'           => 'trends#index',:as => :trends
   match 'status'           => 'imports#index',:as => :status
 
-  match 'jobs'                     => 'jobs#index',      :as => :jobs      
-  match 'jobs/:action'             => 'jobs#action'
+  # match 'jobs'                     => 'jobs#index',      :as => :jobs      
+  # match 'jobs/:action'             => 'jobs#action'
 
   root :to => "home#quickstart"
   resources :users, :only => [:index, :show, :edit, :update ]
