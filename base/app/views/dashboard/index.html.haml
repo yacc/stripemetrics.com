@@ -6,23 +6,23 @@
           = render "bigstats"
       .row
         .span6
-          = render "chart", :title  => "Paid Charges Volume",
+          = render "stock_chart_v1", :title  => "Paid Charges Volume",
                             :data   => @paid_charges.daily,
                             :start  => @paid_charges.start_date,
                             :div    => "paid-charges-trend-chart"
         .span6    
-          = render "chart", :title  => "Failed Charges Volume",
+          = render "stock_chart_v1", :title  => "Failed Charges Volume",
                             :data   => @failed_charges.daily,
                             :start  => @failed_charges.start_date,
                             :div    => "failed-charges-trend-chart"
       .row
         .span6
-          = render "chart", :title => 'Acquisition',
+          = render "stock_chart_v1", :title => 'Acquisition',
                             :data  => @customers.daily,
                             :start => @customers.start_date,
                             :div   => "customers-trend-chart"
         .span6
-          = render "chart", :title => 'Cancellation',
+          = render "stock_chart_v1", :title => 'Cancellation',
                             :data  => @cancelations.daily,
                             :start => @cancelations.start_date,
                             :div   => "cancelations-trend-chart"

@@ -1,0 +1,42 @@
+.widget
+  .widget-header
+    %i.icon-star
+    %h3=title
+  .widget-content
+    .chart-holder{:id=> div}
+
+:javascript
+  var chart2 = new Highcharts.StockChart({
+    chart : {
+      renderTo : "#{div}"
+    },
+    rangeSelector : {
+      selected : 1,
+      inputEnabled : false
+    },
+
+    navigator : {
+      height : 30
+    },
+
+    title : {
+      text : "#{title}",
+      floating : true,
+      align : 'right',
+      x : -20,
+      top : 20
+    },
+
+    xAxis : {
+      maxZoom : 14 * 24 * 3600000 // fourteen days
+    },
+
+    series : [{
+      name : "#{title}",
+      data : #{data || []},
+      tooltip : {
+        yDecimals : 4
+      }
+    }]
+  });
+

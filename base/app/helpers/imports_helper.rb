@@ -6,7 +6,7 @@ module ImportsHelper
 
   def oldest_object(imports)
     oldest = imports.desc(:start_at).last.last_imported_ts
-    oldest ? "#{distance_of_time_in_words(Time.now, oldest)} ago" : 'unknown'     
+    oldest ? oldest : 'unknown'     
   end
 
   def newest_object(imports)

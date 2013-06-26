@@ -16,3 +16,5 @@
 //= require bootstrap
 //= require faq
 //= require highcharts
+//= require highstock
+//= require 'themes/gray'
