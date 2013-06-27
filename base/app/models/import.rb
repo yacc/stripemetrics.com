@@ -64,6 +64,7 @@ class Import
       end
     end
     self.time = (start_time-Time.now).to_i
+    self.status = :succeeded
     self.save
   end
 

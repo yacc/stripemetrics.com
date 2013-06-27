@@ -2,15 +2,19 @@
   .widget-content
     #big_stats.cf
       .stat
+        %h3=Date.today
         %h4=raw trailing_30_days_volume_desc
         %span.value= raw trailing_30_days_volume
       .stat
+        %h3=Date.today
         %h4=raw trailing_30_days_acquisition_desc
         %span.value= raw trailing_30_days_acquisition
       .stat
+        %h3=Date.today
         %h4=raw trailing_30_days_cancellation_desc
         %span.value=raw trailing_30_days_cancellation
       .stat
+        %h3=Date.today
         %h4=raw trailing_30_failed_charges_desc
         %span.value=raw trailing_30_failed_charges
 

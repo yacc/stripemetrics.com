@@ -12,12 +12,12 @@ module DashboardHelper
     if current_user.paid_charge_volume_trend.monthly.empty?
      'not enough data'
     elsif current_user.paid_charge_volume_trend.monthly.size
-      volume1 = current_user.paid_charge_volume_trend.monthly.last[1]
-      volume2 = current_user.paid_charge_volume_trend.monthly[-1][1]
-      if volume1 < volume2
-        '<i class="icon-arrow-down text-error"> Monthly Charges is down</i>'
+      this_month = current_user.paid_charge_volume_trend.monthly.last[1]
+      last_month = current_user.paid_charge_volume_trend.monthly[-2][1]
+      if this_month < last_month
+        "<i class=\"icon-arrow-down text-error\"> Monthly Revenue is down from #{ number_to_currency(last_month)}</i>"
        else  
-        '<i class="icon-arrow-up text-success"> Monthly Charges is up</i>'                   
+        "<i class=\"icon-arrow-up text-success\"> Monthly Revenue is up from #{ number_to_currency(last_month)}</i>"                   
       end
     else
       render "sparkline", :data   => @paid_charges.weekly.collect{|c| c[1]},
@@ -38,12 +38,12 @@ module DashboardHelper
     if current_user.acquisition_trend.monthly.empty?
      'not enough data'
     else
-      acquisition1 = current_user.acquisition_trend.monthly.last[1]
-      acquisition2 = current_user.acquisition_trend.monthly[-1][1]
-      if acquisition1 < acquisition2
-        '<i class="icon-arrow-down text-error"> Trailing 30 days Acquisition is down</i>'
+      this_month = current_user.acquisition_trend.monthly.last[1]
+      last_month = current_user.acquisition_trend.monthly[-2][1]
+      if this_month < last_month
+        "<i class=\"icon-arrow-down text-error\"> Monthly new users is down from #{last_month}</i>"
        else  
-        '<i class="icon-arrow-up text-success">  Trailing 30 days Acquisition is up</i>'                   
+        "<i class=\"icon-arrow-down text-success\"> Monthly new users is up from #{last_month}</i>"
       end
     end
   end
@@ -60,12 +60,12 @@ module DashboardHelper
     if current_user.cancellation_trend.monthly.empty?    
      'not enough data'
     else
-      cancellation1 = current_user.cancellation_trend.monthly.last[1]
-      cancellation2 = current_user.cancellation_trend.monthly[-1][1]
-      if cancellation1 < cancellation2
-        '<i class="icon-arrow-down text-success"> Trailing 30 days Cancellation is down</i>'
+      this_month = current_user.cancellation_trend.monthly.last[1]
+      last_month = current_user.cancellation_trend.monthly[-2][1]
+      if this_month < last_month
+        "<i class=\"icon-arrow-down text-success\"> Monthly cancellation is down from #{last_month}</i>"
        else  
-        '<i class="icon-arrow-up text-error">  Trailing 30 days Cancellation is up</i>'                   
+        "<i class=\"icon-arrow-down text-error\"> Monthly cancellation is up from #{last_month}</i>"
       end
     end
   end
@@ -82,12 +82,12 @@ module DashboardHelper
     if current_user.failed_charge_volume_trend.monthly.empty?
       'not enough data'
     else
-      volume1 = current_user.failed_charge_volume_trend.monthly.last[1]
-      volume2 = current_user.failed_charge_volume_trend.monthly[-1][1]
-      if volume1 < volume2
-        '<i class="icon-arrow-down text-success"> Trailing 30 days Charges is down</i>'
+      this_month = current_user.failed_charge_volume_trend.monthly.last[1]
+      last_month = current_user.failed_charge_volume_trend.monthly[-2][1]
+      if this_month < last_month
+        "<i class=\"icon-arrow-down text-success\"> Monthly failed charges is down from #{last_month}</i>"
        else  
-        '<i class="icon-arrow-up text-error"> Trailing 30 days Charges is up</i>'                   
+        "<i class=\"icon-arrow-down text-error\"> Monthly failed charges is up from #{last_month}</i>"
       end
     end
   end
