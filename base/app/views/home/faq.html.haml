@@ -25,24 +25,27 @@
                   %h4 Are you affiliated with Stripe Inc. ?
                   %p No, we are not affiliated with Stripe Inc., but we love what they do and we love metrics !
                 %li
-                  %h4 What metrics are available on the dashboard ?
+                  %h4 What metrics are available ?
+                  %p Customer trends, including acquisition and cancellation. Transaction volume trends, by number, volume and TSM (trailing six month compound average).
+                  Anything missing, email us and we'll add it to the dashboard.
+                %li
+                  %h4 What metrics will be released soon ?
                   %p Customer trends, including acquisition and churn. Transaction volume trends, by number and volume. Projected monthly revenue, revenue last 30 trailing days and more. Anything missing, email us and we'll add it to the dashboard.
                 %li
-                  %h4 How do I install the command line interface ?
-                  %p The command line interface is a Ruby gem. Visit 'https://stripemetrics.github.com' for a step-by-step instructions. 
-                %li
                   %h4 A command line interface, really ?
-                  %p We're geeks and programmers and we love the command line. 
+                  %p We're geeks and programmers and we love the command line. Visit 
+                  %a{:href => "http://yacc.github.io/stripemetrics-cli/"} stripemetrics-cli Github page
+                  for more information.
+                %li
+                  %h4 How do I install the command line interface ?
+                  %p The command line interface is a Ruby gem. 
+                  .pre.code
+                    gem 'stripemetrics-cli', :git => 'git://github.com/yacc/stripemetrics-cli.git'
         .span4
           .widget.widget-plain
             .widget-content
-              %a.btn.btn-large.btn-warning.btn-support-ask{:href => "http://ybsisinc.freshdesk.com/support/solutions"} Ask A Question
-              %a.btn.btn-large.btn-support-contact{:href => "http://ybsisinc.freshdesk.com/support/solutions"} Contact Support
-          .widget.widget-box
-            .widget-header
-              %h3 Most Popular Questions
-            .widget-content
-              %p 
+              %a.btn.btn-large.btn-warning.btn-support-ask{:href => "http://support.stripemetrics.com/support/solutions"} Contact Support
+              %a.btn.btn-large.btn-support-contact{:href => "http://support.stripemetrics.com/support/discussions"} Ask the Crowd
 
 :javascript
   jQuery(function () {    
