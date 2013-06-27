@@ -4,8 +4,8 @@
     %h3=title
   .widget-content
     - unless imports.empty?
+      Progress #{current_user.stat.import_progress(type)}%
       .progress
-        Progress #{current_user.stat.import_progress(type)}%
         .bar.bar-success{:style => "width: #{current_user.stat.import_progress(type)}%;"}
       %ul
         %li Number of objects imported #{imports.count*imports.first.count}
