@@ -1,5 +1,6 @@
 class User
   include Mongoid::Document
+  rolify
 
   MAX_IMPORTS      = 10
   # John and Patrick first started working on Stripe in early 2010.

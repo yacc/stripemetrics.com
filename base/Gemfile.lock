@@ -1,4 +1,10 @@
 GIT
+  remote: https://github.com/EppO/rolify
+  revision: 34c56d7fbf525cbb363da16395dcae7706b0175e
+  specs:
+    rolify (3.3.0.rc4)
+
+GIT
   remote: https://github.com/nmerouze/machinist_mongo.git
   revision: fa4819c4e1233a4e3ce527b68af8aeee85dfc6c3
   branch: machinist2
@@ -248,6 +254,9 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    stripe_event (0.6.0)
+      rails (>= 3.1)
+      stripe (~> 1.6)
     thin (1.5.0)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
@@ -297,11 +306,13 @@ DEPENDENCIES
   resque
   resque-lock
   resque-scheduler
+  rolify!
   rspec-rails (>= 2.12.2)
   sass-rails (~> 3.2)
   simple_form (>= 2.0.4)
   sitemap_generator
   spork-rails
   stripe!
+  stripe_event
   thin (>= 1.5.0)
   uglifier (>= 1.0.3)
