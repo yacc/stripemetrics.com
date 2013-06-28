@@ -51,6 +51,8 @@ class User
   after_create  :schedule_imports
   before_save   :encrypt_password
 
+  include Billable
+  
   def self.create_with_omniauth(auth)
     new_user = {provider:auth['provider'], uid:auth['uid']}
     if auth['info']
