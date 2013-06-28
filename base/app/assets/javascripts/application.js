@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.sparkline
 //= require bootstrap
+//= require bootstrapx-clickover
 //= require faq
 //= require highcharts
 //= require highstock

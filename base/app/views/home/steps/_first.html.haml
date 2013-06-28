@@ -1,10 +1,14 @@
-.span4#firststep
-  .widget
-    .widget-header
-      %i.icon-exchange
-      %h3 Signup with Stripe
-    .widget-content
-      = image_tag "first.png" , :class => 'img-rounded', :style => ' margin-left: auto; margin-right: auto;'
-      %p.text-info 
-        Signup using your stripe account. 
-        This will give us read-only access to your Stripe data.
+%h3 Signup with Stripe
+= image_tag "fourth.png" , :class => 'img-rounded', :style => ' margin-left: auto; margin-right: auto;'
+%h4
+  Use Stripe Connect
+  <i class= 'icon-question-sign' rel="clickover" data-content= "#{stripe_connect_help.html_safe}"></i>
+  to grant us 
+  %strong
+    read only
+  access to your stripe data. 
+
+
+:javascript
+  $('[rel="clickover"]').clickover({ html : true });
+
