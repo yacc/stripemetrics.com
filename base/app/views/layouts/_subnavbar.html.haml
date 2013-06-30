@@ -15,16 +15,21 @@
             = link_to account_path do
               %i.icon-user
               %span My Account
+          -if current_user.in_free_trial?
+            %li{:class => "#{'active' if current_page?(upgrading_path)}"}
+              = link_to upgrading_path do
+                %i.icon-credit-card
+                %span Upgrade        
         -else
           %li{:class => "#{'active' if current_page?(quickstart_path) || current_page?(root_path)}"}
             = link_to quickstart_path do
               %i.icon-home
               %span Quick-start
+          %li{:class => "#{'active' if current_page?(pricing_path)}"}
+            = link_to pricing_path do
+              %i.icon-credit-card
+              %span Pricing
         %li{:class => "#{'active' if current_page?(faq_path)}"}
           = link_to faq_path do
             %i.icon-lightbulb
             %span FAQ
-        %li{:class => "#{'active' if current_page?(pricing_path)}"}
-          = link_to pricing_path do
-            %i.icon-th-large
-            %span Pricing Plans

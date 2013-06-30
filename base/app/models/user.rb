@@ -1,6 +1,6 @@
 class User
   include Mongoid::Document
-  rolify
+  include Billable
 
   MAX_IMPORTS      = 10
   # John and Patrick first started working on Stripe in early 2010.
@@ -16,7 +16,8 @@ class User
   field :token_expires, type: Boolean
 
   validates_uniqueness_of :email, :message => "already in use"
-
+  validates :email, presence: true, :unless => Proc.new {|user| user.new_record?}
+#,            :message => "we need your email for billing and to email your reports"
   has_many :customers, dependent: :delete
   has_many :charges, dependent: :delete
   has_many :charge_imports, dependent: :delete
@@ -51,8 +52,7 @@ class User
   after_create  :schedule_imports
   before_save   :encrypt_password
 
-  include Billable
-  
+
   def self.create_with_omniauth(auth)
     new_user = {provider:auth['provider'], uid:auth['uid']}
     if auth['info']
@@ -85,10 +85,6 @@ class User
     self.password_hash = @saved_password
     self.password = nil
     end
-  end
-
-  def is_premium?
-    false  
   end
 
   def refresh_data

@@ -6,10 +6,10 @@ class Trend
   field :interval, type: String
   field :start_date, type: Integer
 
-  field :daily,      type: Array
-  field :daily_no_ts,type: Array
-  field :weekly,     type: Array
-  field :monthly,    type: Array
+  field :daily,      type: Array, :default => []
+  field :daily_no_ts,type: Array, :default => []
+  field :weekly,     type: Array, :default => []
+  field :monthly,    type: Array, :default => []
   belongs_to :user
 
 end

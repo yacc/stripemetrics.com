@@ -1,0 +1,25 @@
+.span4.well
+  .plan.orange
+    .plan-header
+      .plan-title
+        Silver
+      .plan-price
+        %span.note> $
+        9
+        %span.term Per Month
+    .plan-features
+      %ul
+        %li
+          %strong Free
+          setup
+        %li
+          %strong Monthly
+          Email Reports (pdf)
+        %li
+          %strong Monthly
+          Imports
+        %li
+          %strong limited
+          Storage
+    .plan-actions
+      = link_to 'Start my free trial', signin_path(:plan => 'silver'), :class => 'btn'

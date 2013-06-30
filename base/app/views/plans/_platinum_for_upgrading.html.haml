@@ -1,11 +1,11 @@
-.plan-container
-  .plan
+.span4.well
+  .plan.orange
     .plan-header
       .plan-title
-        Enterprise
+        Platinum
       .plan-price
         %span.note> $
-        125
+        29
         %span.term Per Month
     .plan-features
       %ul
@@ -16,10 +16,10 @@
           %strong Unlimited
           Email Reports (pdf)
         %li
-          %strong Unlimited
-          Data imports
+          %strong Hourly
+          Imports
         %li
           %strong Unlimited
           Storage
     .plan-actions
-      %a.btn{:href => "javascript:;"} Purchase Now
+      = render '/subscription/new', :div => 'subscribe-button-platinum', :plan => 'platinum', :amount => '6500', :description => "platinum plan ($65/mo)"      

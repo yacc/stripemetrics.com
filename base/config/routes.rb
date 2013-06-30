@@ -5,15 +5,24 @@ Stripemetrics::Application.routes.draw do
   match '/signout'                 => 'sessions#destroy', :as => :signout
   match '/auth/failure'            => 'sessions#failure'
 
+  # =============== HOME ============================================
   match 'quickstart'          => 'home#quickstart',:as => :quickstart
   match 'faq'                 => 'home#faq',       :as => :faq
-  match 'pricing'             => 'home#pricing',   :as => :pricing
   match 'about'               => 'home#about',     :as => :about
 
-  match 'account'              => 'users#edit',   :as => :account
-  match 'cancel'               => 'users#destroy',   :as => :cancel
-  match 'billing'              => 'account#billing',   :as => :billing
+  # =============== USER ============================================
+  match 'account'              => 'users#edit',    :as => :account
+  match 'cancel'               => 'users#destroy', :as => :cancel
+  match '/users/update'               => 'users#update',    :as => :user_update
+  match 'upgrade_from_trial'   => 'users#upgrade_from_trial', :as => :upgrade_from_trial
 
+  # =============== PLANS ===========================================
+  match 'plans'                => 'plans#index',   :as => :pricing
+  match 'upgrading'            => 'plans#index_for_upgrading',   :as => :upgrading
+
+  # =============== HOME ============================================
+
+  # =============== OTHER ============================================
   match 'dashboard'        => 'dashboard#index',:as => :dashboard
   match 'trends'           => 'trends#index',:as => :trends
   match 'status'           => 'imports#index',:as => :status

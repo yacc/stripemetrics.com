@@ -1,11 +1,11 @@
-.plan-container
-  .plan
+.span4.well
+  .plan.orange
     .plan-header
       .plan-title
-        Free
+        Platinum
       .plan-price
         %span.note> $
-        0
+        29
         %span.term Per Month
     .plan-features
       %ul
@@ -13,13 +13,13 @@
           %strong Free
           setup
         %li
-          %strong Weekly
+          %strong Unlimited
           Email Reports (pdf)
         %li
-          %strong Weekly
-          Data imports
+          %strong Hourly
+          Imports
         %li
-          %strong 1GB
+          %strong Unlimited
           Storage
     .plan-actions
-      %a.btn{:href => "javascript:;"} Purchase Now
+      = link_to 'Start my free trial', signin_path(:plan => 'silver'), :class => 'btn'

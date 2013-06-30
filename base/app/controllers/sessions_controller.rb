@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
   def create
     auth = request.env["omniauth.auth"]
     user = User.where(:provider => auth['provider'], :uid => auth['uid'].to_s).first || User.create_with_omniauth(auth)
-    raise "Session error: could create a user #{user.errors}" if user.nil?
+    raise "Session error: failed to create a user #{user.errors}" if user.nil?
     
     session[:user_id] = user.id
     if user.email.blank?

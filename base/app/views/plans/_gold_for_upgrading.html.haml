@@ -1,11 +1,11 @@
-.plan-container
+.span4.well.featured
   .plan.orange
     .plan-header
       .plan-title
-        Business
+        Gold
       .plan-price
         %span.note> $
-        75
+        29
         %span.term Per Month
     .plan-features
       %ul
@@ -13,13 +13,13 @@
           %strong Free
           setup
         %li
-          %strong Unlimited
+          %strong Weekly
           Email Reports (pdf)
         %li
-          %strong Hourly
+          %strong Weekly
           Imports
         %li
           %strong Unlimited
           Storage
     .plan-actions
-      %a.btn{:href => "javascript:;"} Purchase Now
+      = render '/subscription/new', :div => 'subscribe-button-gold',:plan => 'gold', :amount => '2500', :description => "gold plan ($25/mo)"      

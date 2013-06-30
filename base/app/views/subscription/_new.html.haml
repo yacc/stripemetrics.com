@@ -1,0 +1,25 @@
+= simple_form_for current_user, :url => upgrade_from_trial_path, :method => :post do |f|
+  = hidden_field_tag 'plan', "#{plan}"
+  = link_to 'Upgrade', '#', :id => "#{div}", :class => 'btn'
+
+%script{:src => "https://checkout.stripe.com/v2/checkout.js"}
+:javascript
+  $("##{div}").click(function(){
+    var token = function(res){
+      var $input = $('<input type=hidden name=stripe_token />').val(res.id);
+      $('form').append($input).submit();
+    };
+
+    StripeCheckout.open({
+      key:         "#{ENV["STRIPE_PUBLIC_KEY"]}",
+      amount:      "#{amount}",
+      currency:    'usd',
+      name:        'StripeMetrics',
+      description: "#{description}",
+      panelLabel:  'Subscribe',
+      image:       '/assets/stripemetrics-logo.png',
+      token:       token
+    });
+
+    return false;
+  });
