@@ -1,5 +1,6 @@
 class User
   include Mongoid::Document
+  include Mongoid::Timestamps::Created::Short
   include Billable
 
   MAX_IMPORTS      = 10
@@ -16,8 +17,7 @@ class User
   field :token_expires, type: Boolean
 
   validates_uniqueness_of :email, :message => "already in use"
-  validates :email, presence: true, :unless => Proc.new {|user| user.new_record?}
-#,            :message => "we need your email for billing and to email your reports"
+
   has_many :customers, dependent: :delete
   has_many :charges, dependent: :delete
   has_many :charge_imports, dependent: :delete

@@ -6,9 +6,9 @@
           .widget
             .widget-header
               %i.icon-user
-              %h3 Your Plan
+              %h3 Change your plan (currently on #{current_user.plan})
             .widget-content
-              = current_user.roles.last.name
+              = render 'edit_plan'
       .row
         .span6
           .widget
@@ -34,3 +34,4 @@
               %h3 Cancel your account
             .widget-content
               = render 'cancel'
+              

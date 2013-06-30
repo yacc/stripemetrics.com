@@ -7,15 +7,13 @@ class UsersController < ApplicationController
   end
   
   def update
-    # authorize! :update, @user, :message => 'Not authorized as an administrator.'
-    @user = User.find(params[:id])
-    role = Role.find(params[:user][:role_ids]) unless params[:user][:role_ids].nil?
-    params[:user] = params[:user].except(:role_ids)
-    if @user.update_attributes(params[:user])
-      @user.update_plan(role) unless role.nil?
+    plan = params[:user][:plan] unless params[:user][:plan].nil?
+    params[:user] = params[:user].except(:plan)
+    if current_user.update_attributes(params[:user])
+      current_user.update_plan(plan) unless plan.nil?
       redirect_to account_path, :notice => "You successfully updated your account!"
     else
-      redirect_to account_path, :alert => "Ops ... we couldn\'t update your account!\n #{current_user.errors.join}"
+      redirect_to account_path, :alert => "Ops ... we couldn\'t update your account!\n #{current_user.errors.full_messages.join}"
     end
   end
 
@@ -25,7 +23,17 @@ class UsersController < ApplicationController
     if plan_status && current_user.save
       redirect_to account_path, :notice => "You successfully updated your account!"
     else
-      redirect_to upgrading_path, :alert => "Ops ... we couldn\'t update your account!\n #{current_user.errors.join}"
+      redirect_to upgrading_path, :alert => "Ops ... we couldn\'t update your account!\n #{current_user.errors.full_messages.join}"
+    end
+  end
+
+  def update_plan
+    plan = params[:user][:plan] unless params[:user][:plan].nil?
+    if current_user.update_plan(plan)
+      redirect_to account_path, :notice => 'Updated plan.'
+    else
+      flash.alert = 'Unable to update plan.'
+      render account_path
     end
   end
 

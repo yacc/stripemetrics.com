@@ -1,0 +1,11 @@
+- if current_user.in_free_trial?
+  .alert.alert-block
+    %h4 You're still on the free trial
+    You have #{distance_of_time_in_words(Time.now,current_user.created_at+7.days)} to upgrade your account.    
+-else
+  #plan-options
+    = simple_form_for current_user, :url => update_plan_path, :html => {:method => :put, :class => 'form-horizontal' } do |f|
+      .modal-body
+        = f.input :plan, :collection => User.available_plans, :as => :check_boxes, :label_method => lambda {|t| t.titleize}, :label => false, :item_wrapper_class => 'inline'
+      .modal-footer
+        = f.submit "Change Plan", :class => "btn btn-primary"

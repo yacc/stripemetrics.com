@@ -2,8 +2,7 @@ module Billable
   extend ActiveSupport::Concern
 
   included do
-    rolify
-
+    field :plan , type: String
     field :customer_id, type: String
     field :last_4_digits, type: String
 
@@ -15,27 +14,28 @@ module Billable
   end
 
   module ClassMethods
+    def available_plans
+      ["silver", "gold", "platinum"]  
+    end
   end
 
   def set_trialling_mode
-    self.role_ids = []
-    self.add_role :trialling # default   
+    self.plan = 'trialling'
   end
 
   def in_free_trial?
-    has_role? :trialling
+    self.plan == 'trialling'
   end
 
   def premium?
     !in_free_trial?  
   end
 
-  def update_plan(role_name)
-    remove_role :trialling if has_role? :trialling
-    add_role(role_name)
+  def update_plan(plan_name)
+    self.plan = plan_name
     unless customer_id.nil?
       customer = Stripe::Customer.retrieve(customer_id,"#{ENV["STRIPE_API_KEY"]}")
-      customer.update_subscription(:plan => role.name)
+      customer.update_subscription(:plan => plan_name)
     end
     true
   rescue Stripe::StripeError => e
@@ -58,13 +58,13 @@ module Billable
     elsif customer_id.nil? && stripe_token.present?
       if coupon.blank?
         customer = Stripe::Customer.create(
-          {:email => email, :description => name, :card => stripe_token, :plan => roles.first.name },
+          {:email => email, :description => name, :card => stripe_token, :plan => self.plan },
           "#{ENV["STRIPE_API_KEY"]}"
         )
       else
         logger.info "Creating new stripe customer for #{self._id}"
         customer = Stripe::Customer.create(
-          {:email => email,:description => name,:card => stripe_token,:plan => roles.first.name,:coupon => coupon},
+          {:email => email,:description => name,:card => stripe_token,:plan => self.plan},
           "#{ENV["STRIPE_API_KEY"]}"
         )
       end

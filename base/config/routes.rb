@@ -11,10 +11,11 @@ Stripemetrics::Application.routes.draw do
   match 'about'               => 'home#about',     :as => :about
 
   # =============== USER ============================================
-  match 'account'              => 'users#edit',    :as => :account
-  match 'cancel'               => 'users#destroy', :as => :cancel
-  match '/users/update'               => 'users#update',    :as => :user_update
+  match 'account'              => 'users#edit',               :as => :account
+  match 'cancel'               => 'users#destroy',            :as => :cancel
+  match '/users/update'        => 'users#update',             :as => :user_update
   match 'upgrade_from_trial'   => 'users#upgrade_from_trial', :as => :upgrade_from_trial
+  match 'update_plan'          => 'users#update_plan',        :as => :update_plan
 
   # =============== PLANS ===========================================
   match 'plans'                => 'plans#index',   :as => :pricing
