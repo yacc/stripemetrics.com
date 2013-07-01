@@ -1,3 +1,8 @@
+== 2013-06-30 ==
+* deploying billing
+* workers need a deploy task
+
+
 == 2013-06-28 ==
 * adding billing
 
