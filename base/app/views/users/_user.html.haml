@@ -3,17 +3,41 @@
     .alert.alert-error.fade.in
       %a.close{"data-dismiss" => "alert", :href => "#"} ×
       = notification
-  = f.input :email,:hint => "this is also your username (you'll need it to run the command line tool)" ,:wrapper => :prepend, :label => false do
+  = f.input :email, :hint => "this is also your username (1)" ,:wrapper => :prepend, :label => false do
     = content_tag :span, "Email", :class => "add-on"
+    %span.add-on>
+      %i.icon-envelope
     = f.input_field :email
-  = f.input :password,:hint => "leave empty to keep the same (you'll need it to run the command line tool)", :wrapper => :prepend, :label => false do
+    %a#email_missing{:href => "#", :rel => "popover"}
+  = f.input :password,:hint => "leave empty to keep the same (2)", :wrapper => :prepend, :label => false do
     = content_tag :span, "password", :class => "add-on"
     = f.input_field :password
-  = f.input :api_token,:hint => "API token (used by the command line tool)" ,:wrapper => :prepend, :label => false do
-    = content_tag :span, "Api Token", :class => "add-on"
+  = f.input :api_token,:hint => "" ,:wrapper => :prepend, :label => false do
+    = content_tag :span, "Api Token (3)", :class => "add-on"
     = f.input_field :api_token, :disabled => true
   .form-actions
     .pull-right
       = f.button :submit, 'Update',:class => 'btn-primary'
 
- 
+.text-info
+  (1) email is required to upgrade and email reports.
+  %br
+  (2) email and password are required to run the command line tool.
+  %br
+  (3) API token is used by the command line tool and to authenticate API requests.
+
+  :javascript
+    $(function() {
+      var highlight_if_no_val=function () {
+        var options = {
+                title : '<div style="text-align:center; color:red; font-size:14px;"> Hey! </div>',
+                html :true,
+                content : '<div class="text-info">We need your email (1).</div>' 
+          }
+        $('#email_missing').popover(options)  
+        !$(this).val() ? $('#email_missing').popover('show') : $('#email_missing').popover('hide');
+      }
+      $('#user_email').keyup(highlight_if_no_val).each(highlight_if_no_val);
+    });
+
+

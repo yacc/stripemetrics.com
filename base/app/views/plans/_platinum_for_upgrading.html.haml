@@ -5,7 +5,7 @@
         Platinum
       .plan-price
         %span.note> $
-        29
+        120
         %span.term Per Month
     .plan-features
       %ul
@@ -21,5 +21,11 @@
         %li
           %strong Unlimited
           Storage
+        %li
+          %strong API access
+          Enabled
+        %li
+          %strong Cohort Analysis
+          Enabled
     .plan-actions
-      = render '/subscription/new', :div => 'subscribe-button-platinum', :plan => 'platinum', :amount => '6500', :description => "platinum plan ($65/mo)"      
+      = render '/subscription/new', :div => 'subscribe-button-platinum', :plan => 'platinum', :amount => '12000', :description => "platinum plan ($120/mo)"      

@@ -5,7 +5,7 @@
         Gold
       .plan-price
         %span.note> $
-        29
+        50
         %span.term Per Month
     .plan-features
       %ul
@@ -21,5 +21,8 @@
         %li
           %strong Unlimited
           Storage
+        %li
+          %strong API
+          Enabled
     .plan-actions
-      = render '/subscription/new', :div => 'subscribe-button-gold',:plan => 'gold', :amount => '2500', :description => "gold plan ($25/mo)"      
+      = render '/subscription/new', :div => 'subscribe-button-gold',:plan => 'gold', :amount => '5000', :description => "gold plan ($50/mo)"      
