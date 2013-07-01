@@ -29,11 +29,10 @@ class UsersController < ApplicationController
 
   def update_plan
     plan = params[:user][:plan] unless params[:user][:plan].nil?
-    if current_user.update_plan(plan)
-      redirect_to account_path, :notice => 'Updated plan.'
+    if current_user.update_plan(plan) && current_user.save
+      redirect_to account_path, :notice => "You successfully updated your plan!"
     else
-      flash.alert = 'Unable to update plan.'
-      render account_path
+      redirect_to account_path, :alert => "Ops ... we couldn\'t update your account!\n #{current_user.errors.full_messages.join}"
     end
   end
 
