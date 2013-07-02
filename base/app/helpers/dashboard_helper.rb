@@ -16,13 +16,9 @@ module DashboardHelper
       last_month = current_user.paid_charge_volume_trend.monthly[-2][1]
       if this_month < last_month
         "<i class=\"icon-arrow-down text-error\"> Monthly Revenue is down from #{ number_to_currency(last_month)}</i>"
-       else  
+      else  
         "<i class=\"icon-arrow-up text-success\"> Monthly Revenue is up from #{ number_to_currency(last_month)}</i>"                   
       end
-    else
-      render "sparkline", :data   => @paid_charges.weekly.collect{|c| c[1]},
-                          :div    => "paid-charges-montlhy-trend",
-                          :title  => "Monthly Charges"      
     end
   end
 
