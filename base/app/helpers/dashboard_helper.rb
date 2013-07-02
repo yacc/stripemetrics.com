@@ -9,9 +9,9 @@ module DashboardHelper
   end
 
   def trailing_30_days_volume_desc
-    if current_user.paid_charge_volume_trend.monthly.empty?
+    if current_user.paid_charge_volume_trend.monthly.empty? || current_user.paid_charge_volume_trend.monthly.size < 2
      'not enough data'
-    elsif current_user.paid_charge_volume_trend.monthly.size
+    else
       this_month = current_user.paid_charge_volume_trend.monthly.last[1]
       last_month = current_user.paid_charge_volume_trend.monthly[-2][1]
       if this_month < last_month
@@ -35,7 +35,7 @@ module DashboardHelper
   end
 
   def trailing_30_days_acquisition_desc
-    if current_user.acquisition_trend.monthly.empty?
+    if current_user.acquisition_trend.monthly.empty? || current_user.acquisition_trend.monthly.size < 2
      'not enough data'
     else
       this_month = current_user.acquisition_trend.monthly.last[1]
@@ -57,7 +57,7 @@ module DashboardHelper
   end
 
   def trailing_30_days_cancellation_desc
-    if current_user.cancellation_trend.monthly.empty?    
+    if current_user.cancellation_trend.monthly.empty? || current_user.cancellation_trend.monthly.size < 2   
      'not enough data'
     else
       this_month = current_user.cancellation_trend.monthly.last[1]
@@ -79,7 +79,7 @@ module DashboardHelper
   end
 
   def trailing_30_failed_charges_desc
-    if current_user.failed_charge_volume_trend.monthly.empty?
+    if current_user.failed_charge_volume_trend.monthly.empty? || current_user.failed_charge_volume_trend.monthly.size < 2
       'not enough data'
     else
       this_month = current_user.failed_charge_volume_trend.monthly.last[1]
