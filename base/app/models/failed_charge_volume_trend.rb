@@ -31,7 +31,7 @@ class FailedChargeVolumeTrend < Trend
 
   def match
     {
-      "$match" => { "paid" => false}
+      "$match" => { "paid" => false, "user_id" => self.user_id}
     }
   end
 

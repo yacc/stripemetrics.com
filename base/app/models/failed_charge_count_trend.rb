@@ -10,19 +10,19 @@ class FailedChargeCountTrend < Trend
   end
 
   def refresh_daily
-    self.user.charges.collection.aggregate([match,project,groupby("day")]).collect do |data|
+    Charge.collection.aggregate([match,project,groupby("day")]).collect do |data|
       [(Time.new(data["_id"]["year"]) + (data["_id"]["day"]).days).to_i*1000,data["count"]]
     end.sort_by{|k|k[0]}
   end
 
   def refresh_weekly
-    self.user.charges.collection.aggregate([match,project,groupby("week")]).collect do |data|
+    Charge.collection.aggregate([match,project,groupby("week")]).collect do |data|
       [(Time.new(data["_id"]["year"]) + (data["_id"]["week"]).weeks).to_i*1000, data["count"] ]
     end.sort_by{|k|k[0]}
   end
 
   def refresh_monthly
-    self.user.charges.collection.aggregate([match,project,groupby("month")]).collect do |data|
+    Charge.collection.aggregate([match,project,groupby("month")]).collect do |data|
       [(Time.new(data["_id"]["year"]) + (data["_id"]["month"]).month).to_i*1000, data["count"] ]
     end.sort_by{|k|k[0]}
   end
@@ -31,7 +31,7 @@ class FailedChargeCountTrend < Trend
 
   def match
     {
-      "$match" => { "paid" => false}
+      "$match" => { "paid" => false, "user_id" => self.user_id}
     }
   end
 

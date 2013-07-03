@@ -16,7 +16,7 @@ class User
   field :token,    type: String
   field :token_expires, type: Boolean
 
-  validates_uniqueness_of :email, :message => "already in use"
+  # validates_uniqueness_of :email, :message => "already in use"
 
   has_many :customers, dependent: :delete
   has_many :charges, dependent: :delete
@@ -38,7 +38,10 @@ class User
   has_one  :lost_revenue_metric, dependent: :delete, autobuild: true
   has_one  :acquisition_metric, dependent: :delete, autobuild: true
   has_one  :cancellation_metric, dependent: :delete, autobuild: true
-  
+
+  # cohort
+  has_one  :cohort_table , dependent: :delete, autobuild: true
+
   embeds_one   :account
   embeds_one   :stat, autobuild: true
 

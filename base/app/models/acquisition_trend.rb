@@ -10,24 +10,31 @@ class AcquisitionTrend < Trend
   end
 
   def refresh_daily
-    self.user.customers.collection.aggregate([project,groupby("day")]).collect do |data|
+    Customer.collection.aggregate([match,project,groupby("day")]).collect do |data|
       [(Time.new(data["_id"]["year"]) + (data["_id"]["day"]).days).to_i*1000,data["count"]]
     end.sort_by{|k|k[0]}
   end
 
   def refresh_weekly
-    self.user.customers.collection.aggregate([project,groupby("week")]).collect do |data|
+    Customer.collection.aggregate([match,project,groupby("week")]).collect do |data|
       [(Time.new(data["_id"]["year"]) + (data["_id"]["week"]).weeks).to_i*1000, data["count"] ]
     end.sort_by{|k|k[0]}
   end
 
   def refresh_monthly
-    self.user.customers.collection.aggregate([project,groupby("month")]).collect do |data|
+    Customer.collection.aggregate([match,project,groupby("month")]).collect do |data|
       [(Time.new(data["_id"]["year"]) + (data["_id"]["month"]).month).to_i*1000, data["count"] ]
     end.sort_by{|k|k[0]}
   end
 
   private
+
+  def match
+    { "$match" => {
+        "user_id" => self.user_id
+      }
+    }
+  end
 
   def project
     {"$project" => 

@@ -1,3 +1,13 @@
+== 2013-07-02 ==
+* problem with aggregation
+
+yacc  = User.first
+yacin = User.last
+yacin.acquisition_trend.refresh_monthly
+yacc.acquisition_trend.refresh_monthly
+
+
+
 == 2013-06-30 ==
 * deploying billing
 * workers need a deploy task

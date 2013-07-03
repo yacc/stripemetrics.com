@@ -32,7 +32,7 @@ class PaidChargeCountTrend < Trend
 
   def match
     {
-      "$match" => { "paid" => true, "captured" => true}
+      "$match" => { "paid" => true, "captured" => true, "user_id" => self.user_id}
     }
   end
 
