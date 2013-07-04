@@ -1,0 +1,38 @@
+[
+{
+  "object": "customer",
+  "created": 1366878656,
+  "id": "cus_1WTl23tpQroXTl_24",
+  "livemode": false,
+  "description": "1 user-0047@sensr.net 995:usd:month:7 on test",
+  "active_card": null,
+  "email": "user-0047@sensr.net",
+  "delinquent": false,
+  "discount": null,
+  "account_balance": 0
+},
+{
+  "object": "customer",
+  "created": 1361774656,
+  "id": "cus_1WTl23tpQroXTl_25",
+  "livemode": false,
+  "description": "1 user-0047@sensr.net 995:usd:month:7 on test",
+  "active_card": null,
+  "email": "user-0047@sensr.net",
+  "delinquent": false,
+  "discount": null,
+  "account_balance": 0
+},
+{
+  "object": "customer",
+  "created": 1364170256,
+  "id": "cus_1WTl23tpQroXTl_26",
+  "livemode": false,
+  "description": "1 user-0047@sensr.net 995:usd:month:7 on test",
+  "active_card": null,
+  "email": "user-0047@sensr.net",
+  "delinquent": false,
+  "discount": null,
+  "account_balance": 0
+}
+]

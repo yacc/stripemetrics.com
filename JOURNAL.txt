@@ -1,12 +1,42 @@
+== 2013-07-03 ==
+* cohort analysis
+  def match
+    { 
+      "$match" => {"cancelled_at" => {"$ne" => "null"},"user_id" => "51d382557eb641058500001a"  }
+    }
+  end
+  Customer.collection.aggregate([match])
+  Customer.collection.aggregate([{"$match" => {"user_id" => "51d382557eb641058500001a"}}])
+
+in mongo:
+db.customers.aggregate(     { $match : { "user_id" : '51d382557eb641058500001a'} } );
+{ "result" : [ ], "ok" : 1 }
+
+db.customers.aggregate(     { $match : { "user_id" : ObjectId('51d3b8987eb641058500001f')} } );
+
+Customer.collection.aggregate([{"$match" => {"user_id" => ObjectId('51d382557eb641058500001')}}])
+User.aggregate([ {"$match" => {"email" => "yacinb+sensr@gmail.com"}} ])
+
+ag=Customer.collection.aggregate([ {"$group" => 
+                                   { "_id" => {"user_id" => '51d3b8987eb641058500001f'} , "count" => {"$sum" => 1}}
+                                    }])
+
+-> This works:
+* rails c:
+User.collection.aggregate([ {"$match" => {"email" => "yacinb+sensr@gmail.com"}} ])
+* tail -f log/development.log
+  MOPED: 127.0.0.1:27017 COMMAND      database=stripemetrics_development command={:aggregate=>"users", :pipeline=>[{"$match"=>{"email"=>"yacinb+sensr@gmail.com"}}]} (0.9489ms)
+
+
+
 == 2013-07-02 ==
 * problem with aggregation
+-> should be solved now.
 
 yacc  = User.first
 yacin = User.last
 yacin.acquisition_trend.refresh_monthly
 yacc.acquisition_trend.refresh_monthly
-
-
 
 == 2013-06-30 ==
 * deploying billing
