@@ -1,4 +1,24 @@
 == 2013-07-03 ==
+* cohort_table.monthly -> cancellation by month and month joined
+cohort.table = []
+new_user = self.user.acquision_trend.montly
+i = 0
+j = 0
+self.user.cancellation_trend.monthly.each do |mo_i|
+  # user acquisition month 'mo_i'
+  self.user.cancellation_trend.monthly.each do |mo_j|
+    if self.monthly[mo_i]
+      cancellation_i_j = 0
+    else  
+      cancellation_i_j = (self.monthly[mo_i][mo_j].nil? ? 0 : self.monthly[mo_i][mo_j])
+    end
+    retention =  cancellation_i_j / mo_i[1] 
+    cohort.table[i][j] = retention
+    j += 1 
+  end
+  i += 1
+end    
+
 * cohort analysis
   def match
     { 

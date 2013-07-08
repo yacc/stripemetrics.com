@@ -40,7 +40,7 @@ class User
   has_one  :cancellation_metric, dependent: :delete, autobuild: true
 
   # cohort
-  has_one  :cohort_table , dependent: :delete, autobuild: true
+  has_one  :cohort, dependent: :delete, autobuild: true
 
   embeds_one   :account
   embeds_one   :stat, autobuild: true

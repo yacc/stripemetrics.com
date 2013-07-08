@@ -13,7 +13,7 @@
 },
 {
   "object": "customer",
-  "created": 1361764656,
+  "created": 1366862256,
   "id": "cus_1WTl23tpQroXTl_2",
   "livemode": false,
   "description": "1 user-0047@sensr.net 995:usd:month:7 on test",
@@ -25,8 +25,20 @@
 },
 {
   "object": "customer",
-  "created": 1364180256,
+  "created": 1361764656,
   "id": "cus_1WTl23tpQroXTl_3",
+  "livemode": false,
+  "description": "1 user-0047@sensr.net 995:usd:month:7 on test",
+  "active_card": null,
+  "email": "user-0047@sensr.net",
+  "delinquent": false,
+  "discount": null,
+  "account_balance": 0
+},
+{
+  "object": "customer",
+  "created": 1364180256,
+  "id": "cus_1WTl23tpQroXTl_4",
   "livemode": false,
   "description": "1 user-0047@sensr.net 995:usd:month:7 on test",
   "active_card": null,
