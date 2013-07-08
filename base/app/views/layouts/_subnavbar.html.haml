@@ -7,7 +7,11 @@
             = link_to dashboard_path do
               %i.icon-dashboard
               %span Dashboard
-          %li{:class => "#{'active' if current_page?(status_path) || current_page?(root_path)}"}
+          %li{:class => "#{'active' if current_page?(metrics_path)}"}
+            = link_to metrics_path do
+              %i.icon-cloud-upload
+              %span Metrics
+          %li{:class => "#{'active' if current_page?(status_path)}"}
             = link_to status_path do
               %i.icon-cloud-upload
               %span Imports

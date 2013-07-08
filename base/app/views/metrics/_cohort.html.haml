@@ -1,0 +1,17 @@
+.widget
+  .widget-header
+    %i.icon-star
+    %h3 Cohort
+  .widget-content
+    %table.table.table-bordered
+      %thead
+        %tr
+        %th 
+        - @cohort[0].each_with_index do |m,i|
+          %th=i
+      %tbody
+        - @cohort.each_with_index do |month,i|
+          %tr
+            %th=i
+            - month.each_with_index do |r,i|
+              %td #{(r*100).to_i}%

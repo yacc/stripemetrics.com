@@ -6,21 +6,20 @@ class Cohort
   belongs_to :user
 
   def refresh!
-    monthly = cancellations
-    cohort.matrix = []
-    self.user.acquision_trend.refresh_monthly
-    new_user = self.user.acquision_trend.montly
-    i = j = 0
-    self.user.cancellation_trend.monthly.each do |mo_i|
+    self.matrix = []
+    self.user.acquisition_trend.refresh!
+    new_users = self.user.acquisition_trend.monthly
+    first_mo = new_users.first[0]
+    i = 0
+    new_users.each do |mo_i|
       # user acquisition month 'mo_i'
-      self.user.cancellation_trend.monthly.each do |mo_j|
-        if self.monthly[mo_i]
-          cancellation_i_j = 0
-        else  
-          cancellation_i_j = (self.monthly[mo_i][mo_j].nil? ? 0 : self.monthly[mo_i][mo_j])
-        end
-        retention =  cancellation_i_j / mo_i[1] 
-        cohort.matrix[i][j] = retention
+      self.matrix[i]   = []
+      cancellation_i_j = 0
+      j = 0
+      new_users.each do |mo_j|
+        cancellation_i_j += cancellations_for_month(mo_i,mo_j)
+        retention =  1.0 - cancellation_i_j.to_f / mo_i[1].to_f 
+        self.matrix[i][j] = retention
         j += 1 
       end
       i += 1
@@ -29,14 +28,28 @@ class Cohort
   end
 
   def cancellations
+    sparse_matrix = {}
     Customer.collection.aggregate([match,project,groupby]).collect do |data|
       mo_created  = (Time.new(data["_id"]["year_created"]) + (data["_id"]["month_created"]).month).to_i*1000
       mo_canceled = (Time.new(data["_id"]["year_canceled"]) + (data["_id"]["month_canceled"]).month).to_i*1000
-      [mo_created,mo_canceled,data["count"]]
+      sparse_matrix[mo_created] ||= {}
+      sparse_matrix[mo_created][mo_canceled] = data["count"]
     end
+    sparse_matrix
   end
 
   private
+
+  def cancellations_for_month(mo_i,mo_j)
+    monthly_cancellations = cancellations
+    if monthly_cancellations[mo_i[0]].nil? 
+      cancellation_i_j = 0.0
+    elsif monthly_cancellations[mo_i[0]] && monthly_cancellations[mo_i[0]][mo_j[0]].nil?
+      cancellation_i_j = 0.0
+    else  
+      cancellation_i_j = monthly_cancellations[mo_i[0]][mo_j[0]]
+    end
+  end
 
   def match
     { 
