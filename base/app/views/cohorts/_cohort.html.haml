@@ -1,19 +1,16 @@
-.widget
-  .widget-header
-    %i.icon-star
-    %h3 Retention Over Time
-  .widget-content
-    %table.table.table-bordered
-      %thead
-        %tr
-        %th
-          Joined in
-          %i.icon-arrow-down 
-        - @cohort.matrix[0].each_with_index do |m,i|
-          %th Month #{i}
-      %tbody
-        - @cohort.matrix.each_with_index do |month,i|
-          %tr
-            %th=(Time.at(@cohort.joined_in[i]/1000).to_date).to_formatted_s(:month_and_year)
-            - month.each_with_index do |r,i|
-              %td #{(r*100).to_i}%
+%table.table.table-bordered.table-striped
+  %caption
+    User retention rate by month the user have joined, 100% means you have retained your users. 
+  %thead
+    %tr
+    %th
+      Joined in
+      %i.icon-arrow-down 
+    - @cohort.matrix[0].each_with_index do |m,i|
+      %th Month #{i}
+  %tbody
+    - @cohort.matrix.each_with_index do |month,i|
+      %tr
+        %th=(Time.at(@cohort.joined_in[i]/1000).to_date).to_formatted_s(:month_and_year)
+        - month.each_with_index do |r,i|
+          %td #{(r*100).to_i}%
