@@ -1,23 +1,23 @@
-.widget
-  .widget-header
-    %i.icon-star
-    %h3 Metrics
-  .widget-content
-    %table.table.table-bordered
-      %thead
-        %tr
-          %th
-          %th This month
-          %th Last month
-          %th % change
-          %th TSM Average
-          %th Goal
-      %tbody
-        - @metrics.each do |m|
-          %tr
-            %th=m.name
-            %td=(m.is_in_dollar? ? number_to_currency(m.this_month) : m.this_month)
-            %td=(m.is_in_dollar? ? number_to_currency(m.last_month) : m.last_month)
-            %td=(m.change.nil?   ? '?' : m.change.round(2))
-            %td=(m.tsm_avrg.nil? ? '?' : m.tsm_avrg.round(2))
-            %td=(m.goal.nil?     ?  'not set' : m.goal)
+%table.table.table-bordered
+  %thead
+    %tr
+      %th
+      %th This month
+      %th Last month
+      %th % change
+      %th 
+        TSM Average
+        <i class= 'icon-question-sign' rel="clickover" data-content= "#{metric_tsm_help.html_safe}"></i>
+      %th Goal
+  %tbody
+    - @metrics.each do |m|
+      %tr
+        %th=m.name
+        %td=(m.is_in_dollar? ? number_to_currency(m.this_month) : m.this_month)
+        %td=(m.is_in_dollar? ? number_to_currency(m.last_month) : m.last_month)
+        %td=(m.change.nil?   ? '?' : m.change.round(2))
+        %td=(m.tsm_avrg.nil? ? '?' : m.tsm_avrg.round(2))
+        %td=(m.goal.nil?     ?  'not set' : m.goal)
+
+:javascript
+  $('[rel="clickover"]').clickover({ html : true });
