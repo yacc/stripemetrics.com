@@ -104,11 +104,14 @@ class User
   end
 
   def refresh_metrics
-    self.cohort.refresh!
     self.revenue_metric.refresh!
     self.lost_revenue_metric.refresh!
     self.acquisition_metric.refresh!
     self.cancellation_metric.refresh!
+  end
+
+  def refresh_cohorts
+    self.cohort.refresh!
   end
 
   protected 

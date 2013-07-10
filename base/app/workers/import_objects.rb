@@ -29,8 +29,6 @@ class ImportObjects
         user.sde_imports.create(start_at:import.last_imported_ts,end_at:import.end_at,token:import.token,limit:import.limit)        
       end
     end
-
-    user.refresh_metrics
     
   end
 
