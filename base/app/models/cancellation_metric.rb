@@ -17,6 +17,7 @@ class CancellationMetric < Metric
 
     self.name = "Churn"
     self.desc = "Customer Cancellation"
+    self.unit = 'count'
     self.save
   end
 

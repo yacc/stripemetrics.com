@@ -16,8 +16,8 @@
         - @metrics.each do |m|
           %tr
             %th=m.name
-            %td=m.this_month
-            %td=m.last_month
-            %td=m.change
-            %td=m.tsm_avrg
-            %td=m.goal
+            %td=(m.is_in_dollar? ? number_to_currency(m.this_month) : m.this_month)
+            %td=(m.is_in_dollar? ? number_to_currency(m.last_month) : m.last_month)
+            %td=(m.change.nil?   ? '?' : m.change.round(2))
+            %td=(m.tsm_avrg.nil? ? '?' : m.tsm_avrg.round(2))
+            %td=(m.goal.nil?     ?  'not set' : m.goal)

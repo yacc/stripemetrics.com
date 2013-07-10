@@ -2,27 +2,28 @@ class Cohort
   include Mongoid::Document
   include Mongoid::Timestamps::Updated::Short
 
-  field :matrix,    type: Array, :default => [] 
+  field :matrix,       type: Array, :default => [] 
+  field :joined_in,    type: Array, :default => [] 
+
   belongs_to :user
 
   def refresh!
     self.matrix = []
     self.user.acquisition_trend.refresh!
     new_users = self.user.acquisition_trend.monthly
-    first_mo = new_users.first[0]
-    i = 0
-    new_users.each do |mo_i|
-      # user acquisition month 'mo_i'
+    self.joined_in = self.user.acquisition_trend.monthly.map{|m| m[0]}
+    nb_month = new_users.size - 1
+    new_users.each_with_index do |mo_i,i|
       self.matrix[i]   = []
       cancellation_i_j = 0
       j = 0
       new_users.each do |mo_j|
+        break if j > nb_month-i
         cancellation_i_j += cancellations_for_month(mo_i,mo_j)
-        retention =  1.0 - cancellation_i_j.to_f / mo_i[1].to_f 
-        self.matrix[i][j] = retention
+        retention_i_j =  1.0 - cancellation_i_j.to_f / mo_i[1].to_f 
+        self.matrix[i][j] = retention_i_j
         j += 1 
       end
-      i += 1
     end    
     self.save
   end

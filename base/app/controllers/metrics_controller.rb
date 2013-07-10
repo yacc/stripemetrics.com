@@ -3,8 +3,7 @@ class MetricsController < ApplicationController
 
 	def index
     @metrics = [current_user.revenue_metric, current_user.lost_revenue_metric,
-                 current_user.acquisition_metric,current_user.cancellation_metric]
-    @cohort   = current_user.cohort.matrix
+                 current_user.acquisition_metric,current_user.cancellation_metric]             
   end
 
 end

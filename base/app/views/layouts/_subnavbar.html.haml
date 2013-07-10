@@ -9,8 +9,12 @@
               %span Dashboard
           %li{:class => "#{'active' if current_page?(metrics_path)}"}
             = link_to metrics_path do
-              %i.icon-cloud-upload
+              %i.icon-bar-chart
               %span Metrics
+          %li{:class => "#{'active' if current_page?(cohort_path)}"}
+            = link_to cohort_path do
+              %i.icon-group
+              %span Cohort
           %li{:class => "#{'active' if current_page?(status_path)}"}
             = link_to status_path do
               %i.icon-cloud-upload

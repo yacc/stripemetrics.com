@@ -17,6 +17,7 @@ class LostRevenueMetric < Metric
 
     self.name = "Lost Revenue"
     self.desc = "Failed Charges"
+    self.unit = 'dollars'
     self.save
   end
 

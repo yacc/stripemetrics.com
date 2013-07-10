@@ -17,6 +17,7 @@ class RevenueMetric < Metric
 
     self.name = "Revenue"
     self.desc = "Successfull Charges"
+    self.unit = 'dollars'
     self.save
   end
 

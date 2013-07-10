@@ -3,3 +3,7 @@
 
 en:
   hello: "Hello world"
+  time:
+    formats:
+      default: "%A, %B %e, %Y %l:%M %p"
+      short: "%m %Y"
