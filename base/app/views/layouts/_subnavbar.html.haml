@@ -43,7 +43,7 @@
             %span FAQ
         %li
           -if user_signed_in? 
-            = link_to "https://api.stripemetrics.com/?api_token=#{current_user.token}" do
+            = link_to "https://api.stripemetrics.com/?api_token=#{current_user.api_token}" do
               %i.icon-cogs
               %span API
           -else
