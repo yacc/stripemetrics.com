@@ -41,3 +41,16 @@
           = link_to faq_path do
             %i.icon-lightbulb
             %span FAQ
+        %li
+          -if user_signed_in? 
+            = link_to "https://api.stripemetrics.com/?api_token=#{current_user.token}" do
+              %i.icon-cogs
+              %span API
+          -else
+            = link_to 'https://api.stripemetrics.com' do
+              %i.icon-cogs
+              %span API
+              
+
+
+            
