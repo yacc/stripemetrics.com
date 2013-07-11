@@ -5,6 +5,11 @@ module Stripemetrics
     version 'v1', :vendor => 'stripemetrics'
     format :json
 
+    before do
+        header['Access-Control-Allow-Origin'] = '*'
+        header['Access-Control-Request-Method'] = '*'
+    end
+
     use Rack::Session::Cookie, :secret => "superSuperSuperSecretKeyKey!!"
     use Warden::Manager do |manager|
       manager.default_strategies :password, :api_token
@@ -13,7 +18,7 @@ module Stripemetrics
     
     # ============================= IMPORTS =======================================
     namespace :imports do
-      desc "Forces refresh of your Stripe data."
+      desc "Forces a refresh of all your Stripe data by scheduling new imports."
       post :refresh do
         env['warden'].authenticate :api_token
         error! "Unauthorized", 401 unless current_user = env['warden'].user
@@ -26,7 +31,7 @@ module Stripemetrics
 
     # ============================= METRICS =======================================
     namespace :metrics do
-      desc "Forces refresh of your Stripe data."
+      desc "Displays metrics"
       get '/' do
         env['warden'].authenticate :api_token
         error! "Unauthorized", 401 unless current_user = env['warden'].user
@@ -35,7 +40,7 @@ module Stripemetrics
         type = :default
         present metrics, with: Stripemetrics::Entities::Metric, type: type
       end
-      desc "Forces refresh of your Stripe Metrics."
+      desc "Forces refresh of your metrics."
       post :refresh do
         env['warden'].authenticate :api_token
         error! "Unauthorized", 401 unless current_user = env['warden'].user
@@ -70,6 +75,8 @@ module Stripemetrics
         { :message => "pong #{current_user.email}" }
       end
     end
+
+    add_swagger_documentation :api_version => 'v1', :mount_path => 'doc'
 
   end    
 end
