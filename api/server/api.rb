@@ -29,6 +29,37 @@ module Stripemetrics
       end
     end
 
+    # ============================= CANCELLATIONS =======================================
+    namespace :cancellations do
+      desc "Lists customers that have canceled today"
+      get :today do
+        env['warden'].authenticate :api_token
+        error! "Unauthorized", 401 unless current_user = env['warden'].user
+        Grape::API.logger.info "listing all customers that have cancelled today for #{current_user.email}"
+        customers = current_user.customers.where(:canceled_at.gte => Time.new.beginning_of_day)
+        type = :default
+        present customers, with: Stripemetrics::Entities::Customers, type: type
+      end
+      desc "Lists customers that have canceled since one week ago"
+      get :lastweek do
+        env['warden'].authenticate :api_token
+        error! "Unauthorized", 401 unless current_user = env['warden'].user
+        Grape::API.logger.info "listing all customers that have cancelled last week for #{current_user.email}"
+        customers = current_user.customers.where(:canceled_at.gte => 1.week.ago)
+        type = :default
+        present customers, with: Stripemetrics::Entities::Customers, type: type
+      end
+      desc "Lists customers that have canceled since one month ago"
+      get :lastmonth do
+        env['warden'].authenticate :api_token
+        error! "Unauthorized", 401 unless current_user = env['warden'].user
+        Grape::API.logger.info "listing all customers that have cancelled last month for #{current_user.email}"
+        customers = current_user.customers.where(:canceled_at.gte => 1.month.ago)
+        type = :default
+        present customers, with: Stripemetrics::Entities::Customers, type: type
+      end
+    end
+
     # ============================= METRICS =======================================
     namespace :metrics do
       desc "Displays metrics"
