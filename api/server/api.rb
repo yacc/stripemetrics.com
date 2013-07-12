@@ -2,6 +2,7 @@ module Stripemetrics
 
   class Api < Grape::API
 
+    rescue_from :all
     version 'v1', :vendor => 'stripemetrics'
     format :json
 
