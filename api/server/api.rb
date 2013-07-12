@@ -38,7 +38,7 @@ module Stripemetrics
         Grape::API.logger.info "listing all customers that have cancelled today for #{current_user.email}"
         customers = current_user.customers.where(:canceled_at.gte => Time.new.beginning_of_day)
         type = :default
-        present customers, with: Stripemetrics::Entities::Customers, type: type
+        present customers, with: Stripemetrics::Entities::Customer, type: type
       end
       desc "Lists customers that have canceled since one week ago"
       get :lastweek do
@@ -47,7 +47,7 @@ module Stripemetrics
         Grape::API.logger.info "listing all customers that have cancelled last week for #{current_user.email}"
         customers = current_user.customers.where(:canceled_at.gte => 1.week.ago)
         type = :default
-        present customers, with: Stripemetrics::Entities::Customers, type: type
+        present customers, with: Stripemetrics::Entities::Customer, type: type
       end
       desc "Lists customers that have canceled since one month ago"
       get :lastmonth do
@@ -56,7 +56,7 @@ module Stripemetrics
         Grape::API.logger.info "listing all customers that have cancelled last month for #{current_user.email}"
         customers = current_user.customers.where(:canceled_at.gte => 1.month.ago)
         type = :default
-        present customers, with: Stripemetrics::Entities::Customers, type: type
+        present customers, with: Stripemetrics::Entities::Customer, type: type
       end
     end
 
