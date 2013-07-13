@@ -1,5 +1,5 @@
 Warden::Manager.serialize_into_session { |user| user.uid }
-Warden::Manager.serialize_from_session { |uid| User.get(uid) }
+Warden::Manager.serialize_from_session { |uid| User.find_by(uid:uid) }
 
 Warden::Strategies.add(:password) do
 

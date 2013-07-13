@@ -2,6 +2,7 @@ class Customer
   include Mongoid::Document
 
   field :stripe_id,    type: String
+  field :email,        type: String
   field :created,      type: Date
   field :canceled_at,  type: Date
   field :converted_at, type: Date
