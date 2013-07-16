@@ -4,7 +4,7 @@ module DashboardHelper
     if current_user.paid_charge_volume_trend.monthly.empty?
       '<div class="icon-question-sign"></div>'
     else
-      number_to_currency(current_user.paid_charge_volume_trend.monthly.last[1])
+      number_to_currency(current_user.paid_charge_volume_trend.monthly.last[1], precision: 0)
     end    
   end
 
@@ -15,9 +15,9 @@ module DashboardHelper
       this_month = current_user.paid_charge_volume_trend.monthly.last[1]
       last_month = current_user.paid_charge_volume_trend.monthly[-2][1]
       if this_month < last_month
-        "<i class=\"icon-arrow-down text-error\"> Monthly Revenue is down from #{ number_to_currency(last_month)}</i>"
+        "<i class=\"icon-arrow-down text-error\"> Monthly Revenue is down from #{ number_to_currency(last_month, precision: 0)}</i>"
       else  
-        "<i class=\"icon-arrow-up text-success\"> Monthly Revenue is up from #{ number_to_currency(last_month)}</i>"                   
+        "<i class=\"icon-arrow-up text-success\"> Monthly Revenue is up from #{ number_to_currency(last_month, precision: 0)}</i>"                   
       end
     end
   end
@@ -39,7 +39,7 @@ module DashboardHelper
       if this_month < last_month
         "<i class=\"icon-arrow-down text-error\"> Monthly new users is down from #{last_month}</i>"
        else  
-        "<i class=\"icon-arrow-down text-success\"> Monthly new users is up from #{last_month}</i>"
+        "<i class=\"icon-arrow-up text-success\"> Monthly new users is up from #{last_month}</i>"
       end
     end
   end
@@ -61,7 +61,7 @@ module DashboardHelper
       if this_month < last_month
         "<i class=\"icon-arrow-down text-success\"> Monthly cancellation is down from #{last_month}</i>"
        else  
-        "<i class=\"icon-arrow-down text-error\"> Monthly cancellation is up from #{last_month}</i>"
+        "<i class=\"icon-arrow-up text-error\"> Monthly cancellation is up from #{last_month}</i>"
       end
     end
   end
@@ -70,7 +70,7 @@ module DashboardHelper
     if current_user.failed_charge_volume_trend.monthly.empty?
       '<div class="icon-question-sign"></div>'
     else
-      number_to_currency(current_user.failed_charge_volume_trend.monthly.last[1])
+      number_to_currency(current_user.failed_charge_volume_trend.monthly.last[1], precision: 0)
     end    
   end
 
@@ -81,9 +81,9 @@ module DashboardHelper
       this_month = current_user.failed_charge_volume_trend.monthly.last[1]
       last_month = current_user.failed_charge_volume_trend.monthly[-2][1]
       if this_month < last_month
-        "<i class=\"icon-arrow-down text-success\"> Monthly failed charges is down from #{last_month}</i>"
+        "<i class=\"icon-arrow-down text-success\"> Monthly failed charges is down from #{number_to_currency(last_month, precision: 0)}</i>"
        else  
-        "<i class=\"icon-arrow-down text-error\"> Monthly failed charges is up from #{last_month}</i>"
+        "<i class=\"icon-arrow-up text-error\"> Monthly failed charges is up from #{number_to_currency(last_month, precision: 0)}</i>"
       end
     end
   end
