@@ -30,6 +30,37 @@ module Stripemetrics
       end
     end
 
+    # ============================= LOST REVENUE =======================================
+    namespace :lost_revenue do
+      desc "Lists charges that have failed today (lost revenue)"
+      get :today do
+        env['warden'].authenticate :api_token
+        error! "Unauthorized", 401 unless current_user = env['warden'].user
+        Grape::API.logger.info "listing all charges that have failed for #{current_user.email}"
+        charges = current_user.charges.where(paid:false).where(:created.gte => Time.new.beginning_of_day)
+        type = :default
+        present charges, with: Stripemetrics::Entities::FailedCharges, type: type
+      end
+      desc "Lists charges that have failed this week(lost revenue)"
+      get :lastweek do
+        env['warden'].authenticate :api_token
+        error! "Unauthorized", 401 unless current_user = env['warden'].user
+        Grape::API.logger.info "listing all charges that have failed for #{current_user.email}"
+        charges = current_user.charges.where(paid:false).where(:created.gte => 1.week.ago)
+        type = :default
+        present charges, with: Stripemetrics::Entities::FailedCharges, type: type
+      end
+      desc "Lists charges that have failed this month(lost revenue)"
+      get :lastmonth do
+        env['warden'].authenticate :api_token
+        error! "Unauthorized", 401 unless current_user = env['warden'].user
+        Grape::API.logger.info "listing all charges that have failed for #{current_user.email}"
+        charges = current_user.charges.where(paid:false).where(:created.gte => 1.month.ago)
+        type = :default
+        present charges, with: Stripemetrics::Entities::FailedCharges, type: type
+      end
+    end
+
     # ============================= CANCELLATIONS =======================================
     namespace :cancellations do
       desc "Lists customers that have canceled today"
