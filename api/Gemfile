@@ -10,7 +10,7 @@ gem "grape-entity"
 gem "warden"
 gem "cancan", ">= 1.6.8"
 gem "bcrypt-ruby", :require => "bcrypt"
-gem 'grape-swagger'
+gem 'grape-swagger', git:'git://github.com/tim-vandecasteele/grape-swagger'
 
 # jobs
 gem 'resque'

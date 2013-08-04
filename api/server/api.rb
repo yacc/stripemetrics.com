@@ -6,6 +6,7 @@ module Stripemetrics
     version 'v1', :vendor => 'stripemetrics'
     format :json
 
+
     before do
         header['Access-Control-Allow-Origin'] = '*'
         header['Access-Control-Request-Method'] = '*'
@@ -139,7 +140,8 @@ module Stripemetrics
       end
     end
 
-    add_swagger_documentation :api_version => 'v1', :mount_path => 'doc'
+
+    add_swagger_documentation :api_version => 'v1', :mount_path => 'doc', :hide_documentation_path => true
 
   end    
 end
