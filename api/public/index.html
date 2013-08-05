@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- start: Meta -->
     <meta charset="utf-8">
     <title>Stripemetrics API</title>
     <meta content="StripeMetrics API: analytics and metrics API for Stripe" name="description">
     <meta content="Yacin Bahi" name="author">
-    <!-- end: Meta -->
-    <!-- start: Mobile Specific -->
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
     <meta content="yes" name="apple-mobile-web-app-capable">
-    <!-- end: Mobile Specific -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
     <link href="/css/application.css" media="all" rel="stylesheet" type="text/css">
     <script async="" src="//www.google-analytics.com/analytics.js"></script>
     <script type="text/javascript" src="https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.js"></script>
@@ -34,8 +30,8 @@
     <script src='lib/underscore-min.js' type='text/javascript'></script>
     <script src='lib/backbone-min.js' type='text/javascript'></script>
     <script src='lib/swagger.js' type='text/javascript'></script>
-    <script src='swagger-ui.js' type='text/javascript'></script>
     <script src='lib/highlight.7.3.pack.js' type='text/javascript'></script>
+    <script src='swagger-ui.js' type='text/javascript'></script>
 
     <script type="text/javascript">
     function loadPageVar (sVar) {
@@ -47,7 +43,7 @@
         var token = "Api token";
         token = loadPageVar("api_token");
 	    window.swaggerUi = new SwaggerUi({
-                discoveryUrl:"https://api.stripemetrics.com/v1/doc.json",
+                discoveryUrl:window.location.origin + "/v1/resources.json",
                 apiKey:token,
                 apiKeyName:'api_token',
                 dom_id:"swagger-ui-container",

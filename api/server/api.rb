@@ -18,19 +18,6 @@ module Stripemetrics
       manager.failure_app = Stripemetrics::Api
     end
     
-    # ============================= IMPORTS =======================================
-    namespace :imports do
-      desc "Forces a refresh of all your Stripe data by scheduling new imports."
-      post :refresh do
-        env['warden'].authenticate :api_token
-        error! "Unauthorized", 401 unless current_user = env['warden'].user
-        Grape::API.logger.info "refreshing data for #{current_user.email}"
-        imports = current_user.refresh_data
-        type = :default
-        {:message => 'Imports have been scheduled.'}
-      end
-    end
-
     # ============================= LOST REVENUE =======================================
     namespace :lost_revenue do
       desc "Lists charges that have failed today (lost revenue)"
@@ -114,6 +101,20 @@ module Stripemetrics
         {:message => 'Metrics have been refreshed.'}
       end
     end
+    
+    # ============================= IMPORTS =======================================
+    namespace :imports do
+      desc "Forces a refresh of all your Stripe data by scheduling new imports."
+      post :refresh do
+        env['warden'].authenticate :api_token
+        error! "Unauthorized", 401 unless current_user = env['warden'].user
+        Grape::API.logger.info "refreshing data for #{current_user.email}"
+        imports = current_user.refresh_data
+        type = :default
+        {:message => 'Imports have been scheduled.'}
+      end
+    end
+
 
     # ============================= AUTH =======================================
     namespace :auth do
@@ -141,7 +142,7 @@ module Stripemetrics
     end
 
 
-    add_swagger_documentation :api_version => 'v1', :mount_path => 'doc', :hide_documentation_path => true
+    add_swagger_documentation :api_version => 'v1', :mount_path => 'resources', :hide_documentation_path => true
 
   end    
 end
