@@ -8,6 +8,8 @@ module Stripemetrics
       expose :desc
       expose :this_month
       expose :last_month
+      expose :this_month_ts
+      expose :last_month_ts
       expose :change
       expose :tsm_avrg
       expose :goal

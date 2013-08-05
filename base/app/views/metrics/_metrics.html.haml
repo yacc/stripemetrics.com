@@ -2,8 +2,14 @@
   %thead
     %tr
       %th
-      %th This month
-      %th Last month
+      %th 
+        This month
+        %br
+        (#{@metrics.first.this_month_ts})
+      %th 
+        Last month 
+        %br
+        (#{@metrics.first.last_month_ts})
       %th % change
       %th 
         TSM Average
@@ -12,11 +18,13 @@
   %tbody
     - @metrics.each do |m|
       %tr
-        %th=m.name
-        %td=(m.is_in_dollar? ? number_to_currency(m.this_month) : m.this_month)
-        %td=(m.is_in_dollar? ? number_to_currency(m.last_month) : m.last_month)
-        %td=(m.change.nil?   ? '?' : m.change.round(2))
-        %td=(m.tsm_avrg.nil? ? '?' : m.tsm_avrg.round(2))
+        %th
+          #{m.name}
+          <i class= 'icon-question-sign' rel="clickover" data-content= "#{m.desc.html_safe}"></i>
+        %td=(m.is_in_dollar? ? number_to_currency(m.this_month) : m.this_month.to_i)
+        %td=(m.is_in_dollar? ? number_to_currency(m.last_month) : m.last_month.to_i)
+        %td=(m.change.nil?   ? '?' : "%+d%" % (m.change.round(2)*100))
+        %td=(m.tsm_avrg.nil? ? '?' : "%+d%" % (m.tsm_avrg.round(2)*100))
         %td=(m.goal.nil?     ?  'not set' : m.goal)
 
 :javascript
