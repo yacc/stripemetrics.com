@@ -15,6 +15,7 @@ class User
   field :api_token,    type: String
   field :token,    type: String
   field :token_expires, type: Boolean
+  field :admin, type: Boolean, default: false
 
   # validates_uniqueness_of :email, :message => "already in use"
 

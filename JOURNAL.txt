@@ -1,3 +1,6 @@
+subl ~/dev/devops/stripemetrics.howto.txt
+
+
 == 2013-07-03 ==
 * cohort_table.monthly -> cancellation by month and month joined
 cohort.table = []

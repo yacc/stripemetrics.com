@@ -199,6 +199,8 @@ GEM
       rufus-scheduler
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    rollout (2.0.0)
+      redis
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
@@ -293,6 +295,7 @@ DEPENDENCIES
   resque
   resque-lock
   resque-scheduler
+  rollout
   rspec-rails (>= 2.12.2)
   sass-rails (~> 3.2)
   simple_form (>= 2.0.4)

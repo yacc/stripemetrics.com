@@ -25,6 +25,9 @@ gem "stripe_event"
 gem "figaro", ">= 0.5.3"
 gem "multipart-post", ">= 1.2.0"
 
+# controlled rollout of features
+gem "rollout"
+
 # view layer
 gem 'jquery-rails'
 gem "haml-rails", ">= 0.4"
