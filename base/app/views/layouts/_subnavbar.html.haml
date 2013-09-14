@@ -11,6 +11,11 @@
             = link_to metrics_path do
               %i.icon-bar-chart
               %span Metrics
+          - if $rollout.active?(:metric02, current_user)    
+            %li{:class => "#{'active' if current_page?(metrics20_path)}"}
+              = link_to metrics20_path do
+                %i.icon-bar-chart
+                %span Metrics 2.0
           %li{:class => "#{'active' if current_page?(cohort_path)}"}
             = link_to cohort_path do
               %i.icon-group

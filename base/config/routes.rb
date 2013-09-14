@@ -26,6 +26,7 @@ Stripemetrics::Application.routes.draw do
   # =============== OTHER ============================================
   match 'dashboard'        => 'dashboard#index',:as => :dashboard
   match 'metrics'          => 'metrics#index',:as => :metrics
+  match 'metrics20'        => 'metrics20#index',:as => :metrics20
   match 'cohort'           => 'cohorts#index',:as => :cohort
   match 'trends'           => 'trends#index',:as => :trends
   match 'status'           => 'imports#index',:as => :status

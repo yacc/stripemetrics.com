@@ -1,5 +1,10 @@
 subl ~/dev/devops/stripemetrics.howto.txt
 
+== 2013-09-13 ==
+Laveraging RollOut
+
+$rollout.activate_user(:metric02, yacin)
+
 
 == 2013-07-03 ==
 * cohort_table.monthly -> cancellation by month and month joined
