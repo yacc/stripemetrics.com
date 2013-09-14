@@ -1,0 +1,12 @@
+.main
+  .main-inner
+    .container
+      .row
+        .span12
+          = render "/charts/details_chart", 
+                :title  => @trend.name,
+                :data   => @data,
+                :start  => @trend.start_date,
+                :div    => "trend_trend_chart",
+                :type   => @trend.class,
+                :unit   => @unit

@@ -1,0 +1,73 @@
+.widget
+  .widget-header
+    %i.icon-star
+    %h3=title
+    .btn-group{"data-toggle" => "buttons-radio"}
+      %button.btn{:id=> "#{div}_day"} Dy
+      %button.btn{:id=> "#{div}_week"} Wk
+      %button.btn{:id=> "#{div}_month"} Mo
+  .widget-content
+    .chart-holder{:id=> div}
+
+:javascript
+
+  var #{div} = new Highcharts.StockChart({
+    chart : {
+      renderTo : "#{div}"
+    },
+    rangeSelector : {
+      selected : 1,
+      inputEnabled : false
+    },
+
+    navigator : {
+      height : 30
+    },
+
+    xAxis : {
+      maxZoom : 14 * 24 * 3600000 // fourteen days
+    },
+
+    series : [{
+      name : "#{title}",
+      data : #{data || []},
+      tooltip : {
+        yDecimals : 4
+      }
+    }]
+  });
+
+  $("##{div}_day").click(function() {
+    $.ajax({
+    type: "GET",
+    url: "#{trend_path}",
+    data: {"type": "#{type}","group_by": "daily"},
+    dataType: 'json',
+    success: function(data){
+          #{div}.series[0].setData(data);
+      }
+    });
+  });
+  $("##{div}_week").click(function() {
+    $.ajax({
+    type: "GET",
+    url: "#{trend_path}",
+    data: {"type": "#{type}","group_by": "weekly"},
+    dataType: 'json',
+    success: function(data){
+          #{div}.series[0].setData(data);
+      }
+    });
+  });
+  $("##{div}_month").click(function() {
+    $.ajax({
+    type: "GET",
+    url: "#{trend_path}",
+    data: {"type": "#{type}","group_by": "monthly"},
+    dataType: 'json',
+    success: function(data){
+          #{div}.series[0].setData(data);
+      }
+    });
+  });
+

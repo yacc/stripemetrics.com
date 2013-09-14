@@ -1,0 +1,46 @@
+.main
+  .main-inner
+    .container
+      .row
+        .span6
+          = render "/charts/overview_chart", 
+                  :title  => "Monthly Revenue",
+                  :icon   => "icon-thumbs-up",
+                  :object => @paid_charges,
+                  :data   => @paid_charges.monthly,
+                  :start  => @paid_charges.start_date,
+                  :div    => "paid_charges_trend_chart",
+                  :type   => 'column',
+                  :ylabel => %Q{'$' + ((this.value>1000) ? (this.value/1000 +'k') : (this.value))},
+                  :ttunit => '$'
+        .span6    
+          = render "/charts/overview_chart", :title  => "Failed Charges",
+                  :object => @failed_charges,
+                  :icon   => "icon-thumbs-down",
+                  :data   => @failed_charges.monthly,
+                  :start  => @failed_charges.start_date,
+                  :div    => "failed_charges_trend_chart",
+                  :type   => 'column',
+                  :ylabel => %Q{'$' + ((this.value>1000) ? (this.value/1000 +'k') : (this.value))},
+                  :ttunit => '$'
+      .row
+        .span6
+          = render "/charts/overview_chart", :title => 'New Users',
+                  :object => @customers,
+                  :icon   => "icon-thumbs-up",
+                  :data   => @customers.monthly,
+                  :start  => @customers.start_date,
+                  :div    => "customers_trend_chart",
+                  :type   => 'area',
+                  :ylabel => %Q{this.value},
+                  :ttunit => ''
+        .span6
+          = render "/charts/overview_chart", :title => 'Cancellation',
+                  :object => @cancelations,
+                  :icon   => "icon-thumbs-down",
+                  :data   => @cancelations.monthly,
+                  :start  => @cancelations.start_date,
+                  :div    => "cancelations_trend_chart",
+                  :type   => 'area',
+                  :ylabel => %Q{this.value},
+                  :ttunit => ''

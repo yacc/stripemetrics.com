@@ -1,38 +1,5 @@
-.main
-  .main-inner
-    .container
-      .row
-        .span12
-          = render "bigstats"
-      .row
-        .span6
-          = render "stock_chart_v1", :title  => "Revenue",
-                            :data   => @paid_charges.daily,
-                            :start  => @paid_charges.start_date,
-                            :div    => "paid_charges_trend_chart",
-                            :type   => 'paid_charge_volume_trend',
-                            :unit   => '$'
-        .span6    
-          = render "stock_chart_v1", :title  => "Failed Charges",
-                            :data   => @failed_charges.daily,
-                            :start  => @failed_charges.start_date,
-                            :div    => "failed_charges_trend_chart",
-                            :type   => 'failed_charge_volume_trend',
-                            :unit   => '$'
-      .row
-        .span6
-          = render "stock_chart_v1", :title => 'New Users',
-                            :data   => @customers.daily,
-                            :start  => @customers.start_date,
-                            :div    => "customers_trend_chart",
-                            :type   => 'acquisition_trend',
-                            :unit   => ''
-        .span6
-          = render "stock_chart_v1", :title => 'Cancellation',
-                            :data   => @cancelations.daily,
-                            :start  => @cancelations.start_date,
-                            :div    => "cancelations_trend_chart",
-                            :type   => 'cancellation_trend',
-                            :unit   => ''
-
+- if $rollout.active?(:dashboard_v2, current_user) 
+  = render 'index2'
+- else  
+  = render 'index1'
 

@@ -28,7 +28,8 @@ Stripemetrics::Application.routes.draw do
   match 'metrics'          => 'metrics#index',:as => :metrics
   match 'metrics20'        => 'metrics20#index',:as => :metrics20
   match 'cohort'           => 'cohorts#index',:as => :cohort
-  match 'trends'           => 'trends#index',:as => :trends
+  # match 'trends'           => 'trends#index',:as => :trends
+  match 'trend'            => 'trends#show',:as => :trend
   match 'status'           => 'imports#index',:as => :status
 
   # match 'jobs'                     => 'jobs#index',      :as => :jobs      

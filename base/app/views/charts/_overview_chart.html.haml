@@ -1,0 +1,61 @@
+.widget
+  .widget-header
+    %i{:class => icon}
+    = title
+    (#{link_to "click for detailed analysis", trend_path(type:object.class,group_by:"monthly")})
+  .widget-content
+    .chart-holder{:id=> div}
+
+:javascript
+  var chart = new Highcharts.Chart({
+      chart: {
+          renderTo: "#{div}",
+          height: 350,
+          type: "#{type}"
+      },
+      title: {
+        text:''
+      },
+      xAxis: {
+          type: 'datetime',
+          maxZoom: 14 * 24 * 3600000, // fourteen days
+          title: {
+              text: null
+          }
+      },
+      yAxis: {
+          labels: {
+            formatter: function () {
+              return #{ylabel};
+            }
+          },  
+          type: 'currency',
+          min:0,
+          title: {
+              text: '#{title}'
+          }
+      },
+      tooltip: {
+          headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+          pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                           "<td style=\"padding:0\"><b>#{ttunit}{point.y}</b></td></tr>",
+          footerFormat: '</table>',
+          shared: true,
+          useHTML: true
+      },
+      legend: {
+          enabled: false
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0
+        }
+      },
+      series: [{
+          name: '#{(title || 'Chart')}',
+          pointInterval: 24 * 3600 * 1000,
+          pointStart: #{start || Time.now.to_i},
+          data: #{data || []}
+      }]
+  });
