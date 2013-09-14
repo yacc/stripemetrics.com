@@ -118,6 +118,7 @@ class User
 
   def refresh_metrics20
     (self.booking_metric.nil? ? self.create_booking_metric : self.booking_metric).refresh!
+    (self.new_mrr_metric.nil? ? self.create_new_mrr_metric : self.new_mrr_metric).refresh!
   end
 
   def refresh_cohorts
