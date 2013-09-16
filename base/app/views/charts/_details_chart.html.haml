@@ -1,13 +1,13 @@
-.widget
+.widget.stacked
   .widget-header
     %i.icon-star
     %h3=title
+    Group by
     .btn-group{"data-toggle" => "buttons-radio"}
       %button.btn{:id=> "#{div}_day"} Dy
       %button.btn{:id=> "#{div}_week"} Wk
       %button.btn{:id=> "#{div}_month"} Mo
-  .widget-content
-    .chart-holder{:id=> div}
+  .widget-content{:id=> div}
 
 :javascript
 
@@ -15,9 +15,13 @@
     chart : {
       renderTo : "#{div}"
     },
+
     rangeSelector : {
-      selected : 1,
-      inputEnabled : false
+      selected : 2
+    },
+
+    credits: {
+      enabled: false
     },
 
     navigator : {
@@ -28,6 +32,25 @@
       maxZoom : 14 * 24 * 3600000 // fourteen days
     },
 
+    yAxis: {
+        labels: {
+          formatter: function () {
+            return #{ylabel};
+          }
+        },  
+        min:0,
+        title: {
+            text: '#{title}'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                         "<td style=\"padding:0\"><b>#{ttunit}{point.y}</b></td></tr>",
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
     series : [{
       name : "#{title}",
       data : #{data || []},

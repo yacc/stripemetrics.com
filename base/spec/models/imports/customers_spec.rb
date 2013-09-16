@@ -21,7 +21,7 @@ describe "Imports" do
       sub.canceled_at.should eq(nil)
       sub.ended_at.should eq(nil)
       sub.status.should eq("trialing") 
-      sub.plan.should be_nil
+      sub.plan.should_not be_nil
     end
 
     it "should create a valid customer from an API call" do

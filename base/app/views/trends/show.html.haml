@@ -1,12 +1,16 @@
 .main
-  .main-inner
-    .container
-      .row
-        .span12
-          = render "/charts/details_chart", 
-                :title  => @trend.name,
-                :data   => @data,
-                :start  => @trend.start_date,
-                :div    => "trend_trend_chart",
-                :type   => @trend.class,
-                :unit   => @unit
+  .container
+    .row
+      .col-md-6
+        = render "/charts/details_chart", 
+              :title  => @trend.name,
+              :data   => @data,
+              :start  => @trend.start_date,
+              :div    => "trend_trend_chart",
+              :type   => @trend.class,
+              :ylabel => formated_axis_label(@trend),
+              :unit   => @trend.unit,
+              :ttunit => (@trend.unit == "dollars" ? '$' : '')
+    .row
+      .col-md-6
+        = render ""

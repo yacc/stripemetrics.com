@@ -8,6 +8,7 @@ class NewMrrTrend < Trend
   def refresh!
     self.monthly = refresh_monthly
     self.name    = "New MRR"
+    self.unit    = "dollars"
     self.save
   end
 

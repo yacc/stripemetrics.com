@@ -12,6 +12,7 @@ describe CustomerImport do
   let(:customers_23_json) {Rails.root.join("spec","fixtures","charge_all_response_from_stripe_23_customers.json")}
   let(:customers_9_json) {Rails.root.join("spec","fixtures","charge_all_response_from_stripe_9_customers.json")}
   let(:api_token) {'NsYmhRReX6amReKBK6cKBg60Xe9pyF6W'}
+  let(:acustomer) {import = user.customer_imports.create(end_at:1375825457,start_at:1375825458,token:api_token);Customer.last}
 
   describe "should create a new import" do
     it "from start_at and end_at" do
@@ -26,42 +27,31 @@ describe CustomerImport do
       import.mode.should eq(:from_stripe)
       import.from_stripe_api?.should be_true
     end    
-    it "from file" do
-      import = user.customer_imports.create(start_at:1368403200,end_at:1369007999,mode: :from_file, file:customers_9_json)
-      import.should be_valid
-      import.mode.should eq(:from_file)
-      import.file.should eq(customers_9_json.to_s)
-      import.from_file?.should be_true
-    end    
   end
 
   describe "should create" do
-    pending "6 objects from file" do
+    it "10 objects from api" do
       lambda do 
-        import = user.customer_imports.create(end_at:1370224410,start_at:1370282280,mode: :from_file,file:customers_9_json)
-        import.reload.count.should eq(9)
-      end.should change(Charge, :count).by(9)
+        import = user.customer_imports.create(end_at:1375825407,start_at:1375825450,token:api_token)
+        import.reload.count.should eq(10)
+      end.should (change(Customer, :count).by(15) and change(CustomerImport, :count).by(2))
     end    
-    it "6 objects from api" do
+    it "1 objects from api in 5 object bunch" do
       lambda do 
-        import = user.customer_imports.create(end_at:1370224404,start_at:1370282280,token:api_token)
-        import.reload.count.should eq(5)
-      end.should change(Charge, :count).by(5)
-    end    
-    it "29 objects from api in 5 object bunch" do
-      lambda do 
-        import = user.customer_imports.create(:limit => 5,end_at:1370115404,start_at:1370282280,token:api_token)      
-        import.reload.count.should eq(5) 
-      end.should change(Charge, :count).by(28)
-    end    
-    it "29 objects from api in 10 object bunch" do
-      lambda do 
-        import = user.customer_imports.create(:limit => 10,end_at:1370115404,start_at:1370282280,token:api_token)      
-        import.reload.count.should eq(10) 
-      end.should change(Charge, :count).by(28)
+        import = user.customer_imports.create(limit:3,end_at:1375825407,start_at:1375825450,token:api_token)      
+        import.reload.count.should eq(3) 
+      end.should (change(Customer, :count).by(15) and change(CustomerImport, :count).by(5)) 
     end    
   end
 
+  describe "should persiste" do
+    it "the subscription" do
+      acustomer.should_not be_nil
+      acustomer.subscription.should_not be_nil
+    end  
+    it "the plan" do
+      acustomer.subscription.plan.should_not be_nil
+    end
+  end
+    
 end
-
-

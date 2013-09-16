@@ -2,17 +2,21 @@
   .widget-header
     %i{:class => icon}
     = title
-    (#{link_to "click for detailed analysis", trend_path(type:object.class,group_by:"monthly")})
-  .widget-content
-    .chart-holder{:id=> div}
+    (#{link_to "access full report", trend_path(type:object.class,group_by:"daily")})
+  .widget-content{:id=> div}
 
 :javascript
   var chart = new Highcharts.Chart({
       chart: {
           renderTo: "#{div}",
-          height: 350,
+          height: 200,
           type: "#{type}"
       },
+
+      credits: {
+        enabled: false
+      },
+
       title: {
         text:''
       },

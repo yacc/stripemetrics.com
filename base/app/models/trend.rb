@@ -5,6 +5,7 @@ class Trend
   field :name,     type: String
   field :interval, type: String
   field :start_date, type: Integer
+  field :unit,       type: String
 
   field :daily,      type: Array, :default => []
   field :daily_no_ts,type: Array, :default => []

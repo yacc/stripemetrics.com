@@ -6,6 +6,7 @@ class PaidChargeVolumeTrend < Trend
     self.monthly = refresh_monthly
     self.start_date = self.daily[0][0] unless self.daily.nil? || self.daily[0].nil?
     self.name    = "Paid Charges Volume"
+    self.unit    = "dollars"
     self.save
   end
 

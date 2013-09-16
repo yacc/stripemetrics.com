@@ -8,6 +8,7 @@ class BookingTrend < Trend
   def refresh!
     self.monthly = refresh_monthly
     self.name    = "Booking"
+    self.unit    = "dollars"
     self.save
   end
 

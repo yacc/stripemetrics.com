@@ -6,6 +6,7 @@ class AcquisitionTrend < Trend
     self.monthly = refresh_monthly
     self.start_date = self.daily[0][0] unless self.daily.nil? || self.daily[0].nil?
     self.name    = "New Customers"
+    self.unit    = "count"
     self.save
   end
 

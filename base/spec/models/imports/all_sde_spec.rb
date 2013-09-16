@@ -8,7 +8,7 @@ describe SdeImport do
     Resque.inline = resque_state
   end
 
-  let(:user) {User.make!} 
+  let(:user) {User.make!(:basic)} 
   let(:api_token) {'NsYmhRReX6amReKBK6cKBg60Xe9pyF6W'}
 
   context "should create a new import" do
@@ -27,26 +27,24 @@ describe SdeImport do
   end
 
   describe "should create" do
-    it "6 objects from api" do
+    it "2 objects from api" do
       lambda do 
-        import = user.sde_imports.create(end_at:1370224404,start_at:1370282280,token:api_token)
-        import.reload.count.should eq(5)
-      end.should change(Charge, :count).by(5)
+        import = user.sde_imports.create(start_at:1375825277,end_at:1368668811,token:api_token)
+        import.reload.count.should eq(2)
+      end.should change(Customer, :count).by(2)
     end    
-    it "29 objects from api in 5 object bunch" do
-      lambda do 
-        import = user.sde_imports.create(:limit => 5,end_at:1370115404,start_at:1370282280,token:api_token)      
-        import.reload.count.should eq(5) 
-      end.should change(Charge, :count).by(28)
+    it "11 objects from api (in default chunk size of 10 using 2 imports)" do
+      lambda {
+        import = user.sde_imports.create(start_at:1375825277,end_at:1363446679,token:api_token)      
+        import.reload.count.should eq(10)         
+      }.should (change(Customer, :count).by(11) and change(SdeImport,:count).by(2))
     end    
-    it "29 objects from api in 10 object bunch" do
-      lambda do 
-        import = user.sde_imports.create(:limit => 10,end_at:1370115404,start_at:1370282280,token:api_token)      
-        import.reload.count.should eq(10) 
-      end.should change(Charge, :count).by(28)
+    it "11 objects from api (in default chunk size of 3 using 4 imports)" do
+      lambda {
+        import = user.sde_imports.create(limit:3, start_at:1375825277,end_at:1363446679,token:api_token)      
+        import.reload.count.should eq(3)         
+      }.should (change(Customer, :count).by(11) and change(SdeImport,:count).by(4))
     end    
   end
 
 end
-
-

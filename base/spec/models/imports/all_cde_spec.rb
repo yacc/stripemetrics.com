@@ -27,26 +27,18 @@ describe CdeImport do
   end
 
   describe "should create" do
-    it "6 objects from api" do
+    it "1 objects from api" do
       lambda do 
-        import = user.cde_imports.create(end_at:1370224404,start_at:1370282280,token:api_token)
+        import = user.cde_imports.create(end_at:1316197169,start_at:1379355565,token:api_token)
         import.reload.count.should eq(5)
-      end.should change(Charge, :count).by(5)
+      end.should (change(Customer, :count).by(5) and change(CdeImport, :count).by(1))
     end    
-    it "29 objects from api in 5 object bunch" do
+    it "1 objects from api in 5 object bunch" do
       lambda do 
-        import = user.cde_imports.create(:limit => 5,end_at:1370115404,start_at:1370282280,token:api_token)      
-        import.reload.count.should eq(5) 
-      end.should change(Charge, :count).by(28)
-    end    
-    it "29 objects from api in 10 object bunch" do
-      lambda do 
-        import = user.cde_imports.create(:limit => 10,end_at:1370115404,start_at:1370282280,token:api_token)      
-        import.reload.count.should eq(10) 
-      end.should change(Charge, :count).by(28)
+        import = user.cde_imports.create(limit:3,end_at:1316197169,start_at:1379355565,token:api_token)      
+        import.reload.count.should eq(3) 
+      end.should (change(Customer, :count).by(5) and change(CdeImport, :count).by(2)) 
     end    
   end
 
 end
-
-

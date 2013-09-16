@@ -141,7 +141,7 @@ class User
       self.cde_imports.create(start_at:Time.now,end_at:BEGINING_OF_TIME,token:self.token,limit:MAX_IMPORTS)        
       self.sde_imports.create(start_at:Time.now,end_at:BEGINING_OF_TIME,token:self.token,limit:MAX_IMPORTS)              
     rescue Exception => e
-      logger.error "YYY: failed to schedule imports for users #{self._id}"
+      logger.error "YYY: failed to schedule imports for users #{self._id}\n#{e.message}"
     end
   end
 

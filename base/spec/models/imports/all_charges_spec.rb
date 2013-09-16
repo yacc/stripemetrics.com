@@ -12,6 +12,7 @@ describe ChargeImport do
   let(:charges_23_json) {Rails.root.join("spec","fixtures","charge_all_response_from_stripe_23_objects.json")}
   let(:charges_9_json) {Rails.root.join("spec","fixtures","charge_all_response_from_stripe_9_objects.json")}
   let(:api_token) {'NsYmhRReX6amReKBK6cKBg60Xe9pyF6W'}
+  let(:acharge) {import = user.charge_imports.create(end_at:1379357611,start_at:1379357612,token:api_token);Charge.last}
 
   context "should create a new import" do
     it "from start_at and end_at" do
@@ -62,6 +63,25 @@ describe ChargeImport do
     end    
   end
 
-end
+  describe "should persiste" do
+    it "the created data" do
+      acharge.created.should_not be_nil
+    end
+    it "the credit card" do
+      acharge.should_not be_nil
+      acharge.card.should_not be_nil
+    end  
+    it "the credit card type" do
+      acharge.card.card_type.should_not be_nil
+    end
+    it "the credit card expiration date" do
+      acharge.card.exp_month.should_not be_nil
+      acharge.card.exp_year.should_not be_nil
+    end
+    it "the country" do
+      acharge.card.country.should_not be_nil
+    end
+  end
 
+end
 

@@ -26,8 +26,8 @@ namespace :refresh do
   desc "refreshes new_mrr flag on charge"
   task :new_mrr => :environment do
       time_start = Time.now
-      Charge.each do |charge|
-        charge.update_attribute(:new_mrr,true) if charge.is_charge_from_new_customer? 
+      Customer.each do |cust|
+        cust.refresh_new_mrr_flag
       end
       puts "Finished refreshing user cohorts in #{Time.now - time_start} seconds"
   end  
