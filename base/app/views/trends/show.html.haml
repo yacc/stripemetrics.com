@@ -6,11 +6,29 @@
               :title  => @trend.name,
               :data   => @data,
               :start  => @trend.start_date,
-              :div    => "trend_trend_chart",
+              :div    => "trend_chart",
               :type   => @trend.class,
               :ylabel => formated_axis_label(@trend),
               :unit   => @trend.unit,
               :ttunit => (@trend.unit == "dollars" ? '$' : '')
     .row
       .col-md-6
-        = render ""
+        = render "/charts/details_chart_stacked", 
+              :title  => "By Countries",
+              :series => @series.to_json,
+              :start  => @trend.start_date,
+              :div    => "trend_stacked_chart",
+              :type   => @trend.class,
+              :ylabel => formated_axis_label(@trend),
+              :unit   => @trend.unit,
+              :ttunit => (@trend.unit == "dollars" ? '$' : '')
+    .row
+      .col-md-6
+        = render "/tables/trend_with_grouping",
+              :title  => @trend.name,
+              :series => @series,
+              :xaxis  => @xaxis,
+              :start  => @trend.start_date,
+              :div    => "trend_table",
+              :unit   => @trend.unit,
+              :type   => @trend.class

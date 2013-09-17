@@ -29,6 +29,31 @@ class PaidChargeVolumeTrend < Trend
     end.sort_by{|k|k[0]}
   end
 
+  def group_by_month_and_by_countries
+    volume = {}
+    xaxis     = []
+    countries = []
+    self.user.charges.collection.aggregate([match,project,groupby("month")]).each do |data|
+      ts      = (Time.new(data["_id"]["year"]) + (data["_id"]["month"]).month).to_i*1000
+      country = data["_id"]["country"]
+      volume[country] ||= {}
+      volume[country][ts] = data["volume"]/100.0
+      countries << country
+      xaxis << ts
+    end
+    countries.uniq!
+    xaxis.uniq!.sort!
+    series = []
+    countries.each do |country|
+      entry = {'name'=>country,'data'=>[]}
+      xaxis.each do |mo|
+        entry['data'] << [mo,((volume[country][mo]).nil? ? 0 : volume[country][mo])]
+      end
+      series << entry
+    end
+    series
+  end
+
   private
 
   def match
@@ -41,6 +66,7 @@ class PaidChargeVolumeTrend < Trend
     {"$project" => 
       {
         "amount"  => "$amount",
+        "country" => "$card.country" ,
         "year"    => { "$year"  => "$created"}, 
         "month"   => { "$month" => "$created"},
         "week"    => { "$week"  => "$created"}, 
@@ -61,7 +87,7 @@ class PaidChargeVolumeTrend < Trend
       }
     when "month"      
       { "$group" =>
-        { "_id" => {"year"=>"$year", "month"=>"$month"}, "volume" => { "$sum" => "$amount" } } 
+        { "_id" => {"year"=>"$year", "month"=>"$month","country"=>"$country"}, "volume" => { "$sum" => "$amount" } } 
       }
     end
 

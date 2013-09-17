@@ -1,0 +1,9 @@
+.widget.stacked
+  .widget-header
+    %i.icon-star
+    %h3 Example
+    Group by
+    .btn-group{"data-toggle" => "buttons-radio"}
+      %button.btn{:id=> "#{div}_country"} Country
+      %button.btn{:id=> "#{div}_ctype"} Card Type
+  .widget-content{:id=> div}

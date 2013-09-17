@@ -125,15 +125,6 @@ class User
     self.cohort.refresh!
   end
 
-  protected 
-
-  def generate_api_token 
-    self.api_token = loop do
-      random_token = SecureRandom.urlsafe_base64
-      break random_token unless User.where(api_token: random_token).exists?
-    end
-  end
-
   def schedule_imports
     begin
       self.charge_imports.create(start_at:Time.now,end_at:BEGINING_OF_TIME,token:self.token,limit:MAX_IMPORTS)        
@@ -144,5 +135,16 @@ class User
       logger.error "YYY: failed to schedule imports for users #{self._id}\n#{e.message}"
     end
   end
+
+
+  protected 
+
+  def generate_api_token 
+    self.api_token = loop do
+      random_token = SecureRandom.urlsafe_base64
+      break random_token unless User.where(api_token: random_token).exists?
+    end
+  end
+
 
 end

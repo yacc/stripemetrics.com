@@ -1,0 +1,29 @@
+.widget.stacked
+  .widget-header
+    %i.icon-star
+    %h3=title
+  .widget-content{:id=> div}
+
+:javascript
+
+  //var #{div} = new Highcharts.Chart(
+  var #{div} = new Highcharts.StockChart(
+    {
+      chart: {
+          type: 'column',
+          renderTo : "#{div}"
+      },
+      
+      xAxis: {
+          type: 'datetime'
+      },
+  
+      plotOptions: {
+          column: {
+              stacking: 'normal'
+          }
+      },
+  
+      series: #{series} 
+    }
+  );
