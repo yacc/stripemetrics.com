@@ -70,6 +70,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
+    crack (0.3.2)
     daemons (1.1.9)
     database_cleaner (1.0.1)
     debug_inspector (0.0.2)
@@ -260,8 +261,12 @@ GEM
     uglifier (2.1.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    vcr (2.5.0)
     vegas (0.1.11)
       rack (>= 1.0.0)
+    webmock (1.11.0)
+      addressable (>= 2.2.7)
+      crack (>= 0.3.2)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -305,3 +310,5 @@ DEPENDENCIES
   stripe_event
   thin (>= 1.5.0)
   uglifier (>= 1.0.3)
+  vcr
+  webmock

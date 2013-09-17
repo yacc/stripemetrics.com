@@ -24,7 +24,7 @@ describe "Imports" do
       sub.plan.should_not be_nil
     end
 
-    it "should create a valid customer from an API call" do
+    it "should create a valid customer from an API call", :vcr do
       obj = Stripe::Customer.retrieve("cus_1vExioyzHOiGOT",api_token)
       cust = Customer.create(Customer.from_stripe(obj.as_json))
 

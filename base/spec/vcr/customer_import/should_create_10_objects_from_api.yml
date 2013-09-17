@@ -1,0 +1,343 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.stripe.com/v1/customers?count=10&created%5Bgte%5D=1375825407&created%5Blt%5D=1375825450
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.8.3
+      Authorization:
+      - Bearer NsYmhRReX6amReKBK6cKBg60Xe9pyF6W
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - ! '{"bindings_version":"1.8.3","lang":"ruby","lang_version":"1.9.3 p125 (2012-02-16)","platform":"x86_64-darwin10.8.0","publisher":"stripe","uname":"Darwin
+        Yacin-Bahis-MacBook-Pro.local 10.8.0 Darwin Kernel Version 10.8.0: Tue Jun  7
+        16:33:36 PDT 2011; root:xnu-1504.15.3~1/RELEASE_I386 i386"}'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 17 Sep 2013 00:36:25 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '12800'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '300'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: US-ASCII
+      string: ! "{\n  \"object\": \"list\",\n  \"count\": 14,\n  \"url\": \"/v1/customers\",\n
+        \ \"data\": [\n    {\n      \"object\": \"customer\",\n      \"created\":
+        1375825444,\n      \"id\": \"cus_2KyBY3J10Z2FNJ\",\n      \"livemode\": false,\n
+        \     \"description\": \"2 user-0044@sensr.net 995:usd:month:7 on test\",\n
+        \     \"email\": \"user-0044@sensr.net\",\n      \"subscription\": {\n        \"id\":
+        \"su_2KyBaLl2g8HvhE\",\n        \"plan\": {\n          \"interval\": \"month\",\n
+        \         \"name\": \"Sensr Plan usd 995/month\",\n          \"amount\": 995,\n
+        \         \"currency\": \"usd\",\n          \"id\": \"995:usd:month:7\",\n
+        \         \"object\": \"plan\",\n          \"livemode\": false,\n          \"interval_count\":
+        1,\n          \"trial_period_days\": 7,\n          \"identifier\": \"995:usd:month:7\"\n
+        \       },\n        \"object\": \"subscription\",\n        \"start\": 1375825444,\n
+        \       \"status\": \"trialing\",\n        \"customer\": \"cus_2KyBY3J10Z2FNJ\",\n
+        \       \"current_period_start\": 1375825444,\n        \"current_period_end\":
+        1502055906,\n        \"trial_start\": 1375825444,\n        \"trial_end\":
+        1502055906,\n        \"quantity\": 1\n      },\n      \"account_balance\":
+        0,\n      \"cards\": {\n        \"object\": \"list\",\n        \"count\":
+        0,\n        \"url\": \"/v1/customers/cus_2KyBY3J10Z2FNJ/cards\",\n        \"data\":
+        []\n      },\n      \"default_card\": null,\n      \"next_recurring_charge\":
+        {\n        \"date\": \"2017-08-06\",\n        \"amount\": 995\n      }\n    },\n
+        \   {\n      \"object\": \"customer\",\n      \"created\": 1375825443,\n      \"id\":
+        \"cus_2KyBGxynYZpwyy\",\n      \"livemode\": false,\n      \"description\":
+        \"1 user-0043@sensr.net 995:usd:month:7 on test\",\n      \"email\": \"user-0043@sensr.net\",\n
+        \     \"subscription\": {\n        \"id\": \"su_2KyB2ZJIx8q8uA\",\n        \"plan\":
+        {\n          \"interval\": \"month\",\n          \"name\": \"Sensr Plan usd
+        995/month\",\n          \"amount\": 995,\n          \"currency\": \"usd\",\n
+        \         \"id\": \"995:usd:month:7\",\n          \"object\": \"plan\",\n
+        \         \"livemode\": false,\n          \"interval_count\": 1,\n          \"trial_period_days\":
+        7,\n          \"identifier\": \"995:usd:month:7\"\n        },\n        \"object\":
+        \"subscription\",\n        \"start\": 1375825443,\n        \"status\": \"trialing\",\n
+        \       \"customer\": \"cus_2KyBGxynYZpwyy\",\n        \"current_period_start\":
+        1375825443,\n        \"current_period_end\": 1502055905,\n        \"trial_start\":
+        1375825443,\n        \"trial_end\": 1502055905,\n        \"quantity\": 1\n
+        \     },\n      \"account_balance\": 0,\n      \"cards\": {\n        \"object\":
+        \"list\",\n        \"count\": 0,\n        \"url\": \"/v1/customers/cus_2KyBGxynYZpwyy/cards\",\n
+        \       \"data\": []\n      },\n      \"default_card\": null,\n      \"next_recurring_charge\":
+        {\n        \"date\": \"2017-08-06\",\n        \"amount\": 995\n      }\n    },\n
+        \   {\n      \"object\": \"customer\",\n      \"created\": 1375825441,\n      \"id\":
+        \"cus_2KyB8kIeMsFKNH\",\n      \"livemode\": false,\n      \"description\":
+        \"1 user-0042@sensr.net 995:usd:month:7 on test\",\n      \"email\": \"user-0042@sensr.net\",\n
+        \     \"subscription\": {\n        \"id\": \"su_2KyBmQlxfUDkGm\",\n        \"plan\":
+        {\n          \"interval\": \"month\",\n          \"name\": \"Sensr Plan usd
+        995/month\",\n          \"amount\": 995,\n          \"currency\": \"usd\",\n
+        \         \"id\": \"995:usd:month:7\",\n          \"object\": \"plan\",\n
+        \         \"livemode\": false,\n          \"interval_count\": 1,\n          \"trial_period_days\":
+        7,\n          \"identifier\": \"995:usd:month:7\"\n        },\n        \"object\":
+        \"subscription\",\n        \"start\": 1375825441,\n        \"status\": \"trialing\",\n
+        \       \"customer\": \"cus_2KyB8kIeMsFKNH\",\n        \"current_period_start\":
+        1375825441,\n        \"current_period_end\": 1502055903,\n        \"trial_start\":
+        1375825441,\n        \"trial_end\": 1502055903,\n        \"quantity\": 1\n
+        \     },\n      \"account_balance\": 0,\n      \"cards\": {\n        \"object\":
+        \"list\",\n        \"count\": 0,\n        \"url\": \"/v1/customers/cus_2KyB8kIeMsFKNH/cards\",\n
+        \       \"data\": []\n      },\n      \"default_card\": null,\n      \"next_recurring_charge\":
+        {\n        \"date\": \"2017-08-06\",\n        \"amount\": 995\n      }\n    },\n
+        \   {\n      \"object\": \"customer\",\n      \"created\": 1375825438,\n      \"id\":
+        \"cus_2KyB0ZxtcykPVj\",\n      \"livemode\": false,\n      \"description\":
+        \"1 user-0041@sensr.net 995:usd:month:7 on test\",\n      \"email\": \"user-0041@sensr.net\",\n
+        \     \"subscription\": {\n        \"id\": \"su_2KyBDoo62KqhQT\",\n        \"plan\":
+        {\n          \"interval\": \"month\",\n          \"name\": \"Sensr Plan usd
+        995/month\",\n          \"amount\": 995,\n          \"currency\": \"usd\",\n
+        \         \"id\": \"995:usd:month:7\",\n          \"object\": \"plan\",\n
+        \         \"livemode\": false,\n          \"interval_count\": 1,\n          \"trial_period_days\":
+        7,\n          \"identifier\": \"995:usd:month:7\"\n        },\n        \"object\":
+        \"subscription\",\n        \"start\": 1375825438,\n        \"status\": \"trialing\",\n
+        \       \"customer\": \"cus_2KyB0ZxtcykPVj\",\n        \"current_period_start\":
+        1375825438,\n        \"current_period_end\": 1502055900,\n        \"trial_start\":
+        1375825438,\n        \"trial_end\": 1502055900,\n        \"quantity\": 1\n
+        \     },\n      \"account_balance\": 0,\n      \"cards\": {\n        \"object\":
+        \"list\",\n        \"count\": 0,\n        \"url\": \"/v1/customers/cus_2KyB0ZxtcykPVj/cards\",\n
+        \       \"data\": []\n      },\n      \"default_card\": null,\n      \"next_recurring_charge\":
+        {\n        \"date\": \"2017-08-06\",\n        \"amount\": 995\n      }\n    },\n
+        \   {\n      \"object\": \"customer\",\n      \"created\": 1375825435,\n      \"id\":
+        \"cus_2KyBJ29wmWY33C\",\n      \"livemode\": false,\n      \"description\":
+        \"2 user-0039@sensr.net 995:usd:month:7 on test\",\n      \"email\": \"user-0039@sensr.net\",\n
+        \     \"subscription\": {\n        \"id\": \"su_2KyBtEhBHC7dp6\",\n        \"plan\":
+        {\n          \"interval\": \"month\",\n          \"name\": \"Sensr Plan usd
+        995/month\",\n          \"amount\": 995,\n          \"currency\": \"usd\",\n
+        \         \"id\": \"995:usd:month:7\",\n          \"object\": \"plan\",\n
+        \         \"livemode\": false,\n          \"interval_count\": 1,\n          \"trial_period_days\":
+        7,\n          \"identifier\": \"995:usd:month:7\"\n        },\n        \"object\":
+        \"subscription\",\n        \"start\": 1375825435,\n        \"status\": \"trialing\",\n
+        \       \"customer\": \"cus_2KyBJ29wmWY33C\",\n        \"current_period_start\":
+        1375825435,\n        \"current_period_end\": 1502055897,\n        \"trial_start\":
+        1375825435,\n        \"trial_end\": 1502055897,\n        \"quantity\": 1\n
+        \     },\n      \"account_balance\": 0,\n      \"cards\": {\n        \"object\":
+        \"list\",\n        \"count\": 0,\n        \"url\": \"/v1/customers/cus_2KyBJ29wmWY33C/cards\",\n
+        \       \"data\": []\n      },\n      \"default_card\": null,\n      \"next_recurring_charge\":
+        {\n        \"date\": \"2017-08-06\",\n        \"amount\": 995\n      }\n    },\n
+        \   {\n      \"object\": \"customer\",\n      \"created\": 1375825434,\n      \"id\":
+        \"cus_2KyByDa2FiEyS6\",\n      \"livemode\": false,\n      \"description\":
+        \"1 user-0040@sensr.net 995:usd:month:7 on test\",\n      \"email\": \"user-0040@sensr.net\",\n
+        \     \"subscription\": {\n        \"id\": \"su_2KyBSwYA7Q3nyp\",\n        \"plan\":
+        {\n          \"interval\": \"month\",\n          \"name\": \"Sensr Plan usd
+        995/month\",\n          \"amount\": 995,\n          \"currency\": \"usd\",\n
+        \         \"id\": \"995:usd:month:7\",\n          \"object\": \"plan\",\n
+        \         \"livemode\": false,\n          \"interval_count\": 1,\n          \"trial_period_days\":
+        7,\n          \"identifier\": \"995:usd:month:7\"\n        },\n        \"object\":
+        \"subscription\",\n        \"start\": 1375825434,\n        \"status\": \"trialing\",\n
+        \       \"customer\": \"cus_2KyByDa2FiEyS6\",\n        \"current_period_start\":
+        1375825434,\n        \"current_period_end\": 1502055896,\n        \"trial_start\":
+        1375825434,\n        \"trial_end\": 1502055896,\n        \"quantity\": 1\n
+        \     },\n      \"account_balance\": 0,\n      \"cards\": {\n        \"object\":
+        \"list\",\n        \"count\": 0,\n        \"url\": \"/v1/customers/cus_2KyByDa2FiEyS6/cards\",\n
+        \       \"data\": []\n      },\n      \"default_card\": null,\n      \"next_recurring_charge\":
+        {\n        \"date\": \"2017-08-06\",\n        \"amount\": 995\n      }\n    },\n
+        \   {\n      \"object\": \"customer\",\n      \"created\": 1375825431,\n      \"id\":
+        \"cus_2KyBcZfNePkimY\",\n      \"livemode\": false,\n      \"description\":
+        \"2 user-0037@sensr.net 995:usd:month:7 on test\",\n      \"email\": \"user-0037@sensr.net\",\n
+        \     \"subscription\": {\n        \"id\": \"su_2KyBxPCDlW1CiK\",\n        \"plan\":
+        {\n          \"interval\": \"month\",\n          \"name\": \"Sensr Plan usd
+        995/month\",\n          \"amount\": 995,\n          \"currency\": \"usd\",\n
+        \         \"id\": \"995:usd:month:7\",\n          \"object\": \"plan\",\n
+        \         \"livemode\": false,\n          \"interval_count\": 1,\n          \"trial_period_days\":
+        7,\n          \"identifier\": \"995:usd:month:7\"\n        },\n        \"object\":
+        \"subscription\",\n        \"start\": 1375825431,\n        \"status\": \"trialing\",\n
+        \       \"customer\": \"cus_2KyBcZfNePkimY\",\n        \"current_period_start\":
+        1375825431,\n        \"current_period_end\": 1502055893,\n        \"trial_start\":
+        1375825431,\n        \"trial_end\": 1502055893,\n        \"quantity\": 1\n
+        \     },\n      \"account_balance\": 0,\n      \"cards\": {\n        \"object\":
+        \"list\",\n        \"count\": 0,\n        \"url\": \"/v1/customers/cus_2KyBcZfNePkimY/cards\",\n
+        \       \"data\": []\n      },\n      \"default_card\": null,\n      \"next_recurring_charge\":
+        {\n        \"date\": \"2017-08-06\",\n        \"amount\": 995\n      }\n    },\n
+        \   {\n      \"object\": \"customer\",\n      \"created\": 1375825430,\n      \"id\":
+        \"cus_2KyBR7UuuDz6RN\",\n      \"livemode\": false,\n      \"description\":
+        \"1 user-0038@sensr.net 995:usd:month:7 on test\",\n      \"email\": \"user-0038@sensr.net\",\n
+        \     \"subscription\": {\n        \"id\": \"su_2KyBfJgjHBpq3Q\",\n        \"plan\":
+        {\n          \"interval\": \"month\",\n          \"name\": \"Sensr Plan usd
+        995/month\",\n          \"amount\": 995,\n          \"currency\": \"usd\",\n
+        \         \"id\": \"995:usd:month:7\",\n          \"object\": \"plan\",\n
+        \         \"livemode\": false,\n          \"interval_count\": 1,\n          \"trial_period_days\":
+        7,\n          \"identifier\": \"995:usd:month:7\"\n        },\n        \"object\":
+        \"subscription\",\n        \"start\": 1375825430,\n        \"status\": \"trialing\",\n
+        \       \"customer\": \"cus_2KyBR7UuuDz6RN\",\n        \"current_period_start\":
+        1375825430,\n        \"current_period_end\": 1502055892,\n        \"trial_start\":
+        1375825430,\n        \"trial_end\": 1502055892,\n        \"quantity\": 1\n
+        \     },\n      \"account_balance\": 0,\n      \"cards\": {\n        \"object\":
+        \"list\",\n        \"count\": 0,\n        \"url\": \"/v1/customers/cus_2KyBR7UuuDz6RN/cards\",\n
+        \       \"data\": []\n      },\n      \"default_card\": null,\n      \"next_recurring_charge\":
+        {\n        \"date\": \"2017-08-06\",\n        \"amount\": 995\n      }\n    },\n
+        \   {\n      \"object\": \"customer\",\n      \"created\": 1375825426,\n      \"id\":
+        \"cus_2KyB2jTeaGrjjP\",\n      \"livemode\": false,\n      \"description\":
+        \"2 user-0035@sensr.net 995:usd:month:7 on test\",\n      \"email\": \"user-0035@sensr.net\",\n
+        \     \"subscription\": {\n        \"id\": \"su_2KyBWWOM1fnDog\",\n        \"plan\":
+        {\n          \"interval\": \"month\",\n          \"name\": \"Sensr Plan usd
+        995/month\",\n          \"amount\": 995,\n          \"currency\": \"usd\",\n
+        \         \"id\": \"995:usd:month:7\",\n          \"object\": \"plan\",\n
+        \         \"livemode\": false,\n          \"interval_count\": 1,\n          \"trial_period_days\":
+        7,\n          \"identifier\": \"995:usd:month:7\"\n        },\n        \"object\":
+        \"subscription\",\n        \"start\": 1375825426,\n        \"status\": \"trialing\",\n
+        \       \"customer\": \"cus_2KyB2jTeaGrjjP\",\n        \"current_period_start\":
+        1375825426,\n        \"current_period_end\": 1502055888,\n        \"trial_start\":
+        1375825426,\n        \"trial_end\": 1502055888,\n        \"quantity\": 1\n
+        \     },\n      \"account_balance\": 0,\n      \"cards\": {\n        \"object\":
+        \"list\",\n        \"count\": 0,\n        \"url\": \"/v1/customers/cus_2KyB2jTeaGrjjP/cards\",\n
+        \       \"data\": []\n      },\n      \"default_card\": null,\n      \"next_recurring_charge\":
+        {\n        \"date\": \"2017-08-06\",\n        \"amount\": 995\n      }\n    },\n
+        \   {\n      \"object\": \"customer\",\n      \"created\": 1375825424,\n      \"id\":
+        \"cus_2KyBjXM9GWviQj\",\n      \"livemode\": false,\n      \"description\":
+        \"1 user-0034@sensr.net 995:usd:month:7 on test\",\n      \"email\": \"user-0034@sensr.net\",\n
+        \     \"subscription\": {\n        \"id\": \"su_2KyBJQUD4MMFWo\",\n        \"plan\":
+        {\n          \"interval\": \"month\",\n          \"name\": \"Sensr Plan usd
+        995/month\",\n          \"amount\": 995,\n          \"currency\": \"usd\",\n
+        \         \"id\": \"995:usd:month:7\",\n          \"object\": \"plan\",\n
+        \         \"livemode\": false,\n          \"interval_count\": 1,\n          \"trial_period_days\":
+        7,\n          \"identifier\": \"995:usd:month:7\"\n        },\n        \"object\":
+        \"subscription\",\n        \"start\": 1375825424,\n        \"status\": \"trialing\",\n
+        \       \"customer\": \"cus_2KyBjXM9GWviQj\",\n        \"current_period_start\":
+        1375825424,\n        \"current_period_end\": 1502055886,\n        \"trial_start\":
+        1375825424,\n        \"trial_end\": 1502055886,\n        \"quantity\": 1\n
+        \     },\n      \"account_balance\": 0,\n      \"cards\": {\n        \"object\":
+        \"list\",\n        \"count\": 0,\n        \"url\": \"/v1/customers/cus_2KyBjXM9GWviQj/cards\",\n
+        \       \"data\": []\n      },\n      \"default_card\": null,\n      \"next_recurring_charge\":
+        {\n        \"date\": \"2017-08-06\",\n        \"amount\": 995\n      }\n    }\n
+        \ ]\n}\n"
+    http_version: 
+  recorded_at: Tue, 17 Sep 2013 00:36:25 GMT
+- request:
+    method: get
+    uri: https://api.stripe.com/v1/customers?count=10&created%5Bgte%5D=1375825407&created%5Blt%5D=1375825424
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.8.3
+      Authorization:
+      - Bearer NsYmhRReX6amReKBK6cKBg60Xe9pyF6W
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - ! '{"bindings_version":"1.8.3","lang":"ruby","lang_version":"1.9.3 p125 (2012-02-16)","platform":"x86_64-darwin10.8.0","publisher":"stripe","uname":"Darwin
+        Yacin-Bahis-MacBook-Pro.local 10.8.0 Darwin Kernel Version 10.8.0: Tue Jun  7
+        16:33:36 PDT 2011; root:xnu-1504.15.3~1/RELEASE_I386 i386"}'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 17 Sep 2013 00:36:27 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '5167'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '300'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: US-ASCII
+      string: ! "{\n  \"object\": \"list\",\n  \"count\": 4,\n  \"url\": \"/v1/customers\",\n
+        \ \"data\": [\n    {\n      \"object\": \"customer\",\n      \"created\":
+        1375825422,\n      \"id\": \"cus_2KyB7QaqLVCNfF\",\n      \"livemode\": false,\n
+        \     \"description\": \"2 user-0033@sensr.net 995:usd:month:7 on test\",\n
+        \     \"email\": \"user-0033@sensr.net\",\n      \"subscription\": {\n        \"id\":
+        \"su_2KyBi5lUyf6gMB\",\n        \"plan\": {\n          \"interval\": \"month\",\n
+        \         \"name\": \"Sensr Plan usd 995/month\",\n          \"amount\": 995,\n
+        \         \"currency\": \"usd\",\n          \"id\": \"995:usd:month:7\",\n
+        \         \"object\": \"plan\",\n          \"livemode\": false,\n          \"interval_count\":
+        1,\n          \"trial_period_days\": 7,\n          \"identifier\": \"995:usd:month:7\"\n
+        \       },\n        \"object\": \"subscription\",\n        \"start\": 1375825422,\n
+        \       \"status\": \"trialing\",\n        \"customer\": \"cus_2KyB7QaqLVCNfF\",\n
+        \       \"current_period_start\": 1375825422,\n        \"current_period_end\":
+        1502055883,\n        \"trial_start\": 1375825422,\n        \"trial_end\":
+        1502055883,\n        \"quantity\": 1\n      },\n      \"account_balance\":
+        0,\n      \"cards\": {\n        \"object\": \"list\",\n        \"count\":
+        0,\n        \"url\": \"/v1/customers/cus_2KyB7QaqLVCNfF/cards\",\n        \"data\":
+        []\n      },\n      \"default_card\": null,\n      \"next_recurring_charge\":
+        {\n        \"date\": \"2017-08-06\",\n        \"amount\": 995\n      }\n    },\n
+        \   {\n      \"object\": \"customer\",\n      \"created\": 1375825418,\n      \"id\":
+        \"cus_2KyBXgTirVjZga\",\n      \"livemode\": false,\n      \"description\":
+        \"1 user-0032@sensr.net 995:usd:month:7 on test\",\n      \"email\": \"user-0032@sensr.net\",\n
+        \     \"subscription\": {\n        \"id\": \"su_2KyBzGavQ7lJYc\",\n        \"plan\":
+        {\n          \"interval\": \"month\",\n          \"name\": \"Sensr Plan usd
+        995/month\",\n          \"amount\": 995,\n          \"currency\": \"usd\",\n
+        \         \"id\": \"995:usd:month:7\",\n          \"object\": \"plan\",\n
+        \         \"livemode\": false,\n          \"interval_count\": 1,\n          \"trial_period_days\":
+        7,\n          \"identifier\": \"995:usd:month:7\"\n        },\n        \"object\":
+        \"subscription\",\n        \"start\": 1375825418,\n        \"status\": \"trialing\",\n
+        \       \"customer\": \"cus_2KyBXgTirVjZga\",\n        \"current_period_start\":
+        1375825418,\n        \"current_period_end\": 1502055880,\n        \"trial_start\":
+        1375825418,\n        \"trial_end\": 1502055880,\n        \"quantity\": 1\n
+        \     },\n      \"account_balance\": 0,\n      \"cards\": {\n        \"object\":
+        \"list\",\n        \"count\": 0,\n        \"url\": \"/v1/customers/cus_2KyBXgTirVjZga/cards\",\n
+        \       \"data\": []\n      },\n      \"default_card\": null,\n      \"next_recurring_charge\":
+        {\n        \"date\": \"2017-08-06\",\n        \"amount\": 995\n      }\n    },\n
+        \   {\n      \"object\": \"customer\",\n      \"created\": 1375825415,\n      \"id\":
+        \"cus_2KyBYvSP9DDnSN\",\n      \"livemode\": false,\n      \"description\":
+        \"1 user-0031@sensr.net 995:usd:month:7 on test\",\n      \"email\": \"user-0031@sensr.net\",\n
+        \     \"subscription\": {\n        \"id\": \"su_2KyBlvsFjMhMdG\",\n        \"plan\":
+        {\n          \"interval\": \"month\",\n          \"name\": \"Sensr Plan usd
+        995/month\",\n          \"amount\": 995,\n          \"currency\": \"usd\",\n
+        \         \"id\": \"995:usd:month:7\",\n          \"object\": \"plan\",\n
+        \         \"livemode\": false,\n          \"interval_count\": 1,\n          \"trial_period_days\":
+        7,\n          \"identifier\": \"995:usd:month:7\"\n        },\n        \"object\":
+        \"subscription\",\n        \"start\": 1375825415,\n        \"status\": \"trialing\",\n
+        \       \"customer\": \"cus_2KyBYvSP9DDnSN\",\n        \"current_period_start\":
+        1375825415,\n        \"current_period_end\": 1502055877,\n        \"trial_start\":
+        1375825415,\n        \"trial_end\": 1502055877,\n        \"quantity\": 1\n
+        \     },\n      \"account_balance\": 0,\n      \"cards\": {\n        \"object\":
+        \"list\",\n        \"count\": 0,\n        \"url\": \"/v1/customers/cus_2KyBYvSP9DDnSN/cards\",\n
+        \       \"data\": []\n      },\n      \"default_card\": null,\n      \"next_recurring_charge\":
+        {\n        \"date\": \"2017-08-06\",\n        \"amount\": 995\n      }\n    },\n
+        \   {\n      \"object\": \"customer\",\n      \"created\": 1375825407,\n      \"id\":
+        \"cus_2KyBkz6e3fiErT\",\n      \"livemode\": false,\n      \"description\":
+        \"1 user-0029@sensr.net 995:usd:month:7 on test\",\n      \"email\": \"user-0029@sensr.net\",\n
+        \     \"subscription\": {\n        \"id\": \"su_2KyBY7dzeCsXGc\",\n        \"plan\":
+        {\n          \"interval\": \"month\",\n          \"name\": \"Sensr Plan usd
+        995/month\",\n          \"amount\": 995,\n          \"currency\": \"usd\",\n
+        \         \"id\": \"995:usd:month:7\",\n          \"object\": \"plan\",\n
+        \         \"livemode\": false,\n          \"interval_count\": 1,\n          \"trial_period_days\":
+        7,\n          \"identifier\": \"995:usd:month:7\"\n        },\n        \"object\":
+        \"subscription\",\n        \"start\": 1375825408,\n        \"status\": \"trialing\",\n
+        \       \"customer\": \"cus_2KyBkz6e3fiErT\",\n        \"current_period_start\":
+        1375825408,\n        \"current_period_end\": 1502055869,\n        \"trial_start\":
+        1375825408,\n        \"trial_end\": 1502055869,\n        \"quantity\": 1\n
+        \     },\n      \"account_balance\": 0,\n      \"cards\": {\n        \"object\":
+        \"list\",\n        \"count\": 0,\n        \"url\": \"/v1/customers/cus_2KyBkz6e3fiErT/cards\",\n
+        \       \"data\": []\n      },\n      \"default_card\": null,\n      \"next_recurring_charge\":
+        {\n        \"date\": \"2017-08-06\",\n        \"amount\": 995\n      }\n    }\n
+        \ ]\n}\n"
+    http_version: 
+  recorded_at: Tue, 17 Sep 2013 00:36:27 GMT
+recorded_with: VCR 2.5.0

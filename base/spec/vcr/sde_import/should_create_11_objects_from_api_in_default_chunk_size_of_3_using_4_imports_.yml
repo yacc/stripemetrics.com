@@ -1,0 +1,359 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.stripe.com/v1/events?count=3&created%5Bgte%5D=1363446679&created%5Blt%5D=1375825277&type=customer.subscription.deleted
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.8.3
+      Authorization:
+      - Bearer NsYmhRReX6amReKBK6cKBg60Xe9pyF6W
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - ! '{"bindings_version":"1.8.3","lang":"ruby","lang_version":"1.9.3 p125 (2012-02-16)","platform":"x86_64-darwin10.8.0","publisher":"stripe","uname":"Darwin
+        Yacin-Bahis-MacBook-Pro.local 10.8.0 Darwin Kernel Version 10.8.0: Tue Jun  7
+        16:33:36 PDT 2011; root:xnu-1504.15.3~1/RELEASE_I386 i386"}'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 17 Sep 2013 00:38:04 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '3287'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '300'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: US-ASCII
+      string: ! "{\n  \"object\": \"list\",\n  \"count\": 11,\n  \"url\": \"/v1/events\",\n
+        \ \"data\": [\n    {\n      \"id\": \"evt_2KxrJ18RyCd4bR\",\n      \"created\":
+        1375824207,\n      \"livemode\": false,\n      \"type\": \"customer.subscription.deleted\",\n
+        \     \"data\": {\n        \"object\": {\n          \"plan\": {\n            \"interval\":
+        \"month\",\n            \"name\": \"Sensr Plan usd 995/month\",\n            \"amount\":
+        995,\n            \"currency\": \"usd\",\n            \"id\": \"995:usd:month:7\",\n
+        \           \"object\": \"plan\",\n            \"livemode\": false,\n            \"interval_count\":
+        1,\n            \"trial_period_days\": 7,\n            \"identifier\": \"995:usd:month:7\"\n
+        \         },\n          \"object\": \"subscription\",\n          \"start\":
+        1375824206,\n          \"status\": \"canceled\",\n          \"customer\":
+        \"cus_2KxrfogPa5mUZs\",\n          \"current_period_start\": 1375824206,\n
+        \         \"current_period_end\": 1502054667,\n          \"ended_at\": 1375824207,\n
+        \         \"trial_start\": 1375824206,\n          \"trial_end\": 1502054667,\n
+        \         \"canceled_at\": 1375824207,\n          \"quantity\": 1\n        }\n
+        \     },\n      \"object\": \"event\",\n      \"pending_webhooks\": 0,\n      \"request\":
+        \"iar_2KxrDZRbqm3FB8\"\n    },\n    {\n      \"id\": \"evt_1vEuOEFCHyH4Tv\",\n
+        \     \"created\": 1369891026,\n      \"livemode\": false,\n      \"type\":
+        \"customer.subscription.deleted\",\n      \"data\": {\n        \"object\":
+        {\n          \"plan\": {\n            \"interval\": \"month\",\n            \"name\":
+        \"Sensr Plan usd 995/month\",\n            \"amount\": 995,\n            \"currency\":
+        \"usd\",\n            \"id\": \"995:usd:month:7\",\n            \"object\":
+        \"plan\",\n            \"livemode\": false,\n            \"interval_count\":
+        1,\n            \"trial_period_days\": 7,\n            \"identifier\": \"995:usd:month:7\"\n
+        \         },\n          \"object\": \"subscription\",\n          \"start\":
+        1369891025,\n          \"status\": \"canceled\",\n          \"customer\":
+        \"cus_1vEu6RvsZtygFw\",\n          \"current_period_start\": 1369891025,\n
+        \         \"current_period_end\": 1496120997,\n          \"ended_at\": 1369891026,\n
+        \         \"trial_start\": 1369891025,\n          \"trial_end\": 1496120997,\n
+        \         \"canceled_at\": 1369891026,\n          \"quantity\": 1\n        }\n
+        \     },\n      \"object\": \"event\",\n      \"pending_webhooks\": 2,\n      \"request\":
+        \"iar_1vEuc8IzowuN4h\"\n    },\n    {\n      \"id\": \"evt_1Wsk3Tqfqn7IRn\",\n
+        \     \"created\": 1364273227,\n      \"livemode\": false,\n      \"type\":
+        \"customer.subscription.deleted\",\n      \"data\": {\n        \"object\":
+        {\n          \"plan\": {\n            \"interval\": \"month\",\n            \"name\":
+        \"Sensr Plan usd 0/month\",\n            \"amount\": 0,\n            \"currency\":
+        \"usd\",\n            \"id\": \"0:usd:month:7\",\n            \"object\":
+        \"plan\",\n            \"livemode\": false,\n            \"interval_count\":
+        1,\n            \"trial_period_days\": 7,\n            \"identifier\": \"0:usd:month:7\"\n
+        \         },\n          \"object\": \"subscription\",\n          \"start\":
+        1364272966,\n          \"status\": \"canceled\",\n          \"customer\":
+        \"cus_1Wsg9Q9wDW6AUH\",\n          \"current_period_start\": 1364272966,\n
+        \         \"current_period_end\": 1490503285,\n          \"ended_at\": 1364273227,\n
+        \         \"trial_start\": 1364272966,\n          \"trial_end\": 1490503285,\n
+        \         \"canceled_at\": 1364273227,\n          \"quantity\": 1\n        }\n
+        \     },\n      \"object\": \"event\",\n      \"pending_webhooks\": 1,\n      \"request\":
+        null\n    }\n  ]\n}\n"
+    http_version: 
+  recorded_at: Tue, 17 Sep 2013 00:38:04 GMT
+- request:
+    method: get
+    uri: https://api.stripe.com/v1/events?count=3&created%5Bgte%5D=1363446679&created%5Blt%5D=1364273227&type=customer.subscription.deleted
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.8.3
+      Authorization:
+      - Bearer NsYmhRReX6amReKBK6cKBg60Xe9pyF6W
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - ! '{"bindings_version":"1.8.3","lang":"ruby","lang_version":"1.9.3 p125 (2012-02-16)","platform":"x86_64-darwin10.8.0","publisher":"stripe","uname":"Darwin
+        Yacin-Bahis-MacBook-Pro.local 10.8.0 Darwin Kernel Version 10.8.0: Tue Jun  7
+        16:33:36 PDT 2011; root:xnu-1504.15.3~1/RELEASE_I386 i386"}'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 17 Sep 2013 00:38:05 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '3262'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '300'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: US-ASCII
+      string: ! "{\n  \"object\": \"list\",\n  \"count\": 8,\n  \"url\": \"/v1/events\",\n
+        \ \"data\": [\n    {\n      \"id\": \"evt_1WTiYFcA0hSOY6\",\n      \"created\":
+        1364180094,\n      \"livemode\": false,\n      \"type\": \"customer.subscription.deleted\",\n
+        \     \"data\": {\n        \"object\": {\n          \"plan\": {\n            \"interval\":
+        \"month\",\n            \"name\": \"Sensr Plan usd 995/month\",\n            \"amount\":
+        995,\n            \"currency\": \"usd\",\n            \"id\": \"995:usd:month:7\",\n
+        \           \"object\": \"plan\",\n            \"livemode\": false,\n            \"interval_count\":
+        1,\n            \"trial_period_days\": 7,\n            \"identifier\": \"995:usd:month:7\"\n
+        \         },\n          \"object\": \"subscription\",\n          \"start\":
+        1364180093,\n          \"status\": \"canceled\",\n          \"customer\":
+        \"cus_1WTinqjInM8ls2\",\n          \"current_period_start\": 1364180093,\n
+        \         \"current_period_end\": 1490410171,\n          \"ended_at\": 1364180094,\n
+        \         \"trial_start\": 1364180093,\n          \"trial_end\": 1490410171,\n
+        \         \"canceled_at\": 1364180094,\n          \"quantity\": 1\n        }\n
+        \     },\n      \"object\": \"event\",\n      \"pending_webhooks\": 1,\n      \"request\":
+        null\n    },\n    {\n      \"id\": \"evt_1WTdqHtzHHnkbQ\",\n      \"created\":
+        1364179778,\n      \"livemode\": false,\n      \"type\": \"customer.subscription.deleted\",\n
+        \     \"data\": {\n        \"object\": {\n          \"plan\": {\n            \"interval\":
+        \"month\",\n            \"name\": \"Sensr Plan usd 995/month\",\n            \"amount\":
+        995,\n            \"currency\": \"usd\",\n            \"id\": \"995:usd:month:7\",\n
+        \           \"object\": \"plan\",\n            \"livemode\": false,\n            \"interval_count\":
+        1,\n            \"trial_period_days\": 7,\n            \"identifier\": \"995:usd:month:7\"\n
+        \         },\n          \"object\": \"subscription\",\n          \"start\":
+        1364179778,\n          \"status\": \"canceled\",\n          \"customer\":
+        \"cus_1WTddHTcYd7foD\",\n          \"current_period_start\": 1364179778,\n
+        \         \"current_period_end\": 1490409856,\n          \"ended_at\": 1364179778,\n
+        \         \"trial_start\": 1364179778,\n          \"trial_end\": 1490409856,\n
+        \         \"canceled_at\": 1364179778,\n          \"quantity\": 1\n        }\n
+        \     },\n      \"object\": \"event\",\n      \"pending_webhooks\": 1,\n      \"request\":
+        null\n    },\n    {\n      \"id\": \"evt_1WN7Lz15RF8WoK\",\n      \"created\":
+        1364155528,\n      \"livemode\": false,\n      \"type\": \"customer.subscription.deleted\",\n
+        \     \"data\": {\n        \"object\": {\n          \"plan\": {\n            \"interval\":
+        \"month\",\n            \"name\": \"Sensr Plan usd 995/month\",\n            \"amount\":
+        995,\n            \"currency\": \"usd\",\n            \"id\": \"995:usd:month:7\",\n
+        \           \"object\": \"plan\",\n            \"livemode\": false,\n            \"interval_count\":
+        1,\n            \"trial_period_days\": 7,\n            \"identifier\": \"995:usd:month:7\"\n
+        \         },\n          \"object\": \"subscription\",\n          \"start\":
+        1364155527,\n          \"status\": \"canceled\",\n          \"customer\":
+        \"cus_1WN712NYkSZ9Of\",\n          \"current_period_start\": 1364155527,\n
+        \         \"current_period_end\": 1490385606,\n          \"ended_at\": 1364155528,\n
+        \         \"trial_start\": 1364155527,\n          \"trial_end\": 1490385606,\n
+        \         \"canceled_at\": 1364155528,\n          \"quantity\": 1\n        }\n
+        \     },\n      \"object\": \"event\",\n      \"pending_webhooks\": 1,\n      \"request\":
+        null\n    }\n  ]\n}\n"
+    http_version: 
+  recorded_at: Tue, 17 Sep 2013 00:38:05 GMT
+- request:
+    method: get
+    uri: https://api.stripe.com/v1/events?count=3&created%5Bgte%5D=1363446679&created%5Blt%5D=1364155528&type=customer.subscription.deleted
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.8.3
+      Authorization:
+      - Bearer NsYmhRReX6amReKBK6cKBg60Xe9pyF6W
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - ! '{"bindings_version":"1.8.3","lang":"ruby","lang_version":"1.9.3 p125 (2012-02-16)","platform":"x86_64-darwin10.8.0","publisher":"stripe","uname":"Darwin
+        Yacin-Bahis-MacBook-Pro.local 10.8.0 Darwin Kernel Version 10.8.0: Tue Jun  7
+        16:33:36 PDT 2011; root:xnu-1504.15.3~1/RELEASE_I386 i386"}'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 17 Sep 2013 00:38:09 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '3262'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '300'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: US-ASCII
+      string: ! "{\n  \"object\": \"list\",\n  \"count\": 5,\n  \"url\": \"/v1/events\",\n
+        \ \"data\": [\n    {\n      \"id\": \"evt_1W5nto19uyL6sa\",\n      \"created\":
+        1364091097,\n      \"livemode\": false,\n      \"type\": \"customer.subscription.deleted\",\n
+        \     \"data\": {\n        \"object\": {\n          \"plan\": {\n            \"interval\":
+        \"month\",\n            \"name\": \"Sensr Plan usd 995/month\",\n            \"amount\":
+        995,\n            \"currency\": \"usd\",\n            \"id\": \"995:usd:month:7\",\n
+        \           \"object\": \"plan\",\n            \"livemode\": false,\n            \"interval_count\":
+        1,\n            \"trial_period_days\": 7,\n            \"identifier\": \"995:usd:month:7\"\n
+        \         },\n          \"object\": \"subscription\",\n          \"start\":
+        1364091097,\n          \"status\": \"canceled\",\n          \"customer\":
+        \"cus_1W5nrU8HulpiED\",\n          \"current_period_start\": 1364091097,\n
+        \         \"current_period_end\": 1490321167,\n          \"ended_at\": 1364091097,\n
+        \         \"trial_start\": 1364091097,\n          \"trial_end\": 1490321167,\n
+        \         \"canceled_at\": 1364091097,\n          \"quantity\": 1\n        }\n
+        \     },\n      \"object\": \"event\",\n      \"pending_webhooks\": 1,\n      \"request\":
+        null\n    },\n    {\n      \"id\": \"evt_1UC2yRVbk8B4nf\",\n      \"created\":
+        1363653068,\n      \"livemode\": false,\n      \"type\": \"customer.subscription.deleted\",\n
+        \     \"data\": {\n        \"object\": {\n          \"plan\": {\n            \"interval\":
+        \"month\",\n            \"name\": \"Sensr Plan usd 995/month\",\n            \"amount\":
+        995,\n            \"currency\": \"usd\",\n            \"id\": \"995:usd:month:7\",\n
+        \           \"object\": \"plan\",\n            \"livemode\": false,\n            \"interval_count\":
+        1,\n            \"trial_period_days\": 7,\n            \"identifier\": \"995:usd:month:7\"\n
+        \         },\n          \"object\": \"subscription\",\n          \"start\":
+        1363653065,\n          \"status\": \"canceled\",\n          \"customer\":
+        \"cus_1UC2AJRXvS1ouW\",\n          \"current_period_start\": 1363653065,\n
+        \         \"current_period_end\": 1489883153,\n          \"ended_at\": 1363653068,\n
+        \         \"trial_start\": 1363653065,\n          \"trial_end\": 1489883153,\n
+        \         \"canceled_at\": 1363653068,\n          \"quantity\": 1\n        }\n
+        \     },\n      \"object\": \"event\",\n      \"pending_webhooks\": 1,\n      \"request\":
+        null\n    },\n    {\n      \"id\": \"evt_1UC1sahx1acKBl\",\n      \"created\":
+        1363652965,\n      \"livemode\": false,\n      \"type\": \"customer.subscription.deleted\",\n
+        \     \"data\": {\n        \"object\": {\n          \"plan\": {\n            \"interval\":
+        \"month\",\n            \"name\": \"Sensr Plan usd 995/month\",\n            \"amount\":
+        995,\n            \"currency\": \"usd\",\n            \"id\": \"995:usd:month:7\",\n
+        \           \"object\": \"plan\",\n            \"livemode\": false,\n            \"interval_count\":
+        1,\n            \"trial_period_days\": 7,\n            \"identifier\": \"995:usd:month:7\"\n
+        \         },\n          \"object\": \"subscription\",\n          \"start\":
+        1363652962,\n          \"status\": \"canceled\",\n          \"customer\":
+        \"cus_1UC1xjzDcWcTQO\",\n          \"current_period_start\": 1363652962,\n
+        \         \"current_period_end\": 1489883049,\n          \"ended_at\": 1363652965,\n
+        \         \"trial_start\": 1363652962,\n          \"trial_end\": 1489883049,\n
+        \         \"canceled_at\": 1363652965,\n          \"quantity\": 1\n        }\n
+        \     },\n      \"object\": \"event\",\n      \"pending_webhooks\": 1,\n      \"request\":
+        null\n    }\n  ]\n}\n"
+    http_version: 
+  recorded_at: Tue, 17 Sep 2013 00:38:09 GMT
+- request:
+    method: get
+    uri: https://api.stripe.com/v1/events?count=3&created%5Bgte%5D=1363446679&created%5Blt%5D=1363652965&type=customer.subscription.deleted
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.8.3
+      Authorization:
+      - Bearer NsYmhRReX6amReKBK6cKBg60Xe9pyF6W
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - ! '{"bindings_version":"1.8.3","lang":"ruby","lang_version":"1.9.3 p125 (2012-02-16)","platform":"x86_64-darwin10.8.0","publisher":"stripe","uname":"Darwin
+        Yacin-Bahis-MacBook-Pro.local 10.8.0 Darwin Kernel Version 10.8.0: Tue Jun  7
+        16:33:36 PDT 2011; root:xnu-1504.15.3~1/RELEASE_I386 i386"}'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 17 Sep 2013 00:38:11 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '2200'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '300'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: US-ASCII
+      string: ! "{\n  \"object\": \"list\",\n  \"count\": 2,\n  \"url\": \"/v1/events\",\n
+        \ \"data\": [\n    {\n      \"id\": \"evt_1UAzd8VbMx4lsf\",\n      \"created\":
+        1363649153,\n      \"livemode\": false,\n      \"type\": \"customer.subscription.deleted\",\n
+        \     \"data\": {\n        \"object\": {\n          \"plan\": {\n            \"interval\":
+        \"month\",\n            \"name\": \"Sensr Plan usd 995/month\",\n            \"amount\":
+        995,\n            \"currency\": \"usd\",\n            \"id\": \"995:usd:month:7\",\n
+        \           \"object\": \"plan\",\n            \"livemode\": false,\n            \"interval_count\":
+        1,\n            \"trial_period_days\": 7,\n            \"identifier\": \"995:usd:month:7\"\n
+        \         },\n          \"object\": \"subscription\",\n          \"start\":
+        1363649150,\n          \"status\": \"canceled\",\n          \"customer\":
+        \"cus_1UAzju5G7Ntr5x\",\n          \"current_period_start\": 1363649150,\n
+        \         \"current_period_end\": 1489879238,\n          \"ended_at\": 1363649152,\n
+        \         \"trial_start\": 1363649150,\n          \"trial_end\": 1489879238,\n
+        \         \"canceled_at\": 1363649152,\n          \"quantity\": 1\n        }\n
+        \     },\n      \"object\": \"event\",\n      \"pending_webhooks\": 1,\n      \"request\":
+        null\n    },\n    {\n      \"id\": \"evt_1UAyOIfAqYC3Wy\",\n      \"created\":
+        1363649090,\n      \"livemode\": false,\n      \"type\": \"customer.subscription.deleted\",\n
+        \     \"data\": {\n        \"object\": {\n          \"plan\": {\n            \"interval\":
+        \"month\",\n            \"name\": \"Sensr Plan usd 995/month\",\n            \"amount\":
+        995,\n            \"currency\": \"usd\",\n            \"id\": \"995:usd:month:7\",\n
+        \           \"object\": \"plan\",\n            \"livemode\": false,\n            \"interval_count\":
+        1,\n            \"trial_period_days\": 7,\n            \"identifier\": \"995:usd:month:7\"\n
+        \         },\n          \"object\": \"subscription\",\n          \"start\":
+        1363649088,\n          \"status\": \"canceled\",\n          \"customer\":
+        \"cus_1UAyDh1QKQ1J5g\",\n          \"current_period_start\": 1363649088,\n
+        \         \"current_period_end\": 1489879177,\n          \"ended_at\": 1363649090,\n
+        \         \"trial_start\": 1363649088,\n          \"trial_end\": 1489879177,\n
+        \         \"canceled_at\": 1363649090,\n          \"quantity\": 1\n        }\n
+        \     },\n      \"object\": \"event\",\n      \"pending_webhooks\": 1,\n      \"request\":
+        null\n    }\n  ]\n}\n"
+    http_version: 
+  recorded_at: Tue, 17 Sep 2013 00:38:11 GMT
+recorded_with: VCR 2.5.0

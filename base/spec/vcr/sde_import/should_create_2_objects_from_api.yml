@@ -1,0 +1,82 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.stripe.com/v1/events?count=10&created%5Bgte%5D=1368668811&created%5Blt%5D=1375825277&type=customer.subscription.deleted
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.8.3
+      Authorization:
+      - Bearer NsYmhRReX6amReKBK6cKBg60Xe9pyF6W
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - ! '{"bindings_version":"1.8.3","lang":"ruby","lang_version":"1.9.3 p125 (2012-02-16)","platform":"x86_64-darwin10.8.0","publisher":"stripe","uname":"Darwin
+        Yacin-Bahis-MacBook-Pro.local 10.8.0 Darwin Kernel Version 10.8.0: Tue Jun  7
+        16:33:36 PDT 2011; root:xnu-1504.15.3~1/RELEASE_I386 i386"}'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 17 Sep 2013 00:38:02 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '2232'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '300'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: US-ASCII
+      string: ! "{\n  \"object\": \"list\",\n  \"count\": 2,\n  \"url\": \"/v1/events\",\n
+        \ \"data\": [\n    {\n      \"id\": \"evt_2KxrJ18RyCd4bR\",\n      \"created\":
+        1375824207,\n      \"livemode\": false,\n      \"type\": \"customer.subscription.deleted\",\n
+        \     \"data\": {\n        \"object\": {\n          \"plan\": {\n            \"interval\":
+        \"month\",\n            \"name\": \"Sensr Plan usd 995/month\",\n            \"amount\":
+        995,\n            \"currency\": \"usd\",\n            \"id\": \"995:usd:month:7\",\n
+        \           \"object\": \"plan\",\n            \"livemode\": false,\n            \"interval_count\":
+        1,\n            \"trial_period_days\": 7,\n            \"identifier\": \"995:usd:month:7\"\n
+        \         },\n          \"object\": \"subscription\",\n          \"start\":
+        1375824206,\n          \"status\": \"canceled\",\n          \"customer\":
+        \"cus_2KxrfogPa5mUZs\",\n          \"current_period_start\": 1375824206,\n
+        \         \"current_period_end\": 1502054667,\n          \"ended_at\": 1375824207,\n
+        \         \"trial_start\": 1375824206,\n          \"trial_end\": 1502054667,\n
+        \         \"canceled_at\": 1375824207,\n          \"quantity\": 1\n        }\n
+        \     },\n      \"object\": \"event\",\n      \"pending_webhooks\": 0,\n      \"request\":
+        \"iar_2KxrDZRbqm3FB8\"\n    },\n    {\n      \"id\": \"evt_1vEuOEFCHyH4Tv\",\n
+        \     \"created\": 1369891026,\n      \"livemode\": false,\n      \"type\":
+        \"customer.subscription.deleted\",\n      \"data\": {\n        \"object\":
+        {\n          \"plan\": {\n            \"interval\": \"month\",\n            \"name\":
+        \"Sensr Plan usd 995/month\",\n            \"amount\": 995,\n            \"currency\":
+        \"usd\",\n            \"id\": \"995:usd:month:7\",\n            \"object\":
+        \"plan\",\n            \"livemode\": false,\n            \"interval_count\":
+        1,\n            \"trial_period_days\": 7,\n            \"identifier\": \"995:usd:month:7\"\n
+        \         },\n          \"object\": \"subscription\",\n          \"start\":
+        1369891025,\n          \"status\": \"canceled\",\n          \"customer\":
+        \"cus_1vEu6RvsZtygFw\",\n          \"current_period_start\": 1369891025,\n
+        \         \"current_period_end\": 1496120997,\n          \"ended_at\": 1369891026,\n
+        \         \"trial_start\": 1369891025,\n          \"trial_end\": 1496120997,\n
+        \         \"canceled_at\": 1369891026,\n          \"quantity\": 1\n        }\n
+        \     },\n      \"object\": \"event\",\n      \"pending_webhooks\": 2,\n      \"request\":
+        \"iar_1vEuc8IzowuN4h\"\n    }\n  ]\n}\n"
+    http_version: 
+  recorded_at: Tue, 17 Sep 2013 00:38:02 GMT
+recorded_with: VCR 2.5.0
