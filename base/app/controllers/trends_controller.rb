@@ -7,7 +7,8 @@ class TrendsController < ApplicationController
     @trend   = current_user.send(type.underscore) 
     @data    = current_user.send(type.underscore).send(group_by)
 
-    @series  = current_user.send(type.underscore).group_by_month_and_by_countries
+    @series1  = current_user.send(type.underscore).group_by_month_and_by_countries
+    @series2  = current_user.send(type.underscore).group_by_month_and_by_cc_type
 
     respond_to do |format|
       format.html 

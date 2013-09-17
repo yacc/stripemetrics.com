@@ -54,6 +54,31 @@ class PaidChargeVolumeTrend < Trend
     series
   end
 
+  def group_by_month_and_by_cc_type
+    volume = {}
+    xaxis     = []
+    cc_types = []
+    self.user.charges.collection.aggregate([match,project,groupby("month")]).each do |data|
+      ts      = (Time.new(data["_id"]["year"]) + (data["_id"]["month"]).month).to_i*1000
+      card_type = data["_id"]["card_type"]
+      volume[card_type] ||= {}
+      volume[card_type][ts] = data["volume"]/100.0
+      cc_types << card_type
+      xaxis << ts
+    end
+    cc_types.uniq!
+    xaxis.uniq!.sort!
+    series = []
+    cc_types.each do |card_type|
+      entry = {'name'=>card_type,'data'=>[]}
+      xaxis.each do |mo|
+        entry['data'] << [mo,((volume[card_type][mo]).nil? ? 0 : volume[card_type][mo])]
+      end
+      series << entry
+    end
+    series
+  end
+
   private
 
   def match
@@ -67,6 +92,7 @@ class PaidChargeVolumeTrend < Trend
       {
         "amount"  => "$amount",
         "country" => "$card.country" ,
+        "card_type" => "$card.card_type" ,
         "year"    => { "$year"  => "$created"}, 
         "month"   => { "$month" => "$created"},
         "week"    => { "$week"  => "$created"}, 
@@ -75,6 +101,7 @@ class PaidChargeVolumeTrend < Trend
     }   
   end
 
+  #TODO: card_type or country depending on aggreation
   def groupby(interval)
     case interval
     when "day"
@@ -87,7 +114,7 @@ class PaidChargeVolumeTrend < Trend
       }
     when "month"      
       { "$group" =>
-        { "_id" => {"year"=>"$year", "month"=>"$month","country"=>"$country"}, "volume" => { "$sum" => "$amount" } } 
+        { "_id" => {"year"=>"$year", "month"=>"$month","card_type"=>"$card_type","country"=>"$country"}, "volume" => { "$sum" => "$amount" } } 
       }
     end
 

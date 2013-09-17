@@ -15,9 +15,20 @@
       .col-md-6
         = render "/charts/details_chart_stacked", 
               :title  => "By Countries",
-              :series => @series.to_json,
+              :series => @series1.to_json,
               :start  => @trend.start_date,
-              :div    => "trend_stacked_chart",
+              :div    => "by_countries",
+              :type   => @trend.class,
+              :ylabel => formated_axis_label(@trend),
+              :unit   => @trend.unit,
+              :ttunit => (@trend.unit == "dollars" ? '$' : '')
+    .row
+      .col-md-6
+        = render "/charts/details_chart_stacked", 
+              :title  => "By Card Type",
+              :series => @series2.to_json,
+              :start  => @trend.start_date,
+              :div    => "by_cc_type",
               :type   => @trend.class,
               :ylabel => formated_axis_label(@trend),
               :unit   => @trend.unit,
