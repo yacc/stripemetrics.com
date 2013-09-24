@@ -1,4 +1,5 @@
 require 'spec_helper'
+include ChargeHelper
 
 describe Aggregatable do
 	let(:user)  {User.make!}
@@ -62,9 +63,9 @@ describe Aggregatable do
 			trend.update_attributes(dimension:'country',groupby_ts:"created",p_criteria:{"amount"=>"$amount"})
 			trend.send(:id_key).should eq({"year"=>"$year", "month"=>"$month","country"=>"$country"})
 		end				
-		it "\"cc_type\" should group by cc_type" do
-			trend.update_attributes(dimension:'cc_type',groupby_ts:"created",p_criteria:{"amount"=>"$amount"})
-			trend.send(:id_key).should eq({"year"=>"$year", "month"=>"$month","cc_type"=>"$cc_type"})
+		it "\"card_type\" should group by card_type" do
+			trend.update_attributes(dimension:'card_type',groupby_ts:"created",p_criteria:{"amount"=>"$amount"})
+			trend.send(:id_key).should eq({"year"=>"$year", "month"=>"$month","card_type"=>"$card_type"})
 		end				
 		it "\"plan_type\" should group by plan_type" do
 			trend.update_attributes(dimension:'plan_type',groupby_ts:"created",p_criteria:{"amount"=>"$amount"})
@@ -86,51 +87,21 @@ describe Aggregatable do
 	describe "process! with no dimension" do
 		it "should call \"aggregate_by_month\" ounce" do
 			trend.update_attributes(dimension: nil,groupby_ts:"created",p_criteria:{"amount"=>"$amount"})
-			trend.should_receive(:aggregate_by_month)
+			trend.should_receive(:process_by_month!)
 			trend.process!
 		end
 
 		it "should generate total mrr trend" do
-			2.times {Charge.make!(new_mrr: true,user_id:user.id,created:Time.parse("2013-06-01"))}
-			4.times {Charge.make!(user_id:user.id,created:Time.parse("2013-06-01"))}
-
-			2.times {Charge.make!(new_mrr: true,user_id:user.id,created:Time.parse("2013-07-01"))}
-			3.times {Charge.make!(user_id:user.id,created:Time.parse("2013-07-01"))}
-
-			1.times {Charge.make!(new_mrr: true,user_id:user.id,created:Time.parse("2013-08-01"))}
-			3.times {Charge.make!(user_id:user.id,created:Time.parse("2013-08-01"))}
-			3.times {Charge.make!(user_id:user.id,created:Time.parse("2013-09-01"))}
-
-			newmrr = Trend.make!(user_id:user.id,type:"new_mrr",group:"mrr",name:"New MRR",
-                           desc:"Monthly recuring revenue from new customers",
-                           unit:"amount",source:"charges",interval:'month',
-                           p_criteria:{"amount"=>"$amount"}, 
-                           m_criteria:{},
-                           groupby_ts:%Q|created|)
-			Charge.where(paid:true,captured:true,new_mrr:true,user_id:user.id).count.should == 5
+			generate_charges_for_user
+      newmrr = Trend.make!(user_id:user.id)			
 			newmrr.data_source.find.count.should == 18
 			newmrr.process!
 			newmrr.data.should eq({1372662000=>27000, 1380610800=>13500, 1378018800=>18000, 1375340400=>22500})
 		end
 
 		it "should generate new_mrr trend" do
-			2.times {Charge.make!(new_mrr: true,user_id:user.id,created:Time.parse("2013-06-01"))}
-			4.times {Charge.make!(user_id:user.id,created:Time.parse("2013-06-01"))}
-
-			2.times {Charge.make!(new_mrr: true,user_id:user.id,created:Time.parse("2013-07-01"))}
-			3.times {Charge.make!(user_id:user.id,created:Time.parse("2013-07-01"))}
-
-			1.times {Charge.make!(new_mrr: true,user_id:user.id,created:Time.parse("2013-08-01"))}
-			3.times {Charge.make!(user_id:user.id,created:Time.parse("2013-08-01"))}
-			3.times {Charge.make!(user_id:user.id,created:Time.parse("2013-09-01"))}
-
-			newmrr = Trend.make!(user_id:user.id,type:"new_mrr",group:"mrr",name:"New MRR",
-                           desc:"Monthly recuring revenue from new customers",
-                           unit:"amount",source:"charges",interval:'month',
-                           p_criteria:{"amount"=>"$amount"}, 
-                           m_criteria:{"paid"=>true,"captured"=>true,"new_mrr"=>true},
-                           groupby_ts:%Q|created|)
-			Charge.where(paid:true,captured:true,new_mrr:true,user_id:user.id).count.should == 5
+			generate_charges_for_user
+			newmrr = Trend.make!(:new_mrr,user_id:user.id)
 			newmrr.data_source.find.count.should == 18
 			newmrr.process!
 			newmrr.data.should eq({1375340400=>9000, 1372662000=>9000, 1378018800=>4500})
@@ -138,14 +109,39 @@ describe Aggregatable do
 
 	end
 
+
 	describe "process! with \"country\" dimension" do
 		it "should call \"aggregate_by_month_and_dimension\" ounce" do
 			trend.update_attributes(dimension:'country',groupby_ts:"created",p_criteria:{"amount"=>"$amount"})
-			trend.should_receive(:aggregate_by_month_and_dimension)
+			trend.should_receive(:process_by_dimension! )
 			trend.process!
 		end
+		it "should aggregate failed charges amount by month and country" do
+			generate_charges_for_user_with_countries
+			failed_by_country = Trend.make!(:failed_by_country,user_id:user.id)			
+			failed_by_country.data_source.find.count.should == 25
+			failed_by_country.process!
+			failed_by_country.data.should eq({"US"=>{1378018800=>4500, 1375340400=>9000, 1372662000=>9000}, "BR"=>{1375340400=>9000}, "FR"=>{1372662000=>9000, 1375340400=>13500}})
+		end
+	end
 
-		it "should aggregate charge amount by month cancelled"
+	describe "process! with \"cc_type\" dimension" do
+		
+		it "should aggregate failed charges amount by month and country" do
+			generate_charges_for_user_with_cc_types
+			total_by_type = Trend.make!(:failed_by_type,user_id:user.id)			
+			total_by_type.data_source.find.count.should == 26
+			total_by_type.process!
+			total_by_type.data.should eq({"Visa"=>{1378018800=>4500, 1375340400=>9000, 1372662000=>9000}, "Amex"=>{1378018800=>4500, 1375340400=>13500}, "MasterCard"=>{1375340400=>9000, 1372662000=>9000}})
+		end
+
+		# it "should aggregate total charges amount by month and country" do
+		# 	generate_charges_for_user_with_cc_types
+		# 	total_by_type = Trend.make!(:total_by_type,user_id:user.id)			
+		# 	total_by_type.data_source.find.count.should == 26
+		# 	total_by_type.process!
+		# 	total_by_type.data.should eq({"Visa"=>{1378018800=>4500, 1375340400=>9000, 1372662000=>9000}, "Amex"=>{1378018800=>4500, 1375340400=>13500}, "MasterCard"=>{1375340400=>9000, 1372662000=>9000}})
+		# end
 
 	end
 

@@ -1,4 +1,5 @@
 require 'machinist/mongoid'
+# require 'sham'
 
 User.blueprint(:basic) do
   email {"yacin@stripemetrics.com"}
@@ -34,6 +35,15 @@ Customer.blueprint do
   converted_at{ Time.now + 6.days }  
 end
 
+Card.blueprint do
+  stripe_id {"card_id_#{sn}"}
+  card_type {"Visa"}
+  exp_month {8}
+  exp_year {1968}
+  country {"France"}
+  customer {"customer_id_#{sn}"}
+end
+
 Charge.blueprint do
   stripe_id {"charge_id_#{sn}"}
   customer {"customer_id_#{sn}"}
@@ -48,6 +58,7 @@ Charge.blueprint do
   amount_refunded{0}
   dispute{false}
   new_mrr{false}
+  card {Card.make}
 end
 
 SdeImport.blueprint do
@@ -87,6 +98,48 @@ Trend.blueprint(:new_mrr) do
   p_criteria { {"amount"=>"$amount"} }
   m_criteria { {"paid"=>true,"captured"=>true,"new_mrr"=>true} }
   groupby_ts {%Q|created|}
+end
+
+Trend.blueprint(:failed_by_country) do
+  type {"new_mrr"}
+  group {"mrr"}
+  name {"New MRR"}
+  desc {"Monthly recuring revenue from new customers"}
+  unit {"amount"}
+  source {"charges"}
+  interval {"month"}
+  p_criteria { {"amount"=>"$amount","country"=>"$card.country"} }
+  m_criteria { {"paid"=>false,"captured"=>true} }
+  groupby_ts {%Q|created|}
+  dimension {'country'}
+end
+
+Trend.blueprint(:failed_by_type) do
+  type {"new_mrr"}
+  group {"mrr"}
+  name {"New MRR"}
+  desc {"Monthly recuring revenue from new customers"}
+  unit {"amount"}
+  source {"charges"}
+  interval {"month"}
+  p_criteria { {"amount"=>"$amount","card_type"=>"$card.card_type"} }
+  m_criteria { {"paid"=>false,"captured"=>true} }
+  groupby_ts {%Q|created|}
+  dimension {'card_type'}
+end
+
+Trend.blueprint(:total_by_type) do
+  type {"new_mrr"}
+  group {"mrr"}
+  name {"New MRR"}
+  desc {"Monthly recuring revenue from new customers"}
+  unit {"amount"}
+  source {"charges"}
+  interval {"month"}
+  p_criteria { {"amount"=>"$amount","card_type"=>"$card.card_type"} }
+  m_criteria { {"paid"=>true,"captured"=>true} }
+  groupby_ts {%Q|created|}
+  dimension {'card_type'}
 end
 
 Account.blueprint do

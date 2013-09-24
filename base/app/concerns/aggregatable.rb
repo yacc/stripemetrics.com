@@ -11,12 +11,12 @@ module Aggregatable
   end
 
   def process!
-    dimension.nil? ? aggregate_by_month : aggregate_by_month_and_dimension
+    dimension.nil? ? process_by_month! : process_by_dimension! 
   end
 
   private
 
-  def aggregate_by_month
+  def process_by_month!
     monthly = {}
     logger.info "Aggregatable: aggragating #{source} user #{self.user_id} with \n * match:#{match}\n * project:#{project}\n * groupby:#{groupby}"
     data_source.aggregate([match,project,groupby]).collect do |data|
@@ -25,15 +25,21 @@ module Aggregatable
     self.update_attribute(:data,monthly)    
   end
 
-  def aggregate_by_month_and_dimension
-    grouped_by_dim = {}
-    data_source.aggregate([match,project,groupby]).collect do |data|
-      ts = (Time.new(data["_id"]["year"]) + (data["_id"]["month"]).month).to_i
-      dim                 = data["_id"][dimension]
-      grouped_by_dim[dim] ||= {}
-      groupby_by_dim[dim][ts] = data["total"]
+  def process_by_dimension! 
+    begin
+      grouped_by_dim = {}
+      logger.info "Aggregatable: aggragating #{source} user #{self.user_id} with \n * match:#{match}\n * project:#{project}\n * groupby:#{groupby}\n * dimension:#{dimension}"
+      data_source.aggregate([match,project,groupby]).collect do |data|
+        ts = (Time.new(data["_id"]["year"]) + (data["_id"]["month"]).month).to_i
+        dim                 = data["_id"][dimension]
+        grouped_by_dim[dim] ||= {}
+        grouped_by_dim[dim][ts] = data["total"]
+      end
+      self.update_attribute(:data,grouped_by_dim)    
+    rescue Exception => e
+      logger.info "Aggregatable: failed aggragating #{source} user #{self.user_id}\n#{e}"
     end
-    grouped_by_dim    
+
   end
 
   def match
@@ -62,8 +68,8 @@ module Aggregatable
     case dimension
     when 'country'
       {"year"=>"$year", "month"=>"$month","country"=>"$country"}      
-    when 'cc_type'
-      {"year"=>"$year", "month"=>"$month","cc_type"=>"$cc_type"}          
+    when 'card_type'
+      {"year"=>"$year", "month"=>"$month","card_type"=>"$card_type"}          
     when 'plan_type'
       {"year"=>"$year", "month"=>"$month","plan_type"=>"$plan_type"}          
     else

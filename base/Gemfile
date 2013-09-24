@@ -64,8 +64,8 @@ group :test do
 	gem "email_spec", ">= 1.4.0"
 	gem "machinist", ">= 2.0"
 	gem "machinist_mongo",  :git => 'https://github.com/nmerouze/machinist_mongo.git',
-                          :require => 'machinist/mongoid',
-                          :branch => 'machinist2'
+                            :require => 'machinist/mongoid',
+                            :branch => 'machinist2'
     gem "webmock"
     gem "vcr"                      
 end

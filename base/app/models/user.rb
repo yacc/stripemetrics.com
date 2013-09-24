@@ -82,14 +82,14 @@ class User
                              m_criteria:%Q|"paid":false,"captured":true,|,
                              groupby_ts:%Q|created|)
 
-    trends << Trend.new(type:"failed_mrr",group:"mrr",name:"Failed MRR",
+    trends << Trend.new(type:"failed_mrr_by_country",group:"mrr",name:"Failed MRR by countries",
                              desc:"Failing monthly recuring revenue from new customers",
                              unit:"amount",source:"charges",interval:'month',
                              p_criteria:%Q|"amount":"$amount",|, 
                              m_criteria:%Q|"paid":false,"captured":true,|,
                              groupby_ts:%Q|created|,dimension:'country')
 
-    trends << Trend.new(type:"failed_mrr",group:"mrr",name:"Failed MRR",
+    trends << Trend.new(type:"failed_mrr_by_cc_type",group:"mrr",name:"Failed MRR by card type",
                              desc:"Failing monthly recuring revenue from new customers",
                              unit:"amount",source:"charges",interval:'month',
                              p_criteria:%Q|"amount":"$amount",|, 
