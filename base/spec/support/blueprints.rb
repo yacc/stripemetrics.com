@@ -8,7 +8,6 @@ end
 User.blueprint do
   email {"yacin@stripemetrics.com"}
   livemode {"false"}
-  revenue_metric
 end
 
 User.blueprint(:with_charges) do
@@ -26,13 +25,13 @@ Customer.blueprint do
   #charges{ [{created:object.created},{created:(object.created+1.month)},{created:(object.created+2.month)}] }
 end
 
-Customer.blueprint(:no_charges) do 
+Customer.blueprint do 
   user
   stripe_id {"customer_id_#{sn}"}
   email{"cheap_yyy@uuu..ooo"}
   created{ Time.now } 
   canceled_at{ Time.now + 3.month }
-  converter_at{ Time.now + 6.days }  
+  converted_at{ Time.now + 6.days }  
 end
 
 Charge.blueprint do
@@ -46,18 +45,9 @@ Charge.blueprint do
   refunded{false}
   fee{145}
   captured{true} 
+  amount_refunded{0}
   dispute{false}
-end
-
-
-RevenueMetric.blueprint do
-  name{"Monthly Revenue"} 
-  desc{"Monthly Revenue (successfull charges)"} 
-  this_month{100}
-  last_month{50}
-  change{100}
-  tsm_avrg{7}
-  unit{"dollars"}
+  new_mrr{false}
 end
 
 SdeImport.blueprint do
@@ -73,9 +63,30 @@ Import.blueprint do
   count {450}   
 end
 
-
 Trend.blueprint do
-  # Attributes here
+  type {"new_mrr"}
+  group {"mrr"}
+  name {"New MRR"}
+  desc {"Monthly recuring revenue from new customers"}
+  unit {"amount"}
+  source {"charges"}
+  interval {"month"}
+  p_criteria { {"amount"=>"$amount"} }
+  m_criteria { {} }
+  groupby_ts {%Q|created|}
+end
+
+Trend.blueprint(:new_mrr) do
+  type {"new_mrr"}
+  group {"mrr"}
+  name {"New MRR"}
+  desc {"Monthly recuring revenue from new customers"}
+  unit {"amount"}
+  source {"charges"}
+  interval {"month"}
+  p_criteria { {"amount"=>"$amount"} }
+  m_criteria { {"paid"=>true,"captured"=>true,"new_mrr"=>true} }
+  groupby_ts {%Q|created|}
 end
 
 Account.blueprint do

@@ -1,28 +1,27 @@
-module NewMrrAgregation
+module ChurnMrrAgregation
   extend ActiveSupport::Concern
 
-  def refresh_monthly
+  def aggregate_data
     monthly = {}
     self.data_source.collection.aggregate([match,project,groupby("month")]).collect do |data|
-      monthly[(Time.new(data["_id"]["year"]) + (data["_id"]["month"]).month).to_i*1000] = data["volume"]/100.0
+      monthly[(Time.new(data["_id"]["year"]) + (data["_id"]["month"]).month).to_i] = data["volume"]/100.0
     end
-    monthly
   end
 
   private
 
   def match
     {
-      "$match" => { "paid" => true, "captured" => true, "user_id" => self.user_id, "new_mrr" => true}
+      "$match" => { "canceled_at" => {"$ne" => nil},"user_id" => self.user_id }
     }
   end
 
   def project
     {"$project" => 
       {
-        "amount"  => "$amount",
-        "year"    => { "$year"  => "$created"}, 
-        "month"   => { "$month" => "$created"}
+        "amount"  => "$subscription.plan.amount",
+        "year"    => { "$year"  => "$canceled_at"}, 
+        "month"   => { "$month" => "$canceled_at"}
       }
     }   
   end

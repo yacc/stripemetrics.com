@@ -1,0 +1,50 @@
+%table.table.table-bordered
+  %thead
+    %tr
+      %th{colspan:2} Summary Financial Metrics $000's
+      - @months.each do |month|
+        %th= mmr_date(month)
+  %tbody
+    - @mrrs.each do |data| 
+      %tr
+        %th
+        %th
+          Billings (what's invoiced this month)
+          <i class= 'icon-question-sign' rel="clickover" data-content= "#{data[:metric].desc.html_safe}"></i> 
+        - data[:trend].monthly.each do |m|
+          %td=(data[:metric].is_in_dollar? ? number_to_currency(m[1]) : m[1].to_i)
+    - @mrrs.each do |data| 
+      %tr
+        %th
+        %th
+          Revenue
+          <i class= 'icon-question-sign' rel="clickover" data-content= "#{data[:metric].desc.html_safe}"></i> 
+        - data[:trend].monthly.each do |m|
+          %td=(data[:metric].is_in_dollar? ? number_to_currency(m[1]) : m[1].to_i)
+    - @mrrs.each do |data| 
+      %tr
+        %th
+        %th
+          COGS (Cost of Goods Sold) 
+          <i class= 'icon-question-sign' rel="clickover" data-content= "#{data[:metric].desc.html_safe}"></i> 
+        - data[:trend].monthly.each do |m|
+          %td=(data[:metric].is_in_dollar? ? number_to_currency(m[1]) : m[1].to_i)
+    - @mrrs.each do |data| 
+      %tr.info
+        %th
+        %th
+          Gross Margin
+          <i class= 'icon-question-sign' rel="clickover" data-content= "#{data[:metric].desc.html_safe}"></i> 
+        - data[:trend].monthly.each do |m|
+          %td=(data[:metric].is_in_dollar? ? number_to_currency(m[1]) : m[1].to_i)
+    - @mrrs.each do |data| 
+      %tr.info
+        %th
+        %th
+          Gross Margin %
+          <i class= 'icon-question-sign' rel="clickover" data-content= "#{data[:metric].desc.html_safe}"></i> 
+        - data[:trend].monthly.each do |m|
+          %td=(data[:metric].is_in_dollar? ? number_to_currency(m[1]) : m[1].to_i)
+
+:javascript
+  $('[rel="clickover"]').clickover({ html : true });
