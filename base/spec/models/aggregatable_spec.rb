@@ -126,22 +126,24 @@ describe Aggregatable do
 	end
 
 	describe "process! with \"cc_type\" dimension" do
-		
+
 		it "should aggregate failed charges amount by month and country" do
 			generate_charges_for_user_with_cc_types
 			total_by_type = Trend.make!(:failed_by_type,user_id:user.id)			
 			total_by_type.data_source.find.count.should == 26
 			total_by_type.process!
 			total_by_type.data.should eq({"Visa"=>{1378018800=>4500, 1375340400=>9000, 1372662000=>9000}, "Amex"=>{1378018800=>4500, 1375340400=>13500}, "MasterCard"=>{1375340400=>9000, 1372662000=>9000}})
+			Charge.delete_all
 		end
 
-		# it "should aggregate total charges amount by month and country" do
-		# 	generate_charges_for_user_with_cc_types
-		# 	total_by_type = Trend.make!(:total_by_type,user_id:user.id)			
-		# 	total_by_type.data_source.find.count.should == 26
-		# 	total_by_type.process!
-		# 	total_by_type.data.should eq({"Visa"=>{1378018800=>4500, 1375340400=>9000, 1372662000=>9000}, "Amex"=>{1378018800=>4500, 1375340400=>13500}, "MasterCard"=>{1375340400=>9000, 1372662000=>9000}})
-		# end
+		it "should aggregate total charges amount by month and country" do
+			generate_successfull_charges_for_user_with_cc_types
+			total_by_type = Trend.make!(:total_by_type,user_id:user.id)			
+			total_by_type.data_source.find.count.should == 26
+			total_by_type.process!
+			total_by_type.data.should eq({"Visa"=>{1378018800=>18000, 1380610800=>13500, 1375340400=>22500, 1372662000=>27000}, "Amex"=>{1378018800=>4500, 1375340400=>13500}, "MasterCard"=>{1375340400=>9000, 1372662000=>9000}})
+			Charge.delete_all
+		end
 
 	end
 
