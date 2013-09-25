@@ -26,7 +26,7 @@ class Trend
   end
 
   def as_highchart_data
-    self.data.collect{|k,v| [k*1000,v]}.sort{|k| k[0]}
+    self.data.collect{|k,v| [k.to_i*1000,v]}.sort
   end
 
 end
