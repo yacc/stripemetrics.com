@@ -66,63 +66,64 @@ class User
     end
   end
 
+
   def add_trends_v2
     # MRR
     trends << Trend.new(type:"new_mrr",group:"mrr",name:"New MRR",
                              desc:"Monthly recuring revenue from new customers",
                              unit:"amount",source:"charges",interval:'month',
-                             p_criteria:%Q|"amount":"$amount",|, 
-                             m_criteria:%Q|"paid":true,"captured":true,"new_mrr":true,|,
+                             p_criteria:{"amount"=>"$amount"}, 
+                             m_criteria:{"paid"=>true,"captured"=>true,"new_mrr"=>true},
                              groupby_ts:%Q|created|)
 
     trends << Trend.new(type:"failed_mrr",group:"mrr",name:"Failed MRR",
                              desc:"Failing monthly recuring revenue from new customers",
                              unit:"amount",source:"charges",interval:'month',
-                             p_criteria:%Q|"amount":"$amount",|, 
-                             m_criteria:%Q|"paid":false,"captured":true,|,
+                             p_criteria:{"amount"=>"$amount"}, 
+                             m_criteria:{"paid"=>false,"captured"=>true},
                              groupby_ts:%Q|created|)
 
     trends << Trend.new(type:"failed_mrr_by_country",group:"mrr",name:"Failed MRR by countries",
                              desc:"Failing monthly recuring revenue from new customers",
                              unit:"amount",source:"charges",interval:'month',
-                             p_criteria:%Q|"amount":"$amount",|, 
-                             m_criteria:%Q|"paid":false,"captured":true,|,
+                             p_criteria:{"amount"=>"$amount","country"=>"$card.country"}, 
+                             m_criteria:{"paid"=>false,"captured"=>true},
                              groupby_ts:%Q|created|,dimension:'country')
 
     trends << Trend.new(type:"failed_mrr_by_cc_type",group:"mrr",name:"Failed MRR by card type",
                              desc:"Failing monthly recuring revenue from new customers",
                              unit:"amount",source:"charges",interval:'month',
-                             p_criteria:%Q|"amount":"$amount",|, 
-                             m_criteria:%Q|"paid":false,"captured":true,|,
-                             groupby_ts:%Q|created|,dimension:'cc_type')
+                             p_criteria:{"amount"=>"$amount","card_type"=>"$card.card_type"}, 
+                             m_criteria:{"paid"=>false,"captured"=>true},
+                             groupby_ts:%Q|created|,dimension:'card_type')
 
     trends << Trend.new(type:"churn_mrr",group:"mrr",name:"Churn MRR",
                              desc:"The lost monthly recuring revenue from churning customers in the current month", 
                              unit:"amount",source:"customers",interval:'month',
-                             p_criteria:%Q|"amount":"$subscription.plan.amount",|,
-                             m_criteria:%Q|"canceled_at":{"$ne":nil},|,
+                             p_criteria:{"amount"=>"$subscription.plan.amount"},
+                             m_criteria:{"canceled_at"=>{"$ne"=>nil}},
                              groupby_ts:%Q|canceled_at|) 
 
     # CHURN METRICS
-    trends << Trend.new(type:"tot_cust",group:"chrun",name:"Total # of Customer",
+    trends << Trend.new(type:"tot_cust",group:"churn",name:"Total # of Customer",
                              desc:"Total # of customers}", 
                              unit:"count",source:"customers",interval:'month',
-                             p_criteria:%Q|"customers" => 1,|, 
-                             m_criteria:%Q|""|,
+                             p_criteria:{"customers" => 1}, 
+                             m_criteria:{},
                              groupby_ts:%Q|created|)
 
-    trends << Trend.new(type:"new_cust",group:"chrun",name:"# of new Customers",
+    trends << Trend.new(type:"new_cust",group:"churn",name:"# of new Customers",
                              desc:"# new of customers in the current month}", 
                              unit:"count",source:"customers",interval:'month',
-                             p_criteria:%Q|"customers" => 1,|, 
-                             m_criteria:%Q|""|,
+                             p_criteria:{"customers" => 1}, 
+                             m_criteria:{},
                              groupby_ts:%Q|created|)
 
-    trends << Trend.new(type:"chur_cust",group:"chrun",name:"# of churned  Customers",
+    trends << Trend.new(type:"churn_cust",group:"churn",name:"# of churned  Customers",
                              desc:"# of churned customers in the current month}", 
                              unit:"count",source:"customers",interval:'month',
-                             p_criteria:%Q|"customers" => 1,|, 
-                             m_criteria:%Q|""|,
+                             p_criteria:{"customers" => 1}, 
+                             m_criteria:{"canceled_at"=>{"$ne"=>nil}},
                              groupby_ts:%Q|canceled_at|)
   end
 
@@ -139,7 +140,7 @@ class User
   end
 
   def refresh_data
-    add_trends_v2 if self.trend_v2s.empty?
+    add_trends_v2 if self.trends.empty?
 
     # get the timestamp of the last imported object
     last_charge_import   = self.charge_imports.asc(:start_at).last.start_at

@@ -8,7 +8,7 @@ class UpdateChargeTrends
   def self.perform(user_id)
     user = User.find(user_id)
     user.trends.where(source:'charges') do |trend|
-      trend.refresh!    
+      trend.process!   
     end
   end
 

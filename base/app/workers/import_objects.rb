@@ -5,8 +5,8 @@ class ImportObjects
     user     = import.user
     type     = import._type 
     import.run!
-    # todo: test import.successfull?
 
+    #TODO: dry this up (use only one line and one class Import class) 
     case type
     when 'ChargeImport'
       Resque.enqueue(UpdateChargeTrends, user.id)
