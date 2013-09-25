@@ -19,6 +19,12 @@ class Trend
   field :data,       type: Hash, :default => {}
   belongs_to :user
 
+  def self.normalized_months(user)
+    trend_id = user.trends.where(dimension:nil).collect{|t| [t.data.size,t._id]}.max[1]
+    trend = Trend.find(trend_id)
+    trend.data.keys.sort
+  end
+
   def as_highchart_data
     self.data.collect{|k,v| [k*1000,v]}.sort{|k| k[0]}
   end

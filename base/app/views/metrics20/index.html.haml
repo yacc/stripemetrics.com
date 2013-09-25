@@ -3,13 +3,7 @@
     .container
       .row
         .span12
-          = render "mrr_metrics"
+          = render "metric_group", metrics:@mrrs,title:"MRR Metrics"
       .row
         .span12
-          = render "churn_metrics"
-      .row
-        .span12
-          = render "unit_economics"
-      .row
-        .span12
-          = render "summary_financial_metrics"          
+          = render "metric_group", metrics:@churns,title:"Churn Metrics"

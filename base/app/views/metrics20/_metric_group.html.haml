@@ -1,15 +1,15 @@
 %table.table.table-bordered
   %thead
     %tr
-      %th{colspan:2} Churn Metrics
+      %th{colspan:2}=title
       - @months.each do |month|
         %th= mmr_date(month)
   %tbody
-    - @mrrs.each do |trend| 
+    - metrics.each do |trend| 
       %tr
         %th
         %th 
-          trend.name      
+          #{trend.name}      
           <i class= 'icon-question-sign' rel="clickover" data-content= "#{trend.desc.html_safe}"></i> 
         - @months.each do |month|
           %td=trend.data[month].nil? ? 0 : trend.data[month]  
