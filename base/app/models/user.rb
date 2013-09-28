@@ -105,13 +105,6 @@ class User
                              groupby_ts:%Q|canceled_at|) 
 
     # CHURN METRICS
-    trends << Trend.new(type:"tot_cust",group:"churn",name:"Total # of Customer",
-                             desc:"Total # of customers}", 
-                             unit:"count",source:"customers",interval:'month',
-                             p_criteria:{"customers" => 1}, 
-                             m_criteria:{},
-                             groupby_ts:%Q|created|)
-
     trends << Trend.new(type:"new_cust",group:"churn",name:"# of new Customers",
                              desc:"# new of customers in the current month}", 
                              unit:"count",source:"customers",interval:'month',

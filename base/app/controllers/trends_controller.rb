@@ -2,14 +2,13 @@ class TrendsController < ApplicationController
   before_filter :authenticate_user!
 
   def show
-    type     = params[:type]
-    group_by = params[:group_by]
-    @trend   = current_user.send(type.underscore) 
-    @data    = current_user.send(type.underscore).send(group_by)
-
-    @series1  = current_user.send(type.underscore).group_by_month_and_by_countries
-    @series2  = current_user.send(type.underscore).group_by_month_and_by_cc_type
-
+    type      = 
+    dimension = 
+    @trend   = current_user.trends
+    @trend   = @trend.where(type:params[:type]) if params[:type] 
+    @trend   = @trend.where(type:params[:dimension]) if params[:dimension] 
+    @trend   = @trend.last
+    
     respond_to do |format|
       format.html 
       format.json { render json: @data}
