@@ -1,22 +1,34 @@
-.widget.big-stats-container
-  .widget-content
-    #big_stats.cf
-      .stat
-        %h3=Date.today
-        %h4=raw trailing_30_days_volume_desc
-        %span.value= raw trailing_30_days_volume
-      .stat
-        %h3=Date.today
-        %h4=raw trailing_30_days_acquisition_desc
-        %span.value= raw trailing_30_days_acquisition
-      .stat
-        %h3=Date.today
-        %h4=raw trailing_30_days_cancellation_desc
-        %span.value=raw trailing_30_days_cancellation
-      .stat
-        %h3=Date.today
-        %h4=raw trailing_30_failed_charges_desc
-        %span.value=raw trailing_30_failed_charges
-
-<h4> </h4>
+.row-fluid
+  .span3.statbox.purple{ondesktop: "span3", ontablet: "span6"}
+    .boxchart=@new_mrr.as_bigstat_data
+    .number
+      =@new_mrr.tsm_average
+      %i{class:(@new_mrr.tsm_average > 0 ? 'icon-arrow-up' : 'icon-arrow-down')}
+    .title=@new_mrr.name
+    .footer
+      = link_to "read full report", trend_path(@new_mrr)
+  .span3.statbox.green{ondesktop: "span3", ontablet: "span6"}
+    .boxchart=@failed_mrr.as_bigstat_data
+    .number
+      =@failed_mrr.tsm_average
+      %i{class:(@failed_mrr.tsm_average > 0 ? 'icon-arrow-up' : 'icon-arrow-down')}
+    .title=@failed_mrr.name
+    .footer
+      =link_to 'read full report', trend_path(@failed_mrr)
+  .span3.statbox.blue.noMargin{ondesktop: "span3", ontablet: "span6"}
+    .boxchart=@new_cust.as_bigstat_data
+    .number
+      =@new_cust.tsm_average
+      %i{class:(@new_cust.tsm_average > 0 ? 'icon-arrow-up' : 'icon-arrow-down')}
+    .title=@new_cust.name
+    .footer
+      =link_to 'read full report', trend_path(@new_cust)
+  .span3.statbox.yellow{ondesktop: "span3", ontablet: "span6"}
+    .boxchart=@churn_cust.as_bigstat_data
+    .number
+      =@churn_cust.tsm_average
+      %i{class:(@churn_cust.tsm_average > 0 ? 'icon-arrow-up' : 'icon-arrow-down')}
+    .title=@churn_cust.name
+    .footer
+      =link_to 'read full report', trend_path(@churn_cust)
 

@@ -56,4 +56,26 @@ class Trend
     self.data.collect{|k,v| [k.to_i*1000,v]}.sort
   end
 
+  def as_bigstat_data
+    self.data.sort.collect{|k,v| v}
+  end
+
+  def as_flot_data(cap=nil)
+    if cap
+      datapoints = self.data.collect{|k,v| [k.to_i*1000,v]}.sort    
+      cap = [cap,datapoints.size].min
+      datapoints[-cap..cap]
+    else
+      self.data.collect{|k,v| [k.to_i*1000,v]}.sort    
+    end
+  end
+
+  def tsm_average
+    data_points = self.data.sort.collect{|k,v| v}
+    num_periods    = data_points.size.to_f
+    starting_value = data_points.first[1].to_f  
+    ending_value   = data_points.last[1].to_f  
+    ((ending_value/starting_value)**(1./num_periods))-1
+  end
+
 end

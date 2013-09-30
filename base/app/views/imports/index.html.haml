@@ -1,12 +1,6 @@
-.main
-  .main-inner
-    .container
-      .row
-        .span6
-          = render "status", :title => "Importing Customer Data", :imports => @customer_imports, :type => 'CustomerImport'
-        .span6
-          = render "status", :title => "Importing Charges Data", :imports => @charge_imports, :type => 'ChargeImport'
-        .span6
-          = render "status", :title => "Importing Customer Deleted Events", :imports => @cde_imports, :type => 'CdeImport'
-        .span6
-          = render "status", :title => "Importing Subscription Deleted Events", :imports => @sde_imports, :type => 'SdeImport'
+.row-fluid
+  = render "status", :title => "Importing Customer Data", :imports => @customer_imports, :type => 'CustomerImport'
+  = render "status", :title => "Importing Charges Data", :imports => @charge_imports, :type => 'ChargeImport'
+.row-fluid
+  = render "status", :title => "Importing Customer Deleted Events", :imports => @cde_imports, :type => 'CdeImport'
+  = render "status", :title => "Importing Subscription Deleted Events", :imports => @sde_imports, :type => 'SdeImport'

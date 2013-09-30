@@ -1,0 +1,40 @@
+%li.dropdown.hidden-phone
+  %a.btn.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+    %i.halflings-icon.white.tasks
+  %ul.dropdown-menu.tasks
+    %li.dropdown-menu-title
+      %span You have 17 tasks in progress
+      %a{href: "#refresh"}
+        %i.icon-repeat
+    %li
+      %a{href: "#"}
+        %span.header
+          %span.title iOS Development
+          %span.percent
+        .taskProgress.progressSlim.red 80
+    %li
+      %a{href: "#"}
+        %span.header
+          %span.title Android Development
+          %span.percent
+        .taskProgress.progressSlim.green 47
+    %li
+      %a{href: "#"}
+        %span.header
+          %span.title Django Project For Google
+          %span.percent
+        .taskProgress.progressSlim.yellow 32
+    %li
+      %a{href: "#"}
+        %span.header
+          %span.title SEO for new sites
+          %span.percent
+        .taskProgress.progressSlim.greenLight 63
+    %li
+      %a{href: "#"}
+        %span.header
+          %span.title New blog posts
+          %span.percent
+        .taskProgress.progressSlim.orange 80
+    %li
+      %a.dropdown-menu-sub-footer View all tasks

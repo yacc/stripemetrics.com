@@ -1,37 +1,190 @@
-.main
-  .main-inner
-    .container
-      .row
-        .span12
-          .widget
-            .widget-header
-              %i.icon-user
-              %h3 Change your plan (currently on #{current_user.plan})
-            .widget-content
-              = render 'edit_plan'
-      .row
-        .span6
-          .widget
-            .widget-header
-              %i.icon-user
-              %h3 Your Credentials
-            .widget-content
-              = render 'user'
-        .span6
-          .widget.widget-box
-            .widget-header
-              %i.icon-info-sign
-              %h3 Confidentiality
-            .widget-content
-              %p Your email is never shared with anyone, period. 
-              %p We need your email for two reasons:
-              %ul
-                %li to email you reports if you have selected that option
-                %li so we can identify you when you use the command line tool
-          .widget.widget-box
-            .widget-header
-              %i.icon-warning-sign
-              %h3 Cancel your account
-            .widget-content
-              = render 'cancel'
+- if current_user.in_free_trial?
+  = render "plan_alert"
+  .row-fluid
+    .box.span6
+      .box-header
+        %h2
+          %i.halflings-icon.tasks
+          = succeed "Your Credentials" do
+            %span.break
+      .box-content
+        = render "user"
+    .box.span6
+      .box-header
+        %h2
+          %i.halflings-icon.tasks
+          = succeed "Confidentiality" do
+            %span.break
+      .box-content
+        %p Your email is never shared with anyone, period. 
+        %p We need your email for two reasons:
+        %ul
+          %li to email you reports if you have selected that option
+          %li so we can identify you when you use the command line tool
+    .box.span6
+      .box-header
+        %h2
+          %i.halflings-icon.tasks
+          = succeed "Cancel your account" do
+            %span.break
+      .box-content
+        = render "cancel"        
+
+- else
+  = render 'edit_plan'
+
+/       .row
+/         .span6
+/           .widget
+/             .widget-header
+/               %i.icon-user
+/               %h3 Your Credentials
+/             .widget-content
+/               = render 'user'
+/         .span6
+/           .widget.widget-box
+/             .widget-header
+/               %i.icon-info-sign
+/               %h3 Confidentiality
+/             .widget-content
+/               %p Your email is never shared with anyone, period. 
+/               %p We need your email for two reasons:
+/               %ul
+/                 %li to email you reports if you have selected that option
+/                 %li so we can identify you when you use the command line tool
+/           .widget.widget-box
+/             .widget-header
+/               %i.icon-warning-sign
+/               %h3 Cancel your account
+/             .widget-content
+/               = render 'cancel'
               
+/ .row-fluid.sortable
+/   .box.span12
+
+/   .box.span12
+/     .box-header{"data-original-title" => ""}
+/       %h2
+/         %i.halflings-icon.edit
+/         = succeed "Form" do
+/           %span.break
+/       .box-icon
+/         %a.btn-setting{href: "#"}
+/           %i.halflings-icon.wrench
+/         %a.btn-minimize{href: "#"}
+/           %i.halflings-icon.chevron-up
+/         %a.btn-close{href: "#"}
+/           %i.halflings-icon.remove
+/     .box-content
+/       %form.form-horizontal
+/         %fieldset
+/           .control-group
+/             %label.control-label{for: "focusedInput"} Focused input
+/             .controls
+/               %input#focusedInput.input-xlarge.focused{type: "text", value: "This is focused…"}/
+/           .control-group
+/             %label.control-label Uneditable input
+/             .controls
+/               %span.input-xlarge.uneditable-input Some value here
+/           .control-group
+/             %label.control-label{for: "disabledInput"} Disabled input
+/             .controls
+/               %input#disabledInput.input-xlarge.disabled{disabled: "disabled", placeholder: "Disabled input here…", type: "text"}/
+/           .control-group
+/             %label.control-label{for: "optionsCheckbox2"} Disabled checkbox
+/             .controls
+/               %label.checkbox
+/                 %input#optionsCheckbox2{disabled: "disabled", type: "checkbox", value: "option1"}/
+/                 This is a disabled checkbox
+/           .control-group.warning
+/             %label.control-label{for: "inputWarning"} Input with warning
+/             .controls
+/               %input#inputWarning{type: "text"}/
+/               %span.help-inline Something may have gone wrong
+/           .control-group.error
+/             %label.control-label{for: "inputError"} Input with error
+/             .controls
+/               %input#inputError{type: "text"}/
+/               %span.help-inline Please correct the error
+/           .control-group.success
+/             %label.control-label{for: "inputSuccess"} Input with success
+/             .controls
+/               %input#inputSuccess{type: "text"}/
+/               %span.help-inline Woohoo!
+/           .control-group
+/             %label.control-label{for: "selectError3"} Plain Select
+/             .controls
+/               %select#selectError3
+/                 %option Option 1
+/                 %option Option 2
+/                 %option Option 3
+/                 %option Option 4
+/                 %option Option 5
+/           .control-group
+/             %label.control-label{for: "selectError"} Modern Select
+/             .controls
+/               %select#selectError{"data-rel" => "chosen"}
+/                 %option Option 1
+/                 %option Option 2
+/                 %option Option 3
+/                 %option Option 4
+/                 %option Option 5
+/           .control-group
+/             %label.control-label{for: "selectError1"} Multiple Select / Tags
+/             .controls
+/               %select#selectError1{"data-rel" => "chosen", multiple: "multiple"}
+/                 %option Option 1
+/                 %option{selected: "selected"} Option 2
+/                 %option Option 3
+/                 %option Option 4
+/                 %option Option 5
+/           .control-group
+/             %label.control-label{for: "selectError2"} Group Select
+/             .controls
+/               %select#selectError2{"data-placeholder" => "Your Favorite Football Team", "data-rel" => "chosen"}
+/                 %option{value: ""}
+/                 %optgroup{label: "NFC EAST"}
+/                   %option Dallas Cowboys
+/                   %option New York Giants
+/                   %option Philadelphia Eagles
+/                   %option Washington Redskins
+/                 %optgroup{label: "NFC NORTH"}
+/                   %option Chicago Bears
+/                   %option Detroit Lions
+/                   %option Green Bay Packers
+/                   %option Minnesota Vikings
+/                 %optgroup{label: "NFC SOUTH"}
+/                   %option Atlanta Falcons
+/                   %option Carolina Panthers
+/                   %option New Orleans Saints
+/                   %option Tampa Bay Buccaneers
+/                 %optgroup{label: "NFC WEST"}
+/                   %option Arizona Cardinals
+/                   %option St. Louis Rams
+/                   %option San Francisco 49ers
+/                   %option Seattle Seahawks
+/                 %optgroup{label: "AFC EAST"}
+/                   %option Buffalo Bills
+/                   %option Miami Dolphins
+/                   %option New England Patriots
+/                   %option New York Jets
+/                 %optgroup{label: "AFC NORTH"}
+/                   %option Baltimore Ravens
+/                   %option Cincinnati Bengals
+/                   %option Cleveland Browns
+/                   %option Pittsburgh Steelers
+/                 %optgroup{label: "AFC SOUTH"}
+/                   %option Houston Texans
+/                   %option Indianapolis Colts
+/                   %option Jacksonville Jaguars
+/                   %option Tennessee Titans
+/                 %optgroup{label: "AFC WEST"}
+/                   %option Denver Broncos
+/                   %option Kansas City Chiefs
+/                   %option Oakland Raiders
+/                   %option San Diego Chargers
+/           .form-actions
+/             %button.btn.btn-primary{type: "submit"} Save changes
+/             %button.btn Cancel
+/   / /span
+/ / /row

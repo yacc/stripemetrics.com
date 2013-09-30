@@ -1,5 +1,14 @@
-- if $rollout.active?(:dashboard_v2, current_user) 
-  = render 'index2'
-- else  
-  = render 'index1'
+= render "bigstats"
+= render "mrrs_and_trends"
 
+= content_for :modal do
+  #myModal.modal.hide.fade
+    .modal-header
+      %button.close{"data-dismiss" => "modal", type: "button"} ×
+      %h3 Settings
+    .modal-body
+      %p Here settings can be configured...
+    .modal-footer
+      %a.btn{"data-dismiss" => "modal", href: "#"} Close
+      %a.btn.btn-primary{href: "#"} Save changes
+  .clearfix

@@ -1,0 +1,7 @@
+.row-fluid.sortable
+  .span12
+    = render "mrr_metric_group", metrics:@mrrs,title:"MRR Metrics"
+    = render "churn_metric_group", metrics:@churns,title:"Churn Metrics"
+
+:javascript
+  $('[rel="clickover"]').clickover({ html : true });

@@ -1,16 +1,26 @@
-.widget
-  .widget-header
-    %i.icon-star
-    %h3=title
-  .widget-content
+.box.span6
+  .box-header
+    %h2
+      %i.halflings-icon.tasks
+      = succeed title do
+        %span.break
+  .box-content
     - unless imports.empty?
       Progress #{current_user.stat.import_progress(type)}%
       .progress
         .bar.bar-success{:style => "width: #{current_user.stat.import_progress(type)}%;"}
-      %ul
-        %li Number of objects imported #{imports.count*imports.first.count}
-        %li Last import ran #{last_ran(imports)}
-        %li Newest object imported timestamp: #{newest_object(imports)}
-        %li Oldest object imported timestamp: #{oldest_object(imports)}
+      %table.table.table-striped
+        %tr
+          %td Number of objects imported 
+          %td=imports.count*imports.first.count
+        %tr
+          %td Last import ran 
+          %td=last_ran(imports)
+        %tr
+          %td Newest object imported timestamp 
+          %td=newest_object(imports)
+        %tr
+          %td Oldest object imported timestamp 
+          %td=oldest_object(imports)
     - else
-      No imports ran or running ... something is not right!  
+      No imports ran or running ... something is not right!    

@@ -1,0 +1,30 @@
+.row-fluid
+  .span8.widget.blue{ondesktop: "span8", ontablet: "span7"}
+    =render '/charts/two_series_as_bars', :bar => @new_mrr, :line => @failed_mrr
+  .sparkLineStats.span4.widget.green{ondesktop: "span4", ontablet: "span5"}
+    %ul.unstyled
+      %li
+        %span.sparkLineStats3
+        Pageviews:
+        %span.number 781
+      %li
+        %span.sparkLineStats4
+        Pages / Visit:
+        %span.number 2,19
+      %li
+        %span.sparkLineStats5
+        Avg. Visit Duration:
+        %span.number 00:02:58
+      %li
+        %span.sparkLineStats6
+        Bounce Rate:
+        %span.number 59,83%
+      %li
+        %span.sparkLineStats7
+        \% New Visits:
+        %span.number 70,79%
+      %li
+        %span.sparkLineStats8
+        \% Returning Visitor:
+        %span.number 29,21%
+    .clearfix

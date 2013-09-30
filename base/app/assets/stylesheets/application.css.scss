@@ -1,23 +1,19 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require_self
-*/
-@import "bootstrap";
-@import "bootstrap-responsive";
+@import "bootstrap.min";
+@import "bootstrap-responsive.min";
 
-@import "plan.css.scss";
-@import "pricing.css.scss";
-@import "faq.css.scss";
-@import "report.css.scss";
+@import "jquery-ui-1.8.21.custom";
+@import "chosen";												
+@import "uniform.default.css";
+@import "jquery.noty";
+@import "noty_theme_default";
+@import "jquery.iphone.toggle";
+@import "jquery.gritter";
+@import "font-awesome.min";
+@import "font-awesome-ie7.min";
+@import "glyphicons";
+@import "halflings";
+@import "style-forms";
 
-@import "font-awesome";
-@import "base-admin.css.scss";
-@import "base-admin-responsive.css.scss";
+
+@import "style";
+@import "style-responsive";

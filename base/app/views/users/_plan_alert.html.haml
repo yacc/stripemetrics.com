@@ -1,0 +1,5 @@
+.row-fluid
+  .alert.span12
+    %h4 You're still on the free trial
+    %p 
+    You have #{distance_of_time_in_words(Time.now,current_user.created_at+7.days)} to upgrade your account.

@@ -1,0 +1,27 @@
+%table.table.table-striped.table-bordered.table-condensed
+  %thead
+    %tr
+      %th{colspan:2}=title
+      - @months.each do |month|
+        %th= mmr_date(month)
+  %tbody
+    %tr
+      %th
+      %th Total Customers
+      - @months.each do |month|
+        %td=human_data(@total_customers,month)
+    - metrics.each do |trend| 
+      %tr
+        %th
+        %th 
+          #{trend.name}      
+          <i class= 'icon-question-sign' rel="clickover" data-content= "#{trend.desc.html_safe}"></i> 
+        - @months.each do |month|
+          %td=human_data(trend,month) 
+    %tr
+      %th
+      %th Net New Customers
+      - @months.each do |month|
+        %td=human_data(@net_new_customers,month)
+:javascript
+  $('[rel="clickover"]').clickover({ html : true });

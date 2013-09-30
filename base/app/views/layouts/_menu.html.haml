@@ -1,0 +1,50 @@
+.nav-collapse.sidebar-nav
+  %ul.nav.nav-tabs.nav-stacked.main-menu
+    -if user_signed_in?
+      %li{:class => "#{'active' if current_page?(dashboard_path) || current_page?(root_path)}"}
+        = link_to dashboard_path do
+          %i.icon-dashboard
+          %span.hidden-tablet Dashboard
+      %li{:class => "#{'active' if current_page?(trends_path)}"}
+        = link_to trends_path do
+          %i.icon-bar-chart
+          %span.hidden-tablet Metrics 2.0
+      %li{:class => "#{'active' if current_page?(cohort_path)}"}
+        = link_to cohort_path do
+          %i.icon-group
+          %span.hidden-tablet Cohort
+      %li{:class => "#{'active' if current_page?(status_path)}"}
+        = link_to status_path do
+          %i.icon-cloud-upload
+          %span.hidden-tablet Imports
+      %li{:class => "#{'active' if current_page?(account_path)}"}
+        = link_to account_path do
+          %i.icon-user
+          %span.hidden-tablet My Account
+      -if current_user.in_free_trial?
+        %li{:class => "#{'active' if current_page?(upgrading_path)}"}
+          = link_to upgrading_path do
+            %i.icon-credit-card
+            %span.hidden-tablet Upgrade        
+    -else
+      %li{:class => "#{'active' if current_page?(quickstart_path) || current_page?(root_path)}"}
+        = link_to quickstart_path do
+          %i.icon-home
+          %span.hidden-tablet Quick-start
+      %li{:class => "#{'active' if current_page?(pricing_path)}"}
+        = link_to pricing_path do
+          %i.icon-credit-card
+          %span.hidden-tablet Pricing
+    %li{:class => "#{'active' if current_page?(faq_path)}"}
+      = link_to faq_path do
+        %i.icon-lightbulb
+        %span.hidden-tablet FAQ
+    %li
+      -if user_signed_in? 
+        = link_to "https://api.stripemetrics.com/?api_token=#{current_user.api_token}" do
+          %i.icon-cogs
+          %span.hidden-tablet API
+      -else
+        = link_to 'https://api.stripemetrics.com' do
+          %i.icon-cogs
+          %span.hidden-tablet API

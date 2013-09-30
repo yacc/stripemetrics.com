@@ -1,30 +1,35 @@
-.navbar.navbar-fixed-top
+.navbar
   .navbar-inner
-    .container
-      %a.brand{:href => "#{root_url}"}
-        = image_tag("stripemetrics-icon.png")
-        StripeMetrics
-      -if user_signed_in?
-        %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
-          %span.icon-bar
-          %span.icon-bar
-          %span.icon-bar
-        .nav-collapse
-          %ul.nav.pull-right
-            %li.dropdown
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                %i.icon-user
-                = (current_user.email ? current_user.email : current_user.id)
-                %b.caret
-              %ul.dropdown-menu
-                %li
-                  = link_to 'My account', account_path
-                / %li
-                /   = link_to 'Billing', billing_path
-                %li.divider
-                %li
-                  = link_to 'Logout', signout_path
-      -else                
+    .container-fluid
+      %a.btn.btn-navbar{"data-target" => ".top-nav.nav-collapse,.sidebar-nav.nav-collapse", "data-toggle" => "collapse"}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.brand{href: "index.html"}
+        %span StripeMetrics
+      .nav-no-collapse.header-nav
         %ul.nav.pull-right
-          %li
-            = link_to image_tag('blue.png'), signin_path
+          /= render "layouts/menu_notifications"
+          /= render "layouts/tasks_in_progress"
+          /= render "layouts/messages"
+          - if user_signed_in?
+            %li.dropdown
+              %a.btn.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                %i.halflings-icon.white.user
+                = (current_user.email ? current_user.email : current_user.id)
+                %span.caret
+              %ul.dropdown-menu
+                %li.dropdown-menu-title
+                  %span Account Settings
+                %li
+                  = link_to account_path do
+                    %i.halflings-icon.user
+                    Account Settings
+                %li
+                  = link_to signout_path do
+                    %i.halflings-icon.off
+                    Logout
+          - else
+            %li
+              = link_to signin_path do
+                = image_tag('blue.png')
