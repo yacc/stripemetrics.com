@@ -3,7 +3,7 @@ class User
   include Mongoid::Timestamps::Created::Short
   include Billable
 
-  MAX_IMPORTS      = 10
+  MAX_IMPORTS      = 50
   # John and Patrick first started working on Stripe in early 2010.
   BEGINING_OF_TIME = Time.parse('01/01/2010')
 
@@ -67,34 +67,34 @@ class User
   end
 
 
-  def add_trends_v2
+  def add_trends
     # MRR
     trends << Trend.new(type:"new_mrr",group:"mrr",name:"New MRR",
                              desc:"Monthly recuring revenue from new customers",
                              unit:"amount",source:"charges",interval:'month',
                              p_criteria:{"amount"=>"$amount"}, 
-                             m_criteria:{"paid"=>true,"captured"=>true,"new_mrr"=>true},
+                             m_criteria:{"created"=>{"$ne"=>nil},"paid"=>true,"new_mrr"=>true},
                              groupby_ts:%Q|created|)
 
     trends << Trend.new(type:"failed_mrr",group:"mrr",name:"Failed MRR",
                              desc:"Failing monthly recuring revenue from new customers",
                              unit:"amount",source:"charges",interval:'month',
                              p_criteria:{"amount"=>"$amount"}, 
-                             m_criteria:{"paid"=>false,"captured"=>true},
+                             m_criteria:{"paid"=>false},
                              groupby_ts:%Q|created|)
 
     trends << Trend.new(type:"failed_mrr_by_country",group:"mrr",name:"Failed MRR by countries",
                              desc:"Failing monthly recuring revenue from new customers",
                              unit:"amount",source:"charges",interval:'month',
                              p_criteria:{"amount"=>"$amount","country"=>"$card.country"}, 
-                             m_criteria:{"paid"=>false,"captured"=>true},
+                             m_criteria:{"paid"=>false},
                              groupby_ts:%Q|created|,dimension:'country')
 
     trends << Trend.new(type:"failed_mrr_by_cc_type",group:"mrr",name:"Failed MRR by card type",
                              desc:"Failing monthly recuring revenue from new customers",
                              unit:"amount",source:"charges",interval:'month',
                              p_criteria:{"amount"=>"$amount","card_type"=>"$card.card_type"}, 
-                             m_criteria:{"paid"=>false,"captured"=>true},
+                             m_criteria:{"paid"=>false},
                              groupby_ts:%Q|created|,dimension:'card_type')
 
     trends << Trend.new(type:"churn_mrr",group:"mrr",name:"Churn MRR",
@@ -133,7 +133,7 @@ class User
   end
 
   def refresh_data
-    add_trends_v2 if self.trends.empty?
+    add_trends if self.trends.empty?
 
     # get the timestamp of the last imported object
     last_charge_import   = self.charge_imports.asc(:start_at).last.start_at

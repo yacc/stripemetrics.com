@@ -1,5 +1,59 @@
 subl ~/dev/devops/stripemetrics.howto.txt
 
+== 2013-11-04 ==
+Import.delete_all
+Customer.delete_all
+Charge.delete_all
+Trend.delete_all 
+yacc = User.last
+yacc.add_trends
+
+
+trend.data_source.aggregate([trend.match,trend.project,trend.groupby]).collect do |data|
+  pp data 
+  monthly[(Time.new(data["_id"]["year"]) + (data["_id"]["month"]).month).to_i] = data["total"]
+end
+
+
+db.charges.aggregate(
+  {"$match"=>{"user_id"=>"52715d547eb6417a5b000001", "paid"=>false, "captured"=>true}},
+  {"$project"=>{"year"=>{"$year"=>"$created"}, "month"=>{"$month"=>"$created"}, "amount"=>"$amount"}}, 
+  {"$group"=>{"_id"=>{"year"=>"$year", "month"=>"$month"}, "total"=>{"$sum"=>"$amount"}}}
+)
+
+new ObjectId("")
+
+---> ID is wrong : no match
+db.charges.aggregate([
+                      { $match:   { user_id: "52715d547eb6417a5b000001",created: {$ne:nil} } },
+                      { $group:   { _id: {"year":"$year","month":"$month"}, total: { $sum: "$amount" } } },
+                      { $project: { year:{"$year":"$created"},"month":{"$month":"$created"},"amount":"$amount"} }
+                   ])
+
+---> this work with proper order of operators
+db.charges.aggregate([
+                      { $match:   { user_id: new ObjectId("52715d547eb6417a5b000001"),created: {$ne:null} } },
+                      { $project: { year:{"$year":"$created"},"month":{"$month":"$created"},"amount":"$amount"} },
+                      { $group:   { _id: {"year":"$year","month":"$month"}, total: { $sum: "$amount" } } }
+                   ])
+
+---> not debugging mrr
+
+
+db.charges.aggregate([
+                      { $match:   { user_id: new ObjectId("52715d547eb6417a5b000001"), paid:false, captured:true } },
+                      { $project: { year:{"$year":"$created"},"month":{"$month":"$created"},"amount":"$amount"} },
+                      { $group:   { _id: {"year":"$year","month":"$month"}, total: { $sum: "$amount" } } }
+                   ])
+
+db.charges.aggregate([
+                      { $match:   { user_id: new ObjectId("52715d547eb6417a5b000001"), paid:false} },
+                      { $project: { year:{"$year":"$created"},"month":{"$month":"$created"},"amount":"$amount"} },
+                      { $group:   { _id: {"year":"$year","month":"$month"}, total: { $sum: "$amount" } } }
+                   ])
+
+
+
 == 2013-09-13 ==
 Laveraging RollOut
 

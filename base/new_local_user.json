@@ -1,0 +1,30 @@
+[
+  {
+    "customer_id": null,
+    "email": "yacinb+sensr@gmail.com",
+    "last_4_digits": null,
+    "livemode": false,
+    "password_hash": "$2a$10$vfdJGets7ULidyOvF.kJv.RzCNk8IncVaQyAMkjZYKXuWXboi4l2O",
+    "plan": "trialling",
+    "provider": "stripe_connect",
+    "token": "sk_live_iRSGxsgNaCJQG3L70fWSaG7X",
+    "token_expires": true,
+    "uid": "No2IOVL7FVAmLeUBQwCU4mklQ7lS51p5"
+  }
+]
+
+// [
+// {
+// 	"admin":false,
+// 	"customer_id":null,
+// 	"email":"yacinb+sensr@gmail.com",
+// 	"last_4_digits":null,
+// 	"livemode":false,
+// 	"password_hash":null,
+// 	"plan":"trialling",
+// 	"provider":"stripe_connect",
+// 	"token":"sk_test_OXTnrxteHefXJMlYV2rfP7GL",
+// 	"token_expires":true,
+// 	"uid":"No2IOVL7FVAmLeUBQwCU4mklQ7lS51p5"
+// },
+// {"admin":false,"customer_id":null,"email":"yacinb+sm@gmail.com","last_4_digits":null,"livemode":false,"password_hash":null,"plan":"trialling","provider":"stripe_connect","token":"sk_test_itdAd93m1K9W6wDUCT97LDZ9","token_expires":true,"uid":"acct_0a2eU86VY8XVtxeoAVNY"}]

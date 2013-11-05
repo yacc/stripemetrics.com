@@ -14,8 +14,6 @@ module Aggregatable
     dimension.nil? ? process_by_month! : process_by_dimension! 
   end
 
-  private
-
   def process_by_month!
     monthly = {}
     logger.info "Aggregatable: aggragating #{source} user #{self.user_id} with \n * match:#{match}\n * project:#{project}\n * groupby:#{groupby}"
@@ -44,7 +42,7 @@ module Aggregatable
 
   def match
     hash = {}
-    hash["$match"] = {"user_id" => self.user.id}
+    hash["$match"] = {"user_id" => Moped::BSON::ObjectId.from_string(self.user.id)}
     hash["$match"].merge!(m_criteria) unless m_criteria.empty?
     hash
   end
@@ -59,7 +57,7 @@ module Aggregatable
   def groupby
     { "$group" =>
       { "_id"   => id_key, 
-        "total" => total
+        "total" => total_fct
       } 
     }
   end
@@ -77,7 +75,7 @@ module Aggregatable
     end
   end
 
-  def total
+  def total_fct
     case unit
     when 'amount'  
       { "$sum" => "$amount" } 

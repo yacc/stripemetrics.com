@@ -15,6 +15,7 @@ class Card
     json_obj.except!("type")    
     json_obj["stripe_id"] = json_obj["id"]
     json_obj.except!("id")    
+    json_obj
   end
 
 end

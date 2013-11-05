@@ -10,7 +10,7 @@ class ChargeImport < Import
       user.stat.update_attribute(:stripe_charges,charges.count) if charges.count > user.stat.stripe_charges
       charges.data.each do |ch|
         record = ::Charge.where(stripe_id:ch.id).first
-        user.charges << ::Charge.create(::Charge.from_stripe(ch.as_json)) if record.nil? 
+        (user.charges.create(::Charge.from_stripe(ch.as_json))) if record.nil? 
       end    
     else
       charges.each do |ch|

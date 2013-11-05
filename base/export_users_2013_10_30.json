@@ -1,0 +1,135 @@
+[
+  {
+    "customer_id": null,
+    "email": "yacinb+sm@gmail.com",
+    "last_4_digits": null,
+    "livemode": true,
+    "password_hash": null,
+    "plan": "trialling",
+    "provider": "stripe_connect",
+    "token": "sk_live_k61dcGiQdA4J0096WAcjSdsU",
+    "token_expires": true,
+    "uid": "acct_0a2eU86VY8XVtxeoAVNY"
+  },
+  {
+    "customer_id": null,
+    "email": null,
+    "last_4_digits": null,
+    "livemode": true,
+    "password_hash": null,
+    "plan": "trialling",
+    "provider": "stripe_connect",
+    "token": "sk_live_0JBmIqoKSWBiFH2vAfvC21OM",
+    "token_expires": true,
+    "uid": "mi7LMInsw8mAIgHWH9GU4ExrNJ9zNksI"
+  },
+  {
+    "customer_id": null,
+    "email": "yacinb+sensr@gmail.com",
+    "last_4_digits": null,
+    "livemode": true,
+    "password_hash": "$2a$10$vfdJGets7ULidyOvF.kJv.RzCNk8IncVaQyAMkjZYKXuWXboi4l2O",
+    "plan": "trialling",
+    "provider": "stripe_connect",
+    "token": "sk_live_iRSGxsgNaCJQG3L70fWSaG7X",
+    "token_expires": true,
+    "uid": "No2IOVL7FVAmLeUBQwCU4mklQ7lS51p5"
+  },
+  {
+    "customer_id": null,
+    "email": "admin@serpiq.com",
+    "last_4_digits": null,
+    "livemode": true,
+    "password_hash": null,
+    "plan": "trialling",
+    "provider": "stripe_connect",
+    "token": "sk_live_p4gVv7K39zgLtSXsjsyxIEuW",
+    "token_expires": true,
+    "uid": "user_09KTZcK1y7lgMwCJLxD7"
+  },
+  {
+    "customer_id": null,
+    "email": "rob@propertymetrics.com",
+    "last_4_digits": null,
+    "livemode": true,
+    "password_hash": null,
+    "plan": "trialling",
+    "provider": "stripe_connect",
+    "token": "sk_live_wWwoN3t9UpPdHxT8VFKXKZgO",
+    "token_expires": true,
+    "uid": "RFAwN8iEU02kXikWwhd01GVAltJ6ivvi"
+  },
+  {
+    "customer_id": null,
+    "email": "paulmcavinchey@gmail.com",
+    "last_4_digits": null,
+    "livemode": true,
+    "password_hash": null,
+    "plan": "trialling",
+    "provider": "stripe_connect",
+    "token": "sk_live_V0MAS3DrHMGUz2pnaeaN7wnF",
+    "token_expires": true,
+    "uid": "8wvqdu0n7dhnhJsUD2sSckIieWQdQcRl"
+  },
+  {
+    "customer_id": null,
+    "email": "chad@thoughtbot.com",
+    "last_4_digits": null,
+    "livemode": true,
+    "password_hash": null,
+    "plan": "trialling",
+    "provider": "stripe_connect",
+    "token": "sk_live_dfqMAb11aqx2E3tYgTmugfql",
+    "token_expires": true,
+    "uid": "ZZmGCK8MYKr0FHOuop7OzJe7Spmxk7nr"
+  },
+  {
+    "customer_id": null,
+    "email": null,
+    "last_4_digits": null,
+    "livemode": true,
+    "password_hash": null,
+    "plan": "trialling",
+    "provider": "stripe_connect",
+    "token": "sk_live_YuiDFFQN4LzkCox2OJiisikU",
+    "token_expires": true,
+    "uid": "acct_1HmzYbyxkJvRzywC08Te"
+  },
+  {
+    "customer_id": null,
+    "email": "bknowles@bfmdesigns.com",
+    "last_4_digits": null,
+    "livemode": true,
+    "password_hash": null,
+    "plan": "trialling",
+    "provider": "stripe_connect",
+    "token": "sk_live_ebilXOueksXFHshpVcwseS93",
+    "token_expires": true,
+    "uid": "acct_2L2X7XytSEg8NqvV9VsI"
+  },
+  {
+    "customer_id": null,
+    "email": "nik@tintup.com",
+    "last_4_digits": null,
+    "livemode": true,
+    "password_hash": null,
+    "plan": "trialling",
+    "provider": "stripe_connect",
+    "token": "sk_live_e7VO5KfPUp4iFDO3NAJClro5",
+    "token_expires": true,
+    "uid": "acct_19UdWFvmVcW4Ep0zkRSd"
+  },
+  {
+    "customer_id": null,
+    "email": "alex@indyhall.org",
+    "last_4_digits": null,
+    "livemode": true,
+    "password_hash": null,
+    "plan": "trialling",
+    "provider": "stripe_connect",
+    "token": "sk_live_IpvqGcDHHE5MEc0d8oysZmvG",
+    "token_expires": true,
+    "uid": "acct_0VvA86NH8J28dNS68sJc"
+  }
+]
+

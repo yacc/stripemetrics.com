@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
   before_filter :authenticate_user!
 
-	def index
+  def index
     @new_mrr      = current_user.trends.where(type:'new_mrr').first
     @failed_mrr   = current_user.trends.where(type:'failed_mrr').first
     @new_cust     = current_user.trends.where(type:'new_cust').first

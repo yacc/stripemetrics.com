@@ -20,10 +20,13 @@ class Charge
   index({ stripe_id: 1 }, { unique: true, background: true })
 
   def self.from_stripe(json_obj)
+    return nil if json_obj.nil?    
+    json_obj.except!("metadata")
     json_obj.except!("fee_details")
     json_obj["card"] = ::Card.from_stripe(json_obj["card"])
     json_obj["stripe_id"] = json_obj["id"]
-    json_obj.except!("id")    
+    json_obj.except!("id")
+    json_obj    
   end
 
   def is_charge_from_new_customer?(customer_created_at)

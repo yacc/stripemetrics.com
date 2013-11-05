@@ -16,6 +16,8 @@ class Customer
     json_obj.except!("cards")    
     json_obj["stripe_id"] = json_obj["id"]
     json_obj.except!("id")
+    json_obj["subscription"]["plan"] = ::Plan.from_stripe(json_obj["subscription"]["plan"])
+    json_obj
   end
   
   def refresh_new_mrr_flag

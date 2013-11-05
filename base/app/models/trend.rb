@@ -19,10 +19,12 @@ class Trend
 
   belongs_to :user
 
-  def self.normalized_months(user)
+  def self.normalized_months(user,limit=6)
     trend_id = user.trends.where(dimension:nil).collect{|t| [t.data.size,t._id]}.max[1]
     trend = Trend.find(trend_id)
-    trend.data.keys.sort
+    months = trend.data.keys.sort
+    n = months.size    
+    (limit <= n) ? months[n-limit,n-1] : months
   end
 
   # ---- OPERATOR ON TREND ----
@@ -56,26 +58,29 @@ class Trend
     self.data.collect{|k,v| [k.to_i*1000,v]}.sort
   end
 
-  def as_bigstat_data
-    self.data.sort.collect{|k,v| v}
+  def as_bigstat_data(limit=12)
+    scale = (unit == 'amount' ? 100 : 1)
+    datapoints = self.data.sort.collect{|k,v| v/scale}
+    n = datapoints.size    
+    ((limit <= n) ? datapoints[n-limit,n-1] : datapoints).join(',') 
   end
 
   def as_flot_data(cap=nil)
+    datapoints = self.data.collect{|k,v| [k.to_i*1000,v]}.sort    
     if cap
-      datapoints = self.data.collect{|k,v| [k.to_i*1000,v]}.sort    
       cap = [cap,datapoints.size].min
       datapoints[-cap..cap]
     else
-      self.data.collect{|k,v| [k.to_i*1000,v]}.sort    
+      datapoints
     end
   end
 
   def tsm_average
     data_points = self.data.sort.collect{|k,v| v}
     num_periods    = data_points.size.to_f
-    starting_value = data_points.first[1].to_f  
-    ending_value   = data_points.last[1].to_f  
-    ((ending_value/starting_value)**(1./num_periods))-1
+    starting_value = data_points.first.to_f  
+    ending_value   = data_points.last.to_f  
+    (((ending_value/starting_value)**(1./num_periods))-1 ).round(2)
   end
 
 end
