@@ -1,5 +1,15 @@
 subl ~/dev/devops/stripemetrics.howto.txt
 
+== 2013-11-05 ==
+aggregation of charges is wrong.
+months are not alligned with proper 'real' mo
+amounts a wrong
+and failed charges counts more than ounce the same failing invoice
+
+yacc.trends.each{|t| t.process!}
+yacc.schedule_imports
+QUEUE='*' COUNT='4' RAILS_ENV=developnt bundle exec rake resque:workers
+
 == 2013-11-04 ==
 Import.delete_all
 Customer.delete_all

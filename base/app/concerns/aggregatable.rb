@@ -18,7 +18,10 @@ module Aggregatable
     monthly = {}
     logger.info "Aggregatable: aggragating #{source} user #{self.user_id} with \n * match:#{match}\n * project:#{project}\n * groupby:#{groupby}"
     data_source.aggregate([match,project,groupby]).collect do |data|
-      monthly[(Time.new(data["_id"]["year"]) + (data["_id"]["month"]).month).to_i] = data["total"]
+      mo_str = "#{data['_id']['year']}/#{data['_id']['month']}"
+      mo = Time.parse(mo_str).to_i
+      logger.info "Aggregatable: #{mo_str} -> #{mo} (#{Time.at(mo)})"
+      monthly[mo] = data["total"]
     end
     self.update_attribute(:data,monthly)    
   end

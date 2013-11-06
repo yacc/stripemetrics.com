@@ -27,6 +27,7 @@
 //= require jquery.sparkline.min
 //= require highcharts
 //= require highstock
+//= require bootstrapx-clickover
 //= require 'themes/gray'
 //= require counter
 //= require retina

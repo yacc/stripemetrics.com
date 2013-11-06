@@ -1,7 +1,28 @@
-.row-fluid.sortable
-  .span12
-    = render "mrr_metric_group", metrics:@mrrs,title:"MRR Metrics"
-    = render "churn_metric_group", metrics:@churns,title:"Churn Metrics"
+.row-fluid.sortable.ui-sortable
+  /.box.noMargin.span12{:ondesktop => "span12", :ontablet => "span12"}
+  .box.noMargin.span12
+    .box-header
+      %h2
+        %i.halflings-icon.align-justify
+        = succeed "SaaS Metrics 2.0" do
+          %span.break
+      - if false    
+        .box-icon
+          %a.btn-setting{href: "#"}
+            %i.halflings-icon.wrench
+          %a.btn-minimize{href: "#"}
+            %i.halflings-icon.chevron-up
+          %a.btn-close{href: "#"}
+            %i.halflings-icon.remove
+    .box-content
+      %table.table.table-bordered.table-condensed
+        %tbody
+          = render "mrr_metric_group", metrics:@mrrs,title:"MRR Metrics"
+          = render "churn_metric_group", metrics:@churns,title:"Churn Metrics"
 
 :javascript
-  $('[rel="clickover"]').clickover({ html : true });
+  $(document).ready(function(){
+    $('[rel="clickover"]').clickover({ html : true });
+  });  
+
+

@@ -2552,6 +2552,7 @@ footer {
 	border-color: rgba(0, 0, 0, 0.8);
 }
 
+
 .circleStatsItemBox input:focus {
 	outline: 0;
 	outline: thin dotted 0;
@@ -2559,6 +2560,8 @@ footer {
        -moz-box-shadow: none;
          	box-shadow: none;
 }
+
+
 
 /* Typography - Blockquote
 =================================================================== */	
@@ -2909,7 +2912,7 @@ ul.messagesList li span.date {
 
 /* Retina Display Hack
 =================================================================== */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dppx) {
 	
 	.timeslot .task .arrow {
 		background: image-url('timeline-left-arrow@2x.png') no-repeat;
