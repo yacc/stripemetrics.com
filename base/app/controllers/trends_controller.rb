@@ -28,8 +28,9 @@ class TrendsController < ApplicationController
   
   def index
     # MRR
+    @lost        = current_user.trends.where(group:'lost')
     @mrrs        = current_user.trends.where(group:'mrr').where(dimension:nil)
-    @net_new_mrr = new_mrr - failed_mrr - churn_mrr
+    @net_new_mrr = new_mrr - churn_mrr
 
     # CHURN
     @churns      = current_user.trends.where(group:'churn').where(dimension:nil)

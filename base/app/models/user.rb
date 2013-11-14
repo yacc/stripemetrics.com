@@ -68,6 +68,14 @@ class User
 
 
   def add_trends
+    # Overview
+    trends << Trend.new(type:"mrr",group:"overview",name:"Total MRR",
+                             desc:"Monthly recuring revenue",
+                             unit:"amount",source:"charges",interval:'month',
+                             p_criteria:{"amount"=>"$amount"}, 
+                             m_criteria:{"created"=>{"$ne"=>nil},"paid"=>true},
+                             groupby_ts:%Q|created|)
+
     # MRR
     trends << Trend.new(type:"new_mrr",group:"mrr",name:"New MRR",
                              desc:"Monthly recuring revenue from new customers",
@@ -76,7 +84,7 @@ class User
                              m_criteria:{"created"=>{"$ne"=>nil},"paid"=>true,"new_mrr"=>true},
                              groupby_ts:%Q|created|)
 
-    trends << Trend.new(type:"failed_mrr",group:"mrr",name:"Failed MRR",
+    trends << Trend.new(type:"failed_mrr",group:"lost",name:"Failed Charges",
                              desc:"Failing monthly recuring revenue from new customers",
                              unit:"amount",source:"charges",interval:'month',
                              p_criteria:{"amount"=>"$amount"}, 

@@ -1,6 +1,7 @@
 .row-fluid
   .span8.widget.blue{ondesktop: "span8", ontablet: "span7"}
-    =render '/charts/two_series_as_bars', :bar => @new_mrr, :line => @failed_mrr
+    =render '/charts/two_series_as_bars', 
+            bar: @mrr, line: @failed_mrr, max_data_points: @max_data_points 
   .sparkLineStats.span4.widget.green{ondesktop: "span4", ontablet: "span5"}
     %ul.unstyled
       %li

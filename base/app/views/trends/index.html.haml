@@ -17,7 +17,12 @@
     .box-content
       %table.table.table-bordered.table-condensed
         %tbody
+          = render "lost_metric_group", metrics:@lost,title:"Lost opportunities"
+          .tr
+            %td{colspan:8}
           = render "mrr_metric_group", metrics:@mrrs,title:"MRR Metrics"
+          .tr
+            %td{colspan:8}
           = render "churn_metric_group", metrics:@churns,title:"Churn Metrics"
 
 :javascript

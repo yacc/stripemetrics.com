@@ -8,7 +8,7 @@
 		var plot = $.plot($("#stats-two-charts"),
 			   [ 
 			   { 
-			   		data: #{line.as_flot_data(12)}, 
+			   		data: #{line.as_flot_data(max_data_points)}, 
 				   	label: "#{line.name}", 
 				   	lines: { 
 				   		show: true, 
@@ -18,7 +18,7 @@
 				   	shadowSize: 0	
 				  }, 
 				  {
-						data: #{bar.as_flot_data(12)},
+						data: #{bar.as_flot_data(max_data_points)},
 						label: "#{bar.name}",
 						bars: { 
 							show: true,
@@ -40,7 +40,7 @@
 						},	
 				   colors: ["rgba(255,255,255,0.8)", "rgba(255,255,255,0.6)", "rgba(255,255,255,0.4)", "rgba(255,255,255,0.2)"],
 				  xaxis: {
-				  	ticks:6,
+				  	ticks:#{max_data_points},
 				  	mode:"time",
 				  	timeformat: "%b"
 				  },

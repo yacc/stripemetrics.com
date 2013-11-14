@@ -69,7 +69,7 @@ class Trend
     datapoints = self.data.collect{|k,v| [k.to_i*1000,v]}.sort    
     if cap
       cap = [cap,datapoints.size].min
-      datapoints[-cap..cap]
+      datapoints.last(cap)
     else
       datapoints
     end
