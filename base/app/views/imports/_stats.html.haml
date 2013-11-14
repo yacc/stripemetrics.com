@@ -1,0 +1,14 @@
+.span2{ondesktop: "span2", ontablet: "span4"}
+  .circleStatsItemBox{class: color}
+    .header= title
+    %span.percent percent
+    .circleStat
+      %input.whiteCircle{type: "text", value: current_user.stat.import_progress(type)}/
+    .footer
+      %span.count
+        %span.unit #
+        %span.number=imports.count*imports.first.count
+      %span.sep /
+      %span.value
+        %span.unit #
+        %span.number=current_user.stat.total_count(type)

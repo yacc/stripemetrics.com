@@ -27,4 +27,17 @@ class Stat
     [percent.ceil,100].min
   end
 
+  def total_count(type)
+    case type
+    when 'ChargeImport'
+      stripe_charges
+    when 'CustomerImport'
+      stripe_customers
+    when 'SdeImport'
+      stripe_cdes
+    when 'CdeImport'
+      stripe_sdes
+    end
+  end
+
 end

@@ -1,0 +1,9 @@
+.row-fluid.hideInIE8.circleStats
+  = render "/imports/stats", title: "Customer Imports", 
+          imports: @customer_imports, type: 'CustomerImport', color:"yellow"
+  = render "/imports/stats", title: "Charges Imports",
+          imports: @charge_imports, type: 'ChargeImport', color:"green"
+  = render "/imports/stats", title: "Churn Imports",
+          imports: @cde_imports, type: 'CdeImport', color:"greenDark"
+  = render "/imports/stats", title: "Subscription Imports",
+          imports: @sde_imports, type: 'SdeImport', color:"orange"
