@@ -10,11 +10,11 @@ module Aggregatable
     @data_source ||= (self.user.send(source.to_sym)).collection 
   end
 
-  def process!
-    dimension.nil? ? process_by_month! : process_by_dimension! 
+  def aggregate!
+    dimension.nil? ? aggregate_by_month! : aggregate_by_dimension! 
   end
 
-  def process_by_month!
+  def aggregate_by_month!
     monthly = {}
     logger.info "Aggregatable: aggragating #{source} user #{self.user_id} with \n * match:#{match}\n * project:#{project}\n * groupby:#{groupby}"
     data_source.aggregate([match,project,groupby]).collect do |data|
@@ -26,7 +26,7 @@ module Aggregatable
     self.update_attribute(:data,monthly)    
   end
 
-  def process_by_dimension! 
+  def aggregate_by_dimension! 
     begin
       grouped_by_dim = {}
       logger.info "Aggregatable: aggragating #{source} user #{self.user_id} with \n * match:#{match}\n * project:#{project}\n * groupby:#{groupby}\n * dimension:#{dimension}"

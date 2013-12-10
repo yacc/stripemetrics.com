@@ -2,10 +2,8 @@ class TrendsController < ApplicationController
   before_filter :authenticate_user!
 
   def show
-    @trend   = current_user.trends
-    @trend   = @trend.where(type:params[:type]) if params[:type] 
-    @trend   = @trend.where(type:params[:dimension]) if params[:dimension] 
-    @trend   = @trend.last
+    @trend   =Trend.find(params[:id])
+    @max_data_points = 12
     
     respond_to do |format|
       format.html 

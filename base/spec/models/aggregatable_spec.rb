@@ -84,18 +84,18 @@ describe Aggregatable do
 		end				
 	end
 
-	describe "process! with no dimension" do
+	describe "aggregate! with no dimension" do
 		it "should call \"aggregate_by_month\" ounce" do
 			trend.update_attributes(dimension: nil,groupby_ts:"created",p_criteria:{"amount"=>"$amount"})
 			trend.should_receive(:process_by_month!)
-			trend.process!
+			trend.aggregate!
 		end
 
 		it "should generate total mrr trend" do
 			generate_charges_for_user
       newmrr = Trend.make!(user_id:user.id)			
 			newmrr.data_source.find.count.should == 18
-			newmrr.process!
+			newmrr.aggregate!
 			newmrr.data.should eq({1372662000=>27000, 1380610800=>13500, 1378018800=>18000, 1375340400=>22500})
 		end
 
@@ -103,35 +103,35 @@ describe Aggregatable do
 			generate_charges_for_user
 			newmrr = Trend.make!(:new_mrr,user_id:user.id)
 			newmrr.data_source.find.count.should == 18
-			newmrr.process!
+			newmrr.aggregate!
 			newmrr.data.should eq({1375340400=>9000, 1372662000=>9000, 1378018800=>4500})
 		end
 
 	end
 
 
-	describe "process! with \"country\" dimension" do
+	describe "aggregate! with \"country\" dimension" do
 		it "should call \"aggregate_by_month_and_dimension\" ounce" do
 			trend.update_attributes(dimension:'country',groupby_ts:"created",p_criteria:{"amount"=>"$amount"})
 			trend.should_receive(:process_by_dimension! )
-			trend.process!
+			trend.aggregate!
 		end
 		it "should aggregate failed charges amount by month and country" do
 			generate_charges_for_user_with_countries
 			failed_by_country = Trend.make!(:failed_by_country,user_id:user.id)			
 			failed_by_country.data_source.find.count.should == 25
-			failed_by_country.process!
+			failed_by_country.aggregate!
 			failed_by_country.data.should eq({"US"=>{1378018800=>4500, 1375340400=>9000, 1372662000=>9000}, "BR"=>{1375340400=>9000}, "FR"=>{1372662000=>9000, 1375340400=>13500}})
 		end
 	end
 
-	describe "process! with \"cc_type\" dimension" do
+	describe "aggregate! with \"cc_type\" dimension" do
 
 		it "should aggregate failed charges amount by month and country" do
 			generate_charges_for_user_with_cc_types
 			total_by_type = Trend.make!(:failed_by_type,user_id:user.id)			
 			total_by_type.data_source.find.count.should == 26
-			total_by_type.process!
+			total_by_type.aggregate!
 			total_by_type.data.should eq({"Visa"=>{1378018800=>4500, 1375340400=>9000, 1372662000=>9000}, "Amex"=>{1378018800=>4500, 1375340400=>13500}, "MasterCard"=>{1375340400=>9000, 1372662000=>9000}})
 			Charge.delete_all
 		end
@@ -140,7 +140,7 @@ describe Aggregatable do
 			generate_successfull_charges_for_user_with_cc_types
 			total_by_type = Trend.make!(:total_by_type,user_id:user.id)			
 			total_by_type.data_source.find.count.should == 26
-			total_by_type.process!
+			total_by_type.aggregate!
 			total_by_type.data.should eq({"Visa"=>{1378018800=>18000, 1380610800=>13500, 1375340400=>22500, 1372662000=>27000}, "Amex"=>{1378018800=>4500, 1375340400=>13500}, "MasterCard"=>{1375340400=>9000, 1372662000=>9000}})
 			Charge.delete_all
 		end

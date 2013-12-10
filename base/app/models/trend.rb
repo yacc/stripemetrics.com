@@ -66,7 +66,8 @@ class Trend
   end
 
   def as_flot_data(cap=nil)
-    datapoints = self.data.collect{|k,v| [k.to_i*1000,v]}.sort    
+    scale = (unit == 'amount' ? 100 : 1)
+    datapoints = self.data.collect{|k,v| [k.to_i*1000,v/scale]}.sort    
     if cap
       cap = [cap,datapoints.size].min
       datapoints.last(cap)
@@ -81,6 +82,14 @@ class Trend
     starting_value = data_points.first.to_f  
     ending_value   = data_points.last.to_f  
     (((ending_value/starting_value)**(1./num_periods))-1 ).round(2)
+  end
+
+  def div_name
+    name.gsub(' ','_').gsub('#','').underscore
+  end
+
+  def is_currency?
+    self.unit == 'amount'
   end
 
 end

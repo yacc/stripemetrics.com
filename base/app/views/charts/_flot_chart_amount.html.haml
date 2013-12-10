@@ -1,0 +1,81 @@
+%div{:id=> "#{div}", style: "height:#{height}px"}
+
+:javascript
+
+  if($('##{div}').length)
+  { 
+  
+    var plot = $.plot($('##{div}'),
+         [ 
+         { 
+            data: #{data.as_flot_data(max_data_points)}, 
+            label: "#{data.name}", 
+            lines: { 
+              show: true, 
+              fill: false,
+              lineWidth: 2 
+            },
+            shadowSize: 0 
+          }
+        ], {
+           
+           grid: { hoverable: true, 
+               clickable: true, 
+               tickColor: "rgba(255,255,255,0.05)",
+               borderWidth: 0
+             },
+         legend: {
+                show: false
+            },  
+           colors: ["rgba(255,255,255,0.8)", "rgba(255,255,255,0.6)", "rgba(255,255,255,0.4)", "rgba(255,255,255,0.2)"],
+          xaxis: {
+            ticks:#{max_data_points},
+            mode:"time",
+            timeformat: "%b"
+          },
+          yaxis: {
+            ticks:5, tickDecimals: 0, color: "rgba(255,255,255,0.8)" 
+          },
+        });   
+        
+
+
+    function showTooltip(x, y, contents) {
+      $('<div id="tooltip">' + contents + '</div>').css( {
+        position: 'absolute',
+        display: 'none',
+        top: y + 5,
+        left: x + 5,
+        border: '1px solid #fdd',
+        padding: '2px',
+        'background-color': '#dfeffc',
+        opacity: 0.80
+      }).appendTo("body").fadeIn(200);
+    }
+
+    var previousPoint = null;
+
+    $('##{div}').bind("plothover", function (event, pos, item) {
+      $("#x").text(pos.x.toFixed(2));
+      $("#y").text(pos.y.toFixed(2));
+
+        if (item) {
+          if (previousPoint != item.dataIndex) {
+            previousPoint = item.dataIndex;
+
+            var date = new Date(item.datapoint[0]);
+            var fdate = jQuery.datepicker.formatDate('dd M yy',date);
+
+            $("#tooltip").remove();
+            var y = item.datapoint[1].toFixed(2)/100;
+
+            showTooltip(item.pageX, item.pageY, item.series.label + " at " + fdate + " = $" + y);
+          }
+        }
+        else {
+          $("#tooltip").remove();
+          previousPoint = null;
+        }
+    });
+  
+  }
