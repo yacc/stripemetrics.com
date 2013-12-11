@@ -25,6 +25,8 @@
 //= require jquery.masonry.min
 //= require jquery.knob.modified
 //= require jquery.sparkline.min
+//= require grid.locale-en
+//= require jquery.jqGrid.min
 //= require highcharts
 //= require highstock
 //= require bootstrapx-clickover

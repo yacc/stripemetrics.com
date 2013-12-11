@@ -38,6 +38,13 @@ class TrendsController < ApplicationController
     @months = Trend.normalized_months(current_user)
   end
 
+  def source
+      @trend   = Trend.find(params[:id])
+      @rows = @trend.source_rows(params[:ts],current_user.id)
+      respond_to do |format|
+        format.json { render json: ("#{@trend.source.classify}sPresenter").constantize.new(@rows) }
+      end
+  end
 
   private
 

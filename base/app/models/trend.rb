@@ -76,6 +76,22 @@ class Trend
     end
   end
 
+  def col_names
+    ("#{source.classify}Presenter").constantize.attributes_to_display
+  end
+
+  def col_model
+    list = ("#{source.classify}Presenter").constantize.attributes_to_display
+    list.collect{|c| {name:c.capitalize,index:c}}.to_json
+  end
+
+  def source_rows(ts,user_id)
+      ts_start = Time.at(ts.to_i).beginning_of_month.to_i
+      ts_end  = Time.at(ts.to_i).end_of_month.to_i
+      rows = (self.source.classify.constantize).where(user_id:user_id).where(created:ts_start..ts_end)
+      rows.only(*col_names.collect{|c| c.to_sym})
+  end
+
   def tsm_average
     data_points = self.data.sort.collect{|k,v| v}
     num_periods    = data_points.size.to_f

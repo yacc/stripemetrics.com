@@ -1,0 +1,25 @@
+%table.table.table-bordered.table-striped.table-condensed{:id=> "#{div}"}
+%div{:id=> "pager_#{div}"}
+
+:javascript
+
+  var url = 'http://stripemetrics.dev/trends/#{trend_id}/source?ts=1364799600';
+  jQuery('##{div}').jqGrid({
+      shrinkToFit:true,
+      width:800,
+      url:url,
+      datatype: "json",
+      colNames:#{colNames},
+      colModel:#{colModel},
+      rowNum:10,
+      rowList:[10,20,30],
+      pager: '#pager2',
+      sortname: 'id',
+      viewrecords: true,
+      sortorder: "desc",
+      caption:"#{}"
+  });
+
+  jQuery('##{div}').jqGrid('navGrid','#pager_#{div}',{edit:false,add:false,del:false});
+
+

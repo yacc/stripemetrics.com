@@ -22,6 +22,7 @@ Stripemetrics::Application.routes.draw do
   match 'upgrading'            => 'plans#index_for_upgrading',   :as => :upgrading
 
   # =============== RESOURCES ============================================
+  get '/trends/:id/source',  to: 'trends#source'
   resources :trends, :only => [:show, :index]
 
   # =============== OTHER ============================================

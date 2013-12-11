@@ -14,11 +14,16 @@
           %i.halflings-icon.remove
     .box-content
       -if @trend.is_currency?
-        =render '/charts/flot_fill_chart_amount', data: @trend, max_data_points: @max_data_points ,
-           height:350, div:"#{@trend.div_name}_div"
+        =render '/charts/flot_fill_chart_amount', data: @trend, max_data_points: @max_data_points , height:350, div:"#{@trend.div_name}_chart"
       -else
-        =render '/charts/flot_fill_chart_count', data: @trend, max_data_points: @max_data_points ,
-           height:350, div:"#{@trend.div_name}_div"
+        =render '/charts/flot_fill_chart_count', data: @trend, max_data_points: @max_data_points , height:350, div:"#{@trend.div_name}_chart"
+.row-fluid.sortable
+  .widget.span12
+    .widget-header
+    .widget-content
+      = render  '/tables/jqgrid', trend_id:@trend.id,colNames:@trend.col_names, colModel:@trend.col_model,div:"#{@trend.div_name}_table",caption:@trend.desc
+
+
 .row-fluid.sortable
   .box.span12
     .box-header
@@ -34,23 +39,4 @@
         %a.btn-close{href: "#"}
           %i.halflings-icon.remove
     .box-content
-      %table.table.table-bordered.table-striped.table-condensed
-        %thead
-          %tr
-            %th Username
-            %th Date registered
-            %th Role
-            %th Status
-        %tbody
-          %tr
-            %td Vishnu Serghei
-            %td.center 2012/01/01
-            %td.center Member
-            %td.center
-              %span.label.label-success Active
-          %tr
-            %td Zbyněk Phoibos
-            %td.center 2012/02/01
-            %td.center Staff
-            %td.center
-              %span.label.label-important Banned
+      = render  '/tables/jqgrid', trend_id:@trend.id,colNames:@trend.col_names, colModel:@trend.col_model,div:"#{@trend.div_name}_table",caption:@trend.desc

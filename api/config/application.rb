@@ -21,6 +21,11 @@ Dir[File.expand_path('../../concerns/*.rb', __FILE__)].each do |f|
   autoload concern, f
 end
 
+Dir[File.expand_path('../../presenters/*.rb', __FILE__)].each do |f|
+  presenter = File.basename(f,".*").split('_').collect(&:capitalize).join
+  autoload presenter, f
+end
+
 Dir[File.expand_path('../../workers/*.rb', __FILE__)].each do |f|
   workers = File.basename(f,".*").split('_').collect(&:capitalize).join
   autoload workers, f
