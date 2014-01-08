@@ -1,0 +1,65 @@
+/* Global Styles */
+* { margin: auto; }
+body { background: #cee; font-family: Helvetica, Arial, Verdana, 'Lucida Grande', sans-serif;background:#fff; }
+h1 { text-align: center; margin:20px; }
+footer{text-align:center;}
+
+.vert-text {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.vert-text h1 {
+  padding: 0;
+  margin-bottom:50px;
+  font-size: 4.5em;
+  font-weight: 700;
+}
+
+
+/* Full Page Image Header Area */
+
+.header {
+  color:#fff;
+  display: table;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.vert-text{background:#000}
+.vert-text ul li{list-style-type:none;font-size:18px;text-decoration:underline;}
+
+/* Intro */
+
+.intro {
+  padding: 50px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  margin: 60px 0;
+  text-align: center;
+}
+.jumbotron h1 {
+  font-size: 72px;
+  line-height: 1;
+}
+.jumbotron .btn {
+  font-size: 21px;
+  padding: 14px 24px;
+}
+.footer{
+  text-align:center;
+}
+.thanks{display:block;text-align:center;font-size:18px;}
+input:invalid {
+    border: 1px solid red;
+}
+
+
