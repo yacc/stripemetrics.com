@@ -1,13 +1,13 @@
 [
   {
     "customer_id": null,
-    "email": "yacinb+sm@gmail.com",
+    "email": "xxxxxx",
     "last_4_digits": null,
     "livemode": true,
     "password_hash": null,
     "plan": "trialling",
     "provider": "stripe_connect",
-    "token": "sk_live_k61dcGiQdA4J0096WAcjSdsU",
+    "token": "xxxxx",
     "token_expires": true,
     "uid": "acct_0a2eU86VY8XVtxeoAVNY"
   },
@@ -19,19 +19,19 @@
     "password_hash": null,
     "plan": "trialling",
     "provider": "stripe_connect",
-    "token": "sk_live_0JBmIqoKSWBiFH2vAfvC21OM",
+    "token": "xxxxx",
     "token_expires": true,
     "uid": "mi7LMInsw8mAIgHWH9GU4ExrNJ9zNksI"
   },
   {
     "customer_id": null,
-    "email": "yacinb+sensr@gmail.com",
+    "email": "xxxxx",
     "last_4_digits": null,
     "livemode": true,
     "password_hash": "$2a$10$vfdJGets7ULidyOvF.kJv.RzCNk8IncVaQyAMkjZYKXuWXboi4l2O",
     "plan": "trialling",
     "provider": "stripe_connect",
-    "token": "sk_live_iRSGxsgNaCJQG3L70fWSaG7X",
+    "token": "xxxxx",x
     "token_expires": true,
     "uid": "No2IOVL7FVAmLeUBQwCU4mklQ7lS51p5"
   },
@@ -73,13 +73,13 @@
   },
   {
     "customer_id": null,
-    "email": "chad@thoughtbot.com",
+    "email": "xxxxxxm",
     "last_4_digits": null,
     "livemode": true,
     "password_hash": null,
     "plan": "trialling",
     "provider": "stripe_connect",
-    "token": "sk_live_dfqMAb11aqx2E3tYgTmugfql",
+    "token": "xxxxxxx",
     "token_expires": true,
     "uid": "ZZmGCK8MYKr0FHOuop7OzJe7Spmxk7nr"
   },
@@ -91,43 +91,43 @@
     "password_hash": null,
     "plan": "trialling",
     "provider": "stripe_connect",
-    "token": "sk_live_YuiDFFQN4LzkCox2OJiisikU",
+    "token": "xxxxxxxx",
     "token_expires": true,
     "uid": "acct_1HmzYbyxkJvRzywC08Te"
   },
   {
     "customer_id": null,
-    "email": "bknowles@bfmdesigns.com",
+    "email": "xxxxxxxx",
     "last_4_digits": null,
     "livemode": true,
     "password_hash": null,
     "plan": "trialling",
     "provider": "stripe_connect",
-    "token": "sk_live_ebilXOueksXFHshpVcwseS93",
+    "token": "xxxxxx",
     "token_expires": true,
     "uid": "acct_2L2X7XytSEg8NqvV9VsI"
   },
   {
     "customer_id": null,
-    "email": "nik@tintup.com",
+    "email": "xxxxxxxxm",
     "last_4_digits": null,
     "livemode": true,
     "password_hash": null,
     "plan": "trialling",
     "provider": "stripe_connect",
-    "token": "sk_live_e7VO5KfPUp4iFDO3NAJClro5",
+    "token": "xxxxxxxx",
     "token_expires": true,
     "uid": "acct_19UdWFvmVcW4Ep0zkRSd"
   },
   {
     "customer_id": null,
-    "email": "alex@indyhall.org",
+    "email": "xxxxxxxg",
     "last_4_digits": null,
     "livemode": true,
     "password_hash": null,
     "plan": "trialling",
     "provider": "stripe_connect",
-    "token": "sk_live_IpvqGcDHHE5MEc0d8oysZmvG",
+    "token": "xxxxxxx",
     "token_expires": true,
     "uid": "acct_0VvA86NH8J28dNS68sJc"
   }
